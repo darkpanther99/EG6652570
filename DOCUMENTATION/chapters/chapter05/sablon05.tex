@@ -1,0 +1,33 @@
+% Szglab4
+% ===========================================================================
+%
+\chapter{Szkeleton tervezése}
+
+\thispagestyle{fancy}
+
+\section{A szkeleton modell valóságos use-case-ei}
+\comment{A szkeletonnak, mint önálló programnak a működésével kapcsolatos use-case-ek.}
+
+\subsection{Use-case diagram}
+
+\begin{figure}[h]
+\begin{center}
+%\includegraphics[width=17cm]{chapters/chapter05/example.pdf}
+\caption{x}
+\label{fig:SzkeletonUseCase}
+\end{center}
+\end{figure}
+
+\subsection{Use-case leírások}
+\comment{Minden use-case-hez külön}
+
+\usecase{...}{...}{...}{...}
+
+\section{A szkeleton kezelői felületének terve, dialógusok}
+\comment{A szkeleton által elfogadott bemenetek , valamint a szöveges konzolon megjelenő kimenetek. A kiemenet formátuma olyan kell legyen, ami alapján a működés összevethető a korábbi szekvencia-diagramokkal.}
+
+\section{Szekvencia diagramok a belső működésre}
+\comment{A szkeletonban implementált szekvenciadiagramok. Tipikusan egy use-case egy diagram. Ezek megegyezhetnek a korábban specifikált diagramokkal, de az egyes életvonalakat (lifeline) egyértelműen a szkeletonban példányosított objektumokhoz kell tudni kötni. Azt kell megjeleníteni, hogy a szkeletonban létrehozott objektumok egymással hogyan fognak kommunikálni.}
+
+\section{Kommunikációs diagramok}
+\comment{A szkeletonban, az egyes szkeleton-use-case-ek futása során létrehozott objektumok és kapcsolataik bemutatására szolgáló diagramok. Ezek alapján valósítják meg a szkeleton fejlesztői az inicializáló kódrészleteket.}
