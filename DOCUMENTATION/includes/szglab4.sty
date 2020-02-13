@@ -43,6 +43,15 @@
 	\renewcommand{\tmpemaild}{#3}
 }
 
+\providecommand{\tage}[3]{}
+\providecommand{\tmptage}{}
+\providecommand{\tmpneptune}{}
+\providecommand{\tmpemaile}{}
+\renewcommand{\tage}[3]{\renewcommand{\tmptage}{#1} 
+	\renewcommand{\tmpneptune}{#2} 
+	\renewcommand{\tmpemaile}{#3}
+}
+
 \newcommand{\datum}[1]{\newcommand{\tmpdatum}{#1}}
 
 \newcommand{\fedlap}[1]{
@@ -70,6 +79,7 @@
 	\tmptagb & \tmpneptunb & \tmpemailb \\
 	\tmptagc & \tmpneptunc & \tmpemailc \\
 	\tmptagd & \tmpneptund & \tmpemaild \\
+	\tmptage & \tmpneptune & \tmpemaile \\
 	\end{tabular}
 
 	\hfill\large{\tmpdatum}
@@ -90,7 +100,7 @@
 \newcommand{\team}
 {
 	\itshape\noindent
-	\textcolor{blue}{[Csapat neve]}
+	\textcolor{blue}{[simon\_balazst\_szeretnenk\_konzulensnek]}
 	\normalfont
 }
 
