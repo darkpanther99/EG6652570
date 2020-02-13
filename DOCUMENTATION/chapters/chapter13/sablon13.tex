@@ -1,0 +1,59 @@
+% Szglab4
+% ===========================================================================
+%
+\chapter{Grafikus felület specifikációja}
+
+\thispagestyle{fancy}
+
+\section{Fordítási és futtatási útmutató}
+\comment{A feltöltött program fordításával és futtatásával kapcsolatos útmutatás. Ennek tartalmaznia kell leltárszerűen az egyes fájlok pontos nevét, méretét byte-ban, keletkezési idejét, valamint azt, hogy a fájlban mi került megvalósításra.}
+
+\subsection{Fájllista}
+
+\begin{fajllista}
+
+\fajl
+{Main.java} % Kezdet
+{250 byte} % Idptartam
+{2009.10.10~18:05~} % Résztvevők
+{...} % Leírás
+
+\fajl
+{...}
+{...}
+{...}
+{...}
+
+\end{fajllista}
+
+\subsection{Fordítás}
+\comment{A fenti listában szereplő forrásfájlokból milyen műveletekkel lehet a bináris, futtatható kódot előállítani. Az előállításhoz csak a 2. Követelmények c. dokumentumban leírt környezetet szabad előírni.}
+
+\lstset{escapeinside=`', xleftmargin=10pt, frame=single, basicstyle=\ttfamily\footnotesize, language=sh}
+\begin{lstlisting}
+javac -d bin *.java
+\end{lstlisting}
+
+\subsection{Futtatás}
+\comment{A futtatható kód elindításával kapcsolatos teendők leírása. Az indításhoz csak a 2. Követelmények c. dokumentumban leírt környezetet szabad előírni.}
+
+\lstset{escapeinside=`', xleftmargin=10pt, frame=single, basicstyle=\ttfamily\footnotesize, language=sh}
+\begin{lstlisting}
+cd bin
+java Main.java
+\end{lstlisting}
+
+\section{Értékelés}
+\comment{A projekt kezdete óta az értékelésig eltelt időben tagokra bontva, százalékban.}
+
+\begin{ertekeles}
+\tag{Horváth} % Tag neve
+{23.5}        % Munka szazalekban
+\tag{Német}
+{24.5}
+\tag{Tóth}
+{25}
+\tag{Oláh}
+{27}
+\end{ertekeles}
+

@@ -1,0 +1,57 @@
+% Szglab4
+% ===========================================================================
+%
+\chapter{Prototípus koncepciója}
+
+\thispagestyle{fancy}
+
+\section{Prototípus interface-definíciója}
+\comment{Definiálni kell a teszteket leíró nyelvet. Külön figyelmet kell fordítani arra, hogy ha a rendszer véletlen elemeket is tartalmaz, akkor a véletlenszerűség ki-bekapcsolható legyen, és a program determinisztikusan is tesztelhető legyen.}
+
+\subsection{Az interfész általános leírása}
+\comment{A protó (karakteres) input és output felületeit úgy kell kialakítani, hogy az input fájlból is vehető legyen illetőleg az output fájlba menthető legyen, vagyis kommunikációra csak a szabványos be- és kimenet használható.}
+
+\subsection{Bemeneti nyelv}
+\comment{Definiálni kell a teszteket leíró nyelvet. Külön figyelmet kell fordítani arra, hogy ha a rendszer véletlen elemeket is tartalmaz, akkor a véletlenszerűség ki-bekapcsolható legyen, és a program determinisztikusan is futtatható legyen. A szálkezelést is tesztelhető, irányítható módon kell megoldani.}
+
+\begin{itemize}
+\item Parancs1
+	\begin{itemize}
+	\item Leírás:
+	\item Opciók:
+	\end{itemize}
+\item Parancs2
+	\begin{itemize}
+	\item Leírás:
+	\item Opciók:
+	\end{itemize}
+
+\end{itemize}
+
+\comment{Ha szükséges, meg kell adni a konfigurációs (pl. pályaképet megadó) fájlok nyelvtanát is.}
+
+\subsection{Kimeneti nyelv}
+\comment{Egyértelműen definiálni kell, hogy az egyes bemeneti parancsok végrehajtása után előálló állapot milyen formában jelenik meg a szabványos kimeneten.}
+
+\section{Összes részletes use-case}
+\comment{A use-case-eknek a részletezettsége feleljen meg a kezelői felületnek, azaz a felület elemeire kell hivatkozniuk.
+Alábbi táblázat minden use-case-hez külön-külön.}
+
+\begin{figure}[h]
+\begin{center}
+%\includegraphics[width=17cm]{chapters/chapter07/example.pdf}
+\caption{x}
+\label{fig:ProtoUseCase}
+\end{center}
+\end{figure}
+
+\usecase{...}{...}{...}{...}
+
+\section{Tesztelési terv}
+\comment{A tesztelési tervben definiálni kell, hogy a be- és kimeneti fájlok egybevetésével miként végezhető el a program tesztelése. Meg kell adni teszt forgatókönyveket. Az egyes teszteket elég informálisan, szabad szövegként leírni. Teszt-esetenként egy-öt mondatban. Minden teszthez meg kell adni, hogy mi a célja, a proto mely funkcionalitását, osztályait stb. teszteli. Az alábbi táblázat minden teszt-esethez külön-külön elkészítendő.}
+
+\teszteset{...}{...}{...}
+
+\section{Tesztelést támogató segéd- és fordítóprogramok specifikálása}
+\comment{Specifikálni kell a tesztelést támogató segédprogramokat.}
+
