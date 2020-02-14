@@ -1,0 +1,87 @@
+Gaem class
+Játékosokat tárol [3...n]
+Pályát tárolja
+
+
+Játékos class:
+van fáradtság attribútuma, ami ha 4, kör vége, minden körnél reset
+tárolja egy tömbben a nála lévő tárgyakat
+látja a jégtáblát, amin áll
+látja a csapattársait(Játékos tömb)
+van testhő attribútuma
+van lép(jégtábla) metódusa
+van tárgyfelvétel(neptun haha Andor vicces funny) metódusa
+van vízbeesik() metódusa
+	jégtábla hívja rajta
+	megnézi, hogy van-e búvárruha és van-e közelben csapattárs kötéllel
+van vankötél() metódusa
+	vízbeesik() metódus hívja rajta, gondolom egyértelmű miért
+fázik() metódus:
+	testhő--
+eszik() metódus:
+	tárgyai közül egy kaja eltűnik, testhő nő 1-gyel
+pisztolytosszerak() metódus:
+	ellenőrzi, hogy megvannak-e a darabok és hogy egy helyen állnak-e az emberek
+
+
+Játékos classból leszármaz:
+igluépítés és megnézés esetleg lehet a Játékos abstract metódusa, amit másképp overrideol a két leszármazott
+Eszkimo class:
+(5 testhő)
+iglutepit(Jégtábla):
+	az adott jégtáblán lesz iglu
+	Jégtábla.setIglu()
+
+Kutato class:
+(4 testhő)
+megnéz(Jégtábla):
+	lekérdezi a teherbírását
+
+
+Pálya class
+Jégmezőket tárol(heterogén kollekció)
+2d tömb?
+
+
+Jégtábla class
+hómennyiség attribútum (konstruktorban valami randomra inicializáljuk)
+teherbírás atribútum
+emberszám(hány van rajta) attribútum
+ismeri az embereket, akik rajta állnak
+Tárgyakat tároló tömb
+van egy ráléptem() metódusa, amit egy Játékos objektum hív rajta, amikor rálép
+	emberszám++
+van ásódik(Játékos) metódusa
+	ellenőrzi, hogy a Játékos rajta áll-e
+	megkérdezi a Játékostól, hogy van-e lapátja, majd hómennyiség -1 vagy -2
+pusztul() metódus:
+	a rajta lévő emberek fázik() metódusát hívja(if van iglu, nem hívja)
+	hómennyiség++
+setIglu() metódus
+getTeherbírás() metódus
+
+Jégtáblából leszármaz:
+Stabil jég
+
+Instabil jég class:
+ráléptem() metódust overrideolja
+	emberszám++ és ellenőrzi, hogy átforduljon-e
+átfordul() metódus:
+	minden rajta lévő embert vízbe ejt
+
+Lyuk
+ráléptem() metódust overrideolja
+	minden rajta állót vízbe ejt
+teherbírás mindig 0(getter ezt adja vissza)
+
+Tárgy class
+
+Hóvihar class:
+tárolja, hogy mely jégtáblákon tombol épp(Jégtábla tömb)
+pusztít() metódus:
+	a Jégtáblákon, amiket lát, meghívja a pusztul() metódust
+	
+
+napló:
+Kiss Andor 2020.02.12. 21:40-22:00
+Kiss Andor 2020.02.13  20:30-21:50
