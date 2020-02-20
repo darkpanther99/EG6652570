@@ -17,15 +17,15 @@ Ki mivel akar főleg dolgozni? Verziókezelés hogy? Kommunikáció hogy?
 5. Modell csak a játék logikája. Modellben legyenek benne a kontroller által hívott fv-ek, de nem kell pontosan belerakni a kontrollert.
 
 Andor kérdései:
-Dokumentum célja??? Az mi a büdös fasz? Ide mit írok?
-Szakterület? Csak annyi, hogy játék, mókázásra használható?
-Dokumentum további részéről mit írok?
-Általános átttekintéshez mit írunk? Gondolom nem classokat kéne
-Nem funkcionális követelmény van bármi? Azon belül "korlátozások"?
-Funkcionálisnak jó a feladat szövege sorokra szedve?
-Erőforrás követelmények? Legyen számítógépe a fejlesztőnek, és a játékosnak is, vagy mi kéne ide?
-Átadással kapcsolatos követelmények? Az átvevő legyen képes java alkalmazás elindítására?
-Valaki ezeket a debil kérdéseket pls válaszolja meg, írja le valahova, aztán basically első hét pipa
+Dokumentum célja??? Az mi a büdös fasz? Ide mit írok?  
+Szakterület? Csak annyi, hogy játék, mókázásra használható?  
+Dokumentum további részéről mit írok?  
+Általános átttekintéshez mit írunk? Gondolom nem classokat kéne  
+Nem funkcionális követelmény van bármi? Azon belül "korlátozások"?  
+Funkcionálisnak jó a feladat szövege sorokra szedve?  
+Erőforrás követelmények? Legyen számítógépe a fejlesztőnek, és a játékosnak is, vagy mi kéne ide?  
+Átadással kapcsolatos követelmények? Az átvevő legyen képes java alkalmazás elindítására?  
+Valaki ezeket a debil kérdéseket pls válaszolja meg, írja le valahova, aztán basically első hét pipa  
 
  
 
