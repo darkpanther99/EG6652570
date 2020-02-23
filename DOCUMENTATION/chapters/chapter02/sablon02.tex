@@ -26,9 +26,14 @@ Még nincs.
 Még nincs.
 
 \subsection{Összefoglalás}
-\comment{A dokumentum további részeinek rövid ismertetése}
 % TODO: összefoglalás
 
+Ez a dokumentum a projekt megtervezésének és fejlesztésének tervét, valamint a projekt által meghatározott követelményeknek a listáját tartalmazza.
+Az áttekintés (2.2) részben tárgyaljuk a program részletesebb leírását, a felhasználók tulajdonságait, melyet szem előtt tartva folytatjuk a szoftver tervezését, fejlesztését.
+A követelmények (2.3) rész tartalmazza a követelmények kidolgozását, melyeket a fejlesztés során majd teljesíteni kell, és ami a feladat elvárt megoldásához elengedhetetlen.
+A Use-case leírások (2.4) tartalmazzák azokat az interakciókat, melyek a szoftverben megjelennek, vagy felhasználó, vagy belső aktorok által, a játék menetét irányítva.
+A szótár (2.5) a fejlesztés és a program használata során megjelenő alapvető fogalmakat tartalmazza.
+A projekt terv (2.6) a határidőkre lebontott terve, valamint a csapattagok közötti feladat kiosztás, illetve a projektvezetés menete.
 \section{Áttekintés}
 \subsection{Általános áttekintés}
 %\comment{A kialakítandó szoftver legmagasabb szintű architekturális képe. A fontosabb alrendszerek felsorolása, a közöttük kialakítandó interfészek lényege, a felhasználói kapcsolatok alapja. Esetleges hálózati és adattárolási elvárások.}
@@ -53,13 +58,24 @@ A szoftver három fő komponense a Model, a View, és a Controller. A Model repr
 
 \item A játék felülnézetes, 2 dimenziós, a jégtáblákon lévő hó magasságát a grafikával fogjuk érzékeltetni. A jégtáblák ugyanakkora méretűek, az alakjuk még nem tisztázott, viszont ami biztos, hogy teljesen lefedik a pályát, azaz egy olyan alakzat lesz, ami képes a teljes sík tesszellációjára.
 \end{itemize}
+
 \subsection{Felhasználók}
-\comment{A felhasználók jellemzői, tulajdonságai}
-% TODO: felhasználók
+\begin{itemize}
+\item A szoftver felhasználói a szereplőket irányító játékosok, a szoftver által megadott módon irányítják avatárjaikat a játék szabályai szerint.
+
+\item A felhasználók csak a játék szabályait ismerik, egyéb előzetes tudásuk nincs.
+
+\item A felhasználók a program instrukciói alapján irányítják a szereplőket.
+
+\item Legalább 3 játékosra van szükség a játék elkezdéséhez.
+\end{itemize}
 
 \subsection{Korlátozások}
-\comment{Az elkészítendő szoftverre vonatkozó – általában nem funkcionális - előírások, korlátozások.}
 % TODO: korlátozások (nemfunkcionális követelmények alapján)
+\begin{itemize}
+	\item A szoftver az elvárásoknak megfelelően válaszol a felhasználó(k) bemeneteire.
+	\item A szoftver stabilan fut, játék közben reagál a játékosokra (nem fagy le).
+\end{itemize}
 
 \subsection{Feltételezések, kapcsolatok}
 %\comment{A dokumentumban használt anyagok, web-oldalak felsorolása}
@@ -135,28 +151,28 @@ RES\_REQ\_02 & Java SDK. & Az operációs rendszer csomagkezelőjében. & A ford
 
 
 \subsection{Átadással kapcsolatos követelmények}
-\comment{A szoftver átadásával, telepítésével, üzembe helyezésével kapcsolatos követelmények}
 % TODO: átadás követelmények
 
 % Azonosító, Leírás, Ellenőrzés, Prioritás, Forrás, Komment
-\begin{longtable}{| l | l | l | l | l | l |}
+\begin{longtable}{| l | l | p{3cm} | l | l | l |}
 \hline
 \textbf{Azonosító}   & \textbf{Leírás} & \textbf{Ellenőrzés} & \textbf{Prioritás} & \textbf{Forrás} & \textbf{Komment} \tabularnewline
 \hline\hline
-... & ... & ... & ... & ... & ... \tabularnewline
+MAIN\_REQ\_01 & Üzembe helyezéshez JRE. & Az operációs rendszer csomagkezelőjében. & Elengedhetetlen. & -- & -- \tabularnewline
 \hline
 \end{longtable}
 
 \subsection{Egyéb nem funkcionális követelmények}
-\comment{A biztonsággal, hordozhatósággal, megbízhatósággal, tesztelhetőséggel, a felhasználóval kapcsolatos követelmények}
 % TODO: nemfunkcionális követelmények
 
 % Azonosító, Leírás, Ellenőrzés, Prioritás, Forrás, Komment
-\begin{longtable}{| l | l | l | l | l | l |}
+\begin{longtable}{| l | p{3cm} | l | l | l | l |}
 \hline
 \textbf{Azonosító}   & \textbf{Leírás} & \textbf{Ellenőrzés} & \textbf{Prioritás} & \textbf{Forrás} & \textbf{Komment} \tabularnewline
 \hline\hline
-... & ... & ... & ... & ... & ... \tabularnewline
+R20 & A játék megkezdéséhez legalább 3 játékosra van szükség. & Bemutatás & Fontos & Feladatleírás & -- \tabularnewline
+\hline
+R21 & A játékosok a program által megadott instrukciók alapján irányítják a szereplőket. & Bemutatás & Fontos & Csapat & -- \tabularnewline
 \hline
 \end{longtable}
 
