@@ -71,11 +71,49 @@ Még nincs.
 % TODO: funkcionális követelmények
 
 % Azonosító, Leírás, Ellenőrzés, Prioritás, Forrás, Use-case, Komment
-\begin{longtable}{| l | l | l | l | l | l | l |}
+\begin{longtable}{| l | p{4cm} | l | l | l | p{2cm} | l |}
 \hline
 \textbf{Azonosító}   & \textbf{Leírás} & \textbf{Ellenőrzés} & \textbf{Prioritás} & \textbf{Forrás} & \textbf{Use-case} & \textbf{Komment} \tabularnewline
 \hline\hline
-... & ... & ... & ... & ... & ... & ... \tabularnewline
+R00 & A játékban a különböző képességű szereplők vannak. & bemutatás & alapvető & feladatleírás & Build igloo, Examine tile & - \tabularnewline
+\hline
+R01 & Nekik kell egy tengerrel körülvett jégmezőn túlélniük & bemutatás & alapvető & feladatleírás & Step, Save & - \tabularnewline
+\hline
+R02 & A szereplők lehetnek eszkimók vagy sarkkutatót, és körökre osztva tevékenykednek & bemutatás & alapvető & feladatleírás & Step, Dig, Pick item up, Make rocket, Build igloo, Examine tile & - \tabularnewline
+\hline
+R03 & A jégmező jégtáblákból áll. & bemutatás & alapvető & feladatleírás & Turn unstable ice, Examine tile, Step & - \tabularnewline
+\hline
+R04 & Vannak stabil jégtáblák, amelyeken akárhány szereplő állhat, és vannak instabil jégtáblák, amik adott létszám felett átfordulnak és ilyenkor a tajuk állók a vízbe esnek. & bemutatás & alapvető & feladatleírás & Turn unstable ice, Step & - \tabularnewline
+\hline
+R05 & A jégtáblákat a játék kezdetén eltérő mennyiségű hó borítja. & bemutatás & alapvető & feladatleírás & Dig & - \tabularnewline
+\hline
+R06 & Az egyes jégtáblákba különféle tárgyak lehetnek belefagyva: lapát, kötél, búvárruha, élelem, stb. & bemutatás & alapvető & feladatleírás & Dig, Pick item up & - \tabularnewline
+\hline
+R07 & Befagyott tárgyat csak akkor lehet meglátni és kiásni, ha a jégtábla tiszta, nem borítja hó. & bemutatás & alapvető & feladatleírás & Dig, Pick item up & - \tabularnewline
+\hline
+R08 & A jégtáblák között lehetnek hóval fedett lukak is, amibe beleesve csak a búvárruhát viselők élnek túl, vagy azok, akiket egy köteles barátjuk a szomszéd jégtábláról azonnal kimenekít. & bemutatás & alapvető & feladatleírás & Step, Save drowning teammate, Examine tile & - \tabularnewline
+\hline
+R09 & Minden szereplő egy körben 4 egységnyi munkát végezhet. Ilyen munka például a jégtáblán levő egységnyi mennyiségű hó eltakarítása, egy szomszédos jégtáblára való lépés vagy egy kiásott tárgy felvétele. & bemutatás & alapvető & feladatleírás & Step, Dig, Pick item up, Make rocket, Save drowning teammate, Examine tile, Build igloo & - \tabularnewline
+\hline
+R10 & A lapáttal két egységnyi hó takarítható el egy munkaráfordítással. & bemutatás & alapvető & feladatleírás & Dig & - \tabularnewline
+\hline
+R11 & A jégmezőn időnként feltámad a hóvihar, és néhány érintett jégtáblát újabb adag friss hóval borít be. Akit elkap, annak a testhője egységnyivel csökken & bemutatás & alapvető & feladatleírás & Create snowstorm & - \tabularnewline
+\hline
+R12 & Az eszkimóknak a játék elején 5 egység testhője van, a sarkkutatóknak csak 4. Egy élelem eggyel növeli a testhőt. & bemutatás & alapvető & feladatleírás & Pick item up & - \tabularnewline
+\hline
+R13 & A szereplők jégtábláról-jégtáblára haladnak képességeiknek megfelelően. & bemutatás & alapvető & feladatleírás  & Step & - \tabularnewline
+\hline
+R14 & A sarkkutató meg tudja nézni, hogy az a jégtábla, amire lépne, hány embert bír el (a luk egyet sem). & bemutatás & alapvető & feladatleírás & Examine tile & - \tabularnewline
+\hline
+R15 & Az eszkimó tud iglut építeni, amiben átvészelhetők a hóviharok. Egy-egy képesség alkalmazása is egy-egy munkát jelent. & bemutatás & alapvető & feladatleírás & Build igloo & - \tabularnewline
+\hline
+R16 & A játék célja egy jelzőrakéta alkatrészeinek (pisztoly, jelzőfény, patron) megtalálása. & bemutatás & alapvető & feladatleírás & Make rocket, Dig, Pick item up & - \tabularnewline
+\hline
+R17 & Az alkatrészek is a jégbe vannak fagyva. & bemutatás & alapvető & feladatleírás & Dig, Pick item up & - \tabularnewline
+\hline
+R18 & Ha ezeket a csapat összegyűjti és ugyanarra a jégtáblára viszi, akkor egy munka felhasználásával összeszerelhetik és elsüthetik, amivel megnyerik a játékot. Ehhez azonban mindannyiuknak ugyanott kell állniuk. & bemutatás & alapvető & feladatleírás & Make rocket & - \tabularnewline
+\hline
+R19 & Ha valaki menet közben meghal (vízbe esve megfullad vagy elfogy a testhője és kihűl), akkor a játék véget ér & bemutatás & alapvető & feladatleírás & Turn unstable ice, Save drowning teammate & - \tabularnewline
 \hline
 \end{longtable}
 
