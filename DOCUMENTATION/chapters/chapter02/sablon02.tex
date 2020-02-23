@@ -133,6 +133,10 @@ R18 & Ha ezeket a csapat összegyűjti és ugyanarra a jégtáblára viszi, akko
 \hline
 R19 & Ha valaki menet közben meghal (vízbe esve megfullad vagy elfogy a testhője és kihűl), akkor a játék véget ér & bemutatás & alapvető & feladatleírás & Turn unstable ice, Save drowning teammate & - \tabularnewline
 \hline
+R20 & A játék felülnézetes, 2 dimenziós, a jégtáblákon lévő hó magasságát a grafikával fogjuk érzékeltetni. & bemutatás & opcionális & csapat & Dig, Step & - \tabularnewline
+\hline
+R21 & A jégtáblák ugyanakkora méretűek, az alakjuk még nem tisztázott, viszont ami biztos, hogy teljesen lefedik a pályát, azaz egy olyan alakzat lesz, ami képes a teljes sík tesszellációjára. & bemutatás & fontos & csapat & Turn unstable ice, Step & - \tabularnewline
+\hline
 \end{longtable}
 
 \subsection{Erőforrásokkal kapcsolatos követelmények}
@@ -256,6 +260,7 @@ R21 & A játékosok a program által megadott instrukciók alapján irányítjá
 \textbf{Szereplő:} Egy játékos avatárja a játéktéren. \\
 \textbf{Tárgy:} Entitás, létezhet jégtáblába fagyva, vagy szereplő birtokában. \\
 \textbf{Tenger:} A játéktér eleme, körülveszi a jégmezőt. \\
+\textbf{Tesszaláció:} Kétdimenziós síkon egy geometriai forma ismétlése átlapolás és rések nélkül.
 \textbf{Testhő:} Szereplő tulajdonsága, ha elfogy akkor meghal. \\
 \textbf{Tevékenység:} Egy szereplő megváltoztatja a játékteret. \\
 \textbf{Tiszta (jégtábla):} Jégtábla, amin nincs hó. \\
