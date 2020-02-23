@@ -174,24 +174,24 @@ RES\_REQ\_02 & Java SDK. & Az operációs rendszer csomagkezelőjében. & A ford
 
 %\comment{Minden use-case-hez külön}
 % TODO: forgatókönyvek
-\usecase{Step}{A játékos lép.}{Player}{...}
+\usecase{Step}{A játékos lép}{Player}{1. A játékos átlép egy másik jégtáblára. \newline 1.A A játékos telített instabil jégre lép, ami átfordul emiatt, a játékos vízbe esik. \newline 1.B A játékos lyukra lép, vízbe esik.}
 
 % ez lehetne inkább Shovel
-\usecase{Dig}{A játékos havat lapátol.}{Player}{...}
+\usecase{Dig}{A játékos ás}{Player}{1. A játékos eltávolít egy réteg havat a jégmezőről. \newline 1.A A játékos két réteg havat távolít el a jégmezőről a lapátja segítségével.}
 
-\usecase{Pick item up}{A játékos felvesz egy tárgyat.}{Player}{...}
+\usecase{Pick item up}{A játékos felvesz egy tárgyat}{Player}{1. A játékos felvesz egy tárgyat. \newline 2. A tárgy a játékos tárgyai közt helyet foglal. \newline 2.A A játékos ételt vesz fel, ami növeli a testhőjét.}
+\newpage
+\usecase{Make rocket}{Játékos megkísérli a játékot megnyerő rakéta összerakását}{Player}{1.A játékos és csapattársai sikeresen összerakják a rakétát és megnyerik a játékot. \newline 1.A A játékos és csapattársai nem rendelkeznek a megfelelő alkatrészekkel, vagy nem állnak egymáshoz elég közel és a rakéta nem épül össze.}
 
-\usecase{Make rocket}{A játékos jelzőrakétát készít.}{Player}{...}
+\usecase{Save drowning teammate}{Játékos megmenti fulladozó csapattársát}{Player}{1. A játékos dob egy kötelet fulladozó társának, megmentve őt.}
 
-\usecase{Save teammate}{A játékos kiment egy vízbe esett csapattársat.}{Player}{...}
+\usecase{Build igloo}{Eszkimó játékos iglut épít}{Eskimo}{1. Egy kiválasztott jégtáblára iglut épít az eszkimó.}
 
-\usecase{Build igloo}{Az eszkimó iglut épít.}{Eskimo}{...}
+\usecase{Examine tile}{Sarkkutató játékos megnéz egy jégtáblát}{PolarExplorer}{1. Egy jégtábla teherbírását megnézi a sarkkutató}
 
-\usecase{Examine tile}{A sarkkutató feltérképez egy jégtáblát.}{PolarExplorer}{...}
+\usecase{Turn unstable ice}{Túlterhelt, instabil jégtábla megfordul.}{Controller}{1. A túlterhelt jégtáblán lévő játékosok vízbe esnek \newline 2. A játékosok búvárruha vagy csapattárs segítsége miatt túlélik a vízbeesést. \newline 2.A Egy játékos nem éli túl a vízbe esést, a játék véget ér.}
 
-\usecase{Turn unstable ice}{Instabil jég megfordul.}{Controller}{...}
-
-\usecase{Create snowstorm}{Hóvihar kezdődik.}{Controller}{...}
+\usecase{Create snowstorm}{Feltámad egy hóvihar}{Controller}{1. Egy hóvihar feltámad, ami néhány jégtáblán végigsöpör. \newline 2. A jégtáblákat hóval befedi, a játékosok testhőjét csökkenti a vihar.}
 
 \section{Szótár}
 \comment{A szótár a követelmények alapján készítendő fejezet. Egy szótári bejegyzés definiálásához csak más szótári bejegyzések és köznapi – a feladattól független – fogalmak használhatók fel. A szótár mérete kb. 1-2 oldal legyen.}
