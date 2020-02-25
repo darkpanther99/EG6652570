@@ -83,12 +83,12 @@ kaja vagy pisztoly elem vagy rope
 SnowStorm class:
 tárolja, hogy mely jégtáblákon tombol épp(Jégtábla tömb)
 
-Legyen az, hogy minden kör elején a Game class(aki a köröket kezeli, van Turn metódusa) generál egy randomot és ha a random bejön, létrehoz egy SnowStormot
-Ennek a snowstormnak a konstruálásához randomol egy tilet a pályán
-Utána megrandomolja azt is, hogy mekkora vihar (legyen mondjuk 3 féle méretű, kicsi, közepes és nagy(ezt nem jelöljük sehol, csak leírom érthetőség céljából))
-Attól függően, hogy mekkora lett a vihar, a kirandomolt tile körül egy adott rádiuszban a többi jégtáblát is betölti egy Tile tömbbe
-(vagy ezt úgy is lehetne, hogy a board classnbak megmondja, hogy kérek egy hóvihart és az ad vissza neki egy Tilet és az azt körülvevő többi Tilet)
-Mindenesetre megkapta a Tile tömböt a Game class, ezután odaadja a hóviharnak ctorban
+Legyen az, hogy minden kör elején a Game class(aki a köröket kezeli, van Turn metódusa) generál egy randomot és ha a random bejön, létrehoz egy SnowStormot  
+Ennek a snowstormnak a konstruálásához randomol egy tilet a pályán  
+Utána megrandomolja azt is, hogy mekkora vihar (legyen mondjuk 3 féle méretű, kicsi, közepes és nagy(ezt nem jelöljük sehol, csak leírom érthetőség céljából))  
+Attól függően, hogy mekkora lett a vihar, a kirandomolt tile körül egy adott rádiuszban a többi jégtáblát is betölti egy Tile tömbbe  
+(vagy ezt úgy is lehetne, hogy a board classnbak megmondja, hogy kérek egy hóvihart és az ad vissza neki egy Tilet és az azt körülvevő többi Tilet)  
+Mindenesetre megkapta a Tile tömböt a Game class, ezután odaadja a hóviharnak ctorban  
 
 Storm() metódus:
 	a Jégtáblákon, amiket lát, meghívja a Storm() metódust
@@ -98,3 +98,4 @@ napló:
 Kiss Andor 2020.02.12. 21:40-22:00
 Kiss Andor 2020.02.13. 20:30-21:50
 Lant Gábor 2020.02.21. 14.40-15.50 
+Kiss Andor 2020.02.24. 8:30-9:30
