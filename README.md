@@ -1,6 +1,8 @@
 # Szoftprojlab
 Projlab cucc
 
+[Google Docs](https://docs.google.com/document/d/1dsftjPaMRKngEP-ROsxivmuem7Dmsmk79qidjJbRhbE/)
+
 **FONTOS:** Később lesz egy változtatás a feladat szövegében a félév során. *Hint:* Testhőátadás v. több oldalú pályamezők.
 
 ## 1. hét Követelmény, projekt, funkcionalitás
