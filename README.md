@@ -32,7 +32,15 @@ Valaki ezeket a debil kérdéseket pls válaszolja meg, írja le valahova, aztá
  
 
 ## 2. hét Analízis modell 1
-Szoftek házi
+Objektum leírása: Ne osztályokban gondolkodjunk (obj katalógus). Minden cucc magyar névvel egy szöveges leírást kapjon, hogy mit csinál, mivel milyen kapcsolatban van. *Hint:* Tárgyaknál, embereknél legyen öröklés -> Náluk pipa
+
+Itemek kezelése: Hogyan adunk vagy veszünk el tágyakkal felelősséget valakinek/től. NE leegyen bool flag, se enum, hogy kinek van.
+
+Vízbeesés: Hogy marad életben. Búvárruha külön szekvencia.
+
+KELL: Különböző input szekvencia, Lépés, hóvihar, Item use, Belső működés: pl vízbeesés, jégen. Init: Milyen függvények kellenek, objektumok létrehozása és egymás megismerése. (Nem csak ctor hívások, fv hívűsok is!). Emberek csapathoz rakása, stb. MIN 20 szekvencia, összefüggőek legyenek egymással. 
+
+Értékelés: Modell OO? Működik? Szekvenciák objektumok? Isten osztály 0 pont. Fv konzisztencia. TDA
 
 ## 3. hét Analízis modell 2
 Előző javítása
