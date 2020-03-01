@@ -8,7 +8,7 @@
 \section{Objektum katalógus}
 
 \subsection{Játékos}
-Három vagy több van belőle. Körökre bontva teszik a dolgukat. Saját körükben tudnak mozogni, különböző tárgyakat használni vagy a speciális képességüket használni. A játék megnyeréséhez szükséges rakétapisztoly alkatrészek összegyűjétse a feladatuk. Ha vízbe esnek, vagy kihűlnek akkor a játéknak vége.
+Három vagy több van belőle. Körökre bontva teszik a dolgukat. Saját körükben tudnak mozogni, különböző tárgyakat használni vagy a speciális képességüket használni. A játék megnyeréséhez szükséges rakétapisztoly alkatrészek összegyűjtése a feladatuk. Ha vízbe esnek, vagy kihűlnek akkor a játéknak vége.
 
 \subsection{Jégtábla}
 Ilyenek alkotják a játékos számára a játékteret, ezeken lehet mozogni. Jégtáblák tartalmazhatnak tárgyakat amelyeket ki lehet ásni. Az instabil jégtábla képes vízbe ejteni a rajta állókat, ha túl sokan vannak. A jégtáblán lehet hó. Néha lehet rajta hóvihar, mely csökkenti a rajta állók testhőjét
@@ -17,13 +17,13 @@ Ilyenek alkotják a játékos számára a játékteret, ezeken lehet mozogni. J�
 Ennek segítésével ki lehet húzni egy vízbe esett játékost.
 
 \subsection{Búvárruha}
-A jétékos képes a vízben is mozogni vele, illetve nem veszít testhőt ha vízben tartózkodik.
+A játékos képes a vízben is mozogni vele, illetve nem veszít testhőt ha vízben tartózkodik.
 
 \subsection{Lapát}
 Segítségével 2 egységnyi hó takarítható el a egy adott tábláról.
 
 \subsection{Élelem}
-Ha a játékos elfogyasztja a testhője 1-el megnő.
+Ha a játékos elfogyasztja a testhője 1-gyel megnő.
 
 \subsection{Rakétapisztoly Alkatrész}
 A játékban 3 darab ilyen megtalálása vezet a játék sikeres befejezéséhez. Az összeszereléshez mindháromnak egy helyen kell lennie.
@@ -316,7 +316,7 @@ GiveItemStrategy
 GiveItemStrategy
 \item Metódusok
 \begin{itemize}
-	\item void GiveTo(Player p): Felrhuázza a játékos a megmentésre alkalmas eszközzel.
+	\item void GiveTo(Player p): Felruházza a játékos a megmentésre alkalmas eszközzel.
 \end{itemize}
 \end{itemize}
 
@@ -376,9 +376,9 @@ DigStrategy
 	\item Ilyenekből áll a jégmező ahol a játékosok játszanak.\\
 \item Attribútumok
 \begin{itemize}
-	\item chillStormStrategy: ChillStormStrategy:Eldönti kinek változik a testhője vihar esetén.
-	\item chillWaterStrategy: ChillWaterStrategy: Eldönti kinek változik a testhője víz esetén.
-	\item giveItemStrategy: GiveItemStrategy: Eldönti milyen eszközt vett fel valaki.
+	\item chillStormStrategy: ChillStormStrategy: Eldönti, kinek változik a testhője vihar esetén.
+	\item chillWaterStrategy: ChillWaterStrategy: Eldönti, kinek változik a testhője víz esetén.
+	\item giveItemStrategy: GiveItemStrategy: Eldönti, milyen eszközt vett fel valaki.
 	\item neighborTiles: Tile[*]: Szomszédos cellákat tárolja, ismeri.
 	\item occupants: Player[*]: Rajta lévő játékosok.
 	\item snow: int: Rajta lévő hómennyiség
