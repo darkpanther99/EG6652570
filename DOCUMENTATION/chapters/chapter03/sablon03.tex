@@ -46,50 +46,364 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok
 \section{Osztályok leírása}
 \comment{Az előző alfejezetben tárgyalt objektumok felelősségének formalizálása attribútumokká, metódusokká. Csak publikus metódusok szerepelhetnek. Ebben az alfejezetben megjelennek az interfészek, az öröklés, az absztrakt osztályok. Segédosztályokra még mindig nincs szükség. Az osztályok ABC sorrendben kövessék egymást. Interfészek esetén az Interfészek, Attribútumok pontok kimaradnak.}
 
-\subsection{Osztály1}
+\subsection{BareHands}
 \begin{itemize}
-\item Felelősség\\
-\comment{Mi az osztály felelőssége. Kb 1 bekezdés.}
-\item Ősosztályok\\
-\comment{Mely osztályokból származik (öröklési hierarchia)\newline
-Legősebb osztály $\rightarrow$ Ősosztály2 $\rightarrow$ Ősosztály3...}
+\item A játékos így ás, ha nincs ásója\\
+
 \item Interfészek\\
-\comment{Mely interfészeket valósítja meg.}
-\item Attribútumok\\
-\comment{Milyen attribútumai vannak}
+DigStrategy
+
+\item Metódusok
 	\begin{itemize}
-		\item attribútum1: attribútum jellemzése: mire való
-		\item attribútum2: attribútum jellemzése: mire való
-	\end{itemize}
-\item Metódusok\\
-\comment{Milyen publikus metódusokkal rendelkezik. Metódusonként egy-három mondat arról, hogy a metódus mit csinál.}
-	\begin{itemize}
-		\item int foo(Osztály3 o1, Osztály4 o2): metódus leírása
-		\item int bar(Osztály5 o1): metódus leírása
+		\item bool Dig(Tile t): Csökkenti a tile-on található hó mennyiségét (int)
 	\end{itemize}
 \end{itemize}
 
-\subsection{Osztály2}
+\subsection{BareIce}
 \begin{itemize}
-\item Felelősség\\
-\comment{Mi az osztály felelőssége. Kb 1 bekezdés.}
-\item Ősosztályok\\
-\comment{Mely osztályokból származik (öröklési hierarchia)\newline
-Legősebb osztály $\rightarrow$ Ősosztály2 $\rightarrow$ Ősosztály3...}
+\item A jégtáblán nincs védelem a vihar elől\\
+
 \item Interfészek\\
-\comment{Mely interfészeket valósítja meg.}
+ChillStormStrategy
+
+\item Metódusok
+	\begin{itemize}
+		\item void Chill(Tile t): Táblán található játékos testhője csökken
+	\end{itemize}
+\end{itemize}
+
+\subsection{CantRescue}
+\begin{itemize}
+	\item A játékos nemtudja kihúzni a csapattársát\\
+	
+\item Interfészek\\
+RescueStrategy
+
+\item Metódusok
+\begin{itemize}
+	\item void Rescue(Tile water, Tile land): üres
+\end{itemize}
+\end{itemize}
+
+\subsection{ChillStormStrategy}
+\begin{itemize}
+	\item A Tile így hűti a viharban a játékosokat\\
+
+	\item Metódusok
+	\begin{itemize}
+		\item abstract void Chill(Tile t)
+	\end{itemize}
+\end{itemize}
+
+\subsection{ChillWaterStrategy}
+\begin{itemize}
+	\item  A Tile így hűti a vízbe esett játékosokat\\
+	
+\item Metódusok
+\begin{itemize}
+	\item abstract void Chill(Tile t)
+\end{itemize}
+\end{itemize}
+
+\subsection{DigStrategy}
+\begin{itemize}
+	\item A játékos így ás\\
+	
+\item Metódusok
+\begin{itemize}
+	\item abstract bool Dig(Tile t)
+\end{itemize}
+\end{itemize}
+
+\subsection{DryLand}
+\begin{itemize}
+	\item A szárazföld nem hűti a játékosokat\\
+	
+\item Interfészek\\
+ChillWaterStrategy
+\item Metódusok
+\begin{itemize}
+	\item void Chill(Tile t): üres
+\end{itemize}
+\end{itemize}
+
+\subsection{Empty}
+\begin{itemize}
+	\item Nincs jégbe fagyott tárgy\\
+	
+\item Interfészek\\
+GiveItemStrategy
+\item Metódusok
+\begin{itemize}
+	\item void GiveTo(Player p): üres
+\end{itemize}
+\end{itemize}
+
+\subsection{Eskimo}
+\begin{itemize}
+	\item Játékos típus, akivel valaki játszhat\\
+	
+	\item Ősosztályok\\
+	Player
+\item Metódusok
+\begin{itemize}
+	\item void BuildIgloo(): Épít egy iglut az adott mezőre
+\end{itemize}
+\end{itemize}
+
+\subsection{Food}
+\begin{itemize}
+	\item Élelem amit a játékos meg tud enni, hogy növelje a testhőjét\\
+	
+\item Interfészek\\
+GiveItemStrategy
+
+\item Metódusok
+\begin{itemize}
+	\item void GiveTo(Player p): A játékos kap egy élelmet
+\end{itemize}
+\end{itemize}
+
+\subsection{FoodStore}
+\begin{itemize}
+	\item A játékos ebben a zsebben tárolja az élelmet\\
+
 \item Attribútumok\\
-\comment{Milyen attribútumai vannak}
-	\begin{itemize}
-		\item attribútum1: attribútum jellemzése: mire való
-		\item attribútum2: attribútum jellemzése: mire való
-	\end{itemize}
+
+\begin{itemize}
+	\item count: int: Hány élelem van a játékosnál
+
+\end{itemize}
 \item Metódusok\\
-\comment{Milyen publikus metódusokkal rendelkezik. Metódusonként egy-három mondat arról, hogy a metódus mit csinál.}
-	\begin{itemize}
-		\item int foo(Osztály3 o1, Osztály4 o2): metódus leírása
-		\item int bar(Osztály5 o1): metódus leírása
-	\end{itemize}
+\begin{itemize}
+	\item void feed(Player p): Játékos testhője megnő
+\end{itemize}
+\end{itemize}
+
+\subsection{Game}
+\begin{itemize}
+	\item Interface a modell és a kontroller között. A játékmesterhez tartozó működést valósítja meg.\\
+	
+\item Attribútumok\\
+
+\begin{itemize}
+	\item players: Player[3..*]: Tárolja a játékosokat
+	\item icefield: Tile[1..*]: Tárolja a pályát alkotó elemeket
+\end{itemize}
+\item Metódusok\\
+\begin{itemize}
+	\item Tile CreateIce(): Létrehoz egy jégtáblát. Ez a metódus az init szekvencia része.
+	\item Tile CreateUnstableIce(): Létrehoz egy instabil jégtáblát. Ez a metódus az init szekvencia része.
+	\item Tile CreateSea(): Létrehoz egy vizet. Ez a metódus az init szekvencia része.
+	\item Tile CreateHole(): Létrehoz egy lyukat. Ez a metódus az init szekvencia része.
+	\item Player CreateEskimo(): Létrehoz egy eszkimó játékost. Ez a metódus az init szekvencia része.
+	\item Player CreatePolarExplorer(): Létrehoz egy sarkkutató játékost. Ez a metódus az init szekvencia része.
+	\item void GameOver(): Ha vége a játéknak szól a Controllernek, hogy vesztettünk. Külső metódus
+	\item void Turn(): Ezt a metódust a controller hívja. 
+	\item void Victory(): Ha vége a játéknak szól a Controllernek, hogy nyertünk. Külső metódus
+\end{itemize}
+\end{itemize}
+
+\subsection{Igloo}
+\begin{itemize}
+	\item Ezen a jégtáblán iglu áll, a játékosok védve vannak a vihartól\\
+	
+\item Interfészek\\
+ChillStromStrategy
+\item Metódusok
+\begin{itemize}
+	\item void Chill(Tile t): üres
+\end{itemize}
+\end{itemize}
+
+\subsection{Naked}
+\begin{itemize}
+	\item A játékos védtelen a hideg vízzel szemben\\
+	
+\item Interfészek\\
+WaterResistanceStrategy
+\item Metódusok
+\begin{itemize}
+	\item void Chill(Player p): Játékosnak nincsen ereje a vízben úszni a ruha nélkül
+\end{itemize}
+\end{itemize}
+
+\subsection{Part}
+\begin{itemize}
+	\item Jégbefagyott alkatrész\\
+
+\item Interfészek\\
+GiveItemStrategy
+
+\item Metódusok\\
+\begin{itemize}
+	\item void GiveTo(Player p): A játékos tárolójába kerül egy darab a rakétapisztolyból
+\end{itemize}
+\end{itemize}
+
+\subsection{PartStore}
+\begin{itemize}
+	\item A játékos ebben a zsebben tárolja az alkatrészeket\\
+	
+\item Attribútumok\\
+\begin{itemize}
+	\item count: int: Hány darab alkatrész van belőle a játékosnál
+\end{itemize}
+\item Metódusok\\
+\begin{itemize}
+	\item void Take(PartStore ps): Átveszi az alkatrészeket
+	\item void Gain(int n): Megnő az alkatrészek száma ami a játékosnál van
+	\item void Build(): Összerakja a rakétapisztolyt
+\end{itemize}
+\end{itemize}
+
+\subsection{Player}
+\begin{itemize}
+	\item Játékos osztály, amit a játékos irányít a grafikus felületen keresztül\\
+
+\item Attribútumok
+\begin{itemize}
+	\item bodyTemp: int: Jelzi a játékos jelenlegi hőmérsékletét, ha 0 akkor megfagy $\rightarrow$ játék vége
+	\item currentTile: Tile: A játékos ismeri a mezőt amin éppen áll
+	\item digStrategy: DigStrategy: Eldönti hogyan képes ásni a játékos
+	\item energy: int: Számlálja mennyit mozogott az adott körben a játékos
+	\item foodStore: FoodStore: Tárolja a játékos ételeit
+	\item partStore: PartStore: Tárolja a játékos rakéta alkatrészeit
+	\item rescueStrategy: RescueStrategy: Eldönti, hogy megmenthet egy játékos egy másikat a vízbeesés után
+	\item waterResistanceStrategy: WaterResistanceStrategy: Eldönti, hogy a játékos hogy viselkedik vízbeesés esetén
+\end{itemize}
+\item Metódusok
+\begin{itemize}
+	\item void AssembleFlare(): Összerakja a játék végéhez szükséges rakéta pisztolyt.
+	\item void Chill(): A testhő 1-el csökken, ha 0 alá megy GameOver.
+	\item void Dig(): Ezt a metódust a controller hívja. A játékos havat ás.
+	\item void EatFood(): Ezt a metódust a controller hívja. A játékos eszik.
+	\item void PickUp(): Ezt a metódust a controller hívja. A játékos felvesz egy tárgyat.
+	\item void PlaceOn(Tile t): Init szekvencia része. RopeRescue szekvencia része. Rárak egy játékost egy másik Tile-ra.
+	\item void RescueTeammate(direction d): Ezt a metódust a controller hívja. A játékos kiment egy másikat a vízből.
+	\item void ResistWater(): A játékos testhője a WaterResistance szerint változik.
+	\item void Step(): Ezt a metódust a controller hívja. A játékos lép, ha van még hozzá elég energiája.
+\end{itemize}
+\end{itemize}
+
+
+\subsection{PolarExplorer}
+\begin{itemize}
+	\item Játékos típus, akivel valaki játszhat\\
+	
+	\item Ősosztályok\\
+	Player
+\item Metódusok
+\begin{itemize}
+	\item void Examine(direction d): A játékos megnézheti, hogy egy adott Tile-nak mennyi a teherbírása
+\end{itemize}
+\end{itemize}
+
+\subsection{RescueStrategy}
+\begin{itemize}
+	\item A játékos így húzza ki csapattársát a vízből.\\
+
+\item Metódusok
+\begin{itemize}
+	\item abstract void Rescue(Tile water, Tile land): üres
+\end{itemize}
+\end{itemize}
+
+\subsection{Rope}
+\begin{itemize}
+	\item Jégbe fagyott kötél\\
+\item Interfészek\\
+GiveItemStrategy
+\item Metódusok
+\begin{itemize}
+	\item void GiveTo(Player p): Felrhuázza a játékos a megmentésre alkalmas eszközzel.
+\end{itemize}
+\end{itemize}
+
+\subsection{RopeRescue}
+\begin{itemize}
+	\item A játékos kihúzza csapattársát a vízből.\\
+\item Interfészek\\
+RescueStrategy
+
+\item Metódusok
+\begin{itemize}
+	\item void Rescue(Tile water, Tile land): A játékos kihúzza a vízbe esett csapattárását a vízből, ha van kötele.
+\end{itemize}
+\end{itemize}
+
+\subsection{ScubaGear}
+\begin{itemize}
+	\item Jégbe fagyott búvárruha.\\
+\item Interfészek\\
+GiveItemStrategy
+\item Metódusok\\
+\begin{itemize}
+	\item void GiveTo(): Felrhuázza a játékos a vízben maradásra alkalmas eszközzel.
+\end{itemize}
+\end{itemize}
+
+\subsection{Sea}
+\begin{itemize}
+	\item Ez a cella tenger, hűti a játékosokat.\\
+\item Interfészek\\
+ChillWaterStrategy
+
+\item Metódusok
+\begin{itemize}
+	\item void Chill(Tile t): Minden rajta álló testhője csökken a WaterResistanceStrategy szerint.
+\end{itemize}
+\end{itemize}
+
+\subsection{ShovelDig}
+\begin{itemize}
+	\item Egyszer lehet ásni vele fáradság nélkül is\\
+\item Interfészek\\
+DigStrategy
+
+\item Attribútumok
+\begin{itemize}
+	\item lastUsed: bool: Volt e már használva a körben
+\end{itemize}
+\item Metódusok
+\begin{itemize}
+	\item void Dig(Tile t): Csökkenti a tile-on található hó mennyiségét (int)
+\end{itemize}
+\end{itemize}
+
+\subsection{Tile}
+\begin{itemize}
+	\item Ilyenekből áll a jégmező ahol a játékosok játszanak.\\
+\item Attribútumok
+\begin{itemize}
+	\item chillStormStrategy: ChillStormStrategy:Eldönti kinek változik a testhője vihar esetén.
+	\item chillWaterStrategy: ChillWaterStrategy: Eldönti kinek változik a testhője víz esetén.
+	\item giveItemStrategy: GiveItemStrategy: Eldönti milyen eszközt vett fel valaki.
+	\item neighborTiles: Tile[*]: Szomszédos cellákat tárolja, ismeri.
+	\item occupants: Player[*]: Rajta lévő játékosok.
+	\item snow: int: Rajta lévő hómennyiség
+	\item weightLimit: int: Rajta lévő játékosok számának maximuma.
+	
+\end{itemize}
+\item Metódusok
+\begin{itemize}
+	\item void AddOccupant(Player p): Rátesz egy játékost a cellára.
+	\item void RemoveOccupant(Player p): Levesz egy játékos a celláról.
+	\item void ChillStorm(): Ezt a metódust a Controller hívja. Hűti a játékosokat.
+	\item void GiveItem(Player): A játékos megkapja a felvett tárgyat.
+	\item Tile NeighborAt(direction): Visszaadja az adott irányba lévő cellát.
+	\item StepOn(Player):
+	\item StepOff(Player):
+\end{itemize}
+\end{itemize}
+
+\subsection{WaterResistanceStrategy}
+\begin{itemize}
+	\item Így reagál a játékos a hideg vízre.\\
+\item Metódusok
+\begin{itemize}
+	\item abstract void Chill(Player p): üres
+\end{itemize}
 \end{itemize}
 
 \section{Statikus struktúra diagramok}
