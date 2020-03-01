@@ -30,5 +30,26 @@ sd pisztolytosszerak:
 pisztolytosszerak metódust meghívja egy játékos magán, majd ez szól a Gamenak, hogy Game over(mondjuk egy metódushívással)
 vagy ez akár lehet része a cselekszik sd-nek
 
+Use-casekre szekvenciák:
+
+sd lép:
+controller hívja a player step metódusát
+Player megkérdezi a tilet amin áll, hogy d directionben milyen tile van
+Tile ad neki egy referenciát arról a tileről
+Player hív egy tile.stepon(player) metódust, így a tile tudni fogja, hogy ki lépett rá
+Ez a metódus hozzáadja a currentplayershez az aktuális playert az új tileon
+
+sd examine tile:
+controller hívja a player specialability() metódusát
+Player megkérdezi a tilet amin áll, hogy d directionben milyen tile van
+Tile ad neki egy referenciát arról a tileről
+Player hív egy tile.examine() metódust
+ez kiírja mondjuk stdoutra a tile teherbírását
+(ezt a playernek nem kell eltárolni, elég ha csak a játékos látja-source:SB konzin)
+
+sd build igloo:
+controller hívja a player specialability() metódusát
+
+
 Kiss Andor 2020.02.15 17:30-17:44
 Lant Gabor 20202.02.21. 15.51-15.55
