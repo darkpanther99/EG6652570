@@ -31,6 +31,7 @@ A játékban 3 darab ilyen megtalálása vezet a játék sikeres befejezéséhez
 \subsection{Iglu}
 Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 
+\newpage
 \section{Statikus struktúra diagramok}
 %\comment{Az előző alfejezet osztályainak kapcsolatait és publikus metódusait bemutató osztálydiagram(ok). Tipikus hibalehetőségek: csillag-topológia, szigetek.}
 
@@ -50,10 +51,12 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 \begin{itemize}
 \item A játékos így ás, ha nincs ásója.\\
 
-\item Interfészek\\
-DigStrategy
+\item Interfészek:
+	\begin{itemize}
+		\item DigStrategy
+	\end{itemize}
 
-\item Metódusok
+\item Metódusok:
 	\begin{itemize}
 		\item bool Dig(Tile t): Csökkenti a tile-on található hó mennyiségét (int)
 	\end{itemize}
@@ -63,10 +66,13 @@ DigStrategy
 \begin{itemize}
 \item A jégtáblán nincs védelem a vihar elől.\\
 
-\item Interfészek\\
-ChillStormStrategy
+\item Interfészek:
 
-\item Metódusok
+	\begin{itemize}
+		\item ChillStormStrategy
+	\end{itemize}
+
+\item Metódusok:
 	\begin{itemize}
 		\item void Chill(Tile t): Táblán alló játékosok testhője csökken.
 	\end{itemize}
@@ -74,12 +80,14 @@ ChillStormStrategy
 
 \subsection{CantRescue}
 \begin{itemize}
-	\item A játékos nem tudja kihúzni a csapattársát.\\
+	\item A játékos nem tudja kihúzni a csapattársát.
 	
-\item Interfészek\\
-RescueStrategy
+\item Interfészek:
+\begin{itemize}
+	\item RescueStrategy
+\end{itemize}
 
-\item Metódusok
+\item Metódusok:
 \begin{itemize}
 	\item void Rescue(Tile water, Tile land): üres
 \end{itemize}
@@ -87,9 +95,9 @@ RescueStrategy
 
 \subsection{ChillStormStrategy}
 \begin{itemize}
-	\item A jégtábla így hűti viharban a játékosokat.\\
+	\item A jégtábla így hűti viharban a játékosokat.
 
-	\item Metódusok
+	\item Metódusok:
 	\begin{itemize}
 		\item abstract void Chill(Tile t)
 	\end{itemize}
@@ -99,7 +107,7 @@ RescueStrategy
 \begin{itemize}
 	\item A jégtábla így hűti a vízbe esett játékosokat.\\
 	
-\item Metódusok
+\item Metódusok:
 \begin{itemize}
 	\item abstract void Chill(Tile t)
 \end{itemize}
@@ -109,7 +117,7 @@ RescueStrategy
 \begin{itemize}
 	\item A játékos így ás.\\
 	
-\item Metódusok
+\item Metódusok:
 \begin{itemize}
 	\item abstract bool Dig(Tile t)
 \end{itemize}
@@ -119,9 +127,11 @@ RescueStrategy
 \begin{itemize}
 	\item A szárazföld nem hűti a játékosokat.\\
 	
-\item Interfészek\\
-ChillWaterStrategy
-\item Metódusok
+\item Interfészek:
+	\begin{itemize}
+		\item ChillWaterStrategy
+	\end{itemize}
+\item Metódusok:
 \begin{itemize}
 	\item void Chill(Tile t): üres
 \end{itemize}
@@ -129,10 +139,12 @@ ChillWaterStrategy
 
 \subsection{Empty}
 \begin{itemize}
-	\item Nincs jégbe fagyott tárgy.\\
+	\item Nincs jégbe fagyott tárgy.
 	
-\item Interfészek\\
-GiveItemStrategy
+\item Interfészek:
+	\begin{itemize}
+		\item GiveItemStrategy
+	\end{itemize}
 \item Metódusok
 \begin{itemize}
 	\item void GiveTo(Player p): üres
@@ -141,11 +153,13 @@ GiveItemStrategy
 
 \subsection{Eskimo}
 \begin{itemize}
-	\item Játékos osztály.\\
+	\item Játékos osztály.
 	
-	\item Ősosztályok\\
-	Player
-\item Metódusok
+	\item Ősosztályok:
+	\begin{itemize}
+		\item Player
+	\end{itemize}
+\item Metódusok:
 \begin{itemize}
 	\item void BuildIgloo(): Épít egy iglut a mezőre, amin áll.
 \end{itemize}
@@ -153,12 +167,14 @@ GiveItemStrategy
 
 \subsection{Food}
 \begin{itemize}
-	\item Élelem, amit a játékos meg tud enni, hogy növelje a testhőjét.\\
+	\item Élelem, amit a játékos meg tud enni, hogy növelje a testhőjét.
 	
-\item Interfészek\\
-GiveItemStrategy
+\item Interfészek:
+\begin{itemize}
+	\item GiveItemStrategy
+\end{itemize}
 
-\item Metódusok
+\item Metódusok:
 \begin{itemize}
 	\item void GiveTo(Player p): A játékos kap egy élelmet.
 \end{itemize}
@@ -166,15 +182,15 @@ GiveItemStrategy
 
 \subsection{FoodStore}
 \begin{itemize}
-	\item A játékos ebben a zsebben tárolja az élelmet.\\
+	\item A játékos ebben a zsebben tárolja az élelmet.
 
-\item Attribútumok\\
+\item Attribútumok:
 
 \begin{itemize}
-	\item count: int: Hány élelem van a játékosnál?
+	\item count: int: Hány élelem van a játékosnál
 
 \end{itemize}
-\item Metódusok\\
+\item Metódusok:
 \begin{itemize}
 	\item void feed(Player p): Játékos testhője megnő.
 \end{itemize}
@@ -182,15 +198,15 @@ GiveItemStrategy
 
 \subsection{Game}
 \begin{itemize}
-	\item Interface a Model és a Controller között. A játékmesterhez tartozó működést valósítja meg.\\
+	\item Interface a Model és a Controller között. A játékmesterhez tartozó működést valósítja meg.
 	
-\item Attribútumok\\
+\item Attribútumok:
 
 \begin{itemize}
 	\item players: Player[3..*]: Tárolja a játékosokat
 	\item icefield: Tile[1..*]: Tárolja a pályát alkotó elemeket
 \end{itemize}
-\item Metódusok\\
+\item Metódusok:
 \begin{itemize}
 	\item Tile CreateIce(): Létrehoz egy jégtáblát. Ez a metódus az init szekvencia része.
 	\item Tile CreateUnstableIce(): Létrehoz egy instabil jégtáblát. Ez a metódus az init szekvencia része.
@@ -206,11 +222,13 @@ GiveItemStrategy
 
 \subsection{Igloo}
 \begin{itemize}
-	\item Ezen a jégtáblán iglu áll, a játékosok védve vannak a vihartól.\\
+	\item Ezen a jégtáblán iglu áll, a játékosok védve vannak a vihartól.
 	
-\item Interfészek\\
-ChillStromStrategy
-\item Metódusok
+\item Interfészek:
+\begin{itemize} 
+	\item ChillStromStrategy
+\end{itemize}
+\item Metódusok:
 \begin{itemize}
 	\item void Chill(Tile t): üres
 \end{itemize}
@@ -218,11 +236,13 @@ ChillStromStrategy
 
 \subsection{Naked}
 \begin{itemize}
-	\item A játékos védtelen a hideg vízzel szemben.\\
+	\item A játékos védtelen a hideg vízzel szemben.
 	
-\item Interfészek\\
-WaterResistanceStrategy
-\item Metódusok
+\item Interfészek:
+\begin{itemize}
+	\item WaterResistanceStrategy
+\end{itemize}
+\item Metódusok:
 \begin{itemize}
 	\item void Chill(Player p): Játékosnak nincsen ereje a vízben úszni búvárruha nélkül.
 \end{itemize}
@@ -230,12 +250,14 @@ WaterResistanceStrategy
 
 \subsection{Part}
 \begin{itemize}
-	\item Jégbefagyott alkatrész.\\
+	\item Jégbefagyott alkatrész.
 
-\item Interfészek\\
-GiveItemStrategy
+\item Interfészek:
+\begin{itemize}
+	\item GiveItemStrategy
+\end{itemize}
 
-\item Metódusok\\
+\item Metódusok:
 \begin{itemize}
 	\item void GiveTo(Player p): A játékos tárolójába kerül egy darab a rakétapisztolyból.
 \end{itemize}
@@ -243,13 +265,13 @@ GiveItemStrategy
 
 \subsection{PartStore}
 \begin{itemize}
-	\item A játékos ebben a zsebben tárolja az alkatrészeket.\\
+	\item A játékos ebben a zsebben tárolja az alkatrészeket.
 	
-\item Attribútumok\\
+\item Attribútumok:
 \begin{itemize}
 	\item count: int: Hány darab alkatrész van belőle a játékosnál?
 \end{itemize}
-\item Metódusok\\
+\item Metódusok:
 \begin{itemize}
 	\item void Gain(PartStore ps): Átveszi az alkatrészeket.
 	\item void Gain(int n): Megnő az alkatrészek száma ami a játékosnál van.
@@ -258,9 +280,9 @@ GiveItemStrategy
 
 \subsection{Player}
 \begin{itemize}
-	\item Játékos osztály, amit a felhasználó irányít a grafikus felületen keresztül.\\
+	\item Játékos osztály, amit a felhasználó irányít a grafikus felületen keresztül.
 
-\item Attribútumok
+\item Attribútumok:
 \begin{itemize}
 	\item bodyTemp: int: Jelzi a játékos jelenlegi hőmérsékletét, ha 0 akkor megfagy $\rightarrow$ játék vége.
 	\item currentTile: Tile: A játékos ismeri a mezőt amin éppen áll.
@@ -271,7 +293,7 @@ GiveItemStrategy
 	\item rescueStrategy: RescueStrategy: Eldönti, hogy megmenthet egy játékos egy másikat a vízbeesés után.
 	\item waterResistanceStrategy: WaterResistanceStrategy: Eldönti, hogy a játékos hogyan viselkedik vízbeesés esetén.
 \end{itemize}
-\item Metódusok
+\item Metódusok:
 \begin{itemize}
 	\item void AssembleFlare(): Összerakja a játék végéhez szükséges rakéta pisztolyt. 1 munkaegység
 	\item void Chill(): A testhő 1-el csökken, ha 0 alá megy GameOver.
@@ -290,11 +312,14 @@ GiveItemStrategy
 
 \subsection{PolarExplorer}
 \begin{itemize}
-	\item Játékos típus, akivel valaki játszhat\\
+	\item Játékos típus, akivel valaki játszhat
 	
-	\item Ősosztályok\\
-	Player
-\item Metódusok
+	\item Ősosztályok:
+	\begin{itemize}
+		\item Player
+	\end{itemize}
+
+\item Metódusok:
 \begin{itemize}
 	\item int Examine(direction d): A játékos megnézheti, hogy egy adott Tile-nak mennyi a teherbírása.
 \end{itemize}
@@ -302,9 +327,9 @@ GiveItemStrategy
 
 \subsection{RescueStrategy}
 \begin{itemize}
-	\item A játékos így húzza ki csapattársát a vízből.\\
+	\item A játékos így húzza ki csapattársát a vízből.\
 
-\item Metódusok
+\item Metódusok:
 \begin{itemize}
 	\item abstract void Rescue(Tile water, Tile land): üres
 \end{itemize}
@@ -312,9 +337,11 @@ GiveItemStrategy
 
 \subsection{Rope}
 \begin{itemize}
-	\item Jégbe fagyott kötél.\\
-\item Interfészek\\
-GiveItemStrategy
+	\item Jégbe fagyott kötél.
+\item Interfészek:
+\begin{itemize}
+	\item GiveItemStrategy
+\end{itemize}
 \item Metódusok
 \begin{itemize}
 	\item void GiveTo(Player p): Felrhuázza a játékost kötéllel.
@@ -323,11 +350,13 @@ GiveItemStrategy
 
 \subsection{RopeRescue}
 \begin{itemize}
-	\item A játékos kihúzza csapattársát a vízből.\\
-\item Interfészek\\
-RescueStrategy
+	\item A játékos kihúzza csapattársát a vízből.
+\item Interfészek:
+\begin{itemize}
+	\item RescueStrategy
+\end{itemize}
 
-\item Metódusok
+\item Metódusok:
 \begin{itemize}
 	\item void Rescue(Tile water, Tile land): A vízben lévők közül egyvalaki rákerül a kihúzó játékos cellájára.
 \end{itemize}
@@ -335,22 +364,26 @@ RescueStrategy
 
 \subsection{ScubaGear}
 \begin{itemize}
-	\item Jégbe fagyott búvárruha.\\
-\item Interfészek\\
-GiveItemStrategy
-\item Metódusok\\
+	\item Jégbe fagyott búvárruha.
+\item Interfészek:
 \begin{itemize}
-	\item void GiveTo(): Felrhuázza a játékost búvárruhával.
+	\item GiveItemStrategy
+\end{itemize}
+\item Metódusok:
+\begin{itemize}
+	\item void GiveTo(): Felruházza a játékost búvárruhával.
 \end{itemize}
 \end{itemize}
 
 \subsection{Sea}
 \begin{itemize}
-	\item Ez a cella tenger, hűti a játékosokat.\\
-\item Interfészek\\
-ChillWaterStrategy
+	\item Ez a cella tenger, hűti a játékosokat.
+\item Interfészek:
+\begin{itemize}
+	\item ChillWaterStrategy
+\end{itemize}
 
-\item Metódusok
+\item Metódusok:
 \begin{itemize}
 	\item void Chill(Tile t): Minden rajta álló testhője csökken a WaterResistanceStrategy szerint.
 \end{itemize}
@@ -358,15 +391,17 @@ ChillWaterStrategy
 
 \subsection{ShovelDig}
 \begin{itemize}
-	\item Egyszer lehet ásni vele fáradság nélkül is.\\
-\item Interfészek\\
-DigStrategy
-
-\item Attribútumok
+	\item Egyszer lehet ásni vele fáradság nélkül is.
+\item Interfészek:
 \begin{itemize}
-	\item lastUsed: bool: Volt-e már használva a körben?
+	\item DigStrategy
 \end{itemize}
-\item Metódusok
+
+\item Attribútumok:
+\begin{itemize}
+	\item lastUsed: bool: Volt-e már használva a körben
+\end{itemize}
+\item Metódusok:
 \begin{itemize}
 	\item void Dig(Tile t): Csökkenti a tile-on található hó mennyiségét.
 \end{itemize}
@@ -374,8 +409,8 @@ DigStrategy
 
 \subsection{Tile}
 \begin{itemize}
-	\item Cella, ilyenekből áll a jégmező ahol a játékosok játszanak.\\
-\item Attribútumok
+	\item Cella, ilyenekből áll a jégmező ahol a játékosok játszanak.
+\item Attribútumok:
 \begin{itemize}
 	\item chillStormStrategy: ChillStormStrategy: Eldönti, kinek változik a testhője vihar esetén.
 	\item chillWaterStrategy: ChillWaterStrategy: Eldönti, kinek változik a testhője víz esetén.
@@ -386,7 +421,7 @@ DigStrategy
 	\item weightLimit: int: Rajta lévő játékosok számának maximuma.
 	
 \end{itemize}
-\item Metódusok
+\item Metódusok:
 \begin{itemize}
 	\item void ChillStorm(): Ezt a metódust a Controller hívja viharban. Hűti a játékosokat, ha nincsenek igluban.
 	\item void ChillWater(): Ezt a metódust a Controller hívja körönként. Hűti a játékosokat, ha ez a cella víz.
@@ -400,15 +435,18 @@ DigStrategy
 
 \subsection{WaterResistanceStrategy}
 \begin{itemize}
-	\item Így reagál a játékos a hideg vízre.\\
-\item Metódusok
+	\item Így reagál a játékos a hideg vízre.
+\item Metódusok:
 \begin{itemize}
 	\item abstract void Chill(Player p): üres
 \end{itemize}
 \end{itemize}
 
+\newpage
 \section{Statikus struktúra diagramok}
 %\comment{Az előző alfejezet osztályainak kapcsolatait és publikus metódusait bemutató osztálydiagram(ok). Tipikus hibalehetőségek: csillag-topológia, szigetek.}
+
+%OSZTALY DIAGRAM IDE!!!!!
 
 %\begin{figure}[h]
 %\begin{center}
