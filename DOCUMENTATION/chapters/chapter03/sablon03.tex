@@ -421,74 +421,12 @@ DigStrategy
 \section{Szekvencia diagramok}
 %\comment{Inicializálásra, use-case-ekre, belső működésre. Konzisztens kell legyen az előző alfejezettel. Minden metódus, ami ott szerepel, fel kell tűnjön valamelyik szekvenciában. Minden metódusnak, ami szekvenciában szerepel, szereplnie kell a valamelyik osztálydiagramon.}
 %find . -printf "\\\begin{figure}[H]\n\t\\\begin{center}\n\t\t\\\includegraphics[width=10cm]{chapters/chapter03/seqdiag/%f}\n\t\t\\\caption{aaa}\n\t\t\\\label{bbb}\n\t\\\end{center}\n\\\end{figure}\n"
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Game_CreateHole.png}
-		\caption{Game.CreateHole()}
-		\label{fig:GameCreateHole}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Game_CreatePolarExplorer.png}
-		\caption{Game.CreatePolarExplorer()}
-		\label{fig:GameCreatePolarExplorer}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_PickUp.png}
-		\caption{Player.PickUp()}
-		\label{fig:PlayerPickUp}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/DryLand_Chill.png}
-		\caption{DryLand.Chill(Tile)}
-		\label{fig:DryLandChill}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/ShovelDig_Dig.png}
-		\caption{ShovelDig.Dig(Tile)}
-		\label{fig:ShovelDigDig}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Empty_GiveTo.png}
-		\caption{Empty.GiveTo(Player)}
-		\label{fig:EmptyGiveTo}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/ScubaWearing_Chill.png}
-		\caption{ScubaWearing.Chill(Player)}
-		\label{fig:ScubaWearingChill}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_AssembleFlare.png}
-		\caption{Player.AssembleFlare()}
-		\label{fig:PlayerAssembleFlare}
-	\end{center}
-\end{figure}
+
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Game_init_player.png}
 		\caption{Game.InitPlayer()}
 		\label{fig:GameInitPlayer}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Igloo_Chill.png}
-		\caption{Igloo.Chill(Tile)}
-		\label{fig:IglooChill}
 	\end{center}
 \end{figure}
 \begin{figure}[H]
@@ -500,9 +438,142 @@ DigStrategy
 \end{figure}
 \begin{figure}[H]
 	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Game_CreateIce.png}
+		\caption{Game.CreateIce()}
+		\label{fig:GameCreateIce}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Game_CreateUnstableIce.png}
+		\caption{Game.CreateUnstableIce()}
+		\label{fig:GameCreateUnstableIce}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Game_CreateHole.png}
+		\caption{Game.CreateHole()}
+		\label{fig:GameCreateHole}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Game_CreateSea.png}
+		\caption{Game.CreateSea()}
+		\label{fig:GameCreateSea}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Game_CreatePolarExplorer.png}
+		\caption{Game.CreatePolarExplorer()}
+		\label{fig:GameCreatePolarExplorer}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
 		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Game_CreateEskimo.png}
 		\caption{Game.CreateEskimo()}
 		\label{fig:GameCreateEskimo}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Game_generate_item.png}
+		\caption{Game.GenerateItem()}
+		\label{fig:GameGenerateItem}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_Step.png}
+		\caption{Player.Step(direction)}
+		\label{fig:PlayerStep}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_Dig.png}
+		\caption{Player.Dig()}
+		\label{fig:PlayerDig}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_PickUp.png}
+		\caption{Player.PickUp()}
+		\label{fig:PlayerPickUp}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_PlaceOn.png}
+		\caption{Player.PlaceOn(Tile)}
+		\label{fig:PlayerPlaceOn}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_EatFood.png}
+		\caption{Player.EatFood()}
+		\label{fig:PlayerEatFood}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_RescueTeammate.png}
+		\caption{Player.RescueTeammate(direction)}
+		\label{fig:Player.RescueTeammate}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_Chill.png}
+		\caption{Player.Chill()}
+		\label{fig:PlayerChill}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_ResistWater.png}
+		\caption{Player.ResistWater()}
+		\label{fig:PlayerResistWater}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_AssembleFlare.png}
+		\caption{Player.AssembleFlare()}
+		\label{fig:PlayerAssembleFlare}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_assemble_flare.png}
+		\caption{Player.AssembleFlare()}
+		\label{fig:PlayerAssembleFlare2}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Eskimo_BuildIgloo.png}
+		\caption{Eskimo.BuildIgloo()}
+		\label{fig:EskimoBuildIgloo}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/PolarExplorer_Examine.png}
+		\caption{PolarExplorer.Examine(direction)}
+		\label{fig:PolarExplorerExamine}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Tile_StepOn.png}
+		\caption{Tile.StepOn(Player)}
+		\label{fig:TileStepOn}
 	\end{center}
 \end{figure}
 \begin{figure}[H]
@@ -521,163 +592,9 @@ DigStrategy
 \end{figure}
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Sea_Chill.png}
-		\caption{Sea.Chill(Tile)}
-		\label{fig:SeaChill}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Game_CreateIce.png}
-		\caption{Game.CreateIce()}
-		\label{fig:GameCreateIce}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_RescueTeammate.png}
-		\caption{Player.RescueTeammate(direction)}
-		\label{fig:Player.RescueTeammate}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_Dig.png}
-		\caption{Player.Dig()}
-		\label{fig:PlayerDig}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/CantRescue_Rescue.png}
-		\caption{CantRescue.Rescue(Tile, Tile)}
-		\label{fig:CantRescueRescue}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/ScubaGear_GiveTo.png}
-		\caption{ScubaGear.GiveTo(Player)}
-		\label{fig:ScubaGearGiveTo}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_Step.png}
-		\caption{Player.Step(direction)}
-		\label{fig:PlayerStep}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Food_GiveTo.png}
-		\caption{Food.GiveTo(Player)}
-		\label{fig:FoodGiveTo}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Rope_GiveTo.png}
-		\caption{Rope.GiveTo(Player)}
-		\label{fig:RopeGiveTo}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Naked_Chill.png}
-		\caption{Naked.Chill(Player)}
-		\label{fig:NakedChill}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/PolarExplorer_Examine.png}
-		\caption{PolarExplorer.Examine(direction)}
-		\label{fig:PolarExplorerExamine}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Part_GiveTo.png}
-		\caption{Part.GiveTo(Player)}
-		\label{fig:PartGiveTo}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Game_generate_item.png}
-		\caption{Game.GenerateItem()}
-		\label{fig:GameGenerateItem}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_assemble_flare.png}
-		\caption{Player.AssembleFlare()}
-		\label{fig:PlayerAssembleFlare}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_PlaceOn.png}
-		\caption{Player.PlaceOn(Tile)}
-		\label{fig:PlayerPlaceOn}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/RopeRescue_Rescue.png}
-		\caption{RopeRescue.Rescue(Tile, Tile)}
-		\label{fig:RopeRescueRescue}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Shovel_GiveTo.png}
-		\caption{Shovel.GiveTo(Player)}
-		\label{fig:ShovelGiveTo}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Tile_StepOn.png}
-		\caption{Tile.StepOn(Player)}
-		\label{fig:TileStepOn}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_EatFood.png}
-		\caption{Player.EatFood()}
-		\label{fig:PlayerEatFood}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/PartStore_Gain.png}
-		\caption{PartStore.Gain(PartStore)}
-		\label{fig:PartStoreGain}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Game_CreateUnstableIce.png}
-		\caption{Game.CreateUnstableIce()}
-		\label{fig:GameCreateUnstableIce}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
 		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Tile_ChillWater.png}
 		\caption{Tile.ChillWater()}
 		\label{fig:TileChillWater}
-	\end{center}
-\end{figure}
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Game_CreateSea.png}
-		\caption{Game.CreateSea()}
-		\label{fig:GameCreateSea}
 	\end{center}
 \end{figure}
 \begin{figure}[H]
@@ -689,9 +606,16 @@ DigStrategy
 \end{figure}
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/BareHandsDig_Dig.png}
-		\caption{BareHandsDig.Dig(Tile)}
-		\label{fig:BareHandsDig.Dig}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Naked_Chill.png}
+		\caption{Naked.Chill(Player)}
+		\label{fig:NakedChill}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/ScubaWearing_Chill.png}
+		\caption{ScubaWearing.Chill(Player)}
+		\label{fig:ScubaWearingChill}
 	\end{center}
 \end{figure}
 \begin{figure}[H]
@@ -703,9 +627,37 @@ DigStrategy
 \end{figure}
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Eskimo_BuildIgloo.png}
-		\caption{Eskimo.BuildIgloo()}
-		\label{fig:EskimoBuildIgloo}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/DryLand_Chill.png}
+		\caption{DryLand.Chill(Tile)}
+		\label{fig:DryLandChill}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Igloo_Chill.png}
+		\caption{Igloo.Chill(Tile)}
+		\label{fig:IglooChill}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Sea_Chill.png}
+		\caption{Sea.Chill(Tile)}
+		\label{fig:SeaChill}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Empty_GiveTo.png}
+		\caption{Empty.GiveTo(Player)}
+		\label{fig:EmptyGiveTo}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Food_GiveTo.png}
+		\caption{Food.GiveTo(Player)}
+		\label{fig:FoodGiveTo}
 	\end{center}
 \end{figure}
 \begin{figure}[H]
@@ -717,18 +669,68 @@ DigStrategy
 \end{figure}
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_Chill.png}
-		\caption{Player.Chill()}
-		\label{fig:PlayerChill}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/ScubaGear_GiveTo.png}
+		\caption{ScubaGear.GiveTo(Player)}
+		\label{fig:ScubaGearGiveTo}
 	\end{center}
 \end{figure}
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Player_ResistWater.png}
-		\caption{Player.ResistWater()}
-		\label{fig:PlayerResistWater}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Rope_GiveTo.png}
+		\caption{Rope.GiveTo(Player)}
+		\label{fig:RopeGiveTo}
 	\end{center}
 \end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Part_GiveTo.png}
+		\caption{Part.GiveTo(Player)}
+		\label{fig:PartGiveTo}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/Shovel_GiveTo.png}
+		\caption{Shovel.GiveTo(Player)}
+		\label{fig:ShovelGiveTo}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/CantRescue_Rescue.png}
+		\caption{CantRescue.Rescue(Tile, Tile)}
+		\label{fig:CantRescueRescue}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/RopeRescue_Rescue.png}
+		\caption{RopeRescue.Rescue(Tile, Tile)}
+		\label{fig:RopeRescueRescue}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/PartStore_Gain.png}
+		\caption{PartStore.Gain(PartStore)}
+		\label{fig:PartStoreGain}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/BareHandsDig_Dig.png}
+		\caption{BareHandsDig.Dig(Tile)}
+		\label{fig:BareHandsDig.Dig}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter03/seqdiag/ShovelDig_Dig.png}
+		\caption{ShovelDig.Dig(Tile)}
+		\label{fig:ShovelDigDig}
+	\end{center}
+\end{figure}
+
 
 
 
