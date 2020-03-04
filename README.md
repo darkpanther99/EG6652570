@@ -34,6 +34,7 @@ Lehesen váltogatni az itemek között, ha van lapátod, akkor is áshass puszta
 Ezen kívül modell perfekt.  
 Az osztályok dokumentációit rendesebben kell írni.  
 Naplóba ne írjunk csúnya szavakat, mert kimossák a szánkat.  
+Hint:Törik a lapát  
 
 
 ## Prototípus
