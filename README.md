@@ -15,18 +15,6 @@ Ki mivel akar főleg dolgozni? Verziókezelés hogy? Kommunikáció hogy?
 4. Use-case diagram: Lehetnek belső aktorok. Nem kellenek extra dolgok a diagrammra. Gombócok kb. 3-5. 
 
 5. Modell csak a játék logikája. Modellben legyenek benne a kontroller által hívott fv-ek, de nem kell pontosan belerakni a kontrollert.
-
-Andor kérdései:
-Dokumentum célja??? Az mi a büdös fasz? Ide mit írok?  
-Szakterület? Csak annyi, hogy játék, mókázásra használható?  
-Dokumentum további részéről mit írok?  
-Általános átttekintéshez mit írunk? Gondolom nem classokat kéne  
-Nem funkcionális követelmény van bármi? Azon belül "korlátozások"?  
-Funkcionálisnak jó a feladat szövege sorokra szedve?  
-Erőforrás követelmények? Legyen számítógépe a fejlesztőnek, és a játékosnak is, vagy mi kéne ide?  
-Átadással kapcsolatos követelmények? Az átvevő legyen képes java alkalmazás elindítására?  
-Valaki ezeket a debil kérdéseket pls válaszolja meg, írja le valahova, aztán basically első hét pipa  
-
  
 
 ## 2. hét Analízis modell 1
@@ -41,7 +29,11 @@ KELL: Különböző input szekvencia, Lépés, hóvihar, Item use, Belső műkö
 Értékelés: Modell OO? Működik? Szekvenciák objektumok? Isten osztály 0 pont. Fv konzisztencia. TDA
 
 ## 3. hét Analízis modell 2
-Előző javítása
+Előző javítása:  
+Lehesen váltogatni az itemek között, ha van lapátod, akkor is áshass puszta kézzel.  
+Ezen kívül modell perfekt.  
+Az osztályok dokumentációit rendesebben kell írni.  
+Naplóba ne írjunk csúnya szavakat, mert kimossák a szánkat.  
 
 
 ## Prototípus
