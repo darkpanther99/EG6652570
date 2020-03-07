@@ -34,7 +34,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 \section{Osztályok leírása}
 \subsection{BareHands}
 \begin{itemize}
-	\item A játékos így ás, ha nincs ásója.
+	\item A játékos így ás, ha nincs ásója. A kiválasztott cellán csökkennie kell a hó mennyiségnek ásáskor.
 	\item Interfészek:
 	\begin{itemize}
 		\item DigStrategy
@@ -47,7 +47,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 
 \subsection{BareIce}
 \begin{itemize}
-	\item A jégtáblán nincs védelem a vihar elől.
+	\item Ilyen a jégtábla, ha nincs rajta iglu. A jégtáblán nincs védelem a vihar elől.
 	\item Interfészek:
 	\begin{itemize}
 		\item ChillStormStrategy
@@ -60,38 +60,38 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 
 \subsection{CantRescue}
 \begin{itemize}
-	\item A játékos nem tudja kihúzni a csapattársát.	
+	\item A játékos nem tudja kihúzni a csapattársát. A játékos ilyen állapotban van, ha nincs nála kötél.
 	\item Interfészek:
 	\begin{itemize}
 		\item RescueStrategy
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void Rescue(Tile water, Tile land): üres
+		\item void Rescue(Tile water, Tile land): Mivel a játékos ebben az állapotban nem tudja megmenteni a csapattársát, ez a fv nem csinál vele semmit. 
 	\end{itemize}
 \end{itemize}
 
 \subsection{ChillStormStrategy}
 \begin{itemize}
-	\item A jégtábla így hűti viharban a játékosokat.
+	\item A jégtábla így hűti viharban a játékosokat. Vihar esetén a játékos testhője csökken, a megvalósított stratégia alapján.
 	\item Metódusok:
 	\begin{itemize}
-		\item abstract void Chill(Tile t)
+		\item abstract void Chill(Tile t): A startégiát megvalósítő elem dolga implementálni mi történik.
 	\end{itemize}
 \end{itemize}
 
 \subsection{ChillWaterStrategy}
 \begin{itemize}
-	\item A jégtábla így hűti a vízbe esett játékosokat.	
+	\item A jégtábla így hűti a vízbe esett játékosokat. Vízben tartózkodás esetén a játékos testhője csökken, a megvalósított stratégia alapján.
 	\item Metódusok:
 	\begin{itemize}
-		\item abstract void Chill(Tile t)
+		\item abstract void Chill(Tile t): A startégiát megvalósító elem dolga implementálni mi történik.
 	\end{itemize}
 \end{itemize}
 
 \subsection{DigStrategy}
 \begin{itemize}
-	\item A játékos így ás.	
+	\item A játékos így ás.	Ásáskor a cellán a hómennyiség csökken.
 	\item Metódusok:
 	\begin{itemize}
 		\item abstract bool Dig(Tile t): Visszaadja, hogy az ásás fárasztó-e.
@@ -100,46 +100,46 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 
 \subsection{DryLand}
 \begin{itemize}
-	\item A szárazföld nem hűti a játékosokat.	
+	\item A szárazföld nem hűti a játékosokat. A játékos nincsen vízben.
 	\item Interfészek:
 	\begin{itemize}
 		\item ChillWaterStrategy
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void Chill(Tile t): üres
+		\item void Chill(Tile t): Mivel a játékos nincsen vízben ezért nem kell csökkenteni a testhőjét.
 	\end{itemize}
 \end{itemize}
 
 \subsection{Empty}
 \begin{itemize}
-	\item Nincs jégbe fagyott tárgy.	
+	\item Nincs jégbe fagyott tárgy. Ez az üres eszköz típus, nem képes semmi extra tulajdonságot biztosítani a tulajdonosnak.
 	\item Interfészek:
 	\begin{itemize}
 		\item Item
 	\end{itemize}
 	\item Metódusok
 	\begin{itemize}
-		\item void GiveTo(Player p): üres
+		\item void GiveTo(Player p): A játékost nem ruházza fel extra tulajdonsággal.
 	\end{itemize}
 \end{itemize}
 
 \subsection{Eskimo}
 \begin{itemize}
-	\item Játékos fajta.	
+	\item Játékos fajta. 5 egységnyi testhővel kezd. Képes iglut építeni. A játékos irányítja.
 	\item Ősosztályok:
 	\begin{itemize}
 		\item Player
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-	\item void BuildIgloo(): Épít egy iglut a mezőre, amin áll.
+	\item void BuildIgloo(): Épít egy iglut a mezőre, amin áll. Az iglu megvéd majd a hóvihartól.
 	\end{itemize}
 \end{itemize}
 
 \subsection{Food}
 \begin{itemize}
-	\item Élelem, amit a játékos meg tud enni, hogy növelje a testhőjét.	
+	\item Élelem, amit a játékos meg tud enni, hogy növelje a testhőjét. Élelem a pályán lesz található.
 	\item Interfészek:
 	\begin{itemize}
 		\item Item
@@ -155,24 +155,28 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\item A játékos ebben a zsebben tárolja az élelmet.
 	\item Attribútumok:
 	\begin{itemize}
-		\item count: int: Hány élelem van a játékosnál
+		\item count: int: Hány élelem van a játékosnál.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
 		\item void feed(Player p): Játékos testhője megnő.
+		\item void DecrementCount(): csökkenti a benne található elemek számát.
+		\item void Gain(): növeli a benne található elemek számát.
 	\end{itemize}
 \end{itemize}
 
 \subsection{Game}
 \begin{itemize}
-	\item Interface a Model és a Controller között. A játékmesterhez tartozó működést valósítja meg.	
+	\item Interface a Model és a Controller között. A játékmesterhez tartozó működést valósítja meg. Felelős a játékban lévő objektumok tárolásáért és létrehozásáért.
 	\item Attribútumok:
 	\begin{itemize}
-		\item players: Player[3..*]: Tárolja a játékosokat
-		\item icefield: Tile[1..*]: Tárolja a pályát alkotó elemeket
+		\item players: Player[3..*]: Tárolja a játékosokat.
+		\item icefield: Tile[1..*]: Tárolja a pályát alkotó elemeket.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
+		\item void AddTile(t: Tile): Hozzáad egy cellát a játékhoz.
+		\item void AddPlayer(pl: Player): Hozzáad egy játékost a játékhoz.
 		\item Tile CreateIce(): Létrehoz egy jégtáblát. Ez a metódus az init szekvencia része.
 		\item Tile CreateUnstableIce(): Létrehoz egy instabil jégtáblát. Ez a metódus az init szekvencia része.
 		\item Tile CreateSea(): Létrehoz egy vizet. Ez a metódus az init szekvencia része.
@@ -187,20 +191,29 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 
 \subsection{Igloo}
 \begin{itemize}
-	\item Ezen a jégtáblán iglu áll, a játékosok védve vannak a vihartól.	
+	\item Ezen a jégtáblán iglu áll, a játékosok védve vannak a vihartól. Az ilyen táblán nem csökken a viharban a rajta állók testhője.
 	\item Interfészek:
 	\begin{itemize} 
 		\item ChillStromStrategy
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void Chill(Tile t): üres
+		\item void Chill(Tile t): A cellán álló játákosok testhője nem csökken.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Item}
+\begin{itemize}
+	\item Tárgy, a játékos képes ilyeneket felvenni a cellákról. A tárgyak képesek a játékosak képességeket adni. A tárgyak alapvetően jégbe fagyva vannak a pályán.
+	\item Metódusok:
+	\begin{itemize}
+		\item void GiveTo(p: Player): A jétékos kap valamilyen tárgyat.
 	\end{itemize}
 \end{itemize}
 
 \subsection{Naked}
 \begin{itemize}
-	\item A játékos védtelen a hideg vízzel szemben.		
+	\item A játékos védtelen a hideg vízzel szemben. A játékos ha így esik vízbe és nem menekítik ki megfullad.
 	\item Interfészek:
 	\begin{itemize}
 		\item WaterResistanceStrategy
@@ -213,7 +226,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 
 \subsection{Part}
 \begin{itemize}
-		\item Jégbefagyott alkatrész.
+		\item Jégbefagyott alkatrész. Csak akkor ásható ki, ha nincs rajta hó.
 	\item Interfészek:
 	\begin{itemize}
 		\item Item
@@ -226,10 +239,10 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 
 \subsection{PartStore}
 \begin{itemize}
-	\item A játékos ebben a zsebben tárolja az alkatrészeket.	
+	\item A játékos ebben a zsebben tárolja az alkatrészeket.
 	\item Attribútumok:
 	\begin{itemize}
-		\item count: int: Hány darab alkatrész van belőle a játékosnál?
+		\item count: int: Tárolja hány darab alkatrész van belőle a játékosnál.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
@@ -240,15 +253,16 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 
 \subsection{Player}
 \begin{itemize}
-	\item Játékos osztály, amit a felhasználó irányít a grafikus felületen keresztül.
+	\item Játékos osztály, amit a felhasználó irányít a grafikus felületen keresztül. Ilyen típussal nem lehet játszani, csak a leszármazottakkal. Felelsőssége a játékos által a controlleren keresztül kiadott műveletek elvégzése. Tárolja a játékos jelenlegi állapotát.
 	\item Attribútumok:
 	\begin{itemize}
 		\item bodyTemp: int: Jelzi a játékos jelenlegi hőmérsékletét, ha 0 akkor megfagy $\rightarrow$ játék vége.
 		\item currentTile: Tile: A játékos ismeri a mezőt amin éppen áll.
-		\item inventory: Item[*]: A játékos tárgyai.
+		\item inventory: Item[*]: Tárolja a játékos tárgyait.
 		\item digStrategy: DigStrategy: Eldönti hogyan képes ásni a játékos.
 		\item energy: int: Számlálja mennyit mozogott az adott körben a játékos.
 		\item foodStore: FoodStore: Tárolja a játékos ételeit.
+		\item game: Game: A játékos ismeri a játékot.
 		\item partStore: PartStore: Tárolja a játékos rakéta alkatrészeit.
 		\item rescueStrategy: RescueStrategy: Eldönti, hogy megmenthet egy játékos egy másikat a vízbeesés után.
 		\item waterResistanceStrategy: WaterResistanceStrategy: Eldönti, hogy a játékos hogyan viselkedik vízbeesés esetén.
@@ -256,10 +270,10 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\item Metódusok:
 	\begin{itemize}
 		\item void AssembleFlare(): Összerakja a játék végéhez szükséges rakéta pisztolyt. 1 munkaegység
-		\item void Chill(): A testhő 1-el csökken, ha 0 alá megy GameOver.
+		\item void Chill(): A testhő 1-el csökken, ha 0 alá megy $\rightarrow$ GameOver.
 		\item void DecrementEnergy(): Az energiát csökkentő helper metódus.
 		\item void Dig(): Ezt a metódust a Controller hívja. A játékos havat ás. 1 munkaegység
-		\item void EatFood(): Ezt a metódust a Controller hívja. A játékos eszik.
+		\item void EatFood(): Ezt a metódust a Controller hívja. A játékos eszik. A testhője megnő 1-el.
 		\item void PickUp(): Ezt a metódust a Controller hívja. A játékos felvesz egy tárgyat. 1 munkaegység
 		\item void Equip(inventorySlot: int): Ezt a metódust a Controller hívja. A játékos kiválaszt egy tárgyat használatra.
 		\item void PlaceOn(Tile t): Init szekvencia része. RopeRescue szekvencia része. Rárak egy játékost egy másik Tile-ra.
@@ -272,7 +286,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 
 \subsection{PolarExplorer}
 \begin{itemize}
-	\item Játékos fajta.
+	\item Játékos fajta. 4 egységnyi testhővel kezd. Képes megnézni egy cella teherbíró képességét. A játékos irányítja.
 	\item Ősosztályok:
 	\begin{itemize}
 		\item Player
@@ -285,29 +299,29 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 
 \subsection{RescueStrategy}
 \begin{itemize}
-		\item A játékos így húzza ki csapattársát a vízből.
+		\item A játékos így húzza ki csapattársát a vízből. A játékos így képes megmenteni a vízbe esett csapattársát a szomszédos celláról, a megvalósított stratégia alapján. Kötél szükséges a másik játékos megmentéséhez.
 	\item Metódusok:
 	\begin{itemize}
-		\item abstract void Rescue(Tile water, Tile land): üres
+		\item abstract void Rescue(Tile water, Tile land): A stratégiát megvalósító elem dolga implementálni mi történik.
 	\end{itemize}
 \end{itemize}
 
 \subsection{Rope}
 \begin{itemize}
-		\item Jégbe fagyott kötél.
+		\item Jégbe fagyott kötél. Ezzel lehet megmenteni a vízbe esett csapattársat a szomszédos celláról.
 	\item Interfészek:
 	\begin{itemize}
 		\item Item
 	\end{itemize}
 	\item Metódusok
 	\begin{itemize}
-		\item void GiveTo(Player p): Felrhuázza a játékost kötéllel.
+		\item void GiveTo(Player p): A játékos kap egy kötelet.
 	\end{itemize}
 \end{itemize}
 
 \subsection{RopeRescue}
 \begin{itemize}
-		\item A játékos kihúzza csapattársát a vízből.
+		\item A játékos kihúzza csapattársát a vízből. A játékos így menti meg a szomszédos cellán vízbe esett csapattársát.
 	\item Interfészek:
 	\begin{itemize}
 		\item RescueStrategy
@@ -320,7 +334,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 
 \subsection{ScubaGear}
 \begin{itemize}
-		\item Jégbe fagyott búvárruha.
+		\item Jégbe fagyott búvárruha. Ezzel lehet életben maradni a vízben.
 	\item Interfészek:
 	\begin{itemize}
 		\item Item
@@ -328,6 +342,19 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\item Metódusok:
 	\begin{itemize}
 		\item void GiveTo(): A játékos búvárruhát kap.
+	\end{itemize}
+\end{itemize}
+
+\subsection{ScubaWearing}
+\begin{itemize}
+	\item A játékos testhője nem csökken a vízben. A játékos nem hal bele, ha a vízben marad.
+	\item Interfészek:
+	\begin{itemize}
+		\item WaterResistanceStrategy
+	\end{itemize}
+	\item Metódusok:
+	\begin{itemize}
+		\item void Chill(p: Player): A játékost nem hűti a víz.
 	\end{itemize}
 \end{itemize}
 
@@ -344,6 +371,19 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\end{itemize}
 \end{itemize}
 
+\subsection{Shovel}
+\begin{itemize}
+	\item Jégbe fagyott ásó. Ezzel lehet több havat eltakarítani a celláról.
+	\item Interfészek:
+	\begin{itemize}
+		\item Item
+	\end{itemize}
+	\item Metódusok:
+	\begin{itemize}
+		\item void GiveTo(): A játékos ásót kap.
+	\end{itemize}
+\end{itemize}
+
 \subsection{ShovelDig}
 \begin{itemize}
 	\item Egyszer lehet ásni vele fáradság nélkül is.
@@ -353,7 +393,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\end{itemize}
 	\item Attribútumok:
 	\begin{itemize}
-		\item lastUsed: bool: Volt-e már használva a körben
+		\item lastUsed: bool: Volt-e már használva a körben.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
@@ -388,10 +428,10 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 
 \subsection{WaterResistanceStrategy}
 \begin{itemize}
-	\item Így reagál a játékos a hideg vízre.
+	\item Így reagál a játékos a hideg vízre. A vízben búvárruh nélkül nem lehet mozogni. A vízből ha búvárruha nélkül nem húznak ki, nem lehet életben maradni.
 	\item Metódusok:
 	\begin{itemize}
-		\item abstract void Chill(Player p): üres
+		\item abstract void Chill(Player p): A stratégiát megvalósító elem dolga implementálni mi történik.
 	\end{itemize}
 \end{itemize}
 
