@@ -41,7 +41,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item bool Dig(Tile t): Csökkenti a tile-on található hó mennyiségét. Minden alkalommal fárasztó az ásás.
+		\item bool Dig(Tile t): Csökkenti a tile-on található hó mennyiségét. Minden alkalommal fárasztó az ásás, ezért a visszatérési érték mindig true.
 	\end{itemize}
 \end{itemize}
 
@@ -54,7 +54,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void Chill(Tile t): Táblán alló játékosok testhője csökken.
+		\item void Chill(Tile t): A paraméterként kapott t Tilen álló játékosok testhője csökken.
 	\end{itemize}
 \end{itemize}
 
@@ -94,7 +94,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\item A játékos így ás.	Ásáskor a cellán a hómennyiség csökken.
 	\item Metódusok:
 	\begin{itemize}
-		\item abstract bool Dig(Tile t): Visszaadja, hogy az ásás fárasztó-e.
+		\item abstract bool Dig(Tile t): A stratégiát megvalósító elem dolga implementálni mi történik ásáskor. Visszaadja, hogy az ásás fárasztó-e.
 	\end{itemize}
 \end{itemize}
 
@@ -107,7 +107,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void Chill(Tile t): Mivel a játékos nincsen vízben ezért nem kell csökkenteni a testhőjét.
+		\item void Chill(Tile t): A stratégia megvalósítása miatt kér be egy t Tile paramétert, a rajta levő játékossal viszont nem csinál semmit, mert az nincs vízben, nem csökkenti testhőjét.
 	\end{itemize}
 \end{itemize}
 
@@ -120,7 +120,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\end{itemize}
 	\item Metódusok
 	\begin{itemize}
-		\item void GiveTo(Player p): A játékost nem ruházza fel extra tulajdonsággal.
+		\item void GiveTo(Player p): A paraméterként kapott játékost nem ruházza fel extra tulajdonsággal, mivel épp nincs itt jégbe fagyott tárgy.
 	\end{itemize}
 \end{itemize}
 
@@ -133,7 +133,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-	\item void BuildIgloo(): Épít egy iglut a mezőre, amin áll. Az iglu megvéd majd a hóvihartól.
+	\item void BuildIgloo(): Épít egy iglut a mezőre, amin áll. Az iglu megvéd majd a hóvihartól. Beállítja a mező hóvihar stratégiáját Iglusra.
 	\end{itemize}
 \end{itemize}
 
@@ -146,7 +146,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void GiveTo(Player p): A játékos kap egy élelmet.
+		\item void GiveTo(Player p): A paraméterként kapott játékos kap egy élelmet, az bekerül az élelemtárolójába.
 	\end{itemize}
 \end{itemize}
 
@@ -159,8 +159,8 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void feed(Player p): Játékos testhője megnő.
-		\item void DecrementCount(): csökkenti a benne található elemek számát.
+		\item void feed(Player p): Játékos testhője megnő, az élelem mennyisége csökken, mivel a játékos megeszi azt.
+		\item void DecrementCount(): Csökkenti a benne található elemek számát.
 		\item void Gain(): növeli a benne található elemek számát.
 	\end{itemize}
 \end{itemize}
@@ -184,7 +184,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 		\item Player CreateEskimo(): Létrehoz egy eszkimó játékost. Ez a metódus az init szekvencia része.
 		\item Player CreatePolarExplorer(): Létrehoz egy sarkkutató játékost. Ez a metódus az init szekvencia része.
 		\item void GameOver(): Ha vége a játéknak, szól a Controllernek, hogy vesztettünk. Külső metódus.
-		\item void Turn(): Ezt a metódust a Controller hívja körönként. 
+		\item void Turn(): Ezt a metódust a Controller hívja körönként, a körök vezénylésére szolgál. 
 		\item void Victory(): Ha vége a játéknak, szól a Controllernek, hogy nyertünk. Külső metódus.
 	\end{itemize}
 \end{itemize}
@@ -198,7 +198,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void Chill(Tile t): A cellán álló játákosok testhője nem csökken.
+		\item void Chill(Tile t): A paraméterként kapott cellán álló játákosok testhője nem csökken, mivel igluban vannak.
 	\end{itemize}
 \end{itemize}
 
@@ -207,7 +207,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\item Tárgy, a játékos képes ilyeneket felvenni a cellákról. A tárgyak képesek a játékosak képességeket adni. A tárgyak alapvetően jégbe fagyva vannak a pályán.
 	\item Metódusok:
 	\begin{itemize}
-		\item void GiveTo(p: Player): A jétékos kap valamilyen tárgyat.
+		\item void GiveTo(p: Player): A jétékos kap valamilyen tárgyat, az Item interfészt megvalóító tárgyak felüldefiniálják ezt.
 	\end{itemize}
 \end{itemize}
 
@@ -246,7 +246,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void Gain(PartStore ps): Átveszi az alkatrészeket.
+		\item void Gain(PartStore ps): Átveszi az alkatrészeket a paraméterként kapott alkatrésztárolóból.
 		\item void Gain(int n): Megnő az alkatrészek száma, ami a játékosnál van.
 	\end{itemize}
 \end{itemize}
@@ -258,7 +258,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\begin{itemize}
 		\item bodyTemp: int: Jelzi a játékos jelenlegi hőmérsékletét, ha 0 akkor megfagy $\rightarrow$ játék vége.
 		\item currentTile: Tile: A játékos ismeri a mezőt amin éppen áll.
-		\item inventory: Item[*]: Tárolja a játékos tárgyait.
+		\item inventory: Item[*]: Tárolja a játékos tárgyait, amik képességekkel tudjak felruházni őt.
 		\item digStrategy: DigStrategy: Eldönti hogyan képes ásni a játékos.
 		\item energy: int: Számlálja mennyit mozogott az adott körben a játékos.
 		\item foodStore: FoodStore: Tárolja a játékos ételeit.
@@ -293,7 +293,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item int Examine(direction: int): A játékos megnézheti, hogy egy adott Tile-nak mennyi a teherbírása.
+		\item int Examine(direction: int): A játékos megnézheti, hogy egy adott irányban lévő Tile-nak mennyi a teherbírása.
 	\end{itemize}
 \end{itemize}
 
@@ -315,7 +315,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\end{itemize}
 	\item Metódusok
 	\begin{itemize}
-		\item void GiveTo(Player p): A játékos kap egy kötelet.
+		\item void GiveTo(Player p): A játékos kap egy kötelet. Az bekerül az inventoryjába és a megfelelő stratégiájához is a kötél által adott képesség.
 	\end{itemize}
 \end{itemize}
 
@@ -341,7 +341,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void GiveTo(): A játékos búvárruhát kap.
+		\item void GiveTo(): A játékos búvárruhát kap. Az bekerül az inventoryjába és a megfelelő stratégiája helyére is a búvárruha által adott képesség.
 	\end{itemize}
 \end{itemize}
 
@@ -354,7 +354,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void Chill(p: Player): A játékost nem hűti a víz.
+		\item void Chill(p: Player): A játékost nem hűti a víz, mivel búvárruhát visel.
 	\end{itemize}
 \end{itemize}
 
@@ -380,7 +380,7 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void GiveTo(): A játékos ásót kap.
+		\item void GiveTo(): A játékos ásót kap, ami bekerül az inventoryjába és a megfelelő stratégiájához is bekerül az ásó által adott képesség.
 	\end{itemize}
 \end{itemize}
 
@@ -421,8 +421,8 @@ Eszkimó (Játékos) képes építeni, itt átvészelhetőek a hóviharok.
 		\item void DecrementSnow(): A hómennyiséget csökkentő helper függvény.
 		\item Item TakeItem(): A játékos megkapja a tartalmazott tárgyat.
 		\item Tile NeighborAt(direction): Visszaadja az adott irányban szomszédos cellát.
-		\item StepOn(Player): Játékos rálép a cellára, ha többen vannak mint a korlát, a jégtábla átfordul.
-		\item StepOff(Player): Járékos lelép a celláról.
+		\item StepOn(Player): Játékos rálép a cellára, ha többen vannak mint a korlát, a jégtábla átfordul. A függvény futása során beállítja a megfelelő adattagokat az új értékekre.
+		\item StepOff(Player): Járékos lelép a celláról. A függvény futása során beállítja a megfelelő adattagokat az új értékekre.
 	\end{itemize}
 \end{itemize}
 
