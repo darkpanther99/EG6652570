@@ -1,15 +1,17 @@
 package model;
 
 public abstract class Player {
-	private int bodyTemp;
-	private int energy;
-	private Game game;
-	private DigStrategy digStrategy;
-	private RescueStrategy rescueStrategy;
-	private WaterResistanceStrategy waterResistanceStrategy;
-	private FoodStore foodStore;
-	private PartStore partStore;
-	private Item inventory;
+	protected int bodyTemp;
+	protected int energy;
+	protected Game game;
+	protected DigStrategy digStrategy;
+	protected RescueStrategy rescueStrategy;
+	protected WaterResistanceStrategy waterResistanceStrategy;
+	protected FoodStore foodStore;
+	protected PartStore partStore;
+	protected Item inventory;
+	protected Tile currentTile;
+
 	public void DecrementEnergy() {
 	}
 	

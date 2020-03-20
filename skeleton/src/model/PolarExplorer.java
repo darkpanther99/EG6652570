@@ -2,6 +2,11 @@ package model;
 
 public class PolarExplorer extends Player {
 	public int Examine(int direction) {
-		return 0;
+		if(energy > 0){
+			int w = currentTile.NeighborAt(direction).getWeightLimit();
+			DecrementEnergy();
+			return w;
+		}
+		return -1;
 	}
 }
