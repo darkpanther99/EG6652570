@@ -30,7 +30,8 @@ public class Logger {
     }
 
     private static void indent(int i) {
-        System.out.print(String.join("", Collections.nCopies(i, "\t")));
+        final int spaces = 4;
+        System.out.print(String.join("", Collections.nCopies(Math.max(0, i) * spaces, " ")));
     }
 
     public static void logMethodCall(Object callee, Object... params) {
