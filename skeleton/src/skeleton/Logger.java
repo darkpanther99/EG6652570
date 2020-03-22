@@ -1,21 +1,26 @@
 package skeleton;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
+/**
+ * Naplózó.
+ * A modell működését ezzel lehet figyelemmel követni.
+ */
 public class Logger {
     private Logger() {
-        throw new NotImplementedException();
     }
 
     private static final Object syncObject = new Object();
     private static final HashMap<Object, String> names = new HashMap<>();
     private static int indentation = 0;
 
+    /**
+     * Objektum elnevezése.
+     * Az adott néven fog megjelenni az objektum a napló üzenetkeben.
+     */
     public static void setName(Object o, String name) {
         synchronized (syncObject) {
             names.put(o, name);
@@ -34,6 +39,15 @@ public class Logger {
         System.out.print(String.join("", Collections.nCopies(Math.max(0, i) * spaces, " ")));
     }
 
+    /**
+     * Metódushívás naplózása.
+     * Kiírja a hívott objektum nevét, a hívott metódus nevét és a paramétereket.
+     * Az indentációt növeli eggyel.
+     * A hívott metódus nevét stack trace segítségével keresi meg.
+     *
+     * @param callee A hívott objektum (azaz: this).
+     * @param params A kapott paraméterek listája.
+     */
     public static void logMethodCall(Object callee, Object... params) {
         String methodName = "$missing_method$";
         StackTraceElement[] st = Thread.currentThread().getStackTrace();
@@ -41,6 +55,15 @@ public class Logger {
         logMethodCall(callee, methodName, params);
     }
 
+    /**
+     * Metódushívás naplózása.
+     * Kiírja a hívott objektum nevét, a hívott medódus nevét és a paramétereket.
+     * Az indentációt növeli eggyel.
+     *
+     * @param callee     A hívott objektum (azaz: this).
+     * @param methodName A hívott metódus neve.
+     * @param params     A kapott paraméterek listája.
+     */
     public static void logMethodCall(Object callee, String methodName, Object... params) {
         synchronized (syncObject) {
             indent(indentation++);
@@ -49,15 +72,24 @@ public class Logger {
         }
     }
 
+    /**
+     * Metódus visszatérés naplózása.
+     * Kiírja a visszatérési érték nevét
+     * Az indentációt csökkenti eggyel.
+     */
     public static void logMethodReturn(Object returnValue) {
         synchronized (syncObject) {
             indent(indentation);
-            System.out.format("return %s;%n", returnValue);
+            System.out.format("return %s;%n", getName(returnValue));
             indent(--indentation);
             System.out.println("}");
         }
     }
 
+    /**
+     * Metódus visszatérés naplózása.
+     * Az indentációt csökkenti eggyel.
+     */
     public static void logMethodReturn() {
         synchronized (syncObject) {
             indent(--indentation);
