@@ -119,6 +119,34 @@
 \section{A szkeleton kezelői felületének terve, dialógusok}
 \comment{A szkeleton által elfogadott bemenetek , valamint a szöveges konzolon megjelenő kimenetek. A kiemenet formátuma olyan kell legyen, ami alapján a működés összevethető a korábbi szekvencia-diagramokkal.}
 
+A szkeleton program működésének ellenőrzéséhez egy saját osztályt fogunk létrehozni. A szkeleton program szöveges formátumban fogja megjeleníteni a függvény hívásokat és visszatérési értéküket, ezzel a szekvenciadiagrammokkal való egyezés majd könnyen ellenőrizhető lesz. Induláskor majd egy menü segítségével lehet választani a különböző szekvenciák közül. A menüt a konzolos ablakban a billentyűzet segítségével lehet majd vezérelni. A menüpontok amiből választani lehet így néz ki:
+\begin{Verbatim}[samepage=true]
+1. játékos
+	1. tárgyat vesz fel
+		1. lapát
+		2. kötél
+		3. alkatrész
+		...
+	2. havat lapátol
+		1. lapáttal
+		2. üres kézzel
+		...
+\end{Verbatim}
+A szkeleton programban az objektumok csak asszociációkat tárolnak, egyéb állapotokat a felhasználótól kér majd be. Ezeket szintén a menüvezérelt módszerrel teszi. Kiválasztva egy esetet a teljes szekvencia lefutása automatikus, a kimenet következő képpen néz majd ki a konzolban:
+\begin{Verbatim}[samepage=true]
+MyLoggerTest.DoTest() {
+	MyLoggerTest.fn1() {
+		MyLoggerTest.fn2(MyDummyObject, 10) {
+			MyDummyObject.fn3(20) {
+			}
+			return 3;
+		}
+		return MyDummyObject;
+	}
+}
+\end{Verbatim}
+A bejegyzésben objektum név . függvénynév (paraméterek) \{ ... \} formátumban jelenek meg a függvényhívások. A visszatérési értéket pedig a return után írja ki.
+
 \section{Szekvencia diagramok a belső működésre}
 \comment{A szkeletonban implementált szekvenciadiagramok. Tipikusan egy use-case egy diagram. Ezek megegyezhetnek a korábban specifikált diagramokkal, de az egyes életvonalakat (lifeline) egyértelműen a szkeletonban példányosított objektumokhoz kell tudni kötni. Azt kell megjeleníteni, hogy a szkeletonban létrehozott objektumok egymással hogyan fognak kommunikálni.}
 
