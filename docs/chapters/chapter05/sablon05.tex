@@ -20,60 +20,60 @@
 
 \subsection{Use-case leírások}
 % TODO: Valaki latexhez értő írja ezeket át itemize-ra, mert a latex jobbra húzza a bekezdés első sorát.
-\usecase{Test PickUp Shovel}{Játékos lapátot vesz fel.}{Skeleton}{
+\usecase{Test PickUp Shovel}{Játékos lapátot vesz fel.}{Tester}{
 	1. Eszkimó hóval nem rendelkező jégtáblán áll, amin egy lapát található.\newline
 	2. Az eszkimó energiája csökken.\newline
 	2.A Az eszkimó fáradt és nem tud tárgyat felvenni.\newline
 	3. Az eszkimó felveszi a lapátot.\newline
 	4. A lapát bekerül az eszkimó tárgyai közé és a megfelelő stratégiája helyére is.
 }
-\usecase{Test PickUp Food}{Játékos ételt vesz fel.}{Skeleton}{
+\usecase{Test PickUp Food}{Játékos ételt vesz fel.}{Tester}{
 	1. Eszkimó hóval nem rendelkező jégtáblán áll, amin egy élelem található.\newline
 	2. Az eszkimó energiája csökken.\newline
 	2.A Az eszkimó fáradt és nem tud tárgyat felvenni.\newline
 	3. Az eszkimó felveszi az élelmet
 	4. Az élelem bekerül az eszkimó tárgyai közé és a kajatárolójába is.
 }
-\usecase{Test PickUp Part}{Játékos alkatrészt vesz fel.}{Skeleton}{
+\usecase{Test PickUp Part}{Játékos alkatrészt vesz fel.}{Tester}{
 	1. Eszkimó hóval nem rendelkező jégtáblán áll, amin egy rakéta alkatrész található.\newline
 	2. Az eszkimó energiája csökken.\newline
 	2.A Az eszkimó fáradt és nem tud tárgyat felvenni.\newline
 	3. Az eszkimó felveszi az alkatrészt.\newline
 	4. Az alkatrész bekerül az eszkimó tárgyai közé és a rakétadarabtárolójába is.
 }
-\usecase{Test PickUp Rope}{Játékos kötelet vesz fel.}{Skeleton}{
+\usecase{Test PickUp Rope}{Játékos kötelet vesz fel.}{Tester}{
 	1. Eszkimó hóval nem rendelkező jégtáblán áll, amin egy kötél található.\newline
 	2. Az eszkimó energiája csökken.\newline
 	2.A Az eszkimó fáradt és nem tud tárgyat felvenni.\newline
 	3. Az eszkimó felveszi a kötelet.\newline
 	4. A kötél bekerül az eszkimó tárgyai közé és a megfelelő stratégiája helyére is.
 }
-\usecase{Test PickUp ScubaGear}{Játékos búváruhát vesz fel.}{Skeleton}{
+\usecase{Test PickUp ScubaGear}{Játékos búváruhát vesz fel.}{Tester}{
 	1. Eszkimó hóval nem rendelkező jégtáblán áll, amin egy búvárruha található.\newline
 	2. Az eszkimó energiája csökken.\newline
 	2.A Az eszkimó fáradt és nem tud tárgyat felvenni.\newline
 	3. Az eszkimó felveszi a búvárruhát.\newline
 	4. A búvárruha bekerül az eszkimó tárgyai közé és a megfelelő stratégiája helyére is.
 }
-\usecase{Test BareHandsDig}{Játékos üres kézzel havat lapátol.}{Skeleton}{
+\usecase{Test BareHandsDig}{Játékos üres kézzel havat lapátol.}{Tester}{
 	1. Eszkimó hóval rendelkező jégtáblán áll.\newline
 	2. Az eszkimó energiája csökken.\newline
 	2.A Az eszkimó fáradt és nem tud tárgyat felvenni.\newline
 	3. Az eszkimó a lapátja segítségével 2 havat ellapátol a jégtábláról.
 } 
-\usecase{Test ShovelDig}{Játékos lapáttal havat lapátol.}{Skeleton}{
+\usecase{Test ShovelDig}{Játékos lapáttal havat lapátol.}{Tester}{
 	1. Eszkimó hóval rendelkező jégtáblán áll.\newline
 	2. Az eszkimó energiája csökken.\newline
 	2.A Az eszkimó fáradt és nem tud tárgyat felvenni.\newline
 	3. Az eszkimó a keze segítségével 1 havat ellapátol a jégtábláról.
 } 
-\usecase{Test StepOnIce}{Játékos jégre lép.}{Skeleton}{
+\usecase{Test StepOnIce}{Játékos jégre lép.}{Tester}{
 	1. Eszkimó jégtáblán áll és van előtte egy másik jégtábla.\newline
 	2. Az eszkimó energiája csökken.\newline
 	2.A Az eszkimó fáradt és nem tud előrelépni.\newline
 	3. Az eszkimó előrelép.
 }
-\usecase{Test StepOnUnstableIce WithScubaGear}{Búvárruhás játékos instabil jégre lép.}{Skeleton}{
+\usecase{Test StepOnUnstableIce WithScubaGear}{Búvárruhás játékos instabil jégre lép.}{Tester}{
 	1. Búvárruhás eszkimó jégtáblán áll és van előtte egy másik jégtábla, ami csak egy főt bír el, és áll rajta egy másik eszkimó.\newline
 	2. Az eszkimó energiája csökken.\newline
 	2.A. Alter: Az eszkimó fáradt és nem tud előrelépni.\newline
@@ -81,7 +81,7 @@
 	4. A jégtábla beszakad.\newline
 	5. A búvárruha megvédi az eszkimót a hideg víztől.
 }
-\usecase{Test StepOnUnstableIce Naked}{Játékos instabil jégre lép.}{Skeleton}{
+\usecase{Test StepOnUnstableIce Naked}{Játékos instabil jégre lép.}{Tester}{
 	1. Eszkimó jégtáblán áll és van előtte egy másik jégtábla, ami csak egy főt bír el, és áll rajta egy másik eszkimó.\newline
 	2. Az eszkimó energiája csökken.\newline
 	2.A Az eszkimó fáradt és nem tud előrelépni.\newline
@@ -89,7 +89,7 @@
 	4. A jégtábla beszakad.\newline
 	5. Az eszkimó elkezd fuldokolni a hideg vízben.
 }
-\usecase{Test StepInHole WithScubaGear}{Búvárruhás játékos lyukba esik.}{Skeleton}{
+\usecase{Test StepInHole WithScubaGear}{Búvárruhás játékos lyukba esik.}{Tester}{
 	1. Búvárruhás eszkimó jégtáblán áll és van előtte egy hóval fedett lyuk.\newline
 	2. Az eszkimó energiája csökken.\newline
 	2.A Az eszkimó fáradt és nem tud előrelépni.\newline
@@ -97,7 +97,7 @@
 	4. A hó beszakad.\newline
 	5. A búvárruha megvédi az eszkimót a hideg víztől.
 }
-\usecase{Test StepInHole Naked}{Játékos lyukba esik.}{Skeleton}{
+\usecase{Test StepInHole Naked}{Játékos lyukba esik.}{Tester}{
 	1. Búvárruhás eszkimó jégtáblán áll és van előtte egy hóval fedett lyuk.\newline
 	2. Az eszkimó energiája csökken.\newline
 	2.A Az eszkimó fáradt és nem tud előrelépni.\newline
