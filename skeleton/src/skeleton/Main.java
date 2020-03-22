@@ -3,23 +3,10 @@ package skeleton;
 public class Main {
     public static void main(String[] args) {
         LoggerTest lt = new LoggerTest();
-        Logger.setName(lt, "MyLoggerTest");
+        Logger.logConstructorCall(lt, "myLoggerTest");
         lt.DoTest();
     }
 
-    /*
-    Ezt printeli:
-    MyLoggerTest.DoTest() {
-        MyLoggerTest.fn1() {
-            MyLoggerTest.fn2(MyDummyObject, 10) {
-                MyDummyObject.fn3(20) {
-                }
-                return 3;
-            }
-            return MyDummyObject;
-        }
-    }
-    */
     private static class LoggerTest {
         void DoTest() {
             Logger.logMethodCall(this);
@@ -37,9 +24,8 @@ public class Main {
         DummyObject fn1() {
             Logger.logMethodCall(this);
             DummyObject d = new DummyObject();
-            Logger.setName(d, "MyDummyObject");
-            int i = 10;
-            int x = fn2(d, i);
+            Logger.logConstructorCall(d, "myDummyObject");
+            fn2(d, 10);
             Logger.logMethodReturn(d);
             return d;
         }
@@ -47,7 +33,7 @@ public class Main {
         int fn2(DummyObject d, int i) {
             Logger.logMethodCall(this, d, i);
             d.fn3(2 * i);
-            Logger.logMethodReturn(3);
+            Logger.logMethodReturn(1234);
             return 1234;
         }
     }

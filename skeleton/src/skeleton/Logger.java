@@ -9,22 +9,15 @@ import java.util.stream.Collectors;
  * Naplózó.
  * A modell működését ezzel lehet figyelemmel követni.
  */
-public class Logger {
+public final class Logger {
     private Logger() {
     }
 
-    private static final Object syncObject = new Object();
     private static final HashMap<Object, String> names = new HashMap<>();
     private static int indentation = 0;
 
-    /**
-     * Objektum elnevezése.
-     * Az adott néven fog megjelenni az objektum a napló üzenetkeben.
-     */
-    public static void setName(Object o, String name) {
-        synchronized (syncObject) {
-            names.put(o, name);
-        }
+    private static void setName(Object o, String name) {
+        names.put(o, name);
     }
 
     private static String getName(Object o) {
@@ -34,9 +27,10 @@ public class Logger {
         return n;
     }
 
-    private static void indent(int i) {
+    private static void log(String msg) {
         final int spaces = 4;
-        System.out.print(String.join("", Collections.nCopies(Math.max(0, i) * spaces, " ")));
+        System.out.print(String.join("", Collections.nCopies(Math.max(0, indentation) * spaces, " ")));
+        System.out.println(msg);
     }
 
     /**
@@ -51,25 +45,23 @@ public class Logger {
     public static void logMethodCall(Object callee, Object... params) {
         String methodName = "$missing_method$";
         StackTraceElement[] st = Thread.currentThread().getStackTrace();
-        if (st.length > 1) methodName = st[2].getMethodName();
+        if (st.length > 2) methodName = st[2].getMethodName();
         logMethodCall(callee, methodName, params);
     }
 
     /**
      * Metódushívás naplózása.
-     * Kiírja a hívott objektum nevét, a hívott medódus nevét és a paramétereket.
+     * Kiírja a hívott objektum nevét, a hívott metódus nevét és a paramétereket.
      * Az indentációt növeli eggyel.
      *
      * @param callee     A hívott objektum (azaz: this).
      * @param methodName A hívott metódus neve.
      * @param params     A kapott paraméterek listája.
      */
-    public static void logMethodCall(Object callee, String methodName, Object... params) {
-        synchronized (syncObject) {
-            indent(indentation++);
-            String argList = Arrays.stream(params).map(Logger::getName).collect(Collectors.joining(", "));
-            System.out.format("%s.%s(%s) {%n", getName(callee), methodName, argList);
-        }
+    private static void logMethodCall(Object callee, String methodName, Object... params) {
+        String argList = Arrays.stream(params).map(Logger::getName).collect(Collectors.joining(", "));
+        log(String.format("%s.%s(%s) {", getName(callee), methodName, argList));
+        indentation++;
     }
 
     /**
@@ -78,12 +70,9 @@ public class Logger {
      * Az indentációt csökkenti eggyel.
      */
     public static void logMethodReturn(Object returnValue) {
-        synchronized (syncObject) {
-            indent(indentation);
-            System.out.format("return %s;%n", getName(returnValue));
-            indent(--indentation);
-            System.out.println("}");
-        }
+        log(String.format("return %s;", getName(returnValue)));
+        indentation--;
+        log("}");
     }
 
     /**
@@ -91,9 +80,24 @@ public class Logger {
      * Az indentációt csökkenti eggyel.
      */
     public static void logMethodReturn() {
-        synchronized (syncObject) {
-            indent(--indentation);
-            System.out.println("}");
-        }
+        indentation--;
+        log("}");
+    }
+
+    /**
+     * Konstruktorhívás naplózása.
+     * Elnevezi az objektumot és kiírja, hogy létrejött.
+     * Ezt a metódust nem az új objektum hívja a konstruktorában, hanem a
+     * létrehozó objektum, mert az tud nevet adni neki.
+     * Ez a metódus nem kap paraméter listát, mert a modellbeli osztályoknak
+     * csak paraméter nélküli konstruktora van.
+     *
+     * @param newObject A létrehozott objektum.
+     * @param newName   A létrehozott objektum neve.
+     */
+    public static void logConstructorCall(Object newObject, String newName) {
+        setName(newObject, newName);
+        logMethodCall(newObject, newObject.getClass().getSimpleName());
+        logMethodReturn();
     }
 }

@@ -19,7 +19,7 @@
 \end{figure}
 
 \subsection{Use-case leírások}
-% TODO: Valaki latexhez értő írja ezeket át itemize-ra!
+% TODO: Valaki latexhez értő írja ezeket át itemize-ra, mert a latex jobbra húzza a bekezdés első sorát.
 \usecase{Test PickUp Shovel}{Játékos lapátot vesz fel.}{Skeleton}{
 	1. Eszkimó hóval nem rendelkező jégtáblán áll, amin egy lapát található.\newline
 	2. Az eszkimó energiája csökken.\newline
@@ -134,15 +134,17 @@ A szkeleton program működésének ellenőrzéséhez egy saját osztályt fogun
 \end{Verbatim}
 A szkeleton programban az objektumok csak asszociációkat tárolnak, egyéb állapotokat a felhasználótól kér majd be. Ezeket szintén a menüvezérelt módszerrel teszi. Kiválasztva egy esetet a teljes szekvencia lefutása automatikus, a kimenet következő képpen néz majd ki a konzolban:
 \begin{Verbatim}[samepage=true]
-MyLoggerTest.DoTest() {
-	MyLoggerTest.fn1() {
-		MyLoggerTest.fn2(MyDummyObject, 10) {
-			MyDummyObject.fn3(20) {
-			}
-			return 3;
-		}
-		return MyDummyObject;
-	}
+myLoggerTest.DoTest() {
+    myLoggerTest.fn1() {
+        myDummyObject.DummyObject() {
+        }
+        myLoggerTest.fn2(myDummyObject, 10) {
+            myDummyObject.fn3(20) {
+            }
+            return 1234;
+        }
+        return myDummyObject;
+    }
 }
 \end{Verbatim}
 A bejegyzésben objektum név . függvénynév (paraméterek) \{ ... \} formátumban jelenek meg a függvényhívások. A visszatérési értéket pedig a return után írja ki.

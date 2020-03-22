@@ -5,8 +5,9 @@ import skeleton.Logger;
 public class Eskimo extends Player {
     public void BuildIgloo() {
         Logger.logMethodCall(this);
-        Igloo c = new Igloo();
-        currentTile.setChillStormStrategy(c);
+        Igloo igloo = new Igloo();
+        Logger.logConstructorCall(igloo, "igloo");
+        currentTile.setChillStormStrategy(igloo);
         Logger.logMethodReturn();
     }
 }

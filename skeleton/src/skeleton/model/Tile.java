@@ -45,7 +45,9 @@ public class Tile {
     }
 
     public void setChillStormStrategy(ChillStormStrategy chillStormStrategy) {
+        Logger.logMethodCall(this, chillStormStrategy);
         this.chillStormStrategy = chillStormStrategy;
+        Logger.logMethodReturn();
     }
 
     public ChillWaterStrategy getChillWaterStrategy() {
