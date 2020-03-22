@@ -110,11 +110,28 @@
 \usecase{Test AssebleFlare}{...}{Skeleton}{...}
 \usecase{Test BuildIgloo}{...}{Skeleton}{...}
 \usecase{Test ExamineTile}{...}{Skeleton}{...}
-\usecase{Test Turn}{...}{Skeleton}{...}
-\usecase{Test Turn WithScubaGear}{...}{Skeleton}{...}
-\usecase{Test Turn Naked}{...}{Skeleton}{...}
-\usecase{Test ChillStorm Igloo }{...}{Skeleton}{...}
-\usecase{Test ChillStorm BareIce}{...}{Skeleton}{...}
+\usecase{Test Test Turn OnStableIce}{Játékos elkezdi a körét sima jégen.}{Skeleton}{
+	1. Eszkimó jégtáblán áll, amikor elkezdődik a kör. \newline
+	2. Az eszkimó energiája feltöltődik. \newline
+}
+\usecase{Test Test Turn InWater WithScubaGear}{Játékos elkezdi a körét vizen búvárruhában.}{Skeleton}{
+	1. Eszkimó búvárruhában vízben áll, amikor elkezdődik a kör. \newline
+	2. Az eszkimó energiája feltöltődik. \newline
+}
+\usecase{Test Test Turn InWater Naked}{Játékos elkezdi a körét vizen búvárruha nélkül.}{Skeleton}{
+	1. Eszkimó vízben fulladozik, amikor elkezdődik a kör. \newline
+	2. Az eszkimó testhője fogy. \newline
+	2.A Az eszkimó teljesen belefagyott a vízbe, nincs több testhője, a játék véget ér.
+}
+\usecase{Test ChillStorm Igloo }{Játékost igluban éri a hóvihar.}{Skeleton}{
+	1. Eszkimó egy jégtáblán áll, ahol már van iglu. \newline
+	2. Jön a hóvihar, de az eszkimót ez nem érdekli, ő nem fázik. \newline
+}
+\usecase{Test ChillStorm BareIce}{Játékost iglu nélküli jégen éri a hóvihar}{Skeleton}{
+	1. Eszkimó egy jégtáblán áll, ahol nincs iglu. \newline
+	2. Jön a hóvihar, és a szegény eszkimó fázik, a testhőjéből veszít. \newline
+	2.A Jön a hóvihar, viszont az eszkimó teljesen megfagyott, nincs több testhője, a játék véget ér. \newline
+}
 
 \section{A szkeleton kezelői felületének terve, dialógusok}
 \comment{A szkeleton által elfogadott bemenetek , valamint a szöveges konzolon megjelenő kimenetek. A kiemenet formátuma olyan kell legyen, ami alapján a működés összevethető a korábbi szekvencia-diagramokkal.}
