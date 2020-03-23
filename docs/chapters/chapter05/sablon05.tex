@@ -105,14 +105,35 @@
 	4. A hó beszakad.\newline
 	5. Az eszkimó elkezd fuldokolni a hideg vízben.
 }
-\usecase{Test RopeRescue}{...}{Tester}{...}
-\usecase{Test EatFood}{...}{Tester}{...}
-\usecase{Test AssebleFlare}{...}{Tester}{...}
-\usecase{Test BuildIgloo}{...}{Tester}{...}
-\usecase{Test ExamineTile}{...}{Tester}{...}
+\usecase{Test RopeRescue}{A játékos kiment egy másik, vízben fuldokló játékost.}{Tester}{
+	1. A játékos egy jégtáblán áll, az előtte lévő tenger mezőn pedig egy másik fuldoklik.\newline
+	2. A játékos kihúzza a vízből a fuldokló társát.\newline
+	3. A játékos a saját mezőjére helyezi társát.
+}
+\usecase{Test EatFood}{A játékos elfogyaszt egy egység élelmet.}{Tester}{
+	1. A játékos az élelem tárolójából elfogyaszt egy élelmet.\newline
+	1.A A játékosnál nincs élelem, nem történik semmi.
+}
+\usecase{Test AssebleFlare}{A játékos összeszereli a jelzőrakétát.}{Tester}{
+	1. A játékos egy mezőn áll, és megpróbálja összeszereli a jelzőrakétát.\newline
+	1.A Ha van olyan másik játékos, aki nem ezen a mezőn áll, az összeszerelés sikertelen.\newline
+	2. A játékos átveszi a mezőjén lévő többi játékostol az alkatrészeket.\newline
+	2.A Ha nincs elég rakéta alkatrész a játékos(ok)nál, akkor az összeszerelés sikertelen.\newline
+	3. A játékos összeszereli és elsüti a rakétát, ezzel megnyerve a játékot.
+}
+\usecase{Test BuildIgloo}{Eszkimó épít egy iglut.}{Tester}{
+	1. Az eszkimó jégtáblán áll, és épít egy iglut.\newline
+	1.A Az eszkimónak nincs energiája, nem tud iglut építeni.\newline
+	1.B Az eszkimó megépíti az iglut, energiája csökken eggyel.
+}
+\usecase{Test ExamineTile}{Felfedező megvizsgálja az egyik szomszédos mezőt.}{Tester}{
+	1. A felfedező megvizsgálja a szomszédos mezőt.\newline
+	1.A A felfedezőnek nincs elég energiája, nem tudja megvizsgálni a mezőt.\newline
+	1.B A felfedező megvizsgálta a mezőt, energiája csökken eggyel.
+}
 \usecase{Test Test Turn OnStableIce}{Játékos elkezdi a körét sima jégen.}{Tester}{
 	1. Eszkimó jégtáblán áll, amikor elkezdődik a kör. \newline
-	2. Az eszkimó energiája feltöltődik. \newline
+	2. Az eszkimó energiája feltöltődik.
 }
 \usecase{Test Test Turn InWater WithScubaGear}{Játékos elkezdi a körét vízen búvárruhában.}{Tester}{
 	1. Eszkimó búvárruhában vízben áll, amikor elkezdődik a kör. \newline
@@ -134,7 +155,6 @@
 }
 
 \section{A szkeleton kezelői felületének terve, dialógusok}
-\comment{A szkeleton által elfogadott bemenetek , valamint a szöveges konzolon megjelenő kimenetek. A kiemenet formátuma olyan kell legyen, ami alapján a működés összevethető a korábbi szekvencia-diagramokkal.}
 
 A szkeleton program működésének ellenőrzéséhez egy saját osztályt fogunk létrehozni. A szkeleton program szöveges formátumban fogja megjeleníteni a függvény hívásokat és visszatérési értéküket, ezzel a szekvenciadiagrammokkal való egyezés majd könnyen ellenőrizhető lesz. Induláskor majd egy menü segítségével lehet választani a különböző szekvenciák közül. A menüt a konzolos ablakban a billentyűzet segítségével lehet majd vezérelni. A menüpontok amiből választani lehet így néz ki:
 \begin{Verbatim}[samepage=true]
