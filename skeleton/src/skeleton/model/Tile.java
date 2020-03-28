@@ -1,130 +1,139 @@
 package skeleton.model;
 
-import skeleton.Logger;
+import static skeleton.Logger.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 
 public class Tile {
     private int snow;
-    public Tile neighborTiles;
+    private HashMap<Integer, Tile> neighborTiles = new HashMap<>();
     private ChillStormStrategy chillStormStrategy;
     private ChillWaterStrategy chillWaterStrategy;
     private Item item;
     private ArrayList<Player> occupants;
     private int weightLimit;
 
+    public Tile() {
+        setDisplayName(neighborTiles, "neighborTiles");
+        setDisplayName(occupants, "occupants");
+    }
 
     public int getWeightLimit() {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn(weightLimit);
+        logMethodCall(this);
+        logMethodReturn(weightLimit);
         return weightLimit;
     }
 
     public void setWeightLimit(int weightLimit) {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn();
+        logMethodCall(this);
         this.weightLimit = weightLimit;
+        logMethodReturn();
     }
 
     public int getSnow() {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn(snow);
+        logMethodCall(this);
+        logMethodReturn(snow);
         return snow;
     }
 
     public void setSnow(int snow) {
-        Logger.logMethodCall(this, snow);
-        Logger.logMethodReturn();
+        logMethodCall(this, snow);
         this.snow = snow;
+        logMethodReturn();
     }
 
-    public Tile getNeighborTiles() {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn(neighborTiles);
-        return neighborTiles;
+    public Tile neighborAt(int direction) {
+        logMethodCall(this);
+        Tile t = neighborTiles.get(direction);
+        logMethodReturn(t);
+        return t;
     }
 
-    public void setNeighborTiles(Tile neighborTiles) {
-        Logger.logMethodCall(this, neighborTiles);
-        Logger.logMethodReturn();
-        this.neighborTiles = neighborTiles;
+    public void setNeighborAt(int direction, Tile neighbor) {
+        logMethodCall(this, neighborTiles);
+        neighborTiles.put(direction, neighbor);
+        logMethodReturn();
     }
 
     public ChillStormStrategy getChillStormStrategy() {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn(chillStormStrategy);
+        logMethodCall(this);
+        logMethodReturn(chillStormStrategy);
         return chillStormStrategy;
     }
 
     public void setChillStormStrategy(ChillStormStrategy chillStormStrategy) {
-        Logger.logMethodCall(this, chillStormStrategy);
-        Logger.logMethodReturn();
+        logMethodCall(this, chillStormStrategy);
         this.chillStormStrategy = chillStormStrategy;
+        logMethodReturn();
     }
 
     public ChillWaterStrategy getChillWaterStrategy() {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn(chillWaterStrategy);
+        logMethodCall(this);
+        logMethodReturn(chillWaterStrategy);
         return chillWaterStrategy;
     }
 
     public void setChillWaterStrategy(ChillWaterStrategy chillWaterStrategy) {
-        Logger.logMethodCall(this, chillWaterStrategy);
-        Logger.logMethodReturn();
+        logMethodCall(this, chillWaterStrategy);
         this.chillWaterStrategy = chillWaterStrategy;
+        logMethodReturn();
     }
 
     public Item getItem() {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn(item);
+        logMethodCall(this);
+        logMethodReturn(item);
         return item;
     }
 
     public void setItem(Item item) {
+        logMethodCall(this, item);
         this.item = item;
+        logMethodReturn();
     }
 
-    public ArrayList<Player> getOccupants() {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn(occupants);
+    public Collection<Player> getOccupants() {
+        logMethodCall(this);
+        logMethodReturn(occupants);
         return occupants;
     }
 
     public void setOccupants(ArrayList<Player> occupants) {
-        Logger.logMethodCall(this, occupants);
-        Logger.logMethodReturn();
+        logMethodCall(this, occupants);
         this.occupants = occupants;
+        logMethodReturn();
     }
 
-
-    public Tile neighborAt(int direction) {
-        return null;
-    }
 
     public void DecrementSnow() {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn();
-        if(snow > 0) snow--;
+        logMethodCall(this);
+        if (snow > 0) snow--;
+        logMethodReturn();
     }
 
 
     private void Add(Player p) {
-        Logger.logMethodCall(this, p);
-        Logger.logMethodReturn();
+        logMethodCall(this, p);
         occupants.add(p);
+        logMethodReturn();
     }
 
     private void Remove(Player p) {
-        Logger.logMethodCall(this, p);
-        Logger.logMethodReturn();
+        logMethodCall(this, p);
         occupants.remove(p);
+        logMethodReturn();
+    }
+
+    private boolean isBroken() {
+        //return occupants.size() >= weightLimit;
+        return !prompt("Elbír még egy játékost?");
     }
 
     public void StepOn(Player p) {
-        Logger.logMethodCall(this, p);
-        Logger.logMethodReturn();
-        occupants.add(p);
-        if(!Logger.prompt("Elbírja az Plazyer aki rálép?")){ // occupants.size() >= weightLimit
+        logMethodCall(this, p);
+        Add(p);
+        if (isBroken()) {
             setSnow(0);
             setWeightLimit(0);
             setItem(new Empty());
@@ -132,29 +141,34 @@ public class Tile {
             setChillWaterStrategy(new Sea());
             ChillWater();
         }
+        logMethodReturn();
     }
 
     public void StepOff(Player p) {
-        Logger.logMethodCall(this, p);
-        Logger.logMethodReturn();
-        occupants.remove(p);
+        logMethodCall(this, p);
+        Remove(p);
+        logMethodReturn();
     }
 
     public void ChillStorm() {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn();
+        logMethodCall(this);
         chillStormStrategy.Chill(this);
+        logMethodReturn();
     }
 
     public void ChillWater() {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn();
+        logMethodCall(this);
         chillWaterStrategy.Chill(this);
+        logMethodReturn();
     }
 
     public Item TakeItem() {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn(getItem());
-        return getItem();
+        logMethodCall(this);
+        Item i = getItem();
+        Item empty = new Empty();
+        logConstructorCall(empty, "empty");
+        setItem(empty);
+        logMethodReturn(i);
+        return i;
     }
 }

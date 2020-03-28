@@ -1,12 +1,10 @@
 package skeleton.model;
 
-import skeleton.Logger;
+import static skeleton.Logger.*;
 
 public class ScubaWearing implements WaterResistanceStrategy {
     public void Chill(Player p) {
-        Logger.logMethodCall(this, p);
-        Logger.logMethodReturn();
-        
-        // @NOTE(boti): no effect
+        logMethodCall(this, p);
+        logMethodReturn();
     }
 }

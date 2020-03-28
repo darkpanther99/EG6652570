@@ -148,10 +148,9 @@ public class Main {
         Tile b = new Tile();
         Logger.logConstructorCall(b, "b");
 
-        a.setNeighborTiles(b);
+        a.setNeighborAt(Direction.FORWARD, b);
         e.setCurrentTile(a);
-        // e.Step(forward);
-        // TODO: ENUM
+        e.Step(Direction.FORWARD);
     }
 
 

@@ -1,13 +1,13 @@
 package skeleton.model;
 
-import java.util.ArrayList;
+import static skeleton.Logger.*;
 
 public class Sea implements ChillWaterStrategy {
-	public void Chill(Tile t) {
-		ArrayList<Player> occupants = t.getOccupants();
-		
-		for(Player p : occupants) {
-			p.ResistWater();
-		}
-	}
+    public void Chill(Tile t) {
+        logMethodCall(this, t);
+        for (Player p : t.getOccupants()) {
+            p.ResistWater();
+        }
+        logMethodReturn();
+    }
 }

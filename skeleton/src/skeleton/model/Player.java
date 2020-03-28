@@ -1,6 +1,6 @@
 package skeleton.model;
 
-import skeleton.Logger;
+import static skeleton.Logger.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,8 +14,12 @@ public abstract class Player {
     protected WaterResistanceStrategy waterResistanceStrategy;
     protected FoodStore foodStore;
     protected PartStore partStore;
-    protected Collection<Item> inventory = new ArrayList<Item>(); // TODO: @Boti ellenőrizd, hogy ez collection minden működésében
+    protected Collection<Item> inventory = new ArrayList<Item>();
     protected Tile currentTile;
+
+    Player() {
+        setDisplayName(inventory, "inventory");
+    }
 
     public int getBodyTemp() {
         return bodyTemp;
@@ -66,8 +70,8 @@ public abstract class Player {
     }
 
     public FoodStore getFoodStore() {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn(foodStore);
+        logMethodCall(this);
+        logMethodReturn(foodStore);
         return foodStore;
     }
 
@@ -99,110 +103,105 @@ public abstract class Player {
         this.currentTile = currentTile;
     }
 
-    public void AddToInventory(Item i){
-        Logger.logMethodCall(this, i);
-        Logger.logMethodReturn();
+    public void AddToInventory(Item i) {
+        logMethodCall(this, i);
+        logMethodReturn();
         inventory.add(i);
     }
 
     public void DecrementEnergy() {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn();
-        
-        if(energy > 0) energy--;
+        logMethodCall(this);
+        logMethodReturn();
+
+        if (energy > 0) energy--;
     }
 
     public void IncrementBodyTemp() {
-    	bodyTemp++;
+        bodyTemp++;
     }
-    
-    public void DecrementBodyTemp()
-    {
-    	bodyTemp--;
+
+    public void DecrementBodyTemp() {
+        bodyTemp--;
     }
-    
+
     public void Chill() {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn();
-        
+        logMethodCall(this);
+        logMethodReturn();
+
         DecrementBodyTemp();
-        if(bodyTemp <= 0) {
-        	game.GameOver();
+        if (bodyTemp <= 0) {
+            game.GameOver();
         }
     }
 
     public void PickUp() {
-        Logger.logMethodCall(this);
-    	if(!Logger.prompt("Van elég energiája?")) {
-    	    Logger.logMethodReturn();
-    	    return;
+        logMethodCall(this);
+        if (!prompt("Van elég energiája?", true)) {
+            logMethodReturn();
+            return;
         }
-    	DecrementEnergy();
-    	AddToInventory(currentTile.TakeItem());
-
-        currentTile.getItem().GiveTo(this);
-    	// @Q(boti): -A player felelossege, hogy eltavolitsa az itemet a tile-rol?
-    	//           -Lehet tobb item a tile-on?
-    	currentTile.setItem(null);
-        Logger.logMethodReturn();
+        DecrementEnergy();
+        Item i = currentTile.TakeItem();
+        AddToInventory(i);
+        i.GiveTo(this);
+        logMethodReturn();
     }
 
     public void Equip(int inventorySlot) {
-    	// @TODO(boti)
+        // @TODO(boti)
     }
 
     public void PlaceOn(Tile t) {
-        Logger.logMethodCall(this, t);
-        Logger.logMethodReturn();
-        
-        // @BUG(boti): nem kell kivennunk magunkat a mostani tile-bol? (szekvencian nincs rajta)
+        logMethodCall(this, t);
+        logMethodReturn();
         currentTile = t;
-        t.StepOn(this);
     }
 
     public void Step(int direction) {
-    	if(energy <= 0) return; // TODO Prompt
+        logMethodCall(this, direction);
+        if (energy <= 0) return; // TODO Prompt
 
-    	DecrementEnergy();
-    	currentTile.StepOff(this);
-    	currentTile = currentTile.neighborAt(direction);
-    	currentTile.StepOn(this);
+        DecrementEnergy();
+        currentTile.StepOff(this);
+        currentTile = currentTile.neighborAt(direction);
+        currentTile.StepOn(this);
+        logMethodReturn();
     }
 
     public void ResistWater() {
-    	waterResistanceStrategy.Chill(this);
+        waterResistanceStrategy.Chill(this);
     }
 
     public void EatFood() {
-    	foodStore.Feed(this);
+        foodStore.Feed(this);
     }
 
     public void ToFoodStore() {
     }
 
     public void Dig() {
-    	if(energy <= 0) return;
-    	
-		if(digStrategy.Dig(currentTile)) {
-			DecrementEnergy();    		
-    	}
+        if (energy <= 0) return;
+
+        if (digStrategy.Dig(currentTile)) {
+            DecrementEnergy();
+        }
     }
 
     public void RescueTeammate(int direction) {
-    	if(energy <= 0) return;
-    	
-    	DecrementEnergy();
-    	
-    	Tile neighbor = currentTile.neighborAt(direction);
-    	rescueStrategy.Rescue(neighbor, currentTile);
+        if (energy <= 0) return;
+
+        DecrementEnergy();
+
+        Tile neighbor = currentTile.neighborAt(direction);
+        rescueStrategy.Rescue(neighbor, currentTile);
     }
 
     public void AssembleFlare() {
     }
 
     public void RemoveFromInventory(Item p) {
-        Logger.logMethodCall(this, p);
+        logMethodCall(this, p);
         inventory.remove(p);
-        Logger.logMethodReturn();
+        logMethodReturn();
     }
 }
