@@ -1,11 +1,37 @@
 package skeleton;
 
+import skeleton.model.Eskimo;
+import skeleton.model.Food;
+import skeleton.model.FoodStore;
+import skeleton.model.Tile;
+
 public class Main {
     public static void main(String[] args) {
-        LoggerTest lt = new LoggerTest();
-        Logger.logConstructorCall(lt, "myLoggerTest");
-        lt.DoTest();
+      TestPickUpFood();
     }
+
+
+    static void TestPickUpFood(){
+        Eskimo  e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+
+        Tile currentTile = new Tile();
+        Logger.logConstructorCall(currentTile, "currentTile");
+
+        Food f = new Food();
+        Logger.logConstructorCall(f, "food");
+
+        FoodStore fs = new FoodStore();
+        Logger.logConstructorCall(fs, "foodStore");
+
+        e.setCurrentTile(currentTile);
+        currentTile.setItem(f);
+        e.setFoodStore(fs);
+
+        e.PickUp();
+        
+    }
+
 
     private static class LoggerTest {
         void DoTest() {

@@ -5,7 +5,7 @@ import skeleton.Logger;
 public class PolarExplorer extends Player {
 	public int Examine(int direction) {
 		Logger.logMethodCall(this, direction);
-		if(energy > 0){
+		if(Logger.prompt("Van elég energiája?")){
 			int w = currentTile.NeighborAt(direction).getWeightLimit();
 			DecrementEnergy();
 			Logger.logMethodReturn(w);

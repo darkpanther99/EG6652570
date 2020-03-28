@@ -111,6 +111,8 @@ public class Tile {
     }
 
     public Item TakeItem() {
-        return null;
+        Logger.logMethodCall(this);
+        Logger.logMethodReturn(getItem());
+        return getItem();
     }
 }

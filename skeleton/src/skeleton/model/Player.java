@@ -2,6 +2,10 @@ package skeleton.model;
 
 import skeleton.Logger;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
 public abstract class Player {
     protected int bodyTemp;
     protected int energy;
@@ -11,8 +15,96 @@ public abstract class Player {
     protected WaterResistanceStrategy waterResistanceStrategy;
     protected FoodStore foodStore;
     protected PartStore partStore;
-    protected Item inventory;
+    protected Collection<Item> inventory = new ArrayList<Item>(); // TODO: @Boti ellenőrizd, hogy ez collection minden működésében
     protected Tile currentTile;
+
+    public int getBodyTemp() {
+        return bodyTemp;
+    }
+
+    public void setBodyTemp(int bodyTemp) {
+        this.bodyTemp = bodyTemp;
+    }
+
+    public int getEnergy() {
+        return energy;
+    }
+
+    public void setEnergy(int energy) {
+        this.energy = energy;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public DigStrategy getDigStrategy() {
+        return digStrategy;
+    }
+
+    public void setDigStrategy(DigStrategy digStrategy) {
+        this.digStrategy = digStrategy;
+    }
+
+    public RescueStrategy getRescueStrategy() {
+        return rescueStrategy;
+    }
+
+    public void setRescueStrategy(RescueStrategy rescueStrategy) {
+        this.rescueStrategy = rescueStrategy;
+    }
+
+    public WaterResistanceStrategy getWaterResistanceStrategy() {
+        return waterResistanceStrategy;
+    }
+
+    public void setWaterResistanceStrategy(WaterResistanceStrategy waterResistanceStrategy) {
+        this.waterResistanceStrategy = waterResistanceStrategy;
+    }
+
+    public FoodStore getFoodStore() {
+        Logger.logMethodCall(this);
+        Logger.logMethodReturn(foodStore);
+        return foodStore;
+    }
+
+    public void setFoodStore(FoodStore foodStore) {
+        this.foodStore = foodStore;
+    }
+
+    public PartStore getPartStore() {
+        return partStore;
+    }
+
+    public void setPartStore(PartStore partStore) {
+        this.partStore = partStore;
+    }
+
+    public Collection<Item> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Collection<Item> inventory) {
+        this.inventory = inventory;
+    }
+
+    public Tile getCurrentTile() {
+        return currentTile;
+    }
+
+    public void setCurrentTile(Tile currentTile) {
+        this.currentTile = currentTile;
+    }
+
+    public void AddToInventory(Item i){
+        Logger.logMethodCall(this, i);
+        Logger.logMethodReturn();
+        inventory.add(i);
+    }
 
     public void DecrementEnergy() {
         Logger.logMethodCall(this);
@@ -41,12 +133,19 @@ public abstract class Player {
     }
 
     public void PickUp() {
-    	if(energy <= 0) return;
-    	
-    	currentTile.getItem().GiveTo(this);
+        Logger.logMethodCall(this);
+    	if(!Logger.prompt("Van elég energiája?")) {
+    	    Logger.logMethodReturn();
+    	    return;
+        }
+    	DecrementEnergy();
+    	AddToInventory(currentTile.TakeItem());
+
+        currentTile.getItem().GiveTo(this);
     	// @Q(boti): -A player felelossege, hogy eltavolitsa az itemet a tile-rol?
     	//           -Lehet tobb item a tile-on?
-    	currentTile.setItem(null);     	
+    	currentTile.setItem(null);
+        Logger.logMethodReturn();
     }
 
     public void Equip(int inventorySlot) {
@@ -102,37 +201,9 @@ public abstract class Player {
     public void AssembleFlare() {
     }
 
-    public void RemoveFromInventory(Part p) {
+    public void RemoveFromInventory(Item p) {
         Logger.logMethodCall(this, p);
+        inventory.remove(p);
         Logger.logMethodReturn();
-    }
-
-    public void SetEnergy(int n) {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn();
-    }
-
-    public void SetDigStrategy(DigStrategy ds) {
-    	digStrategy = ds;
-    }
-    
-    public void SetRescueStrategy(RescueStrategy rs) {
-        Logger.logMethodCall(this, rs);
-        Logger.logMethodReturn();
-        
-        rescueStrategy = rs;
-    }
-
-    public void SetWaterResistanceStrategy(WaterResistanceStrategy wrs) {
-        Logger.logMethodCall(this, wrs);
-        Logger.logMethodReturn();
-        
-        waterResistanceStrategy = wrs;
-    }
-
-    public PartStore GetPartStore() {
-        Logger.logMethodCall(this);
-        Logger.logMethodReturn(partStore);
-        return partStore;
     }
 }
