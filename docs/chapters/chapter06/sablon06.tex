@@ -3,17 +3,14 @@
 \thispagestyle{fancy}
 
 \section{Fordítási és futtatási útmutató}
-\comment{A feltöltött program fordításával és futtatásával kapcsolatos útmutatás. Ennek tartalmaznia kell leltárszerűen az egyes fájlok pontos nevét, méretét byte-ban, keletkezési idejét, valamint azt, hogy a fájlban mi került megvalósításra.}
+%\comment{A feltöltött program fordításával és futtatásával kapcsolatos útmutatás. Ennek tartalmaznia kell leltárszerűen az egyes fájlok pontos nevét, méretét byte-ban, keletkezési idejét, valamint azt, hogy a fájlban mi került megvalósításra.}
 
 \subsection{Fájllista}
 
 \begin{fajllista}
 
-\fajl
-{Main.java}
-{250 byte}
-{2009.10.10~18:05~}
-{...}
+%\fajl{név}{méret}{keletkezés ideje}{leírás}
+\fajl{Main.java}{...}{2020.03.15~17:20~}{A program belépési pontja.}
 
 \fajl
 {...}
@@ -25,24 +22,22 @@
 
 \subsection{Fordítás}
 %\comment{A fenti listában szereplő forrásfájlokból milyen műveletekkel lehet a bináris, futtatható kódot előállítani. Az előállításhoz csak a 2. Követelmények c. dokumentumban leírt környezetet szabad előírni.}
-A fordítást a skeleton\\build.bat script végzi. Létrehozza a skeleton\\out\\skeleton.jar-t és el is indítja.
-
-\lstset{escapeinside=`', xleftmargin=10pt, frame=single, basicstyle=\ttfamily\footnotesize, language=sh}
-\begin{lstlisting}
-javac -d bin *.java
-\end{lstlisting}
+A fordítást a skeleton\textbackslash{}build.bat script végzi. Létrehozza a skeleton\textbackslash{}out\textbackslash{}skeleton.jar fájlt, és el is indítja.
 
 \subsection{Futtatás}
-\comment{A futtatható kód elindításával kapcsolatos teendők leírása. Az indításhoz csak a 2. Követelmények c. dokumentumban leírt környezetet szabad előírni.}
+%\comment{A futtatható kód elindításával kapcsolatos teendők leírása. Az indításhoz csak a 2. Követelmények c. dokumentumban leírt környezetet szabad előírni.}
 
 \lstset{escapeinside=`', xleftmargin=10pt, frame=single, basicstyle=\ttfamily\footnotesize, language=sh}
 \begin{lstlisting}
-cd bin
-java Main.java
+java -jar skeleton\out\skeleton.jar
 \end{lstlisting}
 
 \section{Értékelés}
-\comment{A projekt kezdete óta az értékelésig eltelt időben tagokra bontva, százalékban.}
+%\comment{A projekt kezdete óta az értékelésig eltelt időben tagokra bontva, százalékban.}
+
+% !!!
+% Hogyan fogjuk aláírni?
+% !!!
 
 \begin{ertekeles}
 \tag{Horváth} % Tag neve
