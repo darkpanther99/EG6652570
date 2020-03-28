@@ -29,7 +29,7 @@ public class Main {
         e.setFoodStore(fs);
 
         e.PickUp();
-        
+
     }
 
 

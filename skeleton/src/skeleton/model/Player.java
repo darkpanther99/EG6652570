@@ -4,7 +4,6 @@ import skeleton.Logger;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
 public abstract class Player {
     protected int bodyTemp;
@@ -166,7 +165,7 @@ public abstract class Player {
     	
     	DecrementEnergy();
     	currentTile.StepOff(this);
-    	currentTile = currentTile.NeighborAt(direction);
+    	currentTile = currentTile.neighborAt(direction);
     	currentTile.StepOn(this);
     }
 
@@ -194,7 +193,7 @@ public abstract class Player {
     	
     	DecrementEnergy();
     	
-    	Tile neighbor = currentTile.NeighborAt(direction);
+    	Tile neighbor = currentTile.neighborAt(direction);
     	rescueStrategy.Rescue(neighbor, currentTile);
     }
 
