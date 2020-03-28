@@ -117,7 +117,7 @@ public class Tile {
     private void Remove(Player p) {
         Logger.logMethodCall(this, p);
         Logger.logMethodReturn();
-        // todo
+        occupants.remove(p);
     }
 
     public void StepOn(Player p) {
