@@ -1,9 +1,6 @@
 package skeleton;
 
-import skeleton.model.Eskimo;
-import skeleton.model.Food;
-import skeleton.model.FoodStore;
-import skeleton.model.Tile;
+import skeleton.model.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -29,8 +26,134 @@ public class Main {
         e.setFoodStore(fs);
 
         e.PickUp();
-
     }
+
+    static void TestPickupShovel(){
+        Eskimo  e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+
+        Tile currentTile = new Tile();
+        Logger.logConstructorCall(currentTile, "currentTile");
+
+        Shovel s = new Shovel();
+        Logger.logConstructorCall(s, "shovel");
+
+        FoodStore fs = new FoodStore();
+        Logger.logConstructorCall(fs, "foodStore");
+
+        e.setCurrentTile(currentTile);
+        currentTile.setItem(s);
+        e.setFoodStore(fs);
+
+        e.PickUp();
+    }
+
+    static void TestPickupPart(){
+        Eskimo  e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+
+        Tile currentTile = new Tile();
+        Logger.logConstructorCall(currentTile, "currentTile");
+
+        Part p = new Part();
+        Logger.logConstructorCall(p, "part");
+
+        FoodStore fs = new FoodStore();
+        Logger.logConstructorCall(fs, "foodStore");
+
+        e.setCurrentTile(currentTile);
+        currentTile.setItem(p);
+        e.setFoodStore(fs);
+
+        e.PickUp();
+    }
+
+    static void TestPickupRope(){
+        Eskimo  e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+
+        Tile currentTile = new Tile();
+        Logger.logConstructorCall(currentTile, "currentTile");
+
+        Rope r = new Rope();
+        Logger.logConstructorCall(r, "rope");
+
+        FoodStore fs = new FoodStore();
+        Logger.logConstructorCall(fs, "foodStore");
+
+        e.setCurrentTile(currentTile);
+        currentTile.setItem(r);
+        e.setFoodStore(fs);
+
+        e.PickUp();
+    }
+
+    static void TestPickupScubeGear(){
+        Eskimo  e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+
+        Tile currentTile = new Tile();
+        Logger.logConstructorCall(currentTile, "currentTile");
+
+        ScubaGear sg = new ScubaGear();
+        Logger.logConstructorCall(sg, "rope");
+
+        FoodStore fs = new FoodStore();
+        Logger.logConstructorCall(fs, "foodStore");
+
+        e.setCurrentTile(currentTile);
+        currentTile.setItem(sg);
+        e.setFoodStore(fs);
+
+        e.PickUp();
+    }
+
+    static void TestBarehandsDig(){
+        Eskimo  e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+
+        Tile currentTile = new Tile();
+        Logger.logConstructorCall(currentTile, "currentTile");
+
+        BareHands b = new BareHands();
+        Logger.logConstructorCall(b, "bareHands");
+
+        e.setCurrentTile(currentTile);
+        e.setDigStrategy(b);
+        e.Dig();
+    }
+
+    static void TestShovelDig(){
+        Eskimo  e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+
+        Tile currentTile = new Tile();
+        Logger.logConstructorCall(currentTile, "currentTile");
+
+        ShovelDig s = new ShovelDig();
+        Logger.logConstructorCall(s, "bareHands");
+
+        e.setCurrentTile(currentTile);
+        e.setDigStrategy(s);
+        e.Dig();
+    }
+
+    static void TestStepOnIce(){
+        Eskimo  e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+
+        Tile a = new Tile();
+        Logger.logConstructorCall(a, "a");
+
+        Tile b = new Tile();
+        Logger.logConstructorCall(b, "b");
+
+        a.setNeighborTiles(b);
+        e.setCurrentTile(a);
+        // e.Step(forward);
+        // TODO: ENUM
+    }
+
 
 
     private static class LoggerTest {

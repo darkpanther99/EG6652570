@@ -161,8 +161,8 @@ public abstract class Player {
     }
 
     public void Step(int direction) {
-    	if(energy <= 0) return;
-    	
+    	if(energy <= 0) return; // TODO Prompt
+
     	DecrementEnergy();
     	currentTile.StepOff(this);
     	currentTile = currentTile.neighborAt(direction);
