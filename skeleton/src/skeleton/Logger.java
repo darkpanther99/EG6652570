@@ -3,6 +3,7 @@ package skeleton;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 /**
@@ -30,7 +31,32 @@ public final class Logger {
     private static void log(String msg) {
         final int spaces = 4;
         System.out.print(String.join("", Collections.nCopies(Math.max(0, indentation) * spaces, " ")));
-        System.out.println(msg);
+        System.out.print(msg);
+    }
+
+    /**
+     * Eldöntendő kérdés feltevése a konzolon.
+     *
+     * @param message A kérdés.
+     * @return A válasz.
+     */
+    public static boolean prompt(String message) {
+        return prompt(message, false);
+    }
+
+    /**
+     * Eldöntendő kérdés feltevése a konzolon.
+     *
+     * @param message A kérdés.
+     * @param def     A válasz, ha nincs válasz. (default)
+     * @return A válasz.
+     */
+    public static boolean prompt(String message, boolean def) {
+        log(String.format(def ? "%s (Y/n): " : "%s (y/N): ", message));
+        String line = new Scanner(System.in).nextLine();
+        if (line.length() == 0) return def;
+        char answer = Character.toLowerCase(line.charAt(0));
+        return answer == 'y' || answer == 'i'; // yes, igen
     }
 
     /**
@@ -60,7 +86,7 @@ public final class Logger {
      */
     private static void logMethodCall(Object callee, String methodName, Object... params) {
         String argList = Arrays.stream(params).map(Logger::getName).collect(Collectors.joining(", "));
-        log(String.format("%s.%s(%s) {", getName(callee), methodName, argList));
+        log(String.format("%s.%s(%s) {%n", getName(callee), methodName, argList));
         indentation++;
     }
 
@@ -70,9 +96,9 @@ public final class Logger {
      * Az indentációt csökkenti eggyel.
      */
     public static void logMethodReturn(Object returnValue) {
-        log(String.format("return %s;", getName(returnValue)));
+        log(String.format("return %s;%n", getName(returnValue)));
         indentation--;
-        log("}");
+        log(String.format("}%n"));
     }
 
     /**
@@ -81,7 +107,7 @@ public final class Logger {
      */
     public static void logMethodReturn() {
         indentation--;
-        log("}");
+        log(String.format("}%n"));
     }
 
     /**

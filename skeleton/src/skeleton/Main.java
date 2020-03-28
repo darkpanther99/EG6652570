@@ -25,7 +25,8 @@ public class Main {
             Logger.logMethodCall(this);
             DummyObject d = new DummyObject();
             Logger.logConstructorCall(d, "myDummyObject");
-            fn2(d, 10);
+            boolean pr = Logger.prompt("Does the set of all sets contain itself?", true);
+            fn2(d, pr ? 10 : 20);
             Logger.logMethodReturn(d);
             return d;
         }
