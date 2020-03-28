@@ -1,13 +1,21 @@
 package skeleton.model;
 
-import skeleton.Logger;
+import static skeleton.Logger.*;
 
+/**
+ * Eszkimó, játékos osztály.
+ */
 public class Eskimo extends Player {
+
+    /**
+     * Különleges képessége az igluépítés.
+     * A jelen cellára épül egy iglu, ami véd a vihar ellen.
+     */
     public void BuildIgloo() {
-        Logger.logMethodCall(this);
+        logMethodCall(this);
         Igloo igloo = new Igloo();
-        Logger.logConstructorCall(igloo, "igloo");
+        logConstructorCall(igloo, "igloo");
         currentTile.setChillStormStrategy(igloo);
-        Logger.logMethodReturn();
+        logMethodReturn();
     }
 }

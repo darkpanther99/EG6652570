@@ -17,7 +17,7 @@ public final class Logger {
     private static final HashMap<Object, String> names = new HashMap<>();
     private static int indentation = 0;
 
-    private static void setName(Object o, String name) {
+    public static void setDisplayName(Object o, String name) {
         names.put(o, name);
     }
 
@@ -122,7 +122,7 @@ public final class Logger {
      * @param newName   A létrehozott objektum neve.
      */
     public static void logConstructorCall(Object newObject, String newName) {
-        setName(newObject, newName);
+        setDisplayName(newObject, newName);
         logMethodCall(newObject, newObject.getClass().getSimpleName());
         logMethodReturn();
     }

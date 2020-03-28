@@ -1,5 +1,13 @@
 package skeleton.model;
 
+/**
+ * Egy tárgy, amit egy játékos birtokolhat.
+ */
 public interface Item {
-	public void GiveTo(Player p);
+    /**
+     * A játékos megkapja a tárgyat.
+     *
+     * @param p A játékos.
+     */
+    public void GiveTo(Player p);
 }

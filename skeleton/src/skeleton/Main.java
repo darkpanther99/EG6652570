@@ -4,12 +4,12 @@ import skeleton.model.*;
 
 public class Main {
     public static void main(String[] args) {
-      TestPickUpFood();
+        TestPickUpFood();
     }
 
 
-    static void TestPickUpFood(){
-        Eskimo  e = new Eskimo();
+    static void TestPickUpFood() {
+        Eskimo e = new Eskimo();
         Logger.logConstructorCall(e, "eskimo");
 
         Tile currentTile = new Tile();
@@ -28,8 +28,8 @@ public class Main {
         e.PickUp();
     }
 
-    static void TestPickupShovel(){
-        Eskimo  e = new Eskimo();
+    static void TestPickupShovel() {
+        Eskimo e = new Eskimo();
         Logger.logConstructorCall(e, "eskimo");
 
         Tile currentTile = new Tile();
@@ -48,8 +48,8 @@ public class Main {
         e.PickUp();
     }
 
-    static void TestPickupPart(){
-        Eskimo  e = new Eskimo();
+    static void TestPickupPart() {
+        Eskimo e = new Eskimo();
         Logger.logConstructorCall(e, "eskimo");
 
         Tile currentTile = new Tile();
@@ -68,8 +68,8 @@ public class Main {
         e.PickUp();
     }
 
-    static void TestPickupRope(){
-        Eskimo  e = new Eskimo();
+    static void TestPickupRope() {
+        Eskimo e = new Eskimo();
         Logger.logConstructorCall(e, "eskimo");
 
         Tile currentTile = new Tile();
@@ -88,8 +88,8 @@ public class Main {
         e.PickUp();
     }
 
-    static void TestPickupScubeGear(){
-        Eskimo  e = new Eskimo();
+    static void TestPickupScubeGear() {
+        Eskimo e = new Eskimo();
         Logger.logConstructorCall(e, "eskimo");
 
         Tile currentTile = new Tile();
@@ -108,8 +108,8 @@ public class Main {
         e.PickUp();
     }
 
-    static void TestBarehandsDig(){
-        Eskimo  e = new Eskimo();
+    static void TestBarehandsDig() {
+        Eskimo e = new Eskimo();
         Logger.logConstructorCall(e, "eskimo");
 
         Tile currentTile = new Tile();
@@ -123,8 +123,8 @@ public class Main {
         e.Dig();
     }
 
-    static void TestShovelDig(){
-        Eskimo  e = new Eskimo();
+    static void TestShovelDig() {
+        Eskimo e = new Eskimo();
         Logger.logConstructorCall(e, "eskimo");
 
         Tile currentTile = new Tile();
@@ -138,8 +138,8 @@ public class Main {
         e.Dig();
     }
 
-    static void TestStepOnIce(){
-        Eskimo  e = new Eskimo();
+    static void TestStepOnIce() {
+        Eskimo e = new Eskimo();
         Logger.logConstructorCall(e, "eskimo");
 
         Tile a = new Tile();
@@ -153,7 +153,6 @@ public class Main {
         // e.Step(forward);
         // TODO: ENUM
     }
-
 
 
     private static class LoggerTest {
