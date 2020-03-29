@@ -127,6 +127,7 @@ public class Tile {
 
     private boolean isBroken() {
         //return occupants.size() >= weightLimit;
+        if (weightLimit >= 999) return false; // hack: ha stabil a jég akkor nem kell prompt
         return !prompt("Elbír még egy játékost?");
     }
 

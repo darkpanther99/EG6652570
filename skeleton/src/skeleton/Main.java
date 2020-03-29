@@ -291,6 +291,7 @@ public class Main {
 
         Tile b = new Tile();
         Logger.logConstructorCall(b, "b");
+        b.setWeightLimit(999);
 
         a.setNeighborAt(Direction.FORWARD, b);
         e.setCurrentTile(a);
