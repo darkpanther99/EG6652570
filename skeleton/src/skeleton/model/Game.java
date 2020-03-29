@@ -11,8 +11,8 @@ import static skeleton.Logger.*;
  * Játék vezérlő.
  */
 public class Game {
-    private final Collection<Player> players = new ArrayList<>();
-    private final Collection<Tile> icefield = new ArrayList<>();
+    private final ArrayList<Player> players = new ArrayList<>();
+    private final ArrayList<Tile> icefield = new ArrayList<>();
 
     public Game() {
         setDisplayName(players, "players");

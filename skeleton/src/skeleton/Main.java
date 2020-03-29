@@ -320,23 +320,61 @@ public class Main {
     static void TestTurnOnStableIce(){
         Game g = new Game();
         Logger.logConstructorCall(g, "game");
-
-        g.CreateEskimo();
-        g.CreateIce();
-
+        Player e = g.CreateEskimo();
+        Tile t = g.CreateIce();
+        e.setCurrentTile(t);
         g.Turn();
     }
 
     static void TurnInWaterNaked(){
         Game g = new Game();
         Logger.logConstructorCall(g, "game");
-
-        g.CreateEskimo();
-        g.CreateSea();
-
-        
+        Player e = g.CreateEskimo();
+        Tile t = g.CreateSea();
+        e.setCurrentTile(t);
         g.Turn();
     }
+
+    static void TestTurnInWaterWithScubaGear(){
+        Game g = new Game();
+        Logger.logConstructorCall(g, "game");
+        Player e = g.CreateEskimo();
+        Tile t = g.CreateSea();
+        e.setCurrentTile(t);
+        e.setWaterResistanceStrategy(new ScubaWearing());
+        g.Turn();
+    }
+
+    static void TestChillStormIgloo(){
+        Tile t = new Tile();
+        Logger.logConstructorCall(t, "tile");
+
+        Eskimo e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+        e.setCurrentTile(t);
+
+        t.setChillStormStrategy(new Igloo());
+
+        t.ChillStorm();
+    }
+
+    static void TestChillStormBareIce(){
+        Tile t = new Tile();
+        Logger.logConstructorCall(t, "tile");
+
+        Eskimo e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+        e.setCurrentTile(t);
+
+        t.setChillStormStrategy(new BareIce());
+
+        t.ChillStorm();
+    }
+
+    
+
+
+
 
 
 }
