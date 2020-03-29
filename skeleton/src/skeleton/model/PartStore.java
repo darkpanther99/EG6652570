@@ -4,14 +4,13 @@ import static skeleton.Logger.*;
 
 /**
  * A rakétalkatrészek tárolóját modellező osztály.
- * @author Botondar
- *
  */
 public class PartStore {
     private int count = 0;
 
     /**
      * Hozzáad n db alkatrészt az eddigi alkatrészekhez.
+     *
      * @param n Az érkező alkatrészek száma.
      */
     public void Gain(int n) {
@@ -23,6 +22,7 @@ public class PartStore {
     /**
      * Hozzáad egy másik alkatrész tárolót ehhez a tárolóhoz.
      * Ennek a tárolónak az alkatrész száma a kettő összege, míg a másiké 0 lesz.
+     *
      * @param ps A másik alkatrész tároló.
      */
     public void Gain(PartStore ps) {
@@ -36,6 +36,7 @@ public class PartStore {
 
     /**
      * Beállítja, hogy hány alkatrész van a tárolóban
+     *
      * @param count Az új alkatrész szám.
      */
     public void setCount(int count) {
@@ -46,6 +47,7 @@ public class PartStore {
 
     /**
      * Visszaadja, hogy hány alkatrész van a tárolóban.
+     *
      * @return Az alkatrészek száma.
      */
     public int getCount() {

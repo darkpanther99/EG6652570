@@ -1,8 +1,6 @@
 package skeleton.model;
 
 
-import skeleton.Logger;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
@@ -13,8 +11,8 @@ import static skeleton.Logger.*;
  * Játék vezérlő.
  */
 public class Game {
-    private Collection<Player> players = new ArrayList<>();
-    private Collection<Tile> icefield = new ArrayList<>();
+    private final Collection<Player> players = new ArrayList<>();
+    private final Collection<Tile> icefield = new ArrayList<>();
 
     public Game() {
         setDisplayName(players, "players");
@@ -87,8 +85,8 @@ public class Game {
     public Player CreatePolarExplorer() {
         logMethodCall(this);
         Player p = new PolarExplorer();
-        p.setBodyTemp(4);
         logConstructorCall(p, "polarExplorer");
+        p.setBodyTemp(4);
         initPlayer(p);
         logMethodReturn(p);
         return p;
@@ -129,7 +127,7 @@ public class Game {
         AddPlayer(p);
     }
 
-    private static Random random = new Random();
+    private static final Random random = new Random();
 
     /**
      * Ezt a  függvényt most nem használjuk.

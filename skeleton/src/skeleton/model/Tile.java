@@ -8,11 +8,11 @@ import java.util.HashMap;
 
 public class Tile {
     private int snow;
-    private HashMap<Integer, Tile> neighborTiles = new HashMap<>();
+    private final HashMap<Integer, Tile> neighborTiles = new HashMap<>();
     private ChillStormStrategy chillStormStrategy;
     private ChillWaterStrategy chillWaterStrategy;
     private Item item;
-    private ArrayList<Player> occupants;
+    private Collection<Player> occupants = new ArrayList<>();
     private int weightLimit;
 
     public Tile() {
@@ -136,9 +136,15 @@ public class Tile {
         if (isBroken()) {
             setSnow(0);
             setWeightLimit(0);
-            setItem(new Empty());
-            setChillStormStrategy(new BareIce());
-            setChillWaterStrategy(new Sea());
+            Item empty = new Empty();
+            logConstructorCall(empty, "empty");
+            setItem(empty);
+            ChillStormStrategy cs = new BareIce();
+            logConstructorCall(cs, "chillStormStrategy");
+            setChillStormStrategy(cs);
+            ChillWaterStrategy cw = new Sea();
+            logConstructorCall(cw, "sea");
+            setChillWaterStrategy(cw);
             ChillWater();
         }
         logMethodReturn();

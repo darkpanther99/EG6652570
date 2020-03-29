@@ -108,7 +108,7 @@ public class Main {
         e.PickUp();
     }
 
-    static void TestBarehandsDig() {
+    static void TestBareHandsDig() {
         Eskimo e = new Eskimo();
         Logger.logConstructorCall(e, "eskimo");
 

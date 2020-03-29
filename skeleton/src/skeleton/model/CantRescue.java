@@ -1,5 +1,7 @@
 package skeleton.model;
 
+import static skeleton.Logger.*;
+
 public class CantRescue implements RescueStrategy {
 
     /**
@@ -10,6 +12,7 @@ public class CantRescue implements RescueStrategy {
      * @param land  A tile típusú jégtábla objektum, ahol a kimenteni vágyakozó játékos található.
      */
     public void Rescue(Tile water, Tile land) {
-        return;
+        logMethodCall(this, water, land);
+        logMethodReturn();
     }
 }

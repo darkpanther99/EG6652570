@@ -9,5 +9,5 @@ public interface Item {
      *
      * @param p A játékos.
      */
-    public void GiveTo(Player p);
+    void GiveTo(Player p);
 }
