@@ -14,7 +14,9 @@ public class ScubaGear implements Item {
      */
     public void GiveTo(Player p) {
         logMethodCall(this, p);
-        p.setWaterResistanceStrategy(new ScubaWearing());
+        ScubaWearing sw = new ScubaWearing();
+        logConstructorCall(sw, "scubaWearing");
+        p.setWaterResistanceStrategy(sw);
         logMethodReturn();
     }
 }

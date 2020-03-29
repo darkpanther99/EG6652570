@@ -15,7 +15,7 @@ public class FoodStore {
     /**
      * A játékos elfogyaszt egy egység élelmet.
      *
-     * @param p
+     * @param p A játékos.
      */
     public void Feed(Player p) {
         logMethodCall(this, p);

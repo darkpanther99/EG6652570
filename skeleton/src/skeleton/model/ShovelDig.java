@@ -3,9 +3,7 @@ package skeleton.model;
 import static skeleton.Logger.*;
 
 /**
- * Strategy osztály, ami az ásóval való ásást modellezi. 
- * @author Botondar
- *
+ * Strategy osztály, ami az ásóval való ásást modellezi.
  */
 public class ShovelDig implements DigStrategy {
     /*
@@ -21,11 +19,12 @@ public class ShovelDig implements DigStrategy {
     }
     */
 
-	/**
-	 * Eltakarít egy réteg havat egy mezőről.
-	 * @param t A mező, amiről a havat takarítjuk.
-	 * @return Kell-e csökkenteni a játékos energiáját ásás után.
-	 */
+    /**
+     * Eltakarít egy réteg havat egy mezőről.
+     *
+     * @param t A mező, amiről a havat takarítjuk.
+     * @return Kell-e csökkenteni a játékos energiáját ásás után.
+     */
     public boolean Dig(Tile t) {
         logMethodCall(this, t);
         t.DecrementSnow();

@@ -3,9 +3,9 @@ package skeleton.model;
 public interface ChillStormStrategy {
 
     /**
-     * Interface függvénye, ami a játékosok fázásáról gondoskodik, az interfacet megvalósító osztályoknak kötelezõ felüldefiniálni
+     * Interface függvénye, ami a játékosok fázásáról gondoskodik.
      *
      * @param t Tile típusú jégtábla objektum, ahol a játékos fázni fog.
      */
-    public void Chill(Tile t);
+    void Chill(Tile t);
 }
