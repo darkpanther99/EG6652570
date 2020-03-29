@@ -2,11 +2,155 @@ package skeleton;
 
 import skeleton.model.*;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        TestPickUpFood();
-    }
+        System.out.println("Válassz a menüpontokból");
+        System.out.print("1. Játékos\n" +
+                "2. Tábla\n" +
+                "3. Játék\n"
+        );
+        Scanner sc = new Scanner(System.in);
+        int answer = sc.nextInt();
+        switch (answer){
+            case 1:
+                System.out.print("1. felvesz\n" +
+                    "2. lapátol\n" +
+                    "3. lép\n" +
+                    "4. cselekszik\n"
+                );
+                answer = sc.nextInt();
+                switch (answer){
+                    case 1:
+                        System.out.print("1. ételt\n" +
+                                "2. lapátot\n" +
+                                "3. alkatrészt\n" +
+                                "4. kötelet\n" +
+                                "5. búvárruhát\n"
+                        );
+                        answer = sc.nextInt();
+                        switch (answer){
+                            case 1:
+                                TestPickUpFood();
+                                break;
+                            case 2:
+                                TestPickupShovel();
+                                break;
+                            case 3:
+                                TestPickupPart();
+                                break;
+                            case 4:
+                                TestPickupRope();
+                                break;
+                            case 5:
+                                TestPickupScubaGear();
+                                break;
+                        }
+                        break;
+                    case 2:
+                        System.out.print("1. kézzel\n" +
+                                "2. lapáttal\n"
+                        );
+                        answer = sc.nextInt();
+                        switch (answer){
+                            case 1:
+                                TestBareHandsDig();
+                                break;
+                            case 2:
+                                TestShovelDig();
+                                break;
+                        }
+                        break;
+                    case 3:
+                        System.out.print("1. jégre\n" +
+                                "2. instabil jégre búvárruhával\n" +
+                                "3. instabil jégre búvárruha nélkül\n" +
+                                "4. vízbe búvárruhával\n" +
+                                "5. vízbe búvárruha nélkül\n"
+                        );
+                        answer = sc.nextInt();
+                        switch (answer){
+                            case 1:
+                                TestStepOnIce();
+                                break;
+                            case 2:
+                                TestStepOnUnstableIceWithScubaGear();
+                                break;
+                            case 3:
+                                TestStepOnUnstableIceNaked();
+                                break;
+                            case 4:
+                                TestStepInHoleWithScubaGear();
+                                break;
+                            case 5:
+                                TestStepInHoleNaked();
+                                break;
+                        }
+                        break;
+                    case 4:
+                        System.out.print("1. kötéllel kiment\n" +
+                                "2. eszik\n" +
+                                "3. rakétát összeszerel"
+                        );
+                        answer = sc.nextInt();
+                        switch (answer){
+                            case 1:
+                                TestRopeRescue();
+                                break;
+                            case 2:
+                                TestEatFood();
+                                break;
+                            case 3:
+                                TestAssembleFlare();
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 2:
+                System.out.print("1. iglut épít\n" +
+                        "2. táblát vizsgál\n"
+                );
+                answer = sc.nextInt();
+                switch (answer){
+                    case 1:
+                        TestBuildIgloo();
+                        break;
+                    case 2:
+                        TestExamineTile();
+                        break;
+                }
+                break;
+            case 3:
+                System.out.print("1. kör stabil jégen\n" +
+                        "2. kör vízben\n" +
+                        "3. kör vízben búvárruhában\n" +
+                        "4. kör hóvihar igluban\n" +
+                        "5. kör hóvihar üres mezőn\n"
+                );
+                answer = sc.nextInt();
+                switch (answer){
+                    case 1:
+                        TestTurnOnStableIce();
+                        break;
+                    case 2:
+                        TestTurnInWaterNaked();
+                        break;
+                    case 3:
+                        TestTurnInWaterWithScubaGear();
+                        break;
+                    case 4:
+                        TestChillStormIgloo();
+                        break;
+                    case 5:
+                        TestChillStormBareIce();
+                        break;
+                }
+                break;
+        }
 
+    }
 
     static void TestPickUpFood() {
         Eskimo e = new Eskimo();
@@ -271,18 +415,6 @@ public class Main {
         Tile a = new Tile();
         Logger.logConstructorCall(a, "a");
 
-        PartStore ps1 = new PartStore();
-        Logger.logConstructorCall(ps1, "partStore1");
-
-        PartStore ps2 = new PartStore();
-        Logger.logConstructorCall(ps2, "partStore1");
-
-        ps1.Gain(1);
-        ps2.Gain(2);
-
-        e.setPartStore(ps1);
-        e2.setPartStore(ps2);
-
         a.setChillWaterStrategy(new DryLand());
         e.setCurrentTile(a);
         e2.setCurrentTile(a);
@@ -326,7 +458,7 @@ public class Main {
         g.Turn();
     }
 
-    static void TurnInWaterNaked(){
+    static void TestTurnInWaterNaked(){
         Game g = new Game();
         Logger.logConstructorCall(g, "game");
         Player e = g.CreateEskimo();
@@ -370,11 +502,4 @@ public class Main {
 
         t.ChillStorm();
     }
-
-    
-
-
-
-
-
 }
