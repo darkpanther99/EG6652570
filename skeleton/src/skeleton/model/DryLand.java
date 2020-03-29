@@ -1,14 +1,14 @@
 package skeleton.model;
 
 public class DryLand implements ChillWaterStrategy {
-	
-	/**
-	 * Az implementált ChillWaterStrategy interface Chill metódusát felüldefiniálja.
-	 * A szárazföldön álló játékosok nem fáznak a víz hidegétõl, ezért a függvény nem csinál semmit, csak visszatér.
-	 * 
-	 * @param t  Tile típusú jégtábla objektum, ahol a játékos fázni fog.
-	 */
-	public void Chill(Tile t) {
-		return;
-	}
+
+    /**
+     * Az implementÃ¡lt ChillWaterStrategy interface Chill metÃ³dusÃ¡t felÃ¼ldefiniÃ¡lja.
+     * A szÃ¡razfÃ¶ldÃ¶n Ã¡llÃ³ jÃ¡tÃ©kosok nem fÃ¡znak a vÃ­z hidegÃ©tÃµl, ezÃ©rt a fÃ¼ggvÃ©ny nem csinÃ¡l semmit, csak visszatÃ©r.
+     *
+     * @param t Tile tÃ­pusÃº jÃ©gtÃ¡bla objektum, ahol a jÃ¡tÃ©kos fÃ¡zni fog.
+     */
+    public void Chill(Tile t) {
+        return;
+    }
 }

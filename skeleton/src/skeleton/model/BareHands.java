@@ -1,19 +1,18 @@
 package skeleton.model;
 
 public class BareHands implements DigStrategy {
-	
-	/**
-	 * Az implementált DigStrategy interface Dig metódusát felüldefiniálja.
-	 * Csökkenteni szertné a t Tilen lévõ hó mennyiségét, annak DecrementSnow metódusának meghívásával.
-	 * Puszta kézzel ásást reprezentáló metódus.
-	 * 
-	 * 
-	 * @param t A Tile típusú jégtábla objektum, amin a játékos ásni szeretne.
-	 * @return 	Visszaadja, hogy a játékso fárad-e az ásástól, mivel puszta kézzel mindig fárad, ezért mindig true.
-	 */
-	public boolean Dig(Tile t) {
-		t.DecrementSnow();
-		return true;
-	}
-	
+
+    /**
+     * Az implementÃ¡lt DigStrategy interface Dig metÃ³dusÃ¡t felÃ¼ldefiniÃ¡lja.
+     * CsÃ¶kkenteni szertnÃ© a t Tilen lÃ©vÃµ hÃ³ mennyisÃ©gÃ©t, annak DecrementSnow metÃ³dusÃ¡nak meghÃ­vÃ¡sÃ¡val.
+     * Puszta kÃ©zzel Ã¡sÃ¡st reprezentÃ¡lÃ³ metÃ³dus.
+     *
+     * @param t A Tile tÃ­pusÃº jÃ©gtÃ¡bla objektum, amin a jÃ¡tÃ©kos Ã¡sni szeretne.
+     * @return Visszaadja, hogy a jÃ¡tÃ©kso fÃ¡rad-e az Ã¡sÃ¡stÃ³l, mivel puszta kÃ©zzel mindig fÃ¡rad, ezÃ©rt mindig true.
+     */
+    public boolean Dig(Tile t) {
+        t.DecrementSnow();
+        return true;
+    }
+
 }

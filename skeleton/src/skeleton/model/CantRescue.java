@@ -1,17 +1,15 @@
 package skeleton.model;
 
 public class CantRescue implements RescueStrategy {
-	
-	/**
-	 * Az implementált RescueStrategy interface Rescue metódusát felüldefiniálja.
-	 * A játékos üres kézzel megpróbálja kimenteni csapattársát, amit nem tud, mert nincs kötele, ezért a függvény nem csinál semmit, csak visszatér.
-	 * 
-	 * 
-	 * 
-	 * @param water A Tile típusú jégtábla objektum, ahol a fulladozó csapattárs van.
-	 * @param land  A tile típusú jégtábla objektum, ahol a kimenteni vágyakozó játékos található.
-	 */
-	public void Rescue(Tile water, Tile land) {
-		return;
-	}
+
+    /**
+     * Az implementÃ¡lt RescueStrategy interface Rescue metÃ³dusÃ¡t felÃ¼ldefiniÃ¡lja.
+     * A jÃ¡tÃ©kos Ã¼res kÃ©zzel megprÃ³bÃ¡lja kimenteni csapattÃ¡rsÃ¡t, amit nem tud, mert nincs kÃ¶tele, ezÃ©rt a fÃ¼ggvÃ©ny nem csinÃ¡l semmit, csak visszatÃ©r.
+     *
+     * @param water A Tile tÃ­pusÃº jÃ©gtÃ¡bla objektum, ahol a fulladozÃ³ csapattÃ¡rs van.
+     * @param land  A tile tÃ­pusÃº jÃ©gtÃ¡bla objektum, ahol a kimenteni vÃ¡gyakozÃ³ jÃ¡tÃ©kos talÃ¡lhatÃ³.
+     */
+    public void Rescue(Tile water, Tile land) {
+        return;
+    }
 }

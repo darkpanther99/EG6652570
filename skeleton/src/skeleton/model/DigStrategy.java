@@ -1,11 +1,11 @@
 package skeleton.model;
 
 public interface DigStrategy {
-	
-	/**
-	 * Interface függvénye, ami a játékosok ásásáról gondoskodik, az interfacet megvalósító osztályoknak kötelezõ felüldefiniálni
-	 * 
-	 * @param t  Tile típusú jégtábla objektum, ahol a játékos ásni fog.
-	 */
-	public boolean Dig(Tile t);
+
+    /**
+     * Interface fÃ¼ggvÃ©nye, ami a jÃ¡tÃ©kosok Ã¡sÃ¡sÃ¡rÃ³l gondoskodik, az interfacet megvalÃ³sÃ­tÃ³ osztÃ¡lyoknak kÃ¶telezÃµ felÃ¼ldefiniÃ¡lni
+     *
+     * @param t Tile tÃ­pusÃº jÃ©gtÃ¡bla objektum, ahol a jÃ¡tÃ©kos Ã¡sni fog.
+     */
+    public boolean Dig(Tile t);
 }

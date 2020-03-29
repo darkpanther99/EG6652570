@@ -1,19 +1,17 @@
 package skeleton.model;
 
-
-
 public class BareIce implements ChillStormStrategy {
-	
-	/**
-	 * Az implementált ChillStormStrategy interface Chill metódusát felüldefiniálja.
-	 * Sima jégen álló játékosok fázására alkalmazott metódus.
-	 * A t Tilen lévõ összes játékost fázatja, meghívja a Chill metódusukat.
-	 * 
-	 * @param t A Tile típusú jégtábla objektum, amin a játékosok fázni fognak.
-	 */
-	public void Chill(Tile t) {
-		for (Player p : t.GetOccupants()) {
-			p.Chill();
-		}
-	}
+
+    /**
+     * Az implementÃ¡lt ChillStormStrategy interface Chill metÃ³dusÃ¡t felÃ¼ldefiniÃ¡lja.
+     * Sima jÃ©gen Ã¡llÃ³ jÃ¡tÃ©kosok fÃ¡zÃ¡sÃ¡ra alkalmazott metÃ³dus.
+     * A t Tilen lÃ©vÃµ Ã¶sszes jÃ¡tÃ©kost fÃ¡zatja, meghÃ­vja a Chill metÃ³dusukat.
+     *
+     * @param t A Tile tÃ­pusÃº jÃ©gtÃ¡bla objektum, amin a jÃ¡tÃ©kosok fÃ¡zni fognak.
+     */
+    public void Chill(Tile t) {
+        for (Player p : t.getOccupants()) {
+            p.Chill();
+        }
+    }
 }
