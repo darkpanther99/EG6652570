@@ -88,7 +88,7 @@ public class Main {
         e.PickUp();
     }
 
-    static void TestPickupScubeGear() {
+    static void TestPickupScubaGear() {
         Eskimo e = new Eskimo();
         Logger.logConstructorCall(e, "eskimo");
 
@@ -153,36 +153,190 @@ public class Main {
         e.Step(Direction.FORWARD);
     }
 
+    static void TestStepOnUnstableIceWithScubaGear(){
+        Eskimo e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
 
-    private static class LoggerTest {
-        void DoTest() {
-            Logger.logMethodCall(this);
-            fn1();
-            Logger.logMethodReturn();
-        }
+        Tile a = new Tile();
+        Logger.logConstructorCall(a, "a");
 
-        private static class DummyObject {
-            void fn3(int i) {
-                Logger.logMethodCall(this, i);
-                Logger.logMethodReturn();
-            }
-        }
+        Tile b = new Tile();
+        Logger.logConstructorCall(b, "b");
 
-        DummyObject fn1() {
-            Logger.logMethodCall(this);
-            DummyObject d = new DummyObject();
-            Logger.logConstructorCall(d, "myDummyObject");
-            boolean pr = Logger.prompt("Does the set of all sets contain itself?", true);
-            fn2(d, pr ? 10 : 20);
-            Logger.logMethodReturn(d);
-            return d;
-        }
+        e.setWaterResistanceStrategy(new ScubaWearing());
 
-        int fn2(DummyObject d, int i) {
-            Logger.logMethodCall(this, d, i);
-            d.fn3(2 * i);
-            Logger.logMethodReturn(1234);
-            return 1234;
-        }
+        a.setNeighborAt(Direction.FORWARD, b);
+        e.setCurrentTile(a);
+        e.Step(Direction.FORWARD);
+
     }
+
+    static void TestStepOnUnstableIceNaked(){
+        Eskimo e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+
+        Tile a = new Tile();
+        Logger.logConstructorCall(a, "a");
+
+        Tile b = new Tile();
+        Logger.logConstructorCall(b, "b");
+
+        e.setWaterResistanceStrategy(new Naked());
+
+        a.setNeighborAt(Direction.FORWARD, b);
+        e.setCurrentTile(a);
+        e.Step(Direction.FORWARD);
+    }
+
+    static void TestStepInHoleWithScubaGear(){
+        Eskimo e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+
+        Tile a = new Tile();
+        Logger.logConstructorCall(a, "a");
+
+        Tile b = new Tile();
+        Logger.logConstructorCall(b, "b");
+
+        b.setChillWaterStrategy(new Sea());
+
+        e.setWaterResistanceStrategy(new ScubaWearing());
+
+        a.setNeighborAt(Direction.FORWARD, b);
+        e.setCurrentTile(a);
+        e.Step(Direction.FORWARD);
+    }
+
+    static void TestStepInHoleNaked(){
+        Eskimo e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+
+        Tile a = new Tile();
+        Logger.logConstructorCall(a, "a");
+
+        Tile b = new Tile();
+        Logger.logConstructorCall(b, "b");
+
+        b.setChillWaterStrategy(new Sea());
+
+        e.setWaterResistanceStrategy(new Naked());
+
+        a.setNeighborAt(Direction.FORWARD, b);
+        e.setCurrentTile(a);
+        e.Step(Direction.FORWARD);
+    }
+
+    static void TestRopeRescue(){
+        Eskimo e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+
+        Eskimo e2 = new Eskimo();
+        Logger.logConstructorCall(e2, "eskimo2");
+
+        Tile a = new Tile();
+        Logger.logConstructorCall(a, "ct");
+
+        Tile b = new Tile();
+        Logger.logConstructorCall(b, "w");
+
+        b.setChillWaterStrategy(new Sea());
+
+        e.setRescueStrategy(new RopeRescue());
+
+        a.setNeighborAt(Direction.FORWARD, b);
+        e.setCurrentTile(a);
+        e2.setCurrentTile(b);
+        e.RescueTeammate(Direction.FORWARD);
+    }
+
+    static void TestEatFood(){
+        Eskimo e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+
+        FoodStore fs = new FoodStore();
+        Logger.logConstructorCall(fs, "foodStore");
+
+        fs.Gain();
+        e.setFoodStore(fs);
+        e.EatFood();
+    }
+
+    static void TestAssembleFlare(){
+        Eskimo e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+
+        Eskimo e2 = new Eskimo();
+        Logger.logConstructorCall(e2, "eskimo2");
+
+        Tile a = new Tile();
+        Logger.logConstructorCall(a, "a");
+
+        PartStore ps1 = new PartStore();
+        Logger.logConstructorCall(ps1, "partStore1");
+
+        PartStore ps2 = new PartStore();
+        Logger.logConstructorCall(ps2, "partStore1");
+
+        ps1.Gain(1);
+        ps2.Gain(2);
+
+        e.setPartStore(ps1);
+        e2.setPartStore(ps2);
+
+        a.setChillWaterStrategy(new DryLand());
+        e.setCurrentTile(a);
+        e2.setCurrentTile(a);
+
+        e.AssembleFlare();
+    }
+
+    static void TestBuildIgloo(){
+        Eskimo e = new Eskimo();
+        Logger.logConstructorCall(e, "eskimo");
+
+        Tile ct = new Tile();
+        Logger.logConstructorCall(ct, "ct");
+
+        e.setCurrentTile(ct);
+
+        e.BuildIgloo();
+    }
+
+    static void TestExamineTile(){
+        PolarExplorer p = new PolarExplorer();
+        Logger.logConstructorCall(p, "eskimo");
+
+        Tile ct = new Tile();
+        Logger.logConstructorCall(ct, "ct");
+
+        Tile t = new Tile();
+        Logger.logConstructorCall(t, "t");
+
+        t.setNeighborAt(Direction.FORWARD, t);
+        p.setCurrentTile(ct);
+        p.Examine(Direction.FORWARD);
+    }
+
+    static void TestTurnOnStableIce(){
+        Game g = new Game();
+        Logger.logConstructorCall(g, "game");
+
+        g.CreateEskimo();
+        g.CreateIce();
+
+        g.Turn();
+    }
+
+    static void TurnInWaterNaked(){
+        Game g = new Game();
+        Logger.logConstructorCall(g, "game");
+
+        g.CreateEskimo();
+        g.CreateSea();
+
+        
+        g.Turn();
+    }
+
+
 }
