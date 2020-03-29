@@ -2,7 +2,15 @@ package skeleton.model;
 
 import static skeleton.Logger.*;
 
+/**
+ * Sarkkutató, játékos osztály.
+ */
 public class PolarExplorer extends Player {
+
+    /**
+     * Különleges képessége az táblák megvizsgálása.
+     * Az adott irányba megadott cella teherbírását tudja megvizsgálni
+     */
     public int Examine(int direction) {
         logMethodCall(this, direction);
         if (prompt("Van elég energiája?")) {
