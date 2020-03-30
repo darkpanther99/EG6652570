@@ -50,7 +50,7 @@ public class PartStore {
      *
      * @return Az alkatrészek száma.
      */
-    public int getCount() {
+    private int getCount() {
         logMethodCall(this);
         logMethodReturn(count);
         return count;

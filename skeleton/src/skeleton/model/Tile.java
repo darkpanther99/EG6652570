@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+// TODO: írdmámeg a javadocot
+
 public class Tile {
     private int snow;
     private final HashMap<Integer, Tile> neighborTiles = new HashMap<>();
@@ -32,12 +34,6 @@ public class Tile {
         logMethodReturn();
     }
 
-    public int getSnow() {
-        logMethodCall(this);
-        logMethodReturn(snow);
-        return snow;
-    }
-
     public void setSnow(int snow) {
         logMethodCall(this, snow);
         this.snow = snow;
@@ -57,22 +53,10 @@ public class Tile {
         logMethodReturn();
     }
 
-    public ChillStormStrategy getChillStormStrategy() {
-        logMethodCall(this);
-        logMethodReturn(chillStormStrategy);
-        return chillStormStrategy;
-    }
-
     public void setChillStormStrategy(ChillStormStrategy chillStormStrategy) {
         logMethodCall(this, chillStormStrategy);
         this.chillStormStrategy = chillStormStrategy;
         logMethodReturn();
-    }
-
-    public ChillWaterStrategy getChillWaterStrategy() {
-        logMethodCall(this);
-        logMethodReturn(chillWaterStrategy);
-        return chillWaterStrategy;
     }
 
     public void setChillWaterStrategy(ChillWaterStrategy chillWaterStrategy) {
@@ -81,7 +65,7 @@ public class Tile {
         logMethodReturn();
     }
 
-    public Item getItem() {
+    private Item getItem() {
         logMethodCall(this);
         logMethodReturn(item);
         return item;
@@ -97,12 +81,6 @@ public class Tile {
         logMethodCall(this);
         logMethodReturn(occupants);
         return occupants;
-    }
-
-    public void setOccupants(ArrayList<Player> occupants) {
-        logMethodCall(this, occupants);
-        this.occupants = occupants;
-        logMethodReturn();
     }
 
 
@@ -128,6 +106,7 @@ public class Tile {
     private boolean isBroken() {
         //return occupants.size() >= weightLimit;
         if (weightLimit >= 999) return false; // hack: ha stabil a jég akkor nem kell prompt
+        if (weightLimit == 0) return true;
         return !prompt("Elbír még egy játékost?");
     }
 

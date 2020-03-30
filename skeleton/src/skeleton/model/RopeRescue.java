@@ -14,19 +14,16 @@ public class RopeRescue implements RescueStrategy {
      * Ezzel a függvénnyel egy játékos képes kimenteni egy másikat a vízből.
      *
      * @param water Tile típusú jégtábla objektum, ahol a játékos akit kimentünk éppen áll.
-     * @param land Tile típusú jégtábla objektum, ahova a játékos kihúzza a társát.
+     * @param land  Tile típusú jégtábla objektum, ahova a játékos kihúzza a társát.
      */
     public void Rescue(Tile water, Tile land) {
         logMethodCall(this, water, land);
         Collection<Player> occ = water.getOccupants();
         if (occ.size() > 0) {
-
             Player p = occ.stream().findFirst().orElseThrow();
-
             p.PlaceOn(land);
-            // A szekvenciáról hiányzik, a water.Remove(p).
-            // De úgy se tudom hívni mert privát, úgyhogy csalok.
-            occ.remove(p);
+            // A szekvencia hibás, hiányzik róla a StepOff.
+            water.StepOff(p);
         }
         logMethodReturn();
     }

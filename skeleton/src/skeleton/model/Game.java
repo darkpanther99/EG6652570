@@ -56,12 +56,6 @@ public class Game {
         logMethodReturn();
     }
 
-    public Collection<Tile> getIcefield() {
-        logMethodCall(this);
-        logMethodReturn(icefield);
-        return icefield;
-    }
-
     /**
      * Amikor létrehozunk egy játékost, eltároljuk a kollekcióban.
      */
@@ -82,10 +76,14 @@ public class Game {
      *
      * @return A létrehozott játékos.
      */
-    public Player CreatePolarExplorer() {
+    public PolarExplorer CreatePolarExplorer() {
+        return CreatePolarExplorer("polarExplorer");
+    }
+
+    private PolarExplorer CreatePolarExplorer(String displayName) {
         logMethodCall(this);
-        Player p = new PolarExplorer();
-        logConstructorCall(p, "polarExplorer");
+        PolarExplorer p = new PolarExplorer();
+        logConstructorCall(p, displayName);
         p.setBodyTemp(4);
         initPlayer(p);
         logMethodReturn(p);
@@ -97,10 +95,14 @@ public class Game {
      *
      * @return A létrehozott játékos.
      */
-    public Player CreateEskimo() {
+    public Eskimo CreateEskimo() {
+        return CreateEskimo("eskimo");
+    }
+
+    public Eskimo CreateEskimo(String displayName) {
         logMethodCall(this);
-        Player p = new Eskimo();
-        logConstructorCall(p, "eskimo");
+        Eskimo p = new Eskimo();
+        logConstructorCall(p, displayName);
         p.setBodyTemp(5);
         initPlayer(p);
         logMethodReturn(p);
@@ -121,8 +123,11 @@ public class Game {
         logConstructorCall(ws, "naked");
         p.setWaterResistanceStrategy(ws);
         FoodStore fs = new FoodStore();
-        logConstructorCall(fs, "fs");
+        logConstructorCall(fs, "foodStore");
         p.setFoodStore(fs);
+        PartStore ps = new PartStore();
+        logConstructorCall(ps, "partStore");
+        p.setPartStore(ps);
         p.setGame(this);
         AddPlayer(p);
     }
@@ -140,7 +145,7 @@ public class Game {
         final int percentageFood = 8;
         final int percentageRope = 8;
         int percentage = random.nextInt() % 100;
-        Item result = null;
+        Item result;
         if (percentage < percentageEmpty) {
             result = new Empty();
             logConstructorCall(result, "empty");
@@ -166,9 +171,13 @@ public class Game {
      * @return Jégtábla.
      */
     public Tile CreateIce() {
+        return CreateIce("ice");
+    }
+
+    public Tile CreateIce(String displayName) {
         logMethodCall(this);
         Tile t = new Tile();
-        logConstructorCall(t, "ice");
+        logConstructorCall(t, displayName);
 
         final int maxPlayerCount = 999;
         t.setWeightLimit(maxPlayerCount);
@@ -184,6 +193,7 @@ public class Game {
         logConstructorCall(cw, "dryLand");
         t.setChillWaterStrategy(cw);
 
+        AddTile(t);
         logMethodReturn(t);
         return t;
     }
@@ -195,9 +205,13 @@ public class Game {
      * @return Instabil jégtábla.
      */
     public Tile CreateUnstableIce() {
+        return CreateUnstableIce("unstableIce");
+    }
+
+    public Tile CreateUnstableIce(String displayName) {
         logMethodCall(this);
         Tile t = new Tile();
-        logConstructorCall(t, "unstableIce");
+        logConstructorCall(t, displayName);
 
         t.setWeightLimit(0);
         t.setSnow(random.nextInt() % 5 + 1);
@@ -212,6 +226,7 @@ public class Game {
         logConstructorCall(cw, "dryLand");
         t.setChillWaterStrategy(cw);
 
+        AddTile(t);
         logMethodReturn(t);
         return t;
     }
@@ -222,9 +237,13 @@ public class Game {
      * @return Tenger.
      */
     public Tile CreateSea() {
+        return CreateSea("seaTile");
+    }
+
+    public Tile CreateSea(String displayName) {
         logMethodCall(this);
         Tile t = new Tile();
-        logConstructorCall(t, "sea");
+        logConstructorCall(t, displayName);
 
         t.setWeightLimit(0);
         t.setSnow(0);
@@ -238,6 +257,7 @@ public class Game {
         logConstructorCall(cw, "sea");
         t.setChillWaterStrategy(cw);
 
+        AddTile(t);
         logMethodReturn(t);
         return t;
     }
@@ -248,9 +268,13 @@ public class Game {
      * @return Lyuk.
      */
     public Tile CreateHole() {
+        return CreateHole("hole");
+    }
+
+    public Tile CreateHole(String displayName) {
         logMethodCall(this);
         Tile t = new Tile();
-        logConstructorCall(t, "hole");
+        logConstructorCall(t, displayName);
 
         t.setWeightLimit(0);
         t.setSnow(random.nextInt() % 5 + 1);
@@ -264,6 +288,7 @@ public class Game {
         logConstructorCall(cw, "sea");
         t.setChillWaterStrategy(cw);
 
+        AddTile(t);
         logMethodReturn(t);
         return t;
     }

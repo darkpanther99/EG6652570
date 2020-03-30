@@ -31,7 +31,7 @@ public class FoodStore {
         return prompt("Van étel az ételesdobozban?");
     }
 
-    public void DecrementCount() {
+    private void DecrementCount() {
         logMethodCall(this);
         count--;
         logMethodReturn();

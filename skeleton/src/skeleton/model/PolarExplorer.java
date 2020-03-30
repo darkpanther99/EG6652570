@@ -7,10 +7,15 @@ import static skeleton.Logger.*;
  */
 public class PolarExplorer extends Player {
 
+    public PolarExplorer() {
+        super();
+    }
+
     /**
      * Különleges képessége az táblák megvizsgálása.
      * Az adott irányba megadott cella teherbírását tudja megvizsgálni
      */
+    @SuppressWarnings("UnusedReturnValue")
     public int Examine(int direction) {
         logMethodCall(this, direction);
         if (prompt("Van elég energiája?")) {

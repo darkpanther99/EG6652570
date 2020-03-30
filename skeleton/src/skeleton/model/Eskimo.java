@@ -7,6 +7,10 @@ import static skeleton.Logger.*;
  */
 public class Eskimo extends Player {
 
+    public Eskimo() {
+        super();
+    }
+
     /**
      * Különleges képessége az igluépítés.
      * A jelen cellára épül egy iglu, ami véd a vihar ellen.

@@ -13,62 +13,49 @@ public abstract class Player {
     /**
      * A játékos test hőmérséklete. Ha ez eléri a 0-t, a játék véget ér.
      */
-    protected int bodyTemp;
+    private int bodyTemp;
     /**
      * A játékos energiája. A cselekedetek energiát fogyasztanak, a játékosoknak egy körben véges energiájuk van.
      */
-    protected int energy;
+    private int energy;
     /**
      * A játék példány, amihez ez a játékos tartozik.
      */
-    protected Game game;
+    private Game game;
     /**
      * A játékos ásási stratégiája. Pl.: fogyaszt-e energiát az ásás, stb.
      */
-    protected DigStrategy digStrategy;
+    private DigStrategy digStrategy;
     /**
      * A játékos mentési stratégiája. Ha a játékosnál van kötél, a játékos meg tudja menteni a vízben fuldokló társait.
      */
-    protected RescueStrategy rescueStrategy;
+    private RescueStrategy rescueStrategy;
     /**
      * A játékos víz ellenállási stratégiája. Ha a játékos búvárruhát visel, nem fázik a vízben.
      */
-    protected WaterResistanceStrategy waterResistanceStrategy;
+    private WaterResistanceStrategy waterResistanceStrategy;
     /**
      * A játékos élelmiszer tárolója.
      */
-    protected FoodStore foodStore = new FoodStore();
+    private FoodStore foodStore;
     /**
      * A játékos rakéta alkatrész tárolója
      */
-    protected PartStore partStore = new PartStore();
+    private PartStore partStore;
     /**
      * A játékos eszköztára.
      */
-    protected ArrayList<Item> inventory = new ArrayList<>();
+    private final ArrayList<Item> inventory = new ArrayList<>();
     /**
      * A mező, amin épp a játékos tartózkodik
      */
-    protected Tile currentTile;
+    Tile currentTile;
 
     /**
      * Constructor
      */
     Player() {
-        setDisplayName(foodStore, "foodStore");
-        setDisplayName(partStore, "partStore");
         setDisplayName(inventory, "inventory");
-    }
-
-    /**
-     * Visszaadja a játékos testhőjét
-     *
-     * @return A játékos jelenlegi testhője
-     */
-    public int getBodyTemp() {
-        logMethodCall(this);
-        logMethodReturn(bodyTemp);
-        return bodyTemp;
     }
 
     /**
@@ -83,17 +70,6 @@ public abstract class Player {
     }
 
     /**
-     * Visszaadja a játékos energiáját
-     *
-     * @return a játékos jelenlegi energiája
-     */
-    public int getEnergy() {
-        logMethodCall(this);
-        logMethodReturn(energy);
-        return energy;
-    }
-
-    /**
      * Beállítja a játékos energiáját
      *
      * @param energy az új energia szint.
@@ -102,17 +78,6 @@ public abstract class Player {
         logMethodCall(this, energy);
         this.energy = energy;
         logMethodReturn();
-    }
-
-    /**
-     * Visszaadja a játék objektumot/példányt, amihez ez a játékos tartozik.
-     *
-     * @return a játék példány
-     */
-    public Game getGame() {
-        logMethodCall(this);
-        logMethodReturn(game);
-        return game;
     }
 
     /**
@@ -126,34 +91,16 @@ public abstract class Player {
         logMethodReturn();
     }
 
-    public DigStrategy getDigStrategy() {
-        logMethodCall(this);
-        logMethodReturn(digStrategy);
-        return digStrategy;
-    }
-
     public void setDigStrategy(DigStrategy digStrategy) {
         logMethodCall(this, digStrategy);
         this.digStrategy = digStrategy;
         logMethodReturn();
     }
 
-    public RescueStrategy getRescueStrategy() {
-        logMethodCall(this);
-        logMethodReturn(rescueStrategy);
-        return rescueStrategy;
-    }
-
     public void setRescueStrategy(RescueStrategy rescueStrategy) {
         logMethodCall(this, rescueStrategy);
         this.rescueStrategy = rescueStrategy;
         logMethodReturn();
-    }
-
-    public WaterResistanceStrategy getWaterResistanceStrategy() {
-        logMethodCall(this);
-        logMethodReturn(waterResistanceStrategy);
-        return waterResistanceStrategy;
     }
 
     public void setWaterResistanceStrategy(WaterResistanceStrategy waterResistanceStrategy) {
@@ -180,7 +127,13 @@ public abstract class Player {
         return partStore;
     }
 
-    public Tile getCurrentTile() {
+    public void setPartStore(PartStore partStore) {
+        logMethodCall(this, partStore);
+        this.partStore = partStore;
+        logMethodReturn();
+    }
+
+    private Tile getCurrentTile() {
         logMethodCall(this);
         logMethodReturn(currentTile);
         return currentTile;
@@ -197,7 +150,7 @@ public abstract class Player {
      *
      * @param i az új eszköz.
      */
-    public void AddToInventory(Item i) {
+    private void AddToInventory(Item i) {
         logMethodCall(this, i);
         inventory.add(i);
         logMethodReturn();
@@ -206,7 +159,7 @@ public abstract class Player {
     /**
      * Csökkenti a játékos energiáját egy egységgel (ha ez lehetséges).
      */
-    public void DecrementEnergy() {
+    void DecrementEnergy() {
         logMethodCall(this);
         if (energy > 0) energy--;
         logMethodReturn();
@@ -224,7 +177,7 @@ public abstract class Player {
     /**
      * Csökkenti a játékos testhőjét egy egységgel.
      */
-    public void DecrementBodyTemp() {
+    private void DecrementBodyTemp() {
         logMethodCall(this);
         bodyTemp--;
         logMethodReturn(this);
@@ -236,7 +189,7 @@ public abstract class Player {
     public void Chill() {
         logMethodCall(this);
         DecrementBodyTemp();
-        if (!prompt("Kihűlt?", false)) {
+        if (prompt("Kihűlt?", false)) {
             game.GameOver();
         }
         logMethodReturn();

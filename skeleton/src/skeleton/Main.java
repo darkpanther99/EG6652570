@@ -2,505 +2,475 @@ package skeleton;
 
 import skeleton.model.*;
 
+import static skeleton.Logger.*;
+
 import java.util.Scanner;
 
+// TODO: javadoc
+
 public class Main {
+
+    private static final Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
+        while (Menu()) ;
+    }
+
+    private static boolean Menu() {
         System.out.println("Válassz a menüpontokból");
         System.out.print("1. Játékos\n" +
                 "2. Tábla\n" +
                 "3. Játék\n"
         );
-        Scanner sc = new Scanner(System.in);
         int answer = sc.nextInt();
-        switch (answer){
+        switch (answer) {
             case 1:
-                System.out.print("1. felvesz\n" +
-                    "2. lapátol\n" +
-                    "3. lép\n" +
-                    "4. cselekszik\n"
-                );
-                answer = sc.nextInt();
-                switch (answer){
-                    case 1:
-                        System.out.print("1. ételt\n" +
-                                "2. lapátot\n" +
-                                "3. alkatrészt\n" +
-                                "4. kötelet\n" +
-                                "5. búvárruhát\n"
-                        );
-                        answer = sc.nextInt();
-                        switch (answer){
-                            case 1:
-                                TestPickUpFood();
-                                break;
-                            case 2:
-                                TestPickupShovel();
-                                break;
-                            case 3:
-                                TestPickupPart();
-                                break;
-                            case 4:
-                                TestPickupRope();
-                                break;
-                            case 5:
-                                TestPickupScubaGear();
-                                break;
-                        }
-                        break;
-                    case 2:
-                        System.out.print("1. kézzel\n" +
-                                "2. lapáttal\n"
-                        );
-                        answer = sc.nextInt();
-                        switch (answer){
-                            case 1:
-                                TestBareHandsDig();
-                                break;
-                            case 2:
-                                TestShovelDig();
-                                break;
-                        }
-                        break;
-                    case 3:
-                        System.out.print("1. jégre\n" +
-                                "2. instabil jégre búvárruhával\n" +
-                                "3. instabil jégre búvárruha nélkül\n" +
-                                "4. vízbe búvárruhával\n" +
-                                "5. vízbe búvárruha nélkül\n"
-                        );
-                        answer = sc.nextInt();
-                        switch (answer){
-                            case 1:
-                                TestStepOnIce();
-                                break;
-                            case 2:
-                                TestStepOnUnstableIceWithScubaGear();
-                                break;
-                            case 3:
-                                TestStepOnUnstableIceNaked();
-                                break;
-                            case 4:
-                                TestStepInHoleWithScubaGear();
-                                break;
-                            case 5:
-                                TestStepInHoleNaked();
-                                break;
-                        }
-                        break;
-                    case 4:
-                        System.out.print("1. kötéllel kiment\n" +
-                                "2. eszik\n" +
-                                "3. rakétát összeszerel"
-                        );
-                        answer = sc.nextInt();
-                        switch (answer){
-                            case 1:
-                                TestRopeRescue();
-                                break;
-                            case 2:
-                                TestEatFood();
-                                break;
-                            case 3:
-                                TestAssembleFlare();
-                                break;
-                        }
-                        break;
-                }
+                Menu1();
                 break;
             case 2:
-                System.out.print("1. iglut épít\n" +
-                        "2. táblát vizsgál\n"
-                );
-                answer = sc.nextInt();
-                switch (answer){
-                    case 1:
-                        TestBuildIgloo();
-                        break;
-                    case 2:
-                        TestExamineTile();
-                        break;
-                }
+                Menu2();
                 break;
             case 3:
-                System.out.print("1. kör stabil jégen\n" +
-                        "2. kör vízben\n" +
-                        "3. kör vízben búvárruhában\n" +
-                        "4. kör hóvihar igluban\n" +
-                        "5. kör hóvihar üres mezőn\n"
-                );
-                answer = sc.nextInt();
-                switch (answer){
-                    case 1:
-                        TestTurnOnStableIce();
-                        break;
-                    case 2:
-                        TestTurnInWaterNaked();
-                        break;
-                    case 3:
-                        TestTurnInWaterWithScubaGear();
-                        break;
-                    case 4:
-                        TestChillStormIgloo();
-                        break;
-                    case 5:
-                        TestChillStormBareIce();
-                        break;
-                }
+                Menu3();
+                break;
+            default:
+                return false;
+        }
+        return true;
+    }
+
+    private static void Menu1() {
+        System.out.print("1. felvesz\n" +
+                "2. lapátol\n" +
+                "3. lép\n" +
+                "4. cselekszik\n"
+        );
+        int answer = sc.nextInt();
+        switch (answer) {
+            case 1:
+                Menu11();
+                break;
+            case 2:
+                Menu12();
+                break;
+            case 3:
+                Menu13();
+                break;
+            case 4:
+                Menu14();
                 break;
         }
-
     }
 
-    static void TestPickUpFood() {
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
+    private static void Menu11() {
+        System.out.print("1. ételt\n" +
+                "2. lapátot\n" +
+                "3. alkatrészt\n" +
+                "4. kötelet\n" +
+                "5. búvárruhát\n"
+        );
+        int answer = sc.nextInt();
+        switch (answer) {
+            case 1:
+                TestPickUpFood();
+                break;
+            case 2:
+                TestPickupShovel();
+                break;
+            case 3:
+                TestPickupPart();
+                break;
+            case 4:
+                TestPickupRope();
+                break;
+            case 5:
+                TestPickupScubaGear();
+                break;
+        }
+    }
 
-        Tile currentTile = new Tile();
-        Logger.logConstructorCall(currentTile, "currentTile");
+    private static void Menu12() {
+        System.out.print("1. kézzel\n" +
+                "2. lapáttal\n"
+        );
+        int answer = sc.nextInt();
+        switch (answer) {
+            case 1:
+                TestBareHandsDig();
+                break;
+            case 2:
+                TestShovelDig();
+                break;
+        }
+    }
 
+    private static void Menu13() {
+        System.out.print("1. jégre\n" +
+                "2. instabil jégre búvárruhával\n" +
+                "3. instabil jégre búvárruha nélkül\n" +
+                "4. vízbe búvárruhával\n" +
+                "5. vízbe búvárruha nélkül\n"
+        );
+        int answer = sc.nextInt();
+        switch (answer) {
+            case 1:
+                TestStepOnIce();
+                break;
+            case 2:
+                TestStepOnUnstableIceWithScubaGear();
+                break;
+            case 3:
+                TestStepOnUnstableIceNaked();
+                break;
+            case 4:
+                TestStepInHoleWithScubaGear();
+                break;
+            case 5:
+                TestStepInHoleNaked();
+                break;
+        }
+    }
+
+    private static void Menu14() {
+        System.out.print("1. kötéllel kiment\n" +
+                "2. eszik\n" +
+                "3. rakétát összeszerel"
+        );
+        int answer = sc.nextInt();
+        switch (answer) {
+            case 1:
+                TestRopeRescue();
+                break;
+            case 2:
+                TestEatFood();
+                break;
+            case 3:
+                TestAssembleFlare();
+                break;
+        }
+    }
+
+    private static void Menu2() {
+        System.out.print("1. iglut épít\n" +
+                "2. táblát vizsgál\n"
+        );
+        int answer = sc.nextInt();
+        switch (answer) {
+            case 1:
+                TestBuildIgloo();
+                break;
+            case 2:
+                TestExamineTile();
+                break;
+        }
+    }
+
+    private static void Menu3() {
+        System.out.print("1. kör stabil jégen\n" +
+                "2. kör vízben\n" +
+                "3. kör vízben búvárruhában\n" +
+                "4. kör hóvihar igluban\n" +
+                "5. kör hóvihar üres mezőn\n"
+        );
+        int answer = sc.nextInt();
+        switch (answer) {
+            case 1:
+                TestTurnOnStableIce();
+                break;
+            case 2:
+                TestTurnInWaterNaked();
+                break;
+            case 3:
+                TestTurnInWaterWithScubaGear();
+                break;
+            case 4:
+                TestChillStormIgloo();
+                break;
+            case 5:
+                TestChillStormBareIce();
+                break;
+        }
+    }
+
+    private static void TestPickUpFood() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        Tile currentTile = g.CreateIce("currentTile");
+        e.PlaceOn(currentTile);
         Food f = new Food();
-        Logger.logConstructorCall(f, "food");
-
-        FoodStore fs = new FoodStore();
-        Logger.logConstructorCall(fs, "foodStore");
-
-        e.setCurrentTile(currentTile);
+        logConstructorCall(f, "food");
         currentTile.setItem(f);
-        e.setFoodStore(fs);
 
         e.PickUp();
     }
 
-    static void TestPickupShovel() {
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
-
-        Tile currentTile = new Tile();
-        Logger.logConstructorCall(currentTile, "currentTile");
-
-        Shovel s = new Shovel();
-        Logger.logConstructorCall(s, "shovel");
-
-        FoodStore fs = new FoodStore();
-        Logger.logConstructorCall(fs, "foodStore");
-
-        e.setCurrentTile(currentTile);
-        currentTile.setItem(s);
-        e.setFoodStore(fs);
-
-        e.PickUp();
-    }
-
-    static void TestPickupPart() {
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
-
-        Tile currentTile = new Tile();
-        Logger.logConstructorCall(currentTile, "currentTile");
-
+    private static void TestPickupPart() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        Tile currentTile = g.CreateIce("currentTile");
+        e.PlaceOn(currentTile);
         Part p = new Part();
-        Logger.logConstructorCall(p, "part");
-
-        FoodStore fs = new FoodStore();
-        Logger.logConstructorCall(fs, "foodStore");
-
-        e.setCurrentTile(currentTile);
+        logConstructorCall(p, "part");
         currentTile.setItem(p);
-        e.setFoodStore(fs);
 
         e.PickUp();
     }
 
-    static void TestPickupRope() {
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
+    private static void TestPickupShovel() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        Tile currentTile = g.CreateIce("currentTile");
+        e.PlaceOn(currentTile);
+        Shovel s = new Shovel();
+        logConstructorCall(s, "shovel");
+        currentTile.setItem(s);
 
-        Tile currentTile = new Tile();
-        Logger.logConstructorCall(currentTile, "currentTile");
+        e.PickUp();
+    }
 
+
+    private static void TestPickupRope() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        Tile currentTile = g.CreateIce("currentTile");
+        e.PlaceOn(currentTile);
         Rope r = new Rope();
-        Logger.logConstructorCall(r, "rope");
-
-        FoodStore fs = new FoodStore();
-        Logger.logConstructorCall(fs, "foodStore");
-
-        e.setCurrentTile(currentTile);
+        logConstructorCall(r, "rope");
         currentTile.setItem(r);
-        e.setFoodStore(fs);
 
         e.PickUp();
     }
 
-    static void TestPickupScubaGear() {
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
-
-        Tile currentTile = new Tile();
-        Logger.logConstructorCall(currentTile, "currentTile");
-
+    private static void TestPickupScubaGear() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        Tile currentTile = g.CreateIce("currentTile");
+        e.PlaceOn(currentTile);
         ScubaGear sg = new ScubaGear();
-        Logger.logConstructorCall(sg, "rope");
-
-        FoodStore fs = new FoodStore();
-        Logger.logConstructorCall(fs, "foodStore");
-
-        e.setCurrentTile(currentTile);
+        logConstructorCall(sg, "scubaGear");
         currentTile.setItem(sg);
-        e.setFoodStore(fs);
 
         e.PickUp();
     }
 
-    static void TestBareHandsDig() {
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
+    private static void TestBareHandsDig() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        Tile currentTile = g.CreateIce("currentTile");
+        e.PlaceOn(currentTile);
 
-        Tile currentTile = new Tile();
-        Logger.logConstructorCall(currentTile, "currentTile");
-
-        BareHands b = new BareHands();
-        Logger.logConstructorCall(b, "bareHands");
-
-        e.setCurrentTile(currentTile);
-        e.setDigStrategy(b);
         e.Dig();
     }
 
-    static void TestShovelDig() {
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
-
-        Tile currentTile = new Tile();
-        Logger.logConstructorCall(currentTile, "currentTile");
-
+    private static void TestShovelDig() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        Tile currentTile = g.CreateIce("currentTile");
+        e.PlaceOn(currentTile);
         ShovelDig s = new ShovelDig();
-        Logger.logConstructorCall(s, "bareHands");
-
-        e.setCurrentTile(currentTile);
+        logConstructorCall(s, "bareHands");
         e.setDigStrategy(s);
+
         e.Dig();
     }
 
-    static void TestStepOnIce() {
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
-
-        Tile a = new Tile();
-        Logger.logConstructorCall(a, "a");
-
-        Tile b = new Tile();
-        Logger.logConstructorCall(b, "b");
-        b.setWeightLimit(999);
-
+    private static void TestStepOnIce() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        Tile a = g.CreateIce("a");
+        e.PlaceOn(a);
+        Tile b = g.CreateIce("b");
         a.setNeighborAt(Direction.FORWARD, b);
-        e.setCurrentTile(a);
+
         e.Step(Direction.FORWARD);
     }
 
-    static void TestStepOnUnstableIceWithScubaGear(){
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
-
-        Tile a = new Tile();
-        Logger.logConstructorCall(a, "a");
-
-        Tile b = new Tile();
-        Logger.logConstructorCall(b, "b");
-
-        e.setWaterResistanceStrategy(new ScubaWearing());
-
+    private static void TestStepOnUnstableIceWithScubaGear() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        WaterResistanceStrategy ws = new ScubaWearing();
+        logConstructorCall(ws, "scubaWearing");
+        e.setWaterResistanceStrategy(ws);
+        Tile a = g.CreateIce("a");
+        e.PlaceOn(a);
+        Eskimo dummy = g.CreateEskimo("dummy");
+        Tile b = g.CreateUnstableIce("b");
+        b.setWeightLimit(2);
+        dummy.setCurrentTile(b);
+        b.getOccupants().add(dummy);
         a.setNeighborAt(Direction.FORWARD, b);
-        e.setCurrentTile(a);
-        e.Step(Direction.FORWARD);
 
-    }
-
-    static void TestStepOnUnstableIceNaked(){
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
-
-        Tile a = new Tile();
-        Logger.logConstructorCall(a, "a");
-
-        Tile b = new Tile();
-        Logger.logConstructorCall(b, "b");
-
-        e.setWaterResistanceStrategy(new Naked());
-
-        a.setNeighborAt(Direction.FORWARD, b);
-        e.setCurrentTile(a);
         e.Step(Direction.FORWARD);
     }
 
-    static void TestStepInHoleWithScubaGear(){
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
-
-        Tile a = new Tile();
-        Logger.logConstructorCall(a, "a");
-
-        Tile b = new Tile();
-        Logger.logConstructorCall(b, "b");
-
-        b.setChillWaterStrategy(new Sea());
-
-        e.setWaterResistanceStrategy(new ScubaWearing());
-
+    private static void TestStepOnUnstableIceNaked() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        Tile a = g.CreateIce("a");
+        e.PlaceOn(a);
+        Eskimo dummy = g.CreateEskimo("dummy");
+        Tile b = g.CreateUnstableIce("b");
+        b.setWeightLimit(2);
+        dummy.setCurrentTile(b);
+        b.getOccupants().add(dummy);
         a.setNeighborAt(Direction.FORWARD, b);
-        e.setCurrentTile(a);
+
         e.Step(Direction.FORWARD);
     }
 
-    static void TestStepInHoleNaked(){
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
-
-        Tile a = new Tile();
-        Logger.logConstructorCall(a, "a");
-
-        Tile b = new Tile();
-        Logger.logConstructorCall(b, "b");
-
-        b.setChillWaterStrategy(new Sea());
-
-        e.setWaterResistanceStrategy(new Naked());
-
+    private static void TestStepInHoleWithScubaGear() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        WaterResistanceStrategy ws = new ScubaWearing();
+        logConstructorCall(ws, "scubaWearing");
+        e.setWaterResistanceStrategy(ws);
+        Tile a = g.CreateIce("a");
+        e.PlaceOn(a);
+        Tile b = g.CreateHole("b");
         a.setNeighborAt(Direction.FORWARD, b);
-        e.setCurrentTile(a);
+
         e.Step(Direction.FORWARD);
     }
 
-    static void TestRopeRescue(){
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
-
-        Eskimo e2 = new Eskimo();
-        Logger.logConstructorCall(e2, "eskimo2");
-
-        Tile a = new Tile();
-        Logger.logConstructorCall(a, "ct");
-
-        Tile b = new Tile();
-        Logger.logConstructorCall(b, "w");
-
-        b.setChillWaterStrategy(new Sea());
-
-        e.setRescueStrategy(new RopeRescue());
-
+    private static void TestStepInHoleNaked() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        Tile a = g.CreateIce("a");
+        e.PlaceOn(a);
+        Tile b = g.CreateHole("b");
         a.setNeighborAt(Direction.FORWARD, b);
-        e.setCurrentTile(a);
-        e2.setCurrentTile(b);
+
+        e.Step(Direction.FORWARD);
+    }
+
+    private static void TestRopeRescue() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        RescueStrategy rs = new RopeRescue();
+        logConstructorCall(rs, "rope");
+        e.setRescueStrategy(rs);
+        Tile currentTile = g.CreateIce("land");
+        e.PlaceOn(currentTile);
+        Eskimo dummy = g.CreateEskimo("dummy");
+        Tile hole = g.CreateHole("hole");
+        dummy.setCurrentTile(hole);
+        hole.getOccupants().add(dummy);
+        currentTile.setNeighborAt(Direction.FORWARD, hole);
+
         e.RescueTeammate(Direction.FORWARD);
     }
 
-    static void TestEatFood(){
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
+    private static void TestEatFood() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        e.getFoodStore().Gain();
 
-        FoodStore fs = new FoodStore();
-        Logger.logConstructorCall(fs, "foodStore");
-
-        fs.Gain();
-        e.setFoodStore(fs);
         e.EatFood();
     }
 
-    static void TestAssembleFlare(){
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
-
-        Eskimo e2 = new Eskimo();
-        Logger.logConstructorCall(e2, "eskimo2");
-
-        Tile a = new Tile();
-        Logger.logConstructorCall(a, "a");
-
-        a.setChillWaterStrategy(new DryLand());
-        e.setCurrentTile(a);
-        e2.setCurrentTile(a);
+    private static void TestAssembleFlare() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        Tile currentTile = g.CreateIce("currentTile");
+        e.PlaceOn(currentTile);
+        e.getPartStore().setCount(2);
+        Eskimo dummy = g.CreateEskimo("dummy");
+        dummy.PlaceOn(currentTile);
+        dummy.getPartStore().setCount(1);
 
         e.AssembleFlare();
     }
 
-    static void TestBuildIgloo(){
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
-
-        Tile ct = new Tile();
-        Logger.logConstructorCall(ct, "ct");
-
-        e.setCurrentTile(ct);
+    private static void TestBuildIgloo() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        Tile currentTile = g.CreateIce("currentTile");
+        e.PlaceOn(currentTile);
 
         e.BuildIgloo();
     }
 
-    static void TestExamineTile(){
-        PolarExplorer p = new PolarExplorer();
-        Logger.logConstructorCall(p, "eskimo");
+    private static void TestExamineTile() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        PolarExplorer p = g.CreatePolarExplorer();
+        Tile currentTile = g.CreateIce("currentTile");
+        p.PlaceOn(currentTile);
+        Tile unstableIce = g.CreateUnstableIce();
+        currentTile.setNeighborAt(Direction.FORWARD, unstableIce);
 
-        Tile ct = new Tile();
-        Logger.logConstructorCall(ct, "ct");
-
-        Tile t = new Tile();
-        Logger.logConstructorCall(t, "t");
-
-        t.setNeighborAt(Direction.FORWARD, t);
-        p.setCurrentTile(ct);
         p.Examine(Direction.FORWARD);
     }
 
-    static void TestTurnOnStableIce(){
+    private static void TestTurnOnStableIce() {
         Game g = new Game();
-        Logger.logConstructorCall(g, "game");
-        Player e = g.CreateEskimo();
-        Tile t = g.CreateIce();
-        e.setCurrentTile(t);
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        Tile currentTile = g.CreateIce("currentTile");
+        e.PlaceOn(currentTile);
+
         g.Turn();
     }
 
-    static void TestTurnInWaterNaked(){
+    private static void TestTurnInWaterNaked() {
         Game g = new Game();
-        Logger.logConstructorCall(g, "game");
-        Player e = g.CreateEskimo();
-        Tile t = g.CreateSea();
-        e.setCurrentTile(t);
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        Tile currentTile = g.CreateSea("currentTile");
+        e.PlaceOn(currentTile);
+
         g.Turn();
     }
 
-    static void TestTurnInWaterWithScubaGear(){
+    private static void TestTurnInWaterWithScubaGear() {
         Game g = new Game();
-        Logger.logConstructorCall(g, "game");
-        Player e = g.CreateEskimo();
-        Tile t = g.CreateSea();
-        e.setCurrentTile(t);
-        e.setWaterResistanceStrategy(new ScubaWearing());
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        WaterResistanceStrategy ws = new ScubaWearing();
+        logConstructorCall(ws, "scubaWearing");
+        e.setWaterResistanceStrategy(ws);
+        Tile currentTile = g.CreateSea("currentTile");
+        e.PlaceOn(currentTile);
+
         g.Turn();
     }
 
-    static void TestChillStormIgloo(){
-        Tile t = new Tile();
-        Logger.logConstructorCall(t, "tile");
+    private static void TestChillStormIgloo() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        Tile currentTile = g.CreateIce("currentTile");
+        e.PlaceOn(currentTile);
+        ChillStormStrategy cs = new Igloo();
+        logConstructorCall(cs, "igloo");
+        currentTile.setChillStormStrategy(cs);
 
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
-        e.setCurrentTile(t);
-
-        t.setChillStormStrategy(new Igloo());
-
-        t.ChillStorm();
+        currentTile.ChillStorm();
     }
 
-    static void TestChillStormBareIce(){
-        Tile t = new Tile();
-        Logger.logConstructorCall(t, "tile");
+    private static void TestChillStormBareIce() {
+        Game g = new Game();
+        logConstructorCall(g, "game");
+        Eskimo e = g.CreateEskimo();
+        Tile currentTile = g.CreateIce("currentTile");
+        e.PlaceOn(currentTile);
 
-        Eskimo e = new Eskimo();
-        Logger.logConstructorCall(e, "eskimo");
-        e.setCurrentTile(t);
-
-        t.setChillStormStrategy(new BareIce());
-
-        t.ChillStorm();
+        currentTile.ChillStorm();
     }
 }
