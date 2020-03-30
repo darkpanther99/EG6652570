@@ -3,6 +3,16 @@ Projlab cucc
 
 **FONTOS:** Később lesz egy változtatás a feladat szövegében a félév során. *Hint:* Testhőátadás v. több oldalú pályamezők.
 
+# Run
+
+Run `skeleton/build.bat`
+
+utána
+
+```
+java -jar skeleton/out/skeleton.jar
+```
+
 ## 1. hét Követelmény, projekt, funkcionalitás
 
 1. Projekt tervet készíteni: Hányan, mivel dolgozunk? Ütemezés, (Weboldali dátumok)?
