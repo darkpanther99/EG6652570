@@ -58,7 +58,7 @@ build_command = "build", command_end;
 assemble_command = "assemble", command_end;
 examine_command = "examine", " ", direction, command_end;
 
-player_actions = select_player_command, {action_commands};
+player_actions = select_player_command, {action_command};
 polarbear_actions = select_polarbear_command, step_command;
 turn_definition = {player_actions}, {polarbear_actions}, [storm_command], turn_command;
 

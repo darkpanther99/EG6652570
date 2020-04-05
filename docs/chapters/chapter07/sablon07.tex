@@ -151,18 +151,101 @@ Egy kör során végrehajtott parancsok sorozata.
 
 \subsection{Kimeneti nyelv}
 %\comment{Egyértelműen definiálni kell, hogy az egyes bemeneti parancsok végrehajtása után előálló állapot milyen formában jelenik meg a szabványos kimeneten.}
-A kimeneti nyelv a bemeneti nyelv részhalmaza. Pontosabban, egy  \texttt{grid\textunderscore{}definition} nyelvi elem.
+A kimeneti nyelv a bemeneti nyelv részhalmaza. Pontosabban, egy  \texttt{grid\textunderscore{}definition} nyelvi elem. Kivételes esetek a következők:
+\begin{itemize}
+\item Sarkkutató felderít egy cellát.
+	\begin{itemize}
+	\item Az \texttt{examine\textunderscore{}command} lefutását követően üzenet jelenik meg a standard kimeneten: \newline \texttt{"Tile weight limit: N\textbackslash{}n"}, ahol N a cella teherbírása.
+	\end{itemize}
+\item Egy játékos meghal.
+	\begin{itemize}
+	\item Üzenet jelenik meg: \texttt{"Game over.\textbackslash{}n"}, és a program megáll.
+	\end{itemize}
+\item A játékosok összeszerelik a rakétát.
+	\begin{itemize}
+	\item Üzenet jelenik meg: \texttt{"Victory.\textbackslash{}n"}, és a program megáll.
+	\end{itemize}
+\end{itemize}
 
 \section{Összes részletes use-case}
 %\comment{A use-case-eknek a részletezettsége feleljen meg a kezelői felületnek, azaz a felület elemeire kell hivatkozniuk. Alábbi táblázat minden use-case-hez külön-külön.}
 
 \begin{figure}[h]
 \begin{center}
-%\includegraphics[width=17cm]{chapters/chapter07/example.pdf}
+%\includegraphics[width=17cm]{chapters/chapter07/usecase.png}
 \caption{x}
 \label{fig:ProtoUseCase}
 \end{center}
 \end{figure}
+
+\usecase{grid}{Pályaméret beállítása.}{Proto}{
+	1. Jön egy \texttt{grid\textunderscore{}command}.\newline
+	2. A pályaméret beállítódik.
+}
+\usecase{tile}{Cella létrehozása.}{Proto}{
+	1. Jön egy \texttt{tile\textunderscore{}command}.\newline
+	2. Létrejön az adott cella.
+}
+\usecase{building}{Épület létrehozása.}{Proto}{
+	1. Jön egy \texttt{building\textunderscore{}command}.\newline
+	2. Létrejön az adott épület.
+}
+\usecase{item}{Tárgy létrehozása.}{Proto}{
+	1. Jön egy \texttt{item\textunderscore{}command}.\newline
+	2. Létrejön az adott tárgy, vagy tárgyak.
+}
+\usecase{equip}{Tárgy felvétele.}{Proto}{
+	1. Jön egy \texttt{equip\textunderscore{}command}.\newline
+	2. A jelenleg kiválasztott játékos felvesz egy tárgyat.
+}
+\usecase{entity}{Entitás létrehozása.}{Proto}{
+	1. Jön egy \texttt{entity\textunderscore{}command}.\newline
+	2. Létrejön az adott entitás.
+}
+\usecase{select}{Entitás kiválasztása.}{Proto}{
+	1. Jön egy \texttt{select\textunderscore{}command}.\newline
+	2. Kiválasztódik az adott entitás
+}
+\usecase{turn}{Új kör kezdése.}{Proto}{
+	1. Jön egy \texttt{turn\textunderscore{}command}.\newline
+	2. Új kör kezdődik.
+}
+\usecase{storm}{Vihar kezdése.}{Proto}{
+	1. Jön egy \texttt{storm\textunderscore{}command}.\newline
+	2. Vihar kezdődik.
+}
+\usecase{step}{Entitás lép.}{Proto}{
+	1. Jön egy \texttt{step\textunderscore{}command}.\newline
+	2. A jelenleg kiválasztott entitás lép.
+}
+\usecase{rescue}{Játékos megment.}{Proto}{
+	1. Jön egy \texttt{rescue\textunderscore{}command}.\newline
+	2. A jelenleg kiválasztott játékos kíhúzza csapattársát a vízből.
+}
+\usecase{dig}{Játékos lapátol.}{Proto}{
+	1. Jön egy \texttt{dig\textunderscore{}command}.\newline
+	2. A jelenleg kiválasztott játékos lapátol.
+}
+\usecase{pickup}{Játékos felvesz.}{Proto}{
+	1. Jön egy \texttt{pickup\textunderscore{}command}.\newline
+	2. A jelenleg kiválasztott játékos kiás egy tárgyat.
+}
+\usecase{build}{Játékos épít.}{Proto}{
+	1. Jön egy \texttt{build\textunderscore{}command}.\newline
+	2. A jelenleg kiválasztott játékos épít.
+}
+\usecase{assemble}{Játékos összeszerel}{Proto}{
+	1. Jön egy \texttt{assemble\textunderscore{}command}.\newline
+	2. A jelenleg kiválasztott játékos összeszereli a rakétát.
+}
+\usecase{examine}{Jégtábla felderítése}{Proto}{
+	1. Jön egy \texttt{examine\textunderscore{}command}.\newline
+	2. A jelenleg kiválasztott sarkkutató játékos felderít egy mezőt.
+}
+\usecase{query}{A játékállapot lekérdezése.}{Proto}{
+	1. Jön egy \texttt{query\textunderscore{}command}.\newline
+	2. A játék állapota kiíródik a standard kimenetre.
+}
 
 \section{Tesztelési terv}
 %\comment{A tesztelési tervben definiálni kell, hogy a be- és kimeneti fájlok egybevetésével miként végezhető el a program tesztelése. Meg kell adni teszt forgatókönyveket. Az egyes teszteket elég informálisan, szabad szövegként leírni. Teszt-esetenként egy-öt mondatban. Minden teszthez meg kell adni, hogy mi a célja, a proto mely funkcionalitását, osztályait stb. teszteli. Az alábbi táblázat minden teszt-esethez külön-külön elkészítendő.}
@@ -186,9 +269,9 @@ A kimeneti nyelv a bemeneti nyelv részhalmaza. Pontosabban, egy  \texttt{grid\t
 \teszteset{StepInWaterWithScubaGear}{A játékos víz mezőre lép. A játékoson van búvárruha. A játékos kibírja a vízbe esést.}{Játékos mezőre lép.}
 \teszteset{StepInWaterNaked}{A játékos víz mezőre lép. A játékoson nincs búvárruha.A játékos meg fog fagyni, ha nem mentik ki később.}{Játékos mezőre lép.}
 \teszteset{RopeRescue}{A játékosnak van kötele. Egy játékos kiment egy másik játékost a vízből és a saját táblájára húzza.}{Játékos cselekszik}
-\teszteset{EatFood}{A játékosnak van élelme. A játékos elfogyaszt 1 élelmet a zsebéből és negnő a testhője.}{Játékos cselekszik.}
+\teszteset{EatFood}{A játékosnak van élelme. A játékos elfogyaszt 1 élelmet a zsebéből és nő a testhője.}{Játékos cselekszik.}
 \teszteset{AssembleFlare}{A játékosnál van az összes rakéta darab. A játékos összeszereli azt.}{Játékos cselekszik.}
-\teszteset{AssembleFlareFail}{A játékosnál nincs meg az összes rakéta darab és megbpróbálja összeszerelni a pisztolyt.}{Játékos cselekszik.}
+\teszteset{AssembleFlareFail}{A játékosnál nincs meg az összes rakéta darab és megpróbálja összeszerelni a pisztolyt.}{Játékos cselekszik.}
 \teszteset{BuildIgloo}{Az eszkimó a táblára iglut épít.}{Tábla esemény teszt.}
 \teszteset{BuildTent}{A játékos a táblára sátrat épít.}{Tábla esemény teszt.}
 \teszteset{ExamineTile}{A sarkkutató a táblát vizsgálja.}{Tábla esemény teszt.}
