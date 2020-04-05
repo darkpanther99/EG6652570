@@ -50,7 +50,42 @@ Alábbi táblázat minden use-case-hez külön-külön.}
 \section{Tesztelési terv}
 \comment{A tesztelési tervben definiálni kell, hogy a be- és kimeneti fájlok egybevetésével miként végezhető el a program tesztelése. Meg kell adni teszt forgatókönyveket. Az egyes teszteket elég informálisan, szabad szövegként leírni. Teszt-esetenként egy-öt mondatban. Minden teszthez meg kell adni, hogy mi a célja, a proto mely funkcionalitását, osztályait stb. teszteli. Az alábbi táblázat minden teszt-esethez külön-külön elkészítendő.}
 
-\teszteset{...}{...}{...}
+\teszteset{PickUpFood}{A játékos az adott mezőre lép. A mezőn élelem található. A játékos felveszi és a saját zsebébe rakja az ételt.}{Item felvétel teszt.}
+\teszteset{PickUpPart}{A játékos adott mezőre lép. A mezőn rakéta pisztoly darab található. A játékos felveszi és a megfelelő zsebébe rakja.}{Item felvétel teszt.}
+\teszteset{PickUpShovel}{A játékos adott mezőre lép. A mezőn ásó található. A játékos felvesz és a zsebébe rakja. A játékos ez utána már tud ásni később.}{Item felvétel teszt.}
+\teszteset{PickUpBreakableShovel}{A játékos adott mezőre lép. A mezőn törékeny ásó található. A játékos felvesz és a zsebébe rakja. A játékos ez utána már tud ásni később.}{Item felvétel teszt.}
+\teszteset{PickUpRope}{A játékos adott mezőre lép. A mezőn kötél található. A játékos felvesz és a zsebébe rakja. A játékos ez utána már ki tudja menteni a csapattársait.}{Item felvétel teszt.}
+\teszteset{PickUpScubaGear}{A játékos adott mezőre lép. A mezőn búvárruha található. A játékos felvesz és a zsebébe rakja. A játékos ez utána már képes túlélni a vízben.}{Item felvétel teszt.}
+\teszteset{PickUpTent}{A játékos adott mezőre lép. A mezőn sátor található. A játékos felvesz és a zsebébe rakja. A játékos ez utána már képes sátrat építeni egy mezőre.}{Item felvétel teszt.}
+\teszteset{BareHandsDig}{A játékos azon a mezőn ahol éppen áll havat lapátol. A hómennyiség az adott mezőn csökken}{Hó lapátolás.}
+\teszteset{ShovelDig}{A játékos azon a mezőn ahol éppen áll havat lapátol, van nála lapát. A hómennyiség az adott mezőn csökken}{Hó lapátolás.}
+\teszteset{BreakingShovelDig}{A játékos azon a mezőn ahol éppen áll havat lapátol, van nála törékeny lapát. A hómennyiség az adott mezőn csökken. A lapát még nem törik el.}{Hó lapátolás.}
+\teszteset{BreakingShovelDig}{A játékos azon a mezőn ahol éppen áll havat lapátol, van nála törékeny lapát. A hómennyiség az adott mezőn csökken. A lapát eltörik}{Hó lapátolás.}
+\teszteset{StepOnStableIce}{A játékos stabil jégre lép.}{Játékos mezőre lép.}
+\teszteset{StepOnUnstableIceWithScubaGearBreaking}{A játékos instabil jégre lép. A játékoson van búvárruha. A jég eltörik, mert nem bírja el. Minden játékos vízbe esik aki ott volt.}{Játékos mezőre lép.}
+\teszteset{StepOnUnstableIceWithScubaGearCanHold}{A játékos instabil jégre lép. A játékoson van búvárruha. A jég nem törik el.}{Játékos mezőre lép.}
+\teszteset{StepOnUnstableIceNakedBreaking}{A játékos instabil jégre lép. A játékoson nincs búvárruha. A jég eltörik, mert nem bírja el. Minden játékos vízbe esik aki ott volt.}{Játékos mezőre lép.}
+\teszteset{StepOnUnstableIceNakedCanHold}{A játékos instabil jégre lép. A játékoson nincs búvárruha. A jég nem törik el.}{Játékos mezőre lép.}
+\teszteset{StepInWaterWithScubaGear}{A játékos víz mezőre lép. A játékoson van búvárruha. A játékos kibírja a vízbe esést.}{Játékos mezőre lép.}
+\teszteset{StepInWaterNaked}{A játékos víz mezőre lép. A játékoson nincs búvárruha.A játékos meg fog fagyni, ha nem mentik ki később.}{Játékos mezőre lép.}
+\teszteset{RopeRescue}{A játékosnak van kötele. Egy játékos kiment egy másik játékost a vízből és a saját táblájára húzza.}{Játékos cselekszik}
+\teszteset{EatFood}{A játékosnak van élelme. A játékos elfogyaszt 1 élelmet a zsebéből és negnő a testhője.}{Játékos cselekszik.}
+\teszteset{AssembleFlare}{A játékosnál van az összes rakéta darab. A játékos összeszereli azt.}{Játékos cselekszik.}
+\teszteset{AssembleFlareFail}{A játékosnál nincs meg az összes rakéta darab és megbpróbálja összeszerelni a pisztolyt.}{Játékos cselekszik.}
+\teszteset{BuildIgloo}{Az eszkimó a táblára iglut épít.}{Tábla esemény teszt.}
+\teszteset{BuildTent}{A játékos a táblára sátrat épít.}{Tábla esemény teszt.}
+\teszteset{ExamineTile}{A sarkkutató a táblát vizsgálja.}{Tábla esemény teszt.}
+\teszteset{TurnOnStableIce}{Egy játék kör eltelik úgy, hogy a játékos a stabil jégen áll.}{Játék esemény teszt.}
+\teszteset{TurnInWaterNaked}{Egy játék kör eltelik úgy, hogy a játékos vízben áll. A játékoson van búvárruha.}{Játék esemény teszt.}
+\teszteset{TurnInWaterWithScubaGear}{Egy játék kör eltelik úgy, hogy a játékos vízben áll. A játékoson nincs búvárruha.}{Játék esemény teszt.}
+\teszteset{ChillStormIgloo}{Egy játék kör eltelik, úgy, hogy a játékost hóvihar éri. A játékos igluban van.}{Játék esemény teszt.}
+\teszteset{ChillStormTent}{Egy játék kör eltelik, úgy, hogy a játékost hóvihar éri. A játékos sátorban van.}{Játék esemény teszt.}
+\teszteset{ChillStormBareIce}{Egy játék kör eltelik, úgy, hogy a játékost hóvihar éri. A játékos szabad ég alatt van.}{Játék esemény teszt.}
+\teszteset{TentBreaking}{A táblán a sátor eltörik a kör után.}{Játék esemény teszt.}
+\teszteset{PolarBearMoving}{A medve véletlen irányba lép. Üres mezőre lép.}{Játék esemény teszt.}
+\teszteset{PolarBearAttack}{A medve véletlen irányba lép. A mezőn van valaki.}{Játék esemény teszt.}
+\teszteset{PolarBearAttackTent}{A medve véletlen irányba lép. A mezőn sátorban van valaki.}{Játék esemény teszt.}
+\teszteset{PolarBearAttackIgloo}{A medve véletlen irányba lép. A mezőn igluban van valaki.}{Játék esemény teszt.}
 
 \section{Tesztelést támogató segéd- és fordítóprogramok specifikálása}
 \comment{Specifikálni kell a tesztelést támogató segédprogramokat.}
