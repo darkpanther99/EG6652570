@@ -1,41 +1,160 @@
 % Szglab4
 % ===========================================================================
 %
+
 \chapter{Prototípus koncepciója}
 
 \thispagestyle{fancy}
 
 \section{Prototípus interface-definíciója}
-\comment{Definiálni kell a teszteket leíró nyelvet. Külön figyelmet kell fordítani arra, hogy ha a rendszer véletlen elemeket is tartalmaz, akkor a véletlenszerűség ki-bekapcsolható legyen, és a program determinisztikusan is tesztelhető legyen.}
+%\comment{Definiálni kell a teszteket leíró nyelvet. Külön figyelmet kell fordítani arra, hogy ha a rendszer véletlen elemeket is tartalmaz, akkor a véletlenszerűség ki-bekapcsolható legyen, és a program determinisztikusan is tesztelhető legyen.}
 
 \subsection{Az interfész általános leírása}
-\comment{A protó (karakteres) input és output felületeit úgy kell kialakítani, hogy az input fájlból is vehető legyen illetőleg az output fájlba menthető legyen, vagyis kommunikációra csak a szabványos be- és kimenet használható.}
+%\comment{A protó (karakteres) input és output felületeit úgy kell kialakítani, hogy az input fájlból is vehető legyen illetőleg az output fájlba menthető legyen, vagyis kommunikációra csak a szabványos be- és kimenet használható.}
+A program egysoros parancsokat vár a standard bemeneten. A játék kezdőállapotát definíciós parancsokkal kell megadni, majd vezérő parancsokkal lehet játszani. A \texttt{query} speciális parancs hatására, a játék teljes jelenlegi állapota kiíródik a standard kimenetre, definíciós parancsok sorozataként.
 
 \subsection{Bemeneti nyelv}
-\comment{Definiálni kell a teszteket leíró nyelvet. Külön figyelmet kell fordítani arra, hogy ha a rendszer véletlen elemeket is tartalmaz, akkor a véletlenszerűség ki-bekapcsolható legyen, és a program determinisztikusan is futtatható legyen. A szálkezelést is tesztelhető, irányítható módon kell megoldani.}
+%\comment{Definiálni kell a teszteket leíró nyelvet. Külön figyelmet kell fordítani arra, hogy ha a rendszer véletlen elemeket is tartalmaz, akkor a véletlenszerűség ki-bekapcsolható legyen, és a program determinisztikusan is futtatható legyen. A szálkezelést is tesztelhető, irányítható módon kell megoldani.}
+Következik, a program által elfogadott bemeneti nyelvtan Extended Backus-Naur formában:
+
+\definecolor{mymaroon}{rgb}{0.5, 0.07, 0}
+\definecolor{myblue}{rgb}{0, 0.02, 0.9}
+\lstset{
+	breakatwhitespace=false,
+	keepspaces=false,
+	breaklines=true,
+	frame=L,
+	numbers=left,
+	language=C, %kicsit hasonlít a C-re
+	basicstyle=\small\ttfamily,
+	identifierstyle=\color{myblue},
+	stringstyle=\color{mymaroon},
+	caption={A bemeneti nyelvtan.},
+	label=GrammarEBNF
+}
+\lstinputlisting{chapters/chapter07/grammar.ebnf}
+
+Szótár:
 
 \begin{itemize}
-\item Parancs1
-	\begin{itemize}
-	\item Leírás:
-	\item Opciók:
-	\end{itemize}
-\item Parancs2
-	\begin{itemize}
-	\item Leírás:
-	\item Opciók:
-	\end{itemize}
-
+\item \texttt{action\textunderscore{}command}
+A jelenleg kiválasztott játékos cselekvése.
+\item \texttt{assemble\textunderscore{}command}
+A jelenleg kiválasztott játékos összeszereli a rakétát.
+\item \texttt{build\textunderscore{}command}
+A jelenleg kiválasztott játékos iglut/sátrat épít.
+\item \texttt{building\textunderscore{}command}
+A jelenleg kiválasztott cellára iglu/sátor épül.
+\item \texttt{building\textunderscore{}type}
+Iglu vagy sátor.
+\item \texttt{command\textunderscore{}end}
+Parancsok közti karaktersorozat, amit nem értelmezünk.
+\item \texttt{comment}
+\# karaktertől a sor végéig lehet komment.
+\item \texttt{dig\textunderscore{}command}
+A jelenleg kiválasztott játékos havat lapátol.
+\item \texttt{direction}
+A pálya négyzetrácson értelmezett irány.
+\item \texttt{entity\textunderscore{}command}
+Egy entitás létrehozása.
+\item \texttt{entity\textunderscore{}definition}
+Egy entitás létrehozása és tulajdonságainak beállítása.
+\item \texttt{equip\textunderscore{}all\textunderscore{}command}
+A jelenleg kiválasztott játékos felveszi az összes birtokában lévő tárgyat.
+\item \texttt{equip\textunderscore{}command}
+A jelenleg kiválasztott játékos felvesz birtokában lévő tárgyat.
+\item \texttt{equip\textunderscore{}index\textunderscore{}command}
+A jelenleg kiválasztott játékos felveszi az adott birtokában lévő tárgyat.
+\item \texttt{examine\textunderscore{}command}
+A jelenleg kiválasztott sarkkutató játékos felderít egy cellát.
+\item \texttt{game}
+Parancsok helyes sorozata.
+\item \texttt{grid\textunderscore{}command}
+Meghatározza a pálya négyzetrács méretét.
+\item \texttt{grid\textunderscore{}definition}
+A pálya létrehozása. grid\textunderscore{}height * grid\textunderscore{}width darab cella sorfolytonos elrendezésben.
+\item \texttt{grid\textunderscore{}height}
+A pálya négyzetrács magassága.
+\item \texttt{grid\textunderscore{}width}
+A pálya négyzetrács szélessége.
+\item \texttt{integer}
+Nemnegatív egész szám, tízes számrendszerben.
+\item \texttt{inventory\textunderscore{}index}
+Egy - játékos által birtokolt - tárgy száma.
+\item \texttt{item\textunderscore{}command}
+Tárgy/Tárgyak létrehozása.
+\item \texttt{item\textunderscore{}command\textunderscore{}multiple}
+Több tárgy létrehozása.
+\item \texttt{item\textunderscore{}command\textunderscore{}single}
+Egy tárgy létrehozása.
+\item \texttt{item\textunderscore{}count}
+Tárgyak számának megadása.
+\item \texttt{item\textunderscore{}durability}
+A törékeny lapát tárgy hátramaradt használásainak száma.
+\item \texttt{item\textunderscore{}type}
+Tárgy megadása.
+\item \texttt{pickup\textunderscore{}command}
+A jelenleg kiválasztott játékos kiás egy tárgyat a jégből.
+\item \texttt{player\textunderscore{}actions}
+Egy játékos cselekedetei.
+\item \texttt{player\textunderscore{}bodyheat}
+Egy játékos testhője.
+\item \texttt{player\textunderscore{}class}
+Játékos osztály megadása: eszkimó/sarkkutató.
+\item \texttt{player\textunderscore{}command}
+Egy játékos létrehozása.
+\item \texttt{player\textunderscore{}definition}
+Egy játékos létrehozása, és birtokolt tárgyainak beállítása.
+\item \texttt{player\textunderscore{}energy}
+Játékos hátramaradt energiája.
+\item \texttt{player\textunderscore{}equipped\textunderscore{}items}
+Ezeket a tárgyakat a játékos felveszi.
+\item \texttt{player\textunderscore{}index}
+Játékos száma.
+\item \texttt{player\textunderscore{}inventory\textunderscore{}items}
+Ezek a tárgyak a játékos birtokába kerülnek.
+\item \texttt{polarbear\textunderscore{}actions}
+A jelenleg kiválasztott jegesmedve cselekedetei.
+\item \texttt{polarbear\textunderscore{}command}
+A jelenleg kiválasztott jegesmedve létrehozása.
+\item \texttt{polarbear\textunderscore{}index}
+Jegesmedve száma.
+\item \texttt{query\textunderscore{}command}
+A parancs hatására \texttt{grid\textunderscore{}definition} íródik ki az stdout-ra, ami reprezentálja a játék jelenlegi állapotát.
+\item \texttt{rescue\textunderscore{}command}
+A jelenleg kiválasztott játékos kíhúzza csapattársát a vízből.
+\item \texttt{select\textunderscore{}command}
+Entitás kiválasztása.
+\item \texttt{select\textunderscore{}player\textunderscore{}command}
+Kiválaszt egy játékost.
+\item \texttt{select\textunderscore{}polarbear\textunderscore{}command}
+Kiválaszt egy jegesmedvét.
+\item \texttt{step\textunderscore{}command}
+A jelenleg kiválasztott játékos lép.
+\item \texttt{storm\textunderscore{}command}
+Hóvihar kezdődik.
+\item \texttt{tile\textunderscore{}command}
+Egy cella létrehozása.
+\item \texttt{tile\textunderscore{}definition}
+Egy cella létrehozása, és a rajta lévő dolgok létrehozása.
+\item \texttt{tile\textunderscore{}snow}
+A cella hószintjének definiálása.
+\item \texttt{tile\textunderscore{}weight\textunderscore{}limit}
+A cella teherbírásának definiálása: hány entitás állhat rajta. \newline A * karakter végtelen teherbírást jelöl. A 0 teherbírású cella tenger.
+\item \texttt{turn\textunderscore{}command}
+A parancs hatására új kör kezdődik a játékban.
+\item \texttt{turn\textunderscore{}definition}
+Egy kör során végrehajtott parancsok sorozata.
 \end{itemize}
 
-\comment{Ha szükséges, meg kell adni a konfigurációs (pl. pályaképet megadó) fájlok nyelvtanát is.}
+%\comment{Ha szükséges, meg kell adni a konfigurációs (pl. pályaképet megadó) fájlok nyelvtanát is.}
 
 \subsection{Kimeneti nyelv}
-\comment{Egyértelműen definiálni kell, hogy az egyes bemeneti parancsok végrehajtása után előálló állapot milyen formában jelenik meg a szabványos kimeneten.}
+%\comment{Egyértelműen definiálni kell, hogy az egyes bemeneti parancsok végrehajtása után előálló állapot milyen formában jelenik meg a szabványos kimeneten.}
+A kimeneti nyelv a bemeneti nyelv részhalmaza. Pontosabban, egy  \texttt{grid\textunderscore{}definition} nyelvi elem.
 
 \section{Összes részletes use-case}
-\comment{A use-case-eknek a részletezettsége feleljen meg a kezelői felületnek, azaz a felület elemeire kell hivatkozniuk.
-Alábbi táblázat minden use-case-hez külön-külön.}
+%\comment{A use-case-eknek a részletezettsége feleljen meg a kezelői felületnek, azaz a felület elemeire kell hivatkozniuk. Alábbi táblázat minden use-case-hez külön-külön.}
 
 \begin{figure}[h]
 \begin{center}
@@ -45,10 +164,8 @@ Alábbi táblázat minden use-case-hez külön-külön.}
 \end{center}
 \end{figure}
 
-\usecase{...}{...}{...}{...}
-
 \section{Tesztelési terv}
-\comment{A tesztelési tervben definiálni kell, hogy a be- és kimeneti fájlok egybevetésével miként végezhető el a program tesztelése. Meg kell adni teszt forgatókönyveket. Az egyes teszteket elég informálisan, szabad szövegként leírni. Teszt-esetenként egy-öt mondatban. Minden teszthez meg kell adni, hogy mi a célja, a proto mely funkcionalitását, osztályait stb. teszteli. Az alábbi táblázat minden teszt-esethez külön-külön elkészítendő.}
+%\comment{A tesztelési tervben definiálni kell, hogy a be- és kimeneti fájlok egybevetésével miként végezhető el a program tesztelése. Meg kell adni teszt forgatókönyveket. Az egyes teszteket elég informálisan, szabad szövegként leírni. Teszt-esetenként egy-öt mondatban. Minden teszthez meg kell adni, hogy mi a célja, a proto mely funkcionalitását, osztályait stb. teszteli. Az alábbi táblázat minden teszt-esethez külön-külön elkészítendő.}
 
 \teszteset{PickUpFood}{A játékos az adott mezőre lép. A mezőn élelem található. A játékos felveszi és a saját zsebébe rakja az ételt.}{Item felvétel teszt.}
 \teszteset{PickUpPart}{A játékos adott mezőre lép. A mezőn rakéta pisztoly darab található. A játékos felveszi és a megfelelő zsebébe rakja.}{Item felvétel teszt.}
@@ -88,5 +205,5 @@ Alábbi táblázat minden use-case-hez külön-külön.}
 \teszteset{PolarBearAttackIgloo}{A medve véletlen irányba lép. A mezőn igluban van valaki.}{Játék esemény teszt.}
 
 \section{Tesztelést támogató segéd- és fordítóprogramok specifikálása}
-\comment{Specifikálni kell a tesztelést támogató segédprogramokat.}
+%\comment{Specifikálni kell a tesztelést támogató segédprogramokat.}
 
