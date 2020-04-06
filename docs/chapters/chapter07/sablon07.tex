@@ -28,10 +28,141 @@
 	\end{center}
 \end{figure}
 
-\subsection{Új vagy megváltozó metódusok}
-\comment{Az analízis modell osztályleírásaiból azon metódusok újbóli felsorolása leírással együtt, amelyek a változtatás miatt módosultak vagy újonnan be lettek vezetve.}
+Új osztályok
+\begin{itemize}
+\item BreakingShovel
+	\begin{itemize}
+	\item implements Item
+	\item Törékeny lapát tárgy.
+	\end{itemize}
+\item BreakingShovelDig
+	\begin{itemize}
+	\item implements DigStrategy
+	\item Így ásnak a törékeny lapáttal.
+	\end{itemize}
+\item BuildStrategy
+	\begin{itemize}
+	\item A játékos így épít sátrat.
+	\end{itemize}
+\item Direction
+	\begin{itemize}
+	\item Egy irány a pálya négyzetrácson. Észak, dél, kelet, nyugat.
+	\end{itemize}
+\item Entity
+	\begin{itemize}
+	\item Egy dolog ami tud lépkedni a jégtáblákon.
+	\item A játékosok és a jegesmedve, Entity-k.
+	\end{itemize}
+\item PolarBear
+	\begin{itemize}
+	\item implements Entity
+	\item Megtámadja a játékosokat, akikkel találkozik.
+	\end{itemize}
+\item Shelter
+	\begin{itemize}
+	\item Egy jégtábla ilyen védelmet nyújt a rajta álló játékosoknak a medve és a vihar elől.
+	\end{itemize}
+\item Tent
+	\begin{itemize}
+	\item implements Shelter.
+	\item Sátor.
+	\end{itemize}
+\item TentKit
+	\begin{itemize}
+	\item implements Item
+	\item Ezzel a tárggyal lehet sátrat építeni.
+	\end{itemize}
+\end{itemize}
 
-% TODO: megírni, osztályokat is
+\subsection{Új vagy megváltozó metódusok}
+%\comment{Az analízis modell osztályleírásaiból azon metódusok újbóli felsorolása leírással együtt, amelyek a változtatás miatt módosultak vagy újonnan be lettek vezetve.}
+\begin{itemize}
+\item Shelter.ChillStorm(Tile)
+\begin{itemize} \item A paraméterként kapott Tilen lévő összes játékos fázik, meghívódik a Chill metódusuk. \end{itemize}
+
+\item Shelter.BearAttack(Tile)
+\begin{itemize} \item A paraméterként kapott Tilen lévő összes játékos elszenvedi a medvetámadást, meghívódik a BearAttack metódusuk.  \end{itemize}
+
+\item Shelter.Break(Tile)
+\begin{itemize} \item A metódus visszatér, nem csinál semmit, azért van, hogy leszármazottak felüldefiniálják. \end{itemize}
+
+\item Igloo.ChillStorm()
+\begin{itemize} \item A metódus visszatér, mert az igluban a játékosok nem fáznak. \end{itemize}
+
+\item Igloo.BearAttack()
+\begin{itemize} \item A metódus visszatér, mert az iglu véd a medvétől. \end{itemize}
+
+\item Tile.ChillStorm()
+\begin{itemize} \item A rajta lévő Shelter menedék ChillStorm metódusát hívja a hóviharban. \end{itemize}
+
+\item Entity.Chill() 
+\begin{itemize} \item A metódus visszatér, nem csinál semmit, azért van, hogy leszármazottak felüldefiniálják. \end{itemize}
+
+\item Entity.ResistWater()
+\begin{itemize} \item A metódus visszatér, nem csinál semmit, azért van, hogy leszármazottak felüldefiniálják. \end{itemize}
+
+\item Entity.BearAttack()
+\begin{itemize} \item A metódus visszatér, nem csinál semmit, azért van, hogy leszármazottak felüldefiniálják. \end{itemize}
+
+\item Entitiy.Step(direction)
+\begin{itemize} \item Az entitás lekéri a jelenlegi mezőjétől a mezőt, ami a paraméterként kapott irányban van, a jelenlegi mezőről lelép, átlép az újra. \end{itemize}
+
+\item Entity.PlaceOn(t: Tile)
+\begin{itemize} \item Az entitás a paraméterként kapott Tilere lép, beállítódik currentTile-jének az. \end{itemize}
+
+\item Player.Step(direction)
+\begin{itemize} \item A játékos energiája csökken, majd ősosztálya lépés metódusa hívódik, ugyanazt csinálja. \end{itemize}
+
+\item Tile.BreakShelter()
+\begin{itemize} \item A kör elején a jégtábla megpróbálja eltörni a rajta lévő menedéket, meghívva annak a Break metódusát. Nem minden menedék törik el, a Break metódus felüldefiniálásától függ ez végül. \end{itemize}
+
+\item Tent.Break(t: Tile)
+\begin{itemize} \item A sátor eltörik a kör elején, ezért a sátor halálát úgy jelzi, hogy a paraméterként kapott jégtábla(amin a sátor van) menedékét sima jégre beállítja. \end{itemize}
+
+\item Tent.ChillStorm()
+\begin{itemize} \item A metódus visszatér, mert a sátorban nem fázik az ember. \end{itemize}
+
+\item TentKit.GiveTo(p: Player)
+\begin{itemize} \item  A paraméterként kapott játékos kap a BuildStrategyjébe egy sátrat. p.BuildStrategy.IncrementCount() és kiveszi magát az inventoryból, mert consumable. \end{itemize}
+
+\item BuildStrategy.Build(t:Tile)
+\begin{itemize} \item  Eggyel fogy az építhető sátrak száma, majd a paraméterként kapott Tilere épül egy sátor. \end{itemize}
+
+\item Player.Build()
+\begin{itemize} \item A játékos energiája eggyel fogy, majd a megfelelő építési stratégiája függvényében épít a jelenlegi mezőjére. \end{itemize}
+
+\item Eskimo.Build()
+\begin{itemize} \item Az eszkimó energiája fogy eggyel, majd épít egy iglut a jelenlegi mezőjére. Nem érdekli őt, hogy van-e nála sátor, az iglu úgyis jobb. \end{itemize}
+
+\item Game.initplayer
+\begin{itemize} \item  A Game.CreateEskimo és a Game.CreatePolarExplorer közös részszekvenciája. A playernek ad egy BuildStrategyt, 0-ás számlálóval \end{itemize}
+
+\item Game.Turn()
+\begin{itemize} \item  A játékban új kör kezdődik, a játékosok energiája feltölt, ott meghívódik annak a metódusa, a vízben lévő  játékosok fáznak, a jégtáblákon lévő menedékek megpróbálnak eltörni. \end{itemize}
+
+\item BreakingShovel.GiveTo(p: Player)
+\begin{itemize} \item A paraméterként kapott Player megfelelő stratégiája helyére bekerül az eltörésre képes lapát, emellett az inventoryjába is. A lapát megjegyzi hány durabilityje van, és csak annyi ásást engedélyez a játékosnak eltörés előtt. \end{itemize}
+
+\item BreakingShovelDig.Dig()
+\begin{itemize} \item A lapát durabilityje csökken, minden második ásásra tér vissza igazzal, hogy egy energiával a játékos tudjon kettőt ásni. Ha a lapát eltört, a játékos mindenképp fárad, és nem ás ki havat a jégtábláról, egyébként igen. \end{itemize}
+
+\item Game.CreatePolarBear()
+\begin{itemize} \item A játék létrehoz egy jegesmaci objektumot, leteszi egy mezőre, hogy onnantól elinduljon véletlenszerű útján. \end{itemize}
+
+\item PolarBear.Step(direction)
+\begin{itemize} \item A paraméterként kapott irányba lép a jegesmaci, az ősosztálya lépéséhez hasonlóan, az ős lépés metódusa hívódik meg. A mezőt, amire rálépett, meg is támadja, hiszen falatozni akar az ízletes játékosok puha húsából. \end{itemize}
+
+\item Player.BearAttack()
+\begin{itemize} \item Ha egy játékost megtámadott a medve, nem tud védekezni ellene. Meghal, és a játék véget ér. \end{itemize}
+
+\item Tile.BearAttack()
+\begin{itemize} \item Az adott mezőt megtámadta a medve, ezért az szól a rajta lévő menedéknek, hogy megtámadta a medve, tegyen valamit. A menedék attól függően, hogy hogy definiálja felül a BearAttack(Tile) metódusát, védi meg, vagy hagyja meghalni az ott lévő játékosokat. \end{itemize}
+
+\item Game.CreateTile(snow, weightLimit)
+\begin{itemize} \item Ez a függvény a játék jégtáblagenerálásáért felel. A paraméterként kapott hó és teherbírásmennyiség függvénéyben generál jégtáblát, majd azt összekapcsolja szomszédaival. Ez a metódus majd a tesztelés során lesz nagyon hasznos. \end{itemize}
+
+\end{itemize}
+
 
 \subsection{Szekvencia-diagramok}
 
