@@ -1,5 +1,5 @@
-# Szoftprojlab
-Projlab cucc
+# Szoftpr*jlab
+Pr*jlab cucc
 
 **FONTOS:** Később lesz egy változtatás a feladat szövegében a félév során. *Hint:* Testhőátadás v. több oldalú pályamezők.
 
