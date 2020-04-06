@@ -12,11 +12,10 @@
 
 \subsection{Módosult osztálydiagram}
 
-% TODO: fixelni, teljesen rossz
-
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[angle=90, scale=0.76]{chapters/chapter07/ClassDiagramPart1.png}
+		%\includegraphics[angle=90, scale=0.76]{chapters/chapter07/ClassDiagramPart1.png}
+		\includegraphics[width=18cm]{chapters/chapter07/ClassDiagramPart1.png}
 		\caption{Osztálydiagram 1.}
 		\label{fig:OsztalyDiagramPart1}
 	\end{center}
@@ -32,7 +31,7 @@
 \subsection{Új vagy megváltozó metódusok}
 \comment{Az analízis modell osztályleírásaiból azon metódusok újbóli felsorolása leírással együtt, amelyek a változtatás miatt módosultak vagy újonnan be lettek vezetve.}
 
-% TODO: megírni
+% TODO: megírni, osztályokat is
 
 \subsection{Szekvencia-diagramok}
 
@@ -273,7 +272,6 @@ A program egysoros parancsokat vár a standard bemeneten. A játék kezdőállap
 
 \subsection{Bemeneti nyelv}
 %\comment{Definiálni kell a teszteket leíró nyelvet. Külön figyelmet kell fordítani arra, hogy ha a rendszer véletlen elemeket is tartalmaz, akkor a véletlenszerűség ki-bekapcsolható legyen, és a program determinisztikusan is futtatható legyen. A szálkezelést is tesztelhető, irányítható módon kell megoldani.}
-Következik, a program által elfogadott bemeneti nyelvtan Extended Backus-Naur formában:
 
 \definecolor{mymaroon}{rgb}{0.5, 0.07, 0}
 \definecolor{myblue}{rgb}{0, 0.02, 0.9}
@@ -287,7 +285,7 @@ Következik, a program által elfogadott bemeneti nyelvtan Extended Backus-Naur 
 	basicstyle=\small\ttfamily,
 	identifierstyle=\color{myblue},
 	stringstyle=\color{mymaroon},
-	caption={A bemeneti nyelvtan.},
+	caption={A program által elfogadott bemeneti nyelvtan Extended Backus-Naur formában.},
 	label=GrammarEBNF
 }
 \lstinputlisting{chapters/chapter07/grammar.ebnf}
@@ -435,6 +433,10 @@ A kimeneti nyelv a bemeneti nyelv részhalmaza. Pontosabban, egy  \texttt{grid\t
 \label{fig:ProtoUseCases}
 \end{center}
 \end{figure}
+
+% TODO
+\newpage % ha ez nincs, akkor a diagram beketül a táblázatok közé
+% de így is bugos, mert egy-két táblázat lecsúszik a lapról
 
 \usecase{grid}{Pályaméret beállítása.}{Proto}{
 	1. Jön egy \texttt{grid\textunderscore{}command}.\newline
