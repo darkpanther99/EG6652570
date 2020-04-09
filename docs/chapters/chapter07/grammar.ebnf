@@ -35,7 +35,7 @@ player_class = "eskimo" | "polarexplorer";
 player_bodyheat = integer;
 player_energy = integer;
 
-connect_command = "connect", " ", tile_index, end_command;
+connect_command = "connect", " ", tile_index, {" ", tile_index}, end_command;
 
 player_definition = player_command, [equipped_items, equip_all_command], inventory_items;
 player_equipped_items = {item_command};
