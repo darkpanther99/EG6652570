@@ -1,11 +1,6 @@
 integer = (?digit character? - "0"), {?digit character?};
-direction = "north" | "south" | "west" | "east";
-comment = {?whitespace character?}, ["#", {?any character? - ?\n?}], ?\n?;
+comment = {?whitespace character?}, [?whitespace character?, "#", {?any character? - ?\n?}], ?\n?;
 command_end = comment, {comment};
-
-grid_command = "grid", " ", grid_width, " ", grid_height, command_end;
-grid_width = integer;
-grid_height = integer;
 
 tile_command = "tile", " ", tile_snow, " ", tile_weight_limit, command_end;
 tile_snow = integer;
@@ -24,7 +19,14 @@ item_durability = integer;
 equip_command = equip_all_command | equip_index_command;
 equip_all_command = "equip", " ", "all", command_end;
 equip_index_command = "equip", " ", inventory_index, command_end;
-inventory_index = integer;
+equip_index = integer;
+
+select_tile_command = "select", " ", "tile", " ", tile_index, command_end;
+select_player_command = "select", " ", "player", " ", player_index, command_end;
+select_polarbear_command = "select", " ", "polarbear", [" ", polarbear_index], command_end;
+tile_index = integer;
+player_index = integer;
+polarbear_index = integer;
 
 entity_command = polarbear_command | player_command;
 polarbear_command = "entity", " ", "polarbear", command_end;
@@ -33,23 +35,21 @@ player_class = "eskimo" | "polarexplorer";
 player_bodyheat = integer;
 player_energy = integer;
 
+connect_command = "connect", " ", tile_index, end_command;
+
 player_definition = player_command, [equipped_items, equip_all_command], inventory_items;
 player_equipped_items = {item_command};
 player_inventory_items = {item_command};
 entity_definition = player_definition | polarbear_command;
-tile_definition = tile_command, [building_command], [singe_item_command],  [{entity_definition}];
-grid_definition = grid_command, {tile_definition};
-
-select_command = select_player_command | select_polarbear_command;
-select_player_command = "select", " ", "player", " ", player_index, command_end;
-select_polarbear_command = "select", " ", "polarbear", [" ", polarbear_index], command_end;
-player_index = integer;
-polarbear_index = integer; 
+tile_definition = tile_command, [building_command], [item_command_single], {entity_definition};
+tile_topology = select_tile_command, {connect_command};
+map_definition = {tile_definition}, {tile_topology};
 
 turn_command = "turn", command_end;
 storm_command = "storm", command_end;
 
 action_command = equip_command | step_command | rescue_command | dig_command | build_command | build_command | assemble_command | examine_command;
+direction = integer;
 step_command = "step", " ", direction, command_end;
 rescue_command = "rescue", " ", direction, command_end;
 dig_command = "dig", command_end;
@@ -63,4 +63,4 @@ polarbear_actions = select_polarbear_command, step_command;
 turn_definition = {player_actions}, {polarbear_actions}, [storm_command], turn_command;
 
 query_command = "query", command_end;
-game = grid_definition, {turn_definition, [query]};
+game = map_definition, {turn_definition, [query]};

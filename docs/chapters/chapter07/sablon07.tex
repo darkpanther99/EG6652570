@@ -438,10 +438,10 @@ Iglu vagy sátor.
 Parancsok közti karaktersorozat, amit nem értelmezünk.
 \item \texttt{comment}
 \# karaktertől a sor végéig lehet komment.
+\item \texttt{connect\textunderscore{}command}
+A jelenleg kiválasztott cella szomszédaihoz adja az adott cellát.
 \item \texttt{dig\textunderscore{}command}
 A jelenleg kiválasztott játékos havat lapátol.
-\item \texttt{direction}
-A pálya négyzetrácson értelmezett irány.
 \item \texttt{entity\textunderscore{}command}
 Egy entitás létrehozása.
 \item \texttt{entity\textunderscore{}definition}
@@ -450,24 +450,16 @@ Egy entitás létrehozása és tulajdonságainak beállítása.
 A jelenleg kiválasztott játékos felveszi az összes birtokában lévő tárgyat.
 \item \texttt{equip\textunderscore{}command}
 A jelenleg kiválasztott játékos felvesz birtokában lévő tárgyat.
+\item \texttt{equip\textunderscore{}index}
+Egy - játékos által birtokolt - tárgy száma.
 \item \texttt{equip\textunderscore{}index\textunderscore{}command}
 A jelenleg kiválasztott játékos felveszi az adott birtokában lévő tárgyat.
 \item \texttt{examine\textunderscore{}command}
 A jelenleg kiválasztott sarkkutató játékos felderít egy cellát.
 \item \texttt{game}
 Parancsok helyes sorozata.
-\item \texttt{grid\textunderscore{}command}
-Meghatározza a pálya négyzetrács méretét.
-\item \texttt{grid\textunderscore{}definition}
-A pálya létrehozása. grid\textunderscore{}height * grid\textunderscore{}width darab cella sorfolytonos elrendezésben.
-\item \texttt{grid\textunderscore{}height}
-A pálya négyzetrács magassága.
-\item \texttt{grid\textunderscore{}width}
-A pálya négyzetrács szélessége.
 \item \texttt{integer}
 Nemnegatív egész szám, tízes számrendszerben.
-\item \texttt{inventory\textunderscore{}index}
-Egy - játékos által birtokolt - tárgy száma.
 \item \texttt{item\textunderscore{}command}
 Tárgy/Tárgyak létrehozása.
 \item \texttt{item\textunderscore{}command\textunderscore{}multiple}
@@ -480,6 +472,8 @@ Tárgyak számának megadása.
 A törékeny lapát tárgy hátramaradt használásainak száma.
 \item \texttt{item\textunderscore{}type}
 Tárgy megadása.
+\item \texttt{map\textunderscore{}definition}
+A pálya létrehozása.
 \item \texttt{pickup\textunderscore{}command}
 A jelenleg kiválasztott játékos kiás egy tárgyat a jégből.
 \item \texttt{player\textunderscore{}actions}
@@ -507,11 +501,11 @@ A jelenleg kiválasztott jegesmedve létrehozása.
 \item \texttt{polarbear\textunderscore{}index}
 Jegesmedve száma.
 \item \texttt{query\textunderscore{}command}
-A parancs hatására \texttt{grid\textunderscore{}definition} íródik ki az stdout-ra, ami reprezentálja a játék jelenlegi állapotát.
+A parancs hatására \texttt{map\textunderscore{}definition} íródik ki az stdout-ra, ami reprezentálja a játék jelenlegi állapotát.
 \item \texttt{rescue\textunderscore{}command}
 A jelenleg kiválasztott játékos kíhúzza csapattársát a vízből.
-\item \texttt{select\textunderscore{}command}
-Entitás kiválasztása.
+\item \texttt{select\textunderscore{}tile\textunderscore{}command}
+Kiválaszt egy cellát.
 \item \texttt{select\textunderscore{}player\textunderscore{}command}
 Kiválaszt egy játékost.
 \item \texttt{select\textunderscore{}polarbear\textunderscore{}command}
@@ -526,6 +520,8 @@ Egy cella létrehozása.
 Egy cella létrehozása, és a rajta lévő dolgok létrehozása.
 \item \texttt{tile\textunderscore{}snow}
 A cella hószintjének definiálása.
+\item \texttt{tile\textunderscore{}topology}
+A cella szomszédainak beállítása.
 \item \texttt{tile\textunderscore{}weight\textunderscore{}limit}
 A cella teherbírásának definiálása: hány entitás állhat rajta. \newline A * karakter végtelen teherbírást jelöl. A 0 teherbírású cella tenger.
 \item \texttt{turn\textunderscore{}command}
@@ -538,7 +534,7 @@ Egy kör során végrehajtott parancsok sorozata.
 
 \subsection{Kimeneti nyelv}
 %\comment{Egyértelműen definiálni kell, hogy az egyes bemeneti parancsok végrehajtása után előálló állapot milyen formában jelenik meg a szabványos kimeneten.}
-A kimeneti nyelv a bemeneti nyelv részhalmaza. Pontosabban, egy  \texttt{grid\textunderscore{}definition} nyelvi elem. Kivételes esetek a következők:
+A kimeneti nyelv a bemeneti nyelv részhalmaza. Pontosabban, egy  \texttt{map\textunderscore{}definition} nyelvi elem. Kivételes esetek a következők:
 \begin{itemize}
 \item Sarkkutató felderít egy cellát.
 	\begin{itemize}
@@ -569,10 +565,10 @@ A kimeneti nyelv a bemeneti nyelv részhalmaza. Pontosabban, egy  \texttt{grid\t
 \newpage % ha ez nincs, akkor a diagram beketül a táblázatok közé
 % de így is bugos, mert egy-két táblázat lecsúszik a lapról
 
-\usecase{grid}{Pályaméret beállítása.}{Proto}{
-	1. Jön egy \texttt{grid\textunderscore{}command}.\newline
-	2. A pályaméret beállítódik.
-}
+%\usecase{grid}{Pályaméret beállítása.}{Proto}{
+%	1. Jön egy \texttt{grid\textunderscore{}command}.\newline
+%	2. A pályaméret beállítódik.
+%}
 \usecase{tile}{Cella létrehozása.}{Proto}{
 	1. Jön egy \texttt{tile\textunderscore{}command}.\newline
 	2. Létrejön az adott cella.
