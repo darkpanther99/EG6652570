@@ -1,0 +1,162 @@
+// Beolvas parancsokat, értelmezi és futtatja őket.
+class Proto {	
+	// Állapotváltozók
+	+game: Game;
+	+selectedTile: Tile[0..1];
+	+selectedPlayer: Player[0..1];
+	+selectedBear: PolarBear[0..1];
+	-running: boolean;
+
+	// Ilyen parancsokat tudunk értelmezni.
+	-parsers: CommandParser[*];
+	
+	// Konstruktor
+	+Proto() {
+		instantiate game;
+		instantiate new MessagePrinter(this);
+		game.subscribe(the message printer);
+		createParsers();
+	}
+	
+	// Feltölti a parsers kollekciót a beépített paracsokkal. 
+	-createParsers();
+	
+	// Fut a parancsértelmezés.
+	+run() {
+		running = true;
+		while (runining) {
+			getCommand().execute(this);
+		}
+	}
+	
+	// Megáll a parancsértelmezés.
+	+stop() { running = false; }
+	
+	// Beolvas egy parancsot a standard bemenetről.
+	-getCommand(): Command {
+		while(true) {
+			read line;
+			strip comments and whitespace;
+			tokenize by spaces;
+			if(there are tokens) {
+				the first token is the keyword;
+				find CommandParser by keyword;
+				if (not found) print error message;
+				else return CommandParser.parse(tokens);
+			}
+		}
+	}
+}
+
+// Kiírja a konzolra a játék eseményeket.
+class MessagePrinter implements GameObserver {
+	-proto: Proto;
+	
+	// Konstruktor, beállítja a protót.
+	+MessagePrinter(proto: Proto);
+	
+	// Győzelem üzenet kiírása, aztán proto.stop().
+	+victory();
+	// Vereség üzenet kiírása, aztán proto.stop().
+	+gameOver();
+	// Tile.weightLimit kiírása.
+	+explore(Tile);
+}
+
+// Parancs, végrehajtható formában.
+class Command {
+	// Végrehajtás az adott állapoton.
+	+execute(state: Proto): abstract void 
+	// Így jelenik meg a konzolon.
+	+toString(): abstract String
+}
+
+// Elkészít egy fajta parancsot.
+class CommandParser {
+	// A parancs kulcszava.
+	+/keyword: abstract String {readOnly}
+	// Parancs elkészítése tokenekből.
+	+parse(tokens: String[1..*] {seq}): abstract Command
+}
+
+// Kiírja a játékállapotot.
+class QueryCommand extends Command {
+	+toString() { return "query"; }
+	
+	// Parancsok formájában írja ki a játék állapotát.
+	+execute(state: Proto) {
+	 	for (command : makeCommands(state.game))
+			println command.toString();
+	}
+	
+	// Parancsok listázása.
+	-makeCommands(Game game): Command[*] {seq} {
+		result is a writable collection;
+		for (each tile in game.tiles) {
+			add makeTileCommand(tile) to result;
+			if (tile is not instance of BareIce)	
+				add makeBuildingCommand(tile) to result;
+			if (item is not instance of Empty)
+				add makeItemCommand(item) to result;
+			for (each entity in tile.occupants) { 
+				if (entity is instance of PolarBear)
+					add "polarbear" command to result;
+				else if (entity is instance of Player) {
+					add makePlayerCommand(player) to result;
+					add listPlayerEquippedItems(player) to result;
+					add "equip all" command to result;
+					for (item : player.inventory)
+						add makeItemCommand(item) to result;
+				}
+			}
+		}	
+		for (each tile in game.tiles) {
+			add makeSelectTileCommand(tile, game) to result;
+			add makeConnectCommand(tile, game) to result;
+		}
+		return result
+	}
+	
+	// Megvizsgálja, hogy milyen tárgyak vannak a játékos használatában, és listázza azokat.
+	-listPlayerEquippedItems(player: Player): ItemCommand[*] {seq} {
+		result is a writable collection;
+		if (player.buildStrategy.count > 0)
+			add makeItemCommand(TentKit, player.buildStrategy.count) to result;
+		if (player.foodStore.count > 0)
+			add makeItemCommand(Food, player.foodStore.count) to result;
+		if (player.partStore.count > 0)
+			add makeItemCommand(Part, player.partStore.count) to result;
+		if (player.rescueStrategy is instance of RopeRescue)
+			add makeItemCommand(Rope) to result;
+		if (player.waterResistanceStrategy is instance of ScubaWearing)
+			add makeItemCommand(ScubaGear) to result;
+		if (player.digStrategy is instance of ShovelDig)
+			add makeItemCommand(Shovel) to result;
+		if (player.digStrategy is instance of BreakingShovelDig) {
+			make BreakingShovel with durability player.digStrategy.durability;
+			add makeItemCommand(the BreakingShovel) to result;
+		}
+		return result;
+	}
+	
+	// Készít egy TileCommandot tile.snow és tile.weightLimit tulajdonságokal.
+	-makeTileCommand(tile: Tile): TileCommand;
+	
+	// Készít egy BuildingCommandot a tile.shelter alapján.
+	-makeBuildingCommand(tile: Tile) : BuildingCommand;
+	
+	// Készít egy ItemCommandot, az item típusa alapján. Ha ez BreakingShovel, akkor a durability-t is beleteszi.
+	-makeItemCommand(item: Item): ItemCommand;
+	
+	// Készít egy ItemCommandot, számosság megadásával.
+	-makeItemCommand(item: Item, int count): ItemCommand;
+	
+	// Készít egy PlayerCommandot, a player.bodyHeat és player.energy alapján.
+	-makePlayerCommand(player: Player): PlayerCommand;
+	
+	// Készít egy SelectCommandot, a tile game.tiles-beli indexével.
+	-makeSelectTileCommand(tile: Tile, game: Game): SelectCommand;
+	
+	// Készít egy ConnectCommandot. Megkeresi a tile.neightbors indexeit a game.tiles tömbben és azokat rakja a ConnectCommandba.
+	-makeConnectCommand(tile: Tile, game: Game): ConnectCommand;	
+}
