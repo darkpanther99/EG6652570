@@ -1,10 +1,28 @@
 // Beolvas parancsokat, értelmezi és futtatja őket.
 class Proto {	
-	// Állapotváltozók
 	+game: Game;
-	+selectedTile: Tile[0..1];
-	+selectedPlayer: Player[0..1];
-	+selectedBear: PolarBear[0..1];
+	
+	// Kiválasztott dolgok.
+	-selectedTile: Tile[0..1];
+	-selectedPlayer: Player[0..1];
+	-selectedBear: PolarBear[0..1];
+	
+	// Beállítja a selectedTile-t és lenullozza a selectedPlayert és a selectedBeart.
+	+selectTile(Tile t);
+	// Beállítja a selectedPlayer-t és lenullozza a selectedTile-t és a selectedBeart.
+	+selectPlayer(Player t);
+	// Beállítja a selectedBeart és lenullozza a selectedTile-t és a selectedPlayert.
+	+selectBear(PolarBear t);
+	
+	+hasSelectedTile(): boolean;
+	+hasSelectedPlayer(): boolean;
+	+hasSelectedBear(): boolean;
+	
+	// Kivételt dobnak ha nincs kiválaszvta dolog.
+	+getSelectedTile(): Tile;
+	+getSelectedPlayer(): Player;
+	+getSelectedBear(): PolarBear;
+	
 	-running: boolean;
 
 	// Ilyen parancsokat tudunk értelmezni.
@@ -12,47 +30,52 @@ class Proto {
 	
 	// Konstruktor
 	+Proto() {
-		instantiate game;
-		instantiate new MessagePrinter(this);
+		create game;
+		create MessagePrinter(this);
 		game.subscribe(the message printer);
 		createParsers();
 	}
 	
-	// Feltölti a parsers kollekciót a beépített paracsokkal. 
+	// Készít egy-egy példányt a beépített CommandParserekből és feltölti velük a parsers kollekciót; 
 	-createParsers();
 	
 	// Fut a parancsértelmezés.
 	+run() {
 		running = true;
 		while (runining) {
-			getCommand().execute(this);
+			getCommand();
+			try {
+				command.execute(this);
+			} catch (an exception that we threw) {
+				print a meaningful error message;
+			}
 		}
 	}
 	
-	// Megáll a parancsértelmezés.
-	+stop() { running = false; }
+	// Megáll a parancsértelmezés. A running változó false.
+	+stop();
 	
 	// Beolvas egy parancsot a standard bemenetről.
 	-getCommand(): Command {
-		while(true) {
+		while (true) {
 			read line;
-			strip comments and whitespace;
+			strip comments and trailing whitespace;
 			tokenize by spaces;
-			if(there are tokens) {
+			if (there are tokens) {
 				the first token is the keyword;
 				find CommandParser by keyword;
-				if (not found) print error message;
+				if (not found) print a meaningful error message;
 				else return CommandParser.parse(tokens);
 			}
 		}
 	}
+	
+	
 }
 
 // Kiírja a konzolra a játék eseményeket.
 class MessagePrinter implements GameObserver {
 	-proto: Proto;
-	
-	// Konstruktor, beállítja a protót.
 	+MessagePrinter(proto: Proto);
 	
 	// Győzelem üzenet kiírása, aztán proto.stop().
@@ -79,17 +102,280 @@ class CommandParser {
 	+parse(tokens: String[1..*] {seq}): abstract Command
 }
 
-// Kiírja a játékállapotot.
+class TileCommand implements Command {
+	-snow: int;
+	-weightLimit: int;	
+	+TileCommand(snow: int, weightLimit: int);
+	
+	+toString(): String {
+		return "tile " + snow + " " + weightLimit;
+	}
+	
+	// Készít egy Tile-t Game.createTile használatával, majd kiválasztja proto.selectTile-el.
+	+execute(state: Proto);
+}
+
+class TileCommandParser implements CommandParser{
+	+keyword: String = "tile";
+	
+	+parse(tokens: String[1..*] {seq}): Command {
+		snow is the second token as a decimal integer;
+		if (the thid token equals "*") weightLimit is 999;
+		else weightLimit is the third token as a decimal integer;
+		create TileCommand;
+	}
+}
+
+class BuildingCommand implements Command {
+	-type: String;
+	+BuildingCommand(type: String);
+	
+	+toString(): String {
+		return "building " + type;
+	}
+	
+	+execute(state: Proto) {
+	 	if (type equals "igloo") create Igloo;
+	 	if (type equals "tent") create Tent;
+		set state.selectedTile.shelter;
+	}
+}
+
+class BuildingCommandParser implements CommandParser {
+	+keyword: String = "building";
+	
+	+parse(tokens: String[1..*] {seq}): Command {
+		the second token is the type;
+		accept only "igloo" or "tent";
+		create BuildingCommand;
+	}
+}
+
+class ItemCommand implements Command {
+	-type: String;
+	+count: int = 1;
+	+durability: int = -1;
+	+ItemCommand(type: String);
+	
+	+toString(): String {
+		if (count > 1) {
+			if (type equals "shovel" and durability > -1)
+				return "item shovel " + count + " durability " + durability; 
+			else 
+				return "item " + type + " " + count;
+		}
+		else {
+			if (type equals "shovel" and durability > -1)
+				return "item shovel durability " + durability; 
+			else 
+				return "item " + type;
+		}
+	}
+	
+	+execute(state: Proto) {
+		if (state has tile selected and count > 1)
+			throw an exception;
+		if (state has no tile selected and state has no player selected)
+			throw an exception;
+		for (count times) {
+			if (type equal "empty") create Emty;
+			if (type equal "food") create Food;
+			if (type equal "part") create Part;
+			if (type equal "scubagear") create ScubaGear;
+			if (type equal "rope") create Rope;
+			if (type equal "tentkit") create TentKit;
+			if (type equal "shovel") {
+				if (durability > -1) create BreakingShovel with durability;
+				else create Shovel;
+			}
+			if (state has tile selected)
+				set state.selectedTile.item;
+			if (state has player selected)
+				add item to player inventory;
+		}		
+	}
+}
+
+class ItemCommandParser implements CommandParser {
+	+keyword: String = "item";
+	
+	+parse(tokens: String[1..*] {seq}): Command {
+		the second token is the type;
+		accept only "empty", "food", "part", "scubagear", "rope", "tentkit", "shovel"
+		create ItemCommand with type;
+		if (type equals "shovel") {
+			if (the third token equals "durability") {
+				the fourth token is the durability as a decimal integer;
+				set the ItemCommand.durability;
+			}
+			else {
+				the third token is the count as a decimal integer;
+				set the ItemCommand.count;
+				if (the fourth token equals "durability") {
+					the fifth token is the durability as a decimal integer;
+					set the ItemCommand.durability;
+				}
+			}
+		}
+		else {
+			the third token is the count as a decimal integer;
+			set the ItemCommand.count;
+		}
+		return the ItemCommand;
+	}
+}
+
+class EquipCommand implements Command {
+	-index: int;
+	+EquipCommand(index: int);
+	// "equip all" parancs. Az index -1;
+	+EquipCommand();
+	
+	+toString(): String {
+		if (index > -1) return "equip " + index;
+		else return "equip all";
+	}
+	
+	+execute(state: Proto) {
+		if (index > -1) 
+			state.selectedPlayer.equip(index);
+		else {
+			for (all inventory indices)
+				state.selectedPlayer.equip(index);
+		}
+	}
+}
+
+class EquipCommandParser implements CommandParser {
+	+keyword: String = "equip";
+	
+	+parse(tokens: String[1..*] {seq}): Command {
+		if(the second token equals "all") create EquipCommand;
+		else {
+			the second token is the index as a decimal integer;
+			create EquipCommand with index;
+		}
+	}
+}
+
+class SelectCommand implements Command {
+	-type: String;
+	-index: int;
+	
+	+SelectCommand(type: String, index: int);
+	
+	+toString(): String {
+		if (index > -1) return "equip " + index;
+		else return "equip all";
+	}
+	
+	+execute(state: Proto) {
+		if (type equals "tile") state.selectTile(game.tiles[index]);
+		if (type equals "polarbear") state.selectBear(game.bears[index]);
+		if (type equals "player") state.selectPlayer(game.player[index]);
+	}
+}
+
+class SelectCommandParser implements CommandParser {
+	+keyword: String = "select";
+	
+	+parse(tokens: String[1..*] {seq}): Command {
+		the second token is the type;
+		accept only "tile", "polarbear", "player";
+		if (the type equals "polarbear" and there is no third token)
+			the index is 0;
+		else the index is the third token as a decimal integer;
+		create SelectCommand with type and index;
+	}
+}
+
+class EntityCommand implements Command {
+	-type: String;
+	-int: playerBodyHeat;
+	-int: playerEnergy;
+	+EntityCommand(-type: String);
+	+EntityCommand(-type: String, -int: playerBodyHeat);
+	+EntityCommand(-type: String, -int: playerBodyHeat, -int: playerEnergy);
+	
+	+toString(): String {
+		if (type equals "eskimo" or "polarexplorer") {
+			if (playerBodyHeat > -1){
+				if (playerEnergy > -1)
+					return "entity " + type + " " + playerBodyHeat + " " + playerEnergy;					
+				else
+					return "entity " + type + " " + playerBodyHeat;
+			}
+			else return "entity " + type;			
+		}
+		else return "entity polarbear";
+	}
+	
+	+execute(state: Proto) {
+		if (type equals "eskimo" or "polarexplorer") {
+			if (type equals "eskimo") 
+				state.game.createEskimo();
+			if (type equals "polarexplorer") 
+				state.game.createPolarExplorer();
+			if (playerBodyHeat > -1)
+				set player bodyHeat;
+			if (playerEnergy > -1)
+				set player energy;			
+			state.selectPlayer();
+		}
+		if (type equals "polarbear") {
+			state.game.createBear();
+			state.selectBear();
+		}
+	}
+}
+
+class EntityCommandParser implements CommandParser {
+	+keyword: String = "entity";
+	
+	+parse(tokens: String[1..*] {seq}): Command {
+		the second token is the type;
+		accept only "eskimo", "polarexplorer", "polarbear";
+		if (there is a third token)
+			it is the playerBodyHeat as a decimal integer;
+		if (there is a fourth token)
+			it is the playerEnergy as a decimal integer;
+		create EntityCommand;
+	}
+}
+
+class ConnectCommand implements Command { 
+	-indices: int[*];
+
+	+toString(indices: int[*]): String {
+		"connect " + the indices joinded by spaces;
+	}
+	
+	+execute(state: Proto) {
+		for (each index in indices) {
+			add state.game.tiles[index] to the state.currentTile.neightbors collection;
+		}
+	}
+}
+
+class ConnectCommandParser implements ConnectCommandParser {
+	+keyword: String = "connect";
+	
+	+parse(tokens: String[1..*] {seq}): Command {
+		all tokens except the first one are indices as decimal integers;
+		create ConnectCommand;
+	}
+}
+
 class QueryCommand extends Command {
 	+toString() { return "query"; }
 	
 	// Parancsok formájában írja ki a játék állapotát.
 	+execute(state: Proto) {
 	 	for (command : makeCommands(state.game))
-			println command.toString();
+			print line command.toString();
 	}
 	
-	// Parancsok listázása.
+	// A parancsok listázása.
 	-makeCommands(Game game): Command[*] {seq} {
 		result is a writable collection;
 		for (each tile in game.tiles) {
@@ -99,9 +385,8 @@ class QueryCommand extends Command {
 			if (item is not instance of Empty)
 				add makeItemCommand(item) to result;
 			for (each entity in tile.occupants) { 
-				if (entity is instance of PolarBear)
-					add "polarbear" command to result;
-				else if (entity is instance of Player) {
+				add makeEntityCommand(entity) to result;
+				if (entity is instance of Player) {
 					add makePlayerCommand(player) to result;
 					add listPlayerEquippedItems(player) to result;
 					add "equip all" command to result;
@@ -151,8 +436,8 @@ class QueryCommand extends Command {
 	// Készít egy ItemCommandot, számosság megadásával.
 	-makeItemCommand(item: Item, int count): ItemCommand;
 	
-	// Készít egy PlayerCommandot, a player.bodyHeat és player.energy alapján.
-	-makePlayerCommand(player: Player): PlayerCommand;
+	// Készít egy EntityCommandot. Ha Player, akkor a player.bodyHeat és player.energy is bele kerül.
+	-makeEntityCommand(entity: Entity): EntityCommand;
 	
 	// Készít egy SelectCommandot, a tile game.tiles-beli indexével.
 	-makeSelectTileCommand(tile: Tile, game: Game): SelectCommand;
