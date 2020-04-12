@@ -437,7 +437,7 @@ tile 1 *
 entity eskimo 2
 item food 1
 select player 0
-equip 0 # nincs eat food???
+eat
 query
 
 # Output:
