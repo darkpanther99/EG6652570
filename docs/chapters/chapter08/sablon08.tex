@@ -7,6 +7,16 @@
 
 \section{Osztályok és metódusok tervei}
 
+%todo ezt szépíteni
+\lstset{
+	breakatwhitespace=false,
+	breaklines=true,
+	tabsize=2,
+	frame=L,
+	numbers=left,
+	basicstyle=\small\ttfamily
+}
+
 \section{Osztályok leírása}
 \subsection{BareHands}
 \begin{itemize}
@@ -506,6 +516,923 @@
 	\item Metódusok:
 	\begin{itemize}
 		\item abstract void Chill(Player p): A stratégiát megvalósító elem dolga implementálni mi történik.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Proto}
+\begin{itemize}
+\item Felelősség\newline
+Beolvas parancsokat, értelmezi és futtatja őket.
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+game: Game}; \newline
+		A teljes játékot tartalmazza.
+		\item \texttt{-running: boolean;} \newline
+		A parancsok feldolgozása megállítható vele.
+		\item \texttt{-parsers: CommandParser[*];} \newline
+		Ilyen parancsokat tud feldolgozni.
+		\item \texttt{-selectedTile: Tile[0..1];}
+		\item \texttt{-selectedPlayer: Player[0..1];}
+		\item \texttt{-selectedBear: PolarBear[0..1];}
+		\item \texttt{+selectTile(Tile t);} \newline			
+		Beállítja a selectedTile-t és lenullozza a selectedPlayert és a selectedBeart.			
+		\item \texttt{+selectPlayer(Player t);} \newline
+		Beállítja a selectedPlayer-t és lenullozza a selectedTile-t és a selectedBeart.	
+		\item \texttt{+selectBear(PolarBear t);} \newline			
+		Beállítja a selectedBeart és lenullozza a selectedTile-t és a selectedPlayert.			
+		\item \texttt{+hasSelectedTile(): boolean;}
+		\item \texttt{+hasSelectedPlayer(): boolean;}
+		\item \texttt{+hasSelectedBear(): boolean;}
+		\item \texttt{+getSelectedTile(): Tile;}
+		Kivételt dob ha nincs kiválaszvta dolog.			
+		\item \texttt{+getSelectedPlayer(): Player;} \newline
+		Kivételt dob ha nincs kiválaszvta dolog.
+		\item \texttt{+getSelectedBear(): PolarBear;} \newline
+		Kivételt dob ha nincs kiválaszvta dolog.
+	\end{itemize}
+\item Metódusok
+	\begin{itemize}
+		\item \texttt{+Proto();}
+		\begin{lstlisting}
+create game;
+create MessagePrinter(this);
+game.subscribe(the message printer);
+createParsers();
+		\end{lstlisting}
+		\item \texttt{-createParsers();} \newline			
+		Készít egy-egy példányt a beépített CommandParserekből és feltölti velük a parsers kollekciót.
+		\item \texttt{+run();} \newline
+		Fut a parancsértelmezés.
+		\begin{lstlisting}
+running = true;
+while (runining) {
+	getCommand();
+	try {
+		command.execute(this);
+	} catch (an exception that we threw) {
+		print a meaningful error message;
+	}
+}	
+		\end{lstlisting}	
+		\item \texttt{+stop();} \newline
+		Megáll a parancsértelmezés. A running változó false lesz.
+		\item \texttt{-getCommand(): Command;} \newline
+		Beolvas egy parancsot a standard bemenetről.
+		\begin{lstlisting}
+while (true) {
+	read line;
+	strip comments and trailing whitespace;
+	tokenize by spaces;
+	if (there are tokens) {
+		the first token is the keyword;
+		find CommandParser by keyword;
+		if (not found) print a meaningful error message;
+		else return CommandParser.parse(tokens);
+	}
+}
+		\end{lstlisting}	
+		\end{itemize}
+\end{itemize}
+
+\subsection{MessagePrinter}
+\begin{itemize}
+\item Felelősség\newline
+Kiírja a konzolra a játék eseményeket.
+\item Interfészek\newline
+GameObserver
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{-proto: Proto;}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+MessagePrinter(proto: Proto);}
+		\item \texttt{+victory();} \newline
+		Győzelem üzenet kiírása, aztán proto.stop().
+		\item \texttt{+gameOver();} \newline
+		Vereség üzenet kiírása, aztán proto.stop().
+		\item \texttt{+explore(Tile);} \newline
+		Tile.weightLimit kiírása.		
+	\end{itemize}
+\end{itemize}
+
+\subsection{Command}
+\begin{itemize}
+\item Felelősség\newline
+Parancs, végrehajtható formában.
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+execute(state: Proto): abstract void;} \newline
+		Végrehajtás az adott állapoton.
+		\item \texttt{+toString(): abstract String;} \newline
+		Így jelenik meg a konzolon.
+	\end{itemize}
+\end{itemize}
+
+\subsection{CommandParser}
+\begin{itemize}
+\item Felelősség\newline
+Elkészít egy fajta parancsot.
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: abstract String \string{readOnly\string};} \newline
+		A parancs kulcszava.
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): abstract Command;} \newline
+		 Parancs elkészítése tokenekből.
+	\end{itemize}
+\end{itemize}
+
+\subsection{TileCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+return "tile " + snow + " " + weightLimit;
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);} \newline
+		Készít egy Tile-t Game.createTile használatával, majd kiválasztja proto.selectTile-el.
+	\end{itemize}
+\end{itemize}
+\subsection{TileCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "tile";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;}
+		\begin{lstlisting}
+snow is the second token as a decimal integer;
+if (the thid token equals "*") weightLimit is 999;
+else weightLimit is the third token as a decimal integer;
+create TileCommand;
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+
+\subsection{BuildingCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Metódusok
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{-type: String;}
+	\end{itemize}
+\begin{itemize}
+		\item \texttt{+BuildingCommand(type: String);}
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+return "building " + type;
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);}
+		\begin{lstlisting}
+if (type equals "igloo") create Igloo;
+if (type equals "tent") create Tent;
+set state.selectedTile.shelter;
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+\subsection{BuildingCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "building";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;}
+		\begin{lstlisting}
+the second token is the type;
+accept only "igloo" or "tent";
+create BuildingCommand;
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+
+\subsection{ItemCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Metódusok
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{-type: String;}
+		\item \texttt{+count: int = 1;}
+		\item \texttt{+durability: int = -1;}	
+	\end{itemize}
+\begin{itemize}
+		\item \texttt{+ItemCommand(type: String);}
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+if (count > 1) {
+	if (type equals "shovel" and durability > -1)
+		return "item shovel " + count + " durability " + durability; 
+	else 
+		return "item " + type + " " + count;
+}
+else {
+	if (type equals "shovel" and durability > -1)
+		return "item shovel durability " + durability; 
+	else 
+		return "item " + type;
+}
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);}
+		\begin{lstlisting}
+if (state has tile selected and count > 1)
+	throw an exception;
+if (state has no tile selected and state has no player selected)
+	throw an exception;
+for (count times) {
+	if (type equal "empty") create Emty;
+	if (type equal "food") create Food;
+	if (type equal "part") create Part;
+	if (type equal "scubagear") create ScubaGear;
+	if (type equal "rope") create Rope;
+	if (type equal "tentkit") create TentKit;
+	if (type equal "shovel") {
+		if (durability > -1) create BreakingShovel with durability;
+		else create Shovel;
+	}
+	if (state has tile selected)
+		set state.selectedTile.item;
+	if (state has player selected)
+		add item to player inventory;
+}	
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+\subsection{ItemCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "item";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;}
+		\begin{lstlisting}
+the second token is the type;
+accept only "empty", "food", "part", "scubagear", "rope", "tentkit", "shovel"
+create ItemCommand with type;
+if (type equals "shovel") {
+	if (the third token equals "durability") {
+		the fourth token is the durability as a decimal integer;
+		set the ItemCommand.durability;
+	}
+	else {
+		the third token is the count as a decimal integer;
+		set the ItemCommand.count;
+		if (the fourth token equals "durability") {
+			the fifth token is the durability as a decimal integer;
+			set the ItemCommand.durability;
+		}
+	}
+}
+else {
+	the third token is the count as a decimal integer;
+	set the ItemCommand.count;
+}
+return the ItemCommand;
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+
+\subsection{EquipCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Metódusok
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{-index: int;}
+	\end{itemize}
+\begin{itemize}
+		\item \texttt{+EquipCommand(index: int);}
+		\item \texttt{+EquipCommand();} \newline
+		"equip all" parancs. Az index -1;
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+if (index > -1) return "equip " + index;
+else return "equip all";
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);}
+		\begin{lstlisting}
+if (index > -1) 
+	state.selectedPlayer.equip(index);
+else {
+	for (all inventory indices)
+		state.selectedPlayer.equip(index);
+}
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+\subsection{EquipCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "equip";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;}
+		\begin{lstlisting}
+if(the second token equals "all") create EquipCommand;
+else {
+	the second token is the index as a decimal integer;
+	create EquipCommand with index;
+}
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+
+\subsection{SelectCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Metódusok
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{-type: String;}
+		\item \texttt{-index: int;}
+	\end{itemize}
+\begin{itemize}
+		\item \texttt{+SelectCommand(type: String, index: int);}
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+if (index > -1) return "equip " + index;
+else return "equip all";
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);}
+		\begin{lstlisting}
+if (type equals "tile") state.selectTile(game.tiles[index]);
+if (type equals "polarbear") state.selectBear(game.bears[index]);
+if (type equals "player") state.selectPlayer(game.player[index]);
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+\subsection{SelectCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "select";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;}
+		\begin{lstlisting}
+the second token is the type;
+accept only "tile", "polarbear", "player";
+if (the type equals "polarbear" and there is no third token)
+	the index is 0;
+else the index is the third token as a decimal integer;
+create SelectCommand with type and index;
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+
+\subsection{EntityCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Attribútumok
+	\begin{itemize}
+	\item \texttt{-type: String;}
+	\item \texttt{-playerBodyHeat: int;}
+	\item \texttt{-playerEnergy: int;}	
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+EntityCommand(-type: String);}
+		\item \texttt{+EntityCommand(-type: String, -int: playerBodyHeat);}
+		\item \texttt{+EntityCommand(-type: String, -int: playerBodyHeat, -int: playerEnergy);} 
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+if (type equals "eskimo" or "polarexplorer") {
+	if (playerBodyHeat > -1){
+		if (playerEnergy > -1)
+			return "entity " + type + " " + playerBodyHeat + " " + playerEnergy;					
+		else
+			return "entity " + type + " " + playerBodyHeat;
+	}
+	else return "entity " + type;			
+}
+else return "entity polarbear";
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);}
+		\begin{lstlisting}
+if (type equals "eskimo" or "polarexplorer") {
+	if (type equals "eskimo") 
+		state.game.createEskimo();
+	if (type equals "polarexplorer") 
+		state.game.createPolarExplorer();
+	if (playerBodyHeat > -1)
+		set player bodyHeat;
+	if (playerEnergy > -1)
+		set player energy;			
+	state.selectPlayer();
+}
+if (type equals "polarbear") {
+	state.game.createBear();
+	state.selectBear();
+}
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+\subsection{EntityCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "entity";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;}
+		\begin{lstlisting}
+the second token is the type;
+accept only "eskimo", "polarexplorer", "polarbear";
+if (there is a third token)
+	it is the playerBodyHeat as a decimal integer;
+if (there is a fourth token)
+	it is the playerEnergy as a decimal integer;
+create EntityCommand;
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+
+\subsection{ConnectCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{-indices: int[*];}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+"connect " + the indices joinded by spaces;
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);}
+		\begin{lstlisting}
+for (each index in indices) {
+	add state.game.tiles[index] to the state.currentTile.neightbors collection;
+}
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+\subsection{ConnectCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "connect";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;}
+		\begin{lstlisting}
+all tokens except the first one are indices as decimal integers;
+create ConnectCommand;
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+
+\subsection{StepCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Metódusok
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{-direction: int;}
+	\end{itemize}
+\begin{itemize}
+		\item \texttt{+StepCommand(direction: int);}
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+return "step " + direction;
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);} \newline
+		A kiválasztott játékos lép;
+	\end{itemize}
+\end{itemize}
+\subsection{StepCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "step";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;}
+		\begin{lstlisting}
+the second token is the direction as a decimal integer;
+create StepCommand with direction;
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+
+\subsection{RescueCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Metódusok
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{-direction: int;}
+	\end{itemize}
+\begin{itemize}
+		\item \texttt{+RescueCommand(direction: int);}
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+return "rescue " + direction;
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);} \newline
+		A kiválasztott játékos kihúzza csapattársát;
+	\end{itemize}
+\end{itemize}
+\subsection{RescueCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "rescue";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;}
+		\begin{lstlisting}
+the second token is the direction as a decimal integer;
+create RescueCommand with direction;
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+
+\subsection{ExamineCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Metódusok
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{-direction: int;}
+	\end{itemize}
+\begin{itemize}
+		\item \texttt{+ExamineCommand(direction: int);}
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+return "examine " + direction;
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);} \newline
+		A kiválasztott sarkkutató felderít. Ha nem sarkkutató van kiválasztva, akkor kivételt dob.
+	\end{itemize}
+\end{itemize}
+\subsection{ExamineCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "examine";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;}
+		\begin{lstlisting}
+the second token is the direction as a decimal integer;
+create ExamineCommand with direction;
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+
+\subsection{DigCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+return "dig";
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);} \newline
+		A kiválasztott játékos ás;
+	\end{itemize}
+\end{itemize}
+\subsection{DigCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "dig";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;} \newline
+		Visszaad egy DigCommandot.
+	\end{itemize}
+\end{itemize}
+
+\subsection{PickUpCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+return "pickup";
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);} \newline
+		A kiválasztott játékos felvesz egy tárgyat.
+	\end{itemize}
+\end{itemize}
+\subsection{PickUpCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "pickup";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;} \newline
+		Visszaad egy PickUpCommandot.
+	\end{itemize}
+\end{itemize}
+
+\subsection{BuildCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+return "build";
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);} \newline
+		A kiválasztott játékos épít.
+	\end{itemize}
+\end{itemize}
+\subsection{BuildCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "build";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;} \newline
+		Visszaad egy BuildCommandot.
+	\end{itemize}
+\end{itemize}
+
+\subsection{AssembleCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+return "assemble";
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);} \newline
+		A kiválasztott játékos összerakja a rakétát.
+	\end{itemize}
+\end{itemize}
+\subsection{AssembleCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "assemble";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;} \newline
+		Visszaad egy AssembleCommandot;
+	\end{itemize}
+\end{itemize}
+
+\subsection{TurnCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+return "turn";
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);} \newline
+		Új kör kezdődik a játékban.
+	\end{itemize}
+\end{itemize}
+\subsection{TurnCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "turn";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;} \newline
+		Visszaad egy TurnCommandot;
+	\end{itemize}
+\end{itemize}
+
+\subsection{StormCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+return "storm";
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);} \newline
+		\begin{lstlisting}
+for (each tile in state.game.tiles)
+	tile.chillStorm();
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+\subsection{StormCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "storm";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;} \newline
+		Visszaad egy StormCommandot.
+	\end{itemize}
+\end{itemize}
+
+\subsection{QueryCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+toString();}
+		\begin{verbatim}{ return "query"; }\end{verbatim}	 
+		\item \texttt{+execute(state: Proto);} \newline
+		Parancsok formájában írja ki a játék állapotát.		
+		\begin{lstlisting}
+for (command: makeCommands(state.game))
+	print line command.toString();
+		\end{lstlisting}
+		\item \texttt{-makeCommands(Game game): Command[*] \string{seq\string};} \newline
+		A parancsok listázása.
+		\begin{lstlisting}
+result is a writable collection;
+for (each tile in game.tiles) {
+	add makeTileCommand(tile) to result;
+	if (tile is not instance of BareIce)	
+		add makeBuildingCommand(tile) to result;
+	if (item is not instance of Empty)
+		add makeItemCommand(item) to result;
+	for (each entity in tile.occupants) { 
+		add makeEntityCommand(entity) to result;
+		if (entity is instance of Player) {
+			add makePlayerCommand(player) to result;
+			add listPlayerEquippedItems(player) to result;
+			add "equip all" command to result;
+			for (item: player.inventory)
+				add makeItemCommand(item) to result;
+		}
+	}
+}	
+for (each tile in game.tiles) {
+	add makeSelectTileCommand(tile, game) to result;
+	add makeConnectCommand(tile, game) to result;
+}
+return result
+		\end{lstlisting}		
+		\item \texttt{-listPlayerEquippedItems(player: Player): ItemCommand[*] \string{seq\string};} \newline
+		Megvizsgálja, hogy milyen tárgyak vannak a játékos használatában, és listázza azokat.
+		\begin{lstlisting}
+result is a writable collection;
+if (player.buildStrategy.count > 0)
+	add makeItemCommand(TentKit, player.buildStrategy.count) to result;
+if (player.foodStore.count > 0)
+	add makeItemCommand(Food, player.foodStore.count) to result;
+if (player.partStore.count > 0)
+	add makeItemCommand(Part, player.partStore.count) to result;
+if (player.rescueStrategy is instance of RopeRescue)
+	add makeItemCommand(Rope) to result;
+if (player.waterResistanceStrategy is instance of ScubaWearing)
+	add makeItemCommand(ScubaGear) to result;
+if (player.digStrategy is instance of ShovelDig)
+	add makeItemCommand(Shovel) to result;
+if (player.digStrategy is instance of BreakingShovelDig) {
+	make BreakingShovel with durability player.digStrategy.durability;
+	add makeItemCommand(the BreakingShovel) to result;
+}
+return result;
+		\end{lstlisting}		
+		\item \texttt{-makeTileCommand(tile: Tile): TileCommand;} \newline
+		Készít egy TileCommandot tile.snow és tile.weightLimit tulajdonságokal.
+		\item \texttt{-makeBuildingCommand(tile: Tile): BuildingCommand;} \newline
+		Készít egy BuildingCommandot a tile.shelter alapján.
+		\item \texttt{-makeItemCommand(item: Item): ItemCommand;} \newline
+		Készít egy ItemCommandot, az item típusa alapján. Ha ez BreakingShovel, akkor a durability-t is beleteszi.
+		\item \texttt{-makeItemCommand(item: Item, int count): ItemCommand;} \newline
+		Készít egy ItemCommandot, számosság megadásával.
+		\item \texttt{-makeEntityCommand(entity: Entity): EntityCommand;} \newline
+		Készít egy EntityCommandot. Ha Player, akkor a player.bodyHeat és player.energy is bele kerül.
+		\item \texttt{-makeSelectTileCommand(tile: Tile, game: Game): SelectCommand;} \newline
+		Készít egy SelectCommandot, a tile game.tiles-beli indexével.
+		\item \texttt{-makeConnectCommand(tile: Tile, game: Game): ConnectCommand;} \newline
+		Készít egy ConnectCommandot. Megkeresi a tile.neightbors indexeit a game.tiles tömbben és azokat rakja a ConnectCommandba.
+	\end{itemize} 
+\end{itemize}
+\subsection{QueryCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "query";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;}
+		Visszaad egy QueryCommandot.
 	\end{itemize}
 \end{itemize}
 
