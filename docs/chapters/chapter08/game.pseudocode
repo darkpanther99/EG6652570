@@ -1,0 +1,83 @@
+class Game {
+    -tiles: Tile[0..*];
+    -entities: Entity[0..*];
+    -observers: GameObservers[0..*];
+    
+    +Game() {
+    }
+
+    +turn() {
+        for all p : player in entities {
+            p.setEnergy(4);
+        }
+        for all t : Tile in tiles {
+            t.Chill();
+        }
+        
+        if time for snowstorm {
+            for all t : Tile in tiles
+                t.ChillStorm();
+        }
+        
+        for all b: PolarBear in entities
+            b.Step();
+        
+        for all p : player in entities {
+            read input for p;
+            do turn for p;
+        }
+    }
+    
+    +victory() {
+        for all observer in observers
+            observer.victory();
+    }
+    
+    +gameOver()
+    {
+        for all observer in observers
+            observer.gameOver();
+    }
+    
+    +createPolarExplorer(): PolarExplorer {
+        create default (naked, no items) p : PolarExplorer;
+        add p to entities;
+        return p;
+    }
+    
+    +createEskimo() : Eskimo {
+        create default (naked, no items) e : Eskimo;
+        add e to entities;
+        return e;
+    }
+    
+    +createPolarBear() : PolarBear {
+        create b : PolarBear;
+        add b to entities;
+        return b;
+    }
+    
+    +createIce() : Tile {
+        create t : Tile (snow = defaultSnowLevel, weightLimit = -1, shelter: BareIce, chillWaterStrategy : DryLand)
+        add t to tiles;
+        return t;
+    }
+    
+    +createUnstableIce() : Tile {
+        create t : Tile (snow = defaultSnowLevel, weightLimit = defaultWeightLimit, defaultshelter: BareIce, chillWaterStrategy : DryLand)
+        add t to tiles;
+        return t;
+    }
+    
+    +createSea() : Tile {
+        create t : Tile (snow = 0, weightLimit = 0, defaultshelter: BareIce, chillWaterStrategy : Sea)
+        add t to tiles;
+        return t;
+    }
+    
+    +createHole() : Tile {
+        create t : Tile (snow = defaultSnowLevel, weightLimit = 0, defaultShelter: BareIce, chillWaterStrategy : Sea);
+        add t to tiles;
+        return t;
+    }
+}
