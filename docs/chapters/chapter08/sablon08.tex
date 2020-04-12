@@ -1275,6 +1275,37 @@ CommandParser
 	\end{itemize}
 \end{itemize}
 
+\subsection{EatCommand}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+Command
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+toString(): String;}
+		\begin{lstlisting}
+return "eat";
+		\end{lstlisting}
+		\item \texttt{+execute(state: Proto);} \newline
+		A kiválasztott játékos eszik.
+	\end{itemize}
+\end{itemize}
+\subsection{EatCommandParser}
+\begin{itemize}
+\item Felelősség\newline
+\item Interfészek\newline
+CommandParser
+\item Attribútumok
+	\begin{itemize}
+		\item \texttt{+/keyword: String = "eat";}
+	\end{itemize}
+\item Metódusok
+\begin{itemize}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;} \newline
+		Visszaad egy EatCommandot;
+	\end{itemize}
+\end{itemize}
+
 \subsection{TurnCommand}
 \begin{itemize}
 \item Felelősség\newline
