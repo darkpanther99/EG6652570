@@ -10,7 +10,8 @@
     
     # test:
     select player 0 
-    step 1         
+    step 1
+    turn
     query
     
     #output: 
