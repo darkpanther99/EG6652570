@@ -1,0 +1,202 @@
+\documentclass[12pt]{article}
+\title{1-18 Teszt}
+\usepackage[ruled]{algorithm2e}
+
+\usepackage[]{algorithmicx}
+ \usepackage{algpseudocode}
+\newcommand{\Fn}[3]{
+	\SetAlgoLined
+	\SetKwFunction{FMain}{#1}
+	\SetKwProg{Fn}{Function}{:}{}
+	\Fn{\FMain{#2}}{
+		#3
+	}
+
+
+}
+\begin{document}
+
+
+\section{Player}
+\begin{algorithm}[H]
+\Fn{setBodyTemp}{int temp} {
+	Sets the body temp of the player to temp
+}
+
+\end{algorithm}
+
+\begin{algorithm}[H]
+	\Fn{setEnergy}{int e}{
+	 	Sets the energy of the player to e
+	}
+\end{algorithm}
+
+\begin{algorithm}[H]
+	\Fn{setGame}{Game g} {
+		Sets the game variable of the player to g
+	}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\Fn{setDigStrategy}{DigStrategy ds}{
+	Sets the dig strategy of the player to ds
+	}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\Fn{setRescueStrategy}{RescueStrategy rs}{
+		Sets the rescue strategy of the player to rs
+	}
+\end{algorithm}
+
+\begin{algorithm}[H]
+ \Fn{setWaterResistanceStrategy}{WaterResistanceStrategy wrs}{
+		Sets the water resistance strategy of the player to wrs
+	}
+\end{algorithm}
+
+\begin{algorithm}[H]
+	\Fn{getFoodStore}{}{
+		Returns the food store of the player
+	}
+\end{algorithm}
+
+\begin{algorithm}[H]
+	\Fn{setFoodStore}{FoodStore fs}{
+		Sets the food store of the player to fs	
+	}
+\end{algorithm}
+
+
+\begin{algorithm}[H]
+	\Fn{getPartStore}{}{
+		Returns the part store of the player
+	}
+\end{algorithm}
+
+\begin{algorithm}[H]
+	\Fn{setPartStore}{PartStore ps}{
+		Sets the part store of the player to ps	
+	}
+\end{algorithm}
+
+\begin{algorithm}[H]
+	\Fn{getCurrentTile}{}{
+	Returns the current tile of the player
+}
+\end{algorithm}
+
+\begin{algorithm}[H]
+	\Fn{setCurrentTile}{Tile t}{
+	Sets the current tile of the player to t
+}
+\end{algorithm}
+
+\begin{algorithm}[H]
+		\Fn{addToInventory}{Item i}{	
+		Adds i to the inventory of the player
+	}
+
+\end{algorithm}
+
+\begin{algorithm}[H]
+	\Fn{decrementEnergy}{}{
+	Decrements the energy of the player
+	}
+
+\end{algorithm}
+
+\begin{algorithm}[H]
+	\Fn{incrementBodyTemp}{}{
+		Increments the body temperature of the player
+	}
+
+\end{algorithm}
+
+\begin{algorithm}[H]
+	\Fn{decrementBodyTemp}{}{
+		Decrements the body temperature of the player
+	}
+\end{algorithm}
+
+\begin{algorithm}
+	\Fn{Chill}{}{
+	Decrements body temperature \\ 
+		\If {body temp equals to 0} {
+			The game is over
+		}
+	}
+\end{algorithm}
+
+\begin{algorithm}
+	\Fn{pickUp}{}{
+		\If {Eneregy is greater than 0}{
+			Decrement energy \\
+			Move the item from the current tile to the inventory of the player
+		}	
+	}	
+\end{algorithm}
+
+
+\begin{algorithm}
+	\Fn{Equip}{int inventorySlot}{
+		Make the item in the inventorySlot-th slot active
+	}
+\end{algorithm}
+
+\begin{algorithm}
+	\Fn{placeOn}{Tile t}{
+		Place the player on tile t
+	}
+\end{algorithm}
+
+
+\begin{algorithm}
+	\Fn{Step}{int direction}{
+		\If{Eneregy is greater than 0} {
+			Decrement energy \\
+			Move the player to the next tile in the given direction
+		}
+	}
+\end{algorithm}
+
+
+\begin{algorithm}
+	\Fn{ResistWater}{}{
+		Resist water based on the player's waterResistanceStrategy
+	}
+\end{algorithm}
+\begin{algorithm}
+	\Fn{EatFood}{}{
+		Try to eat food from the FoodStore
+	}
+\end{algorithm}
+\begin{algorithm}
+	\Fn{Dig}{}{
+			\If{Eneregy is greater than 0} {
+			Decrement energy \\
+			Dig based on the player's digStrategy
+		}
+	}
+\end{algorithm}
+\begin{algorithm}
+	\Fn{RescueTeammate}{int d}{
+		\If{Eneregy is greater than 0} {
+			Decrement energy \\
+			Try to rescue the teammate on the neighbor tile in direction d based on the player's rescueStrategy
+		}
+	}
+\end{algorithm}
+\begin{algorithm}
+	\Fn{AssenbleFlare}{}{
+		\If{Every player is on the same tile \textbf{and} The players have three FlareParts} {
+			Victory
+		}
+	}
+\end{algorithm}
+\begin{algorithm}
+	\Fn{RemoveFromInventory}{Item i}{
+		Remove the item p from the inventory of the player
+	}
+\end{algorithm}
+\end{document}

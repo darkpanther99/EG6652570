@@ -1,0 +1,378 @@
+# 1. PickUpFood
+# Input:
+tile 1 *
+entity eskimo 4 
+tile 1 *
+item food
+connect 0
+select player 0
+step 0
+pickup
+query
+
+# Output:
+tile 1 *
+entity eskimo 4
+item food
+tile 1 *
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 2. PickUpPart
+# Input:
+tile 1 *
+entity eskimo 4 
+tile 1 *
+item part
+connect 0
+select player 0
+step 0
+pickup
+query
+
+# Output:
+tile 1 *
+entity eskimo 4
+item part
+tile 1 *
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 3. PickUpShovel
+# Input:
+entity eskimo 4 
+tile 1 *
+item shovel
+connect 0
+select player 0
+step 0
+pickup
+query
+
+# Output:
+tile 1 *
+entity eskimo 4
+item shovel
+tile 1 *
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 4. PickUpBreakableShovel
+# Input:
+tile 1 *
+entity eskimo 4 
+tile 1 *
+item shovel 2
+connect 0
+select player 0
+step 0
+pickup
+query
+
+# Output:
+tile 1 *
+entity eskimo 4
+item shovel 2
+tile 1 *
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 5. PickUpRope
+# Input:
+tile 1 *
+entity eskimo 4 
+tile 1 *
+item rope
+connect 0
+select player 0
+step 0
+pickup
+query
+
+# Output:
+tile 1 *
+entity eskimo 4
+item rope
+tile 1 *
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 6. PickUpScubaGear
+# Input:
+tile 1 *
+entity eskimo 4 
+tile 1 *
+item scubagear
+connect 0
+select player 0
+step 0
+pickup
+query
+
+# Output:
+tile 1 *
+entity eskimo 4
+item scubagear
+tile 1 *
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 7. PickUpTent
+# Input:
+tile 1 *
+entity eskimo 4 
+tile 1 *
+item tentkit 1
+connect 0
+select player 0
+step 0
+pickup
+query
+
+# Output:
+tile 1 *
+entity eskimo 4
+item tentkit 1
+tile 1 *
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 8. BareHandsDig
+# Input:
+tile 2 *
+entity eskimo 4 2
+select player 0
+dig
+query
+
+# Output:
+tile 1 *
+entity eskimo 4 1
+
+
+
+# 9. ShovelDig
+# Input:
+tile 2 *
+entity eskimo 4
+item shovel
+select player 0
+dig
+query
+
+# Output:
+tile 1 *
+entity eskimo 4 2
+item shovel
+
+
+
+# 10. BreakingShovelDig
+# Input:
+tile 2 *
+entity eskimo 4 2
+item shovel 2
+select player 0
+dig
+query
+
+# Output:
+tile 1 *
+entity eskimo 4 2
+item shovel 1
+
+
+
+# 11. BreakingShovelDig2
+# Input:
+tile 2 *
+entity eskimo 4 2
+item shovel 1
+select player 0
+dig
+query
+
+# Output:
+tile 1 *
+entity eskimo 4 2
+
+
+
+# 12. StepOnStableIce
+# Input:
+tile 1 *
+entity eskimo 4
+tile 1 *
+connect 0
+select player 0
+step 0
+query
+
+# Output
+tile 1 *
+tile 1 *
+entity eskimo 4
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 13. StepOnUnstableIceWithScubaGearBreaking
+# Input:
+tile 1 *
+entity eskimo 4 2
+item scubagear
+tile 1 0
+connect 0
+select player 0
+step 0
+query
+
+# Output
+tile 1 *
+tile 1 0
+entity eskimo 4 2
+item scubagear
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 14. StepOnUnstableIceWithScubaGearCanHold
+# Input:
+tile 1 *
+entity eskimo 4 2
+item scubagear
+tile 1 1
+connect 0
+select player 0
+step 0
+query
+
+# Output
+tile 1 *
+tile 1 1
+entity eskimo 4 2
+item scubagear
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 15. StepOnUnstableIceNakedBreaking
+# Input:
+tile 1 *
+entity eskimo 4 2
+tile 1 0
+connect 0
+select player 0
+step 0
+query
+
+# Output
+tile 1 *
+tile 1 0
+entity eskimo 4 0
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 16. StepOnUnstableIceNakedCanHold
+# Input:
+tile 1 *
+entity eskimo 4
+tile 1 1
+connect 0
+select player 0
+step 0
+query
+
+# Output
+tile 1 *
+tile 1 1
+entity eskimo 4 2
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 17. StepInWaterWithScubaGear
+# Input:
+tile 1 *
+entity eskimo 4 2
+item scubagear
+tile 0 0
+connect 0
+select player 0
+step 0
+query
+
+# Output
+tile 1 *
+tile 0 0
+entity eskimo 4 2
+item scubagear
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 18. StepInWaterNaked
+# Input:
+tile 1 *
+entity eskimo 4 2
+tile 0 0
+connect 0
+select player 0
+step 0
+query
+
+# Output
+tile 1 *
+tile 0 0
+entity eskimo 4 0
+select tile 0
+connect 1
+select tile 1
+connect 0
