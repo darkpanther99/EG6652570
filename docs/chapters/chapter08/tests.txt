@@ -1,10 +1,11 @@
 # 1. PickUpFood
 # Input:
 tile 1 *
-entity eskimo 4 
-tile 1 *
+entity eskimo 5 4
+tile 0 *
 item food
-connect 0
+select tile 0
+connect 1
 select player 0
 step 0
 pickup
@@ -12,23 +13,21 @@ query
 
 # Output:
 tile 1 *
-entity eskimo 4
+tile 0 *
+entity eskimo 5 2
 item food
-tile 1 *
 select tile 0
 connect 1
-select tile 1
-connect 0
 
 
 
-# 2. PickUpPart
 # Input:
 tile 1 *
-entity eskimo 4 
-tile 1 *
+entity eskimo 5 4
+tile 0 *
 item part
-connect 0
+select tile 0
+connect 1
 select player 0
 step 0
 pickup
@@ -36,22 +35,22 @@ query
 
 # Output:
 tile 1 *
-entity eskimo 4
+tile 0 *
+entity eskimo 5 2
 item part
-tile 1 *
 select tile 0
 connect 1
-select tile 1
-connect 0
 
 
 
 # 3. PickUpShovel
 # Input:
-entity eskimo 4 
 tile 1 *
+entity eskimo 5 4
+tile 0 *
 item shovel
-connect 0
+select tile 0
+connect 1
 select player 0
 step 0
 pickup
@@ -59,23 +58,22 @@ query
 
 # Output:
 tile 1 *
-entity eskimo 4
+tile 0 *
+entity eskimo 5 2
 item shovel
-tile 1 *
 select tile 0
 connect 1
-select tile 1
-connect 0
 
 
 
 # 4. PickUpBreakableShovel
 # Input:
 tile 1 *
-entity eskimo 4 
-tile 1 *
-item shovel 2
-connect 0
+entity eskimo 5 4
+tile 0 *
+item shovel durability 2
+select tile 0
+connect 1
 select player 0
 step 0
 pickup
@@ -83,23 +81,22 @@ query
 
 # Output:
 tile 1 *
-entity eskimo 4
-item shovel 2
-tile 1 *
+tile 0 *
+entity eskimo 5 2
+item shovel durability 2
 select tile 0
 connect 1
-select tile 1
-connect 0
 
 
 
 # 5. PickUpRope
 # Input:
 tile 1 *
-entity eskimo 4 
-tile 1 *
+entity eskimo 5 4
+tile 0 *
 item rope
-connect 0
+select tile 0
+connect 1
 select player 0
 step 0
 pickup
@@ -107,23 +104,22 @@ query
 
 # Output:
 tile 1 *
-entity eskimo 4
+tile 0 *
+entity eskimo 5 2
 item rope
-tile 1 *
 select tile 0
 connect 1
-select tile 1
-connect 0
 
 
 
 # 6. PickUpScubaGear
 # Input:
 tile 1 *
-entity eskimo 4 
-tile 1 *
+entity eskimo 5 4
+tile 0 *
 item scubagear
-connect 0
+select tile 0
+connect 1
 select player 0
 step 0
 pickup
@@ -131,23 +127,22 @@ query
 
 # Output:
 tile 1 *
-entity eskimo 4
+tile 0 *
+entity eskimo 5 2
 item scubagear
-tile 1 *
 select tile 0
 connect 1
-select tile 1
-connect 0
 
 
 
 # 7. PickUpTent
 # Input:
 tile 1 *
-entity eskimo 4 
-tile 1 *
-item tentkit 1
-connect 0
+entity eskimo 5 4
+tile 0 *
+item tentkit
+select tile 0
+connect 1
 select player 0
 step 0
 pickup
@@ -155,83 +150,87 @@ query
 
 # Output:
 tile 1 *
-entity eskimo 4
-item tentkit 1
-tile 1 *
+tile 0 *
+entity eskimo 5 2
+item tentkit
 select tile 0
 connect 1
-select tile 1
-connect 0
 
 
 
 # 8. BareHandsDig
 # Input:
 tile 2 *
-entity eskimo 4 2
+entity eskimo 5 2
 select player 0
 dig
 query
 
 # Output:
 tile 1 *
-entity eskimo 4 1
+entity eskimo 5 1
 
 
 
 # 9. ShovelDig
 # Input:
 tile 2 *
-entity eskimo 4
+entity eskimo 5 4
 item shovel
+equip all
 select player 0
+dig
 dig
 query
 
 # Output:
-tile 1 *
-entity eskimo 4 2
+tile 0 *
+entity eskimo 5 3
 item shovel
+equip all
 
 
 
 # 10. BreakingShovelDig
 # Input:
 tile 2 *
-entity eskimo 4 2
-item shovel 2
+entity eskimo 5 4
+item shovel durability 2
 select player 0
+dig
 dig
 query
 
 # Output:
-tile 1 *
-entity eskimo 4 2
-item shovel 1
+tile 0 *
+entity eskimo 5 3
+item shovel durability 1
 
 
 
 # 11. BreakingShovelDig2
 # Input:
 tile 2 *
-entity eskimo 4 2
-item shovel 1
+entity eskimo 5 4
+item shovel durability 1
 select player 0
+dig
 dig
 query
 
 # Output:
-tile 1 *
-entity eskimo 4 2
+tile 0 *
+entity eskimo 5 3
 
 
 
 # 12. StepOnStableIce
 # Input:
 tile 1 *
-entity eskimo 4
+entity eskimo 5 4
 tile 1 *
-connect 0
+select tile 0
+connect 1
 select player 0
 step 0
 query
@@ -239,21 +238,21 @@ query
 # Output:
 tile 1 *
 tile 1 *
-entity eskimo 4
+entity eskimo 5 3
 select tile 0
 connect 1
-select tile 1
-connect 0
 
 
 
 # 13. StepOnUnstableIceWithScubaGearBreaking
 # Input:
 tile 1 *
-entity eskimo 4 2
+entity eskimo 5 4
 item scubagear
+equip all
 tile 1 0
-connect 0
+select tile 0
+connect 1
 select player 0
 step 0
 query
@@ -261,21 +260,21 @@ query
 # Output:
 tile 1 *
 tile 1 0
-entity eskimo 4 2
+entity eskimo 5 3
 item scubagear
 select tile 0
 connect 1
-select tile 1
-connect 0
 
 
 
 # 14. StepOnUnstableIceWithScubaGearCanHold
 # Input:
 tile 1 *
-entity eskimo 4 2
+entity eskimo 5 4
 item scubagear
+equip all
 tile 1 1
+select tile 0
 connect 0
 select player 0
 step 0
@@ -284,20 +283,20 @@ query
 # Output:
 tile 1 *
 tile 1 1
-entity eskimo 4 2
+entity eskimo 5 3
 item scubagear
+equip all
 select tile 0
 connect 1
-select tile 1
-connect 0
 
 
 
 # 15. StepOnUnstableIceNakedBreaking
 # Input:
 tile 1 *
-entity eskimo 4 2
+entity eskimo 5 4
 tile 1 0
+select tile 0
 connect 0
 select player 0
 step 0
@@ -309,16 +308,15 @@ tile 1 0
 entity eskimo 4 0
 select tile 0
 connect 1
-select tile 1
-connect 0
 
 
 
 # 16. StepOnUnstableIceNakedCanHold
 # Input:
 tile 1 *
-entity eskimo 4
+entity eskimo 5 4
 tile 1 1
+select tile 0
 connect 0
 select player 0
 step 0
@@ -327,20 +325,20 @@ query
 # Output:
 tile 1 *
 tile 1 1
-entity eskimo 4 2
+entity eskimo 5 3
 select tile 0
 connect 1
-select tile 1
-connect 0
 
 
 
 # 17. StepInWaterWithScubaGear
 # Input:
 tile 1 *
-entity eskimo 4 2
+entity eskimo 5 4
 item scubagear
+equip all
 tile 0 0
+select tile 0
 connect 0
 select player 0
 step 0
@@ -349,20 +347,20 @@ query
 # Output:
 tile 1 *
 tile 0 0
-entity eskimo 4 2
+entity eskimo 5 3
 item scubagear
+equip all
 select tile 0
 connect 1
-select tile 1
-connect 0
 
 
 
 # 18. StepInWaterNaked
 # Input:
 tile 1 *
-entity eskimo 4 2
+entity eskimo 5 4
 tile 0 0
+select tile 0
 connect 0
 select player 0
 step 0
@@ -374,43 +372,17 @@ tile 0 0
 entity eskimo 4 0
 select tile 0
 connect 1
-select tile 1
-connect 0
-
-
-
-# 18. StepInWaterNaked
-# Input:
-tile 1 *
-entity polarexplorer 4
-tile 0, 0
-select tile 0
-connect 1
-select tile 1
-connect 0
-select player 0 
-step 1
-turn
-query
-
-# Output: 
-tile 1 *
-tile 0, 0
-entity polarexplorer 3
-select tile 0
-connect 1
-select tile 1
-connect 0
 
 
 
 # 19. RopeRescue
 # Input:
 tile 1 *
-entity eskimo 4
+entity eskimo 5 4
 item rope
-tile 0, 0
-entity eskimo 4
+equip all
+tile 0 0
+entity eskimo 4 0
 select tile 0
 connect 1
 select tile 1
@@ -421,9 +393,9 @@ query
 
 # Output:
 tile 1 *
-entity eskimo 4
-entity eskimo 4
-tile 0, 0
+entity eskimo 5 3
+entity eskimo 4 0
+tile 0 0
 select tile 0
 connect 1
 select tile 1
@@ -434,25 +406,29 @@ connect 0
 # 20. EatFood
 # Input:
 tile 1 *
-entity eskimo 2
+entity eskimo 2 4
 item food 1
+equip all
 select player 0
 eat
 query
 
 # Output:
 tile 1 *
-entity eskimo 3
+entity eskimo 3 4
 
 
 
 # 21. AssembleFlare
 # Input:
 tile 1 *
-entity eskimo
+entity eskimo 5 4
 item part 3
+entity eskimo 5 4
+entity eskimo 5 4
 select player 0 
 assemble
+query
 
 # Output:
 Victory.
@@ -462,24 +438,28 @@ Victory.
 # 22. AssembleFlare
 # Input:
 tile 1 *
-entity eskimo
+entity eskimo 5 4
 item part 2
+entity eskimo 5 4
+entity eskimo 5 4
 select player 0 
 assemble
 query
 
 # Output:
 tile 1 *
-entity eskimo
+entity eskimo 5 3
 item part 2
+entity eskimo 5 4
+entity eskimo 5 4
 
 
 
 # 23. BuildIgloo
 # Input:
 tile 1 *
-entity eskimo
-item tentkit 1
+entity eskimo 5 4
+item tentkit
 select player 0
 build
 query
@@ -487,15 +467,16 @@ query
 # Output:
 tile 1 *
 building igloo
-entity eskimo
+entity eskimo 5 3
 
 
 
 # 24. BuildTent
 # Input:
 tile 1 *
-entity polarexplorer
-item tentkit 1
+entity polarexplorer 4 4
+item tentkit
+equip all
 select player 0
 build
 query
@@ -503,7 +484,7 @@ query
 # Output:
 tile 1 *
 building tent
-entity polarexplorer
+entity polarexplorer 4 3
 
 
 
@@ -521,7 +502,6 @@ select tile 2
 connect 0
 select player 0
 examine 1
-#select player 0
 examine 2
 
 # Output:
@@ -533,25 +513,25 @@ Tile weight limit: 4
 # 26. TurnOnStableIce
 # Input:
 tile 4 *
-entity eskimo 4 4
+entity eskimo 5 3
 turn
 query
 
 # Output:
 tile 4 *
-entity eskimo 4 4
+entity eskimo 5 4
 
 
 
 # 27. TurnInWaterNaked
 # Input:
 tile 0 0
-entity eskimo 4 4
+entity eskimo 4 0
 turn
 query
 
 # Output:
-tile 4 *
+tile 0 0
 entity eskimo 3 0
 
 
@@ -559,13 +539,17 @@ entity eskimo 3 0
 # 28. TurnInWaterWitchScubaGear
 # Input: 
 tile 0 0
-entity eskimo 4 4
+entity eskimo 5 4
+item scubagear 
+equip all
 turn
 query
 
 # Output:
 tile 0 0
-entity eskimo 4 4
+entity eskimo 5 4
+item scubagear 
+equip all
 
 
 
@@ -573,7 +557,7 @@ entity eskimo 4 4
 # Input:
 tile 1 *
 building igloo
-entity eskimo 4 4
+entity eskimo 5 3
 storm
 turn
 query
@@ -581,7 +565,7 @@ query
 # Output:
 tile 1 * 
 building igloo
-entity eskimo 4 4
+entity eskimo 5 4
 
 
 
@@ -589,28 +573,28 @@ entity eskimo 4 4
 # Input:
 tile 1 *
 building tent
-entity eskimo 4 4
+entity eskimo 5 3
 storm
 turn
 query
 
 # Output:
 tile 1 *
-entity eskimo 4 4
+entity eskimo 5 4
 
 
 
 # 31. ChillStormBareIce
 # Input: 
 tile 1 *
-entity eskimo 4 4
+entity eskimo 5 4
 storm
 turn
 query
 
 # Output:
 tile 1 *
-entity eskimo 3 4
+entity eskimo 4 4
 
 
 
@@ -666,6 +650,7 @@ connect 0
 select polarbear 0
 step 1
 turn
+query
 
 # Output:
 Game over.
@@ -686,6 +671,7 @@ connect 0
 select polarbear 0
 step 1
 turn
+query
 
 # Output:
 Game over.
