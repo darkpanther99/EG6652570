@@ -236,7 +236,7 @@ select player 0
 step 0
 query
 
-# Output
+# Output:
 tile 1 *
 tile 1 *
 entity eskimo 4
@@ -258,7 +258,7 @@ select player 0
 step 0
 query
 
-# Output
+# Output:
 tile 1 *
 tile 1 0
 entity eskimo 4 2
@@ -281,7 +281,7 @@ select player 0
 step 0
 query
 
-# Output
+# Output:
 tile 1 *
 tile 1 1
 entity eskimo 4 2
@@ -303,7 +303,7 @@ select player 0
 step 0
 query
 
-# Output
+# Output:
 tile 1 *
 tile 1 0
 entity eskimo 4 0
@@ -324,7 +324,7 @@ select player 0
 step 0
 query
 
-# Output
+# Output:
 tile 1 *
 tile 1 1
 entity eskimo 4 2
@@ -346,7 +346,7 @@ select player 0
 step 0
 query
 
-# Output
+# Output:
 tile 1 *
 tile 0 0
 entity eskimo 4 2
@@ -368,10 +368,351 @@ select player 0
 step 0
 query
 
-# Output
+# Output:
 tile 1 *
 tile 0 0
 entity eskimo 4 0
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 18. StepInWaterNaked
+# Input:
+tile 1 *
+entity polarexplorer 4
+tile 0, 0
+select tile 0
+connect 1
+select tile 1
+connect 0
+select player 0 
+step 1
+turn
+query
+
+# Output: 
+tile 1 *
+tile 0, 0
+entity polarexplorer 3
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 19. RopeRescue
+# Input:
+tile 1 *
+entity eskimo 4
+item rope
+tile 0, 0
+entity eskimo 4
+select tile 0
+connect 1
+select tile 1
+connect 0
+select player 0
+rescue 1
+query
+
+# Output:
+tile 1 *
+entity eskimo 4
+entity eskimo 4
+tile 0, 0
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 20. EatFood
+# Input:
+tile 1 *
+entity eskimo 2
+item food 1
+select player 0
+equip 0 # nincs eat food???
+query
+
+# Output:
+tile 1 *
+entity eskimo 3
+
+
+
+# 21. AssembleFlare
+# Input:
+tile 1 *
+entity eskimo
+item part 3
+select player 0 
+assemble
+
+# Output:
+Victory.
+
+
+
+# 22. AssembleFlare
+# Input:
+tile 1 *
+entity eskimo
+item part 2
+select player 0 
+assemble
+query
+
+# Output:
+tile 1 *
+entity eskimo
+item part 2
+
+
+
+# 23. BuildIgloo
+# Input:
+tile 1 *
+entity eskimo
+item tentkit 1
+select player 0
+build
+query
+
+# Output:
+tile 1 *
+building igloo
+entity eskimo
+
+
+
+# 24. BuildTent
+# Input:
+tile 1 *
+entity polarexplorer
+item tentkit 1
+select player 0
+build
+query
+
+# Output:
+tile 1 *
+building tent
+entity polarexplorer
+
+
+
+# 25. ExamineTile
+# Input:
+tile 1 *
+entity polarexplorer 4 4
+tile 1 0
+tile 4 4
+select tile 0
+connect 1 2
+select tile 1
+connect 0
+select tile 2
+connect 0
+select player 0
+examine 1
+#select player 0
+examine 2
+
+# Output:
+Tile weight limit: 0
+Tile weight limit: 4
+
+
+
+# 26. TurnOnStableIce
+# Input:
+tile 4 *
+entity eskimo 4 4
+turn
+query
+
+# Output:
+tile 4 *
+entity eskimo 4 4
+
+
+
+# 27. TurnInWaterNaked
+# Input:
+tile 0 0
+entity eskimo 4 4
+turn
+query
+
+# Output:
+tile 4 *
+entity eskimo 3 0
+
+
+
+# 28. TurnInWaterWitchScubaGear
+# Input: 
+tile 0 0
+entity eskimo 4 4
+turn
+query
+
+# Output:
+tile 0 0
+entity eskimo 4 4
+
+
+
+# 29. ChillStormIgloo
+# Input:
+tile 1 *
+building igloo
+entity eskimo 4 4
+storm
+turn
+query
+
+# Output:
+tile 1 * 
+building igloo
+entity eskimo 4 4
+
+
+
+# 30. ChillStormTent
+# Input:
+tile 1 *
+building tent
+entity eskimo 4 4
+storm
+turn
+query
+
+# Output:
+tile 1 *
+entity eskimo 4 4
+
+
+
+# 31. ChillStormBareIce
+# Input: 
+tile 1 *
+entity eskimo 4 4
+storm
+turn
+query
+
+# Output:
+tile 1 *
+entity eskimo 3 4
+
+
+
+# 32. TentBreaking
+# Input: 
+tile 1 *
+building tent
+turn
+query
+
+# Output:
+tile 1 *
+
+
+
+# 33. PolarBearMoving
+# Input:
+tile 1 *
+entity polarbear
+tile 1 *
+select tile 0
+connect 1
+select tile 1
+connect 0
+select polarbear 0
+step 1
+turn
+query
+
+
+
+# Output:
+tile 1 *
+tile 1 *
+entity polarbear
+select tile 0
+connect 1
+select tile 1
+connect 0
+
+
+
+# 34. PolarBearAttack
+# Input:
+tile 1 *
+entity eskimo
+tile 1 *
+entity polarbear
+select tile 0
+connect 1
+select tile 1
+connect 0
+select polarbear 0
+step 1
+turn
+
+# Output:
+Game over.
+
+
+
+# 35. PolarBearAttackTent
+# Input:
+tile 1 *
+building tent
+entity eskimo
+tile 1 *
+entity polarbear
+select tile 0
+connect 1
+select tile 1
+connect 0
+select polarbear 0
+step 1
+turn
+
+# Output:
+Game over.
+
+
+
+# 36. PolarBearAttackIgloo
+# Input:
+tile 1 *
+building igloo
+entity eskimo
+tile 1 *
+entity polarbear
+sleect tile 0
+connect 1 
+select tile 1
+connect 0
+select polarbear 0
+step 1
+turn
+query
+
+# Output:
+tile 1 *
+building igloo
+entity eskimo
+entity polarbear
 select tile 0
 connect 1
 select tile 1
