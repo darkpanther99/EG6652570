@@ -704,6 +704,8 @@ connect 1
 select tile 1
 connect 0
 
+
+
 # 37. LargeTestBearAttack
 # Input:
 tile 1 2
@@ -763,8 +765,11 @@ select polarbear
 step 4
 turn
 query
+
 # Output:
 Game over.
+
+
 
 # 38. LargeTestStepOnUnstableIceNaked
 # Input:
@@ -867,6 +872,8 @@ select tile 11
 connect 12 9 8 10
 select tile 12
 connect 6 5 9 11
+
+
 
 # 39. LargeTestBuildIgloo
 # Input:
