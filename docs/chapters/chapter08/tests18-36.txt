@@ -1,0 +1,389 @@
+# 18. StepInWaterNaked
+    # init
+    tile 1 *
+    entity polarexplorer 4
+    tile 0, 0
+    select tile 0
+    connect 1
+    select tile 1
+    connect 0
+    
+    # test:
+    select player 0 
+    step 1         
+    
+    # output: 
+    
+    tile 1 *
+    tile 0, 0
+    entity polarexplorer 3
+    
+    select tile 0
+    connect 1
+    select tile 1
+    connect 0
+    
+# 19. RopeRescue
+    #init 
+    tile 1 *
+    entity eskimo 4
+    item rope
+    
+    tile 0, 0
+    entity eskimo 4
+    
+    select tile 0
+    connect 1
+    select tile 1
+    connect 0
+    
+    #test
+    select player 0
+    rescue 1
+    
+    #output
+    tile 1 *
+    entity eskimo 4
+    entity eskimo 4
+    
+    tile 0, 0
+    
+    select tile 0
+    connect 1
+    select tile 1
+    connect 0
+    
+    
+#20. EatFood.
+
+    #init 
+    
+    tile 1 *
+    entity eskimo 2
+    item food 1
+    
+    #test
+    select player 0
+    equip 0 # nincs eat food???
+        
+    #output
+    tile 1 *
+    entity eskimo 3
+    
+#21. AssembleFlare
+
+    #init
+    tile 1 *
+    entity eskimo
+    item part 3
+    
+    #test
+        select player 0 
+        assemble
+        
+    #output
+    "Game victory.\n".
+    
+    tile 1 *
+    entity eskimo
+    
+#22. AssembleFlareFail
+    
+    #init
+    tile 1 *
+    entity eskimo
+    item part 2
+    
+    #test
+        select player 0 
+        assemble
+        
+    #output
+    tile 1 *
+    entity eskimo
+    item part 2
+    
+#23. BuildIgloo
+    
+    #init
+    tile 1 *
+    entity eskimo
+    item tentkit 1
+    
+    #test
+    select player 0
+    build
+    
+    #output
+    tile 1 *
+    building igloo
+    entity eskimo
+    
+24. BuildTent
+
+    #init
+    tile 1 *
+    entity polarexplorer
+    item tentkit 1
+    
+    #test
+    select player 0
+    build
+    
+    #output
+    tile 1 *
+    building tent
+    entity polarexplorer
+    
+25. ExamineTile
+
+    #init
+    tile 1 *
+    entity polarexplorer 4 4
+    tile 1 0
+    tile 4 4
+    
+    select tile 0
+    connect 1 2
+    select tile 1
+    connect 0
+    select tile 2
+    connect 0
+    
+    #test
+    
+    select player 0
+    examine 1
+    #select player 0
+    examine 2
+    
+    #output:
+    
+    # ezek mikor jonnek? map_def elott, utan, kozben?
+    "Tile weight limit: 0\n"
+    "Tile weight limit: 4\n"
+    tile 1 *
+    entity polarexplorer 4
+    tile 1 0
+    tile 4 4
+    
+    select tile 0
+    connect 1 2
+    select tile 1
+    connect 0
+    select tile 2
+    connect 0
+    
+#26. TurnOnStableIce
+    
+    # init
+    tile 4 *
+    entity eskimo 4 4
+    
+    # test
+    # ... player actions, eltelik egy kor:
+    turn
+    
+    #output
+    tile 4 *
+    entity eskimo 4 4
+    
+#27. TurnInWaterNaked
+    #init
+    tile 0 0
+    entity eskimo 4 4
+    
+    #test
+    turn
+    
+    #output
+    tile 4 *
+    entity eskimo 3 0 #hp--, energy=0
+    
+#28. TurnInWaterWitchScubaGear
+    #init 
+    tile 0 0
+    entity eskimo 4 4
+    
+    #test
+    turn
+    
+    #output
+    tile 0 0
+    entity eskimo 4 4
+    
+#29. ChillStormIgloo
+    #init
+    tile 1 *
+    building igloo
+    entity eskimo 4 4
+    
+    #test 
+    storm
+    turn
+    
+    #output
+    tile 1 * 
+    building igloo
+    entity eskimo 4 4
+    
+#30. ChillStormTent
+
+    #init
+    tile 1 *
+    building tent
+    entity eskimo 4 4
+    
+    #test
+    storm
+    turn
+    
+    #output
+    tile 1 *
+    entity eskimo 4 4
+    
+#31. ChillStormBareIce
+
+    #init 
+    tile 1 *
+    entity eskimo 4 4
+    
+    #test
+    storm
+    turn
+    
+    #output
+    tile 1 *
+    entity eskimo 3 4
+    
+#32 TentBreaking
+
+    #init 
+    tile 1 *
+    building tent
+    
+    #test
+    turn
+    
+    #output
+    tile 1 *
+    
+#33 PolarBearMoving
+
+    #init
+    tile 1 *
+    entity polarbear
+    tile 1 *
+    
+    select tile 0
+    connect 1
+    select tile 1
+    connect 0
+    
+    #test
+    select polarbear 0
+    step 1
+    turn
+    
+    #output
+    tile 1 *
+    tile 1 *
+    entity polarbear
+    
+    select tile 0
+    connect 1
+    select tile 1
+    connect 0
+    
+#34 PolarBearAttack
+    #init
+    tile 1 *
+    entity eskimo
+    tile 1 *
+    entity polarbear
+    
+    select tile 0
+    connect 1
+    select tile 1
+    connect 0
+    
+    #test
+    select polarbear 0
+    step 1
+    turn
+    
+    #output
+    
+    "Game over.\n"
+    
+    tile t * 
+    entity eskimo
+    entity polarbear
+    tile 1 *
+    
+    select tile 0
+    connect 1
+    select tile 1
+    connect 0
+    
+#35 PolarBearAttackTent
+    #init
+    tile 1 *
+    building tent
+    entity eskimo
+    tile 1 *
+    entity polarbear
+    
+    select tile 0
+    connect 1
+    select tile 1
+    connect 0
+    
+    #test
+    select polarbear 0
+    step 1
+    turn
+    
+    #output:
+    
+    "Game over.\n"
+    
+    tile 1 *
+    building tent
+    entity eskimo
+    entity polarbear
+    
+    select tile 0
+    connect 1
+    select tile 1
+    connect 0
+    
+#36 PolarBearAttackIgloo
+    #init
+    tile 1 *
+    building igloo
+    entity eskimo
+    tile 1 *
+    entity polarbear
+    
+    sleect tile 0
+    connect 1 
+    select tile 1
+    connect 0
+    
+    #test select polarbear 0
+    step 1
+    turn
+    
+    #output
+    
+    tile 1 *
+    building igloo
+    entity eskimo
+    entity polarbear
+    
+    select tile 0
+    connect 1
+    select tile 1
+    connect 0
+    
