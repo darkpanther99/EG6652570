@@ -490,23 +490,39 @@
 	\item Cella, ilyenekből áll a jégmező ahol a játékosok játszanak.
 	\item Attribútumok:
 	\begin{itemize}
-		\item chillStormStrategy: ChillStormStrategy: Eldönti, kinek változik a testhője vihar esetén.
-		\item chillWaterStrategy: ChillWaterStrategy: Eldönti, kinek változik a testhője víz esetén.
-		\item item: Item: Ezt a tárgyat lehet kiásni belőle.
-		\item neighborTiles: Tile[*]: Szomszédos cellákat ismer.
-		\item occupants: Entity[*]: Rajta lévő entitások.
-		\item snow: int: Rajta lévő hómennyiség.
-		\item weightLimit: int: Rajta lévő játékosok számának maximuma.		
+		\item - chillStormStrategy: ChillStormStrategy: Eldönti, kinek változik a testhője vihar esetén.
+		\item - chillWaterStrategy: ChillWaterStrategy: Eldönti, kinek változik a testhője víz esetén.
+		\item - item: Item: Ezt a tárgyat lehet kiásni belőle.
+		\item - neighborTiles: Tile[*]: Szomszédos cellákat ismer.
+		\item - occupants: Entity[*]: Rajta lévő entitások.
+		\item - snow: int: Rajta lévő hómennyiség.
+		\item - weightLimit: int: Rajta lévő játékosok számának maximuma.		
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void ChillStorm(): Ezt a metódust a Controller hívja viharban. Hűti a játékosokat, ha nincsenek igluban vagy sátorban.
-		\item void ChillWater(): Ezt a metódust a Controller hívja körönként. Hűti a játékosokat, ha ez a cella víz.
-		\item void DecrementSnow(): A hómennyiséget csökkentő helper függvény.
-		\item Item TakeItem(): A játékos megkapja a tartalmazott tárgyat.
-		\item Tile NeighborAt(direction): Visszaadja az adott irányban szomszédos cellát.
-		\item StepOn(Player): Játékos rálép a cellára, ha többen vannak mint a korlát, a jégtábla átfordul. A függvény futása során beállítja a megfelelő adattagokat az új értékekre.
-		\item StepOff(Player): Játékos lelép a celláról. A függvény futása során beállítja a megfelelő adattagokat az új értékekre.
+		\item - void Add(Entity): Hozzáad egy entitást a táblához.
+		\item + void BreakShelter(): Ez a metódus eltávolítja a sátrat a tábláról.
+		\item + void BearAttack(): Ezt a metódust a Controller hívja 
+		\item + void ChillStorm(): Ezt a metódust a Controller hívja viharban. Hűti a játékosokat, ha nincsenek igluban vagy sátorban.
+		\item + void ChillWater(): Ezt a metódust a Controller hívja körönként. Hűti a játékosokat, ha ez a cella víz.
+		\item + void DecrementSnow(): A hómennyiséget csökkentő helper függvény.
+		\item - void Remove(Entity): Eltávolítja a rajta álló entitást.
+		\item + Item TakeItem(): A játékos megkapja a tartalmazott tárgyat.
+		\begin{lstlisting}
+		if( Tile has item on it)
+			Remove item from the tile
+			return the item
+		\end{lstlisting}
+		\item + Tile NeighborAt(direction): Visszaadja az adott irányban szomszédos cellát.
+		\item + StepOn(Entity): Játékos rálép a cellára, ha többen vannak mint a korlát, a jégtábla átfordul. A függvény futása során beállítja a megfelelő adattagokat az új értékekre.
+		\begin{lstlisting}
+		Add palyer to the tile
+		if ( weight limit is exceeded ) {
+			Set tile to sea
+			Chill the occupying players on the tile
+		}
+		\end{lstlisting}
+		\item + StepOff(Entity): Játékos lelép a celláról. A függvény futása során beállítja a megfelelő adattagokat az új értékekre.
 	\end{itemize}
 \end{itemize}
 
