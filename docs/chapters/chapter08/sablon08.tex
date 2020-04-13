@@ -210,21 +210,33 @@
 		\item players: Player[3..*]: Tárolja a játékosokat.
 		\item icefield: Tile[1..*]: Tárolja a pályát alkotó elemeket.
 		\item bears: PolarBear[*]: Tárolja a medvé(ke)t, ha több van akkor is.
+		\item subscribers: GameObserver[*]:  Őket értesíti a játék eseményekről.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
 		\item void AddTile(t: Tile): Hozzáad egy cellát a játékhoz.
 		\item void AddPlayer(pl: Player): Hozzáad egy játékost a játékhoz.
-		\item Tile CreateIce(): Létrehoz egy jégtáblát. Ez a metódus az init szekvencia része.
-		\item Tile CreateUnstableIce(): Létrehoz egy instabil jégtáblát. Ez a metódus az init szekvencia része.
-		\item Tile CreateSea(): Létrehoz egy vizet. Ez a metódus az init szekvencia része.
-		\item Tile CreateHole(): Létrehoz egy lyukat: olyan vizet amit hó fed. Ez a metódus az init szekvencia része.
-		\item Player CreateEskimo(): Létrehoz egy eszkimó játékost. Ez a metódus az init szekvencia része.
-		\item PolarBear CreatePolarBear(): Létrehoz egy medvét. Ez a metódus az init szekvencia része.
-		\item Player CreatePolarExplorer(): Létrehoz egy sarkkutató játékost. Ez a metódus az init szekvencia része.
-		\item void GameOver(): Ha vége a játéknak, szól a Controllernek, hogy vesztettünk. Külső metódus.
+		\item Tile CreateTile(int: snow, int: weightLimit): Létrehoz egy cellát. 
+		\item Player CreateEskimo(): Létrehoz egy eszkimó játékost.
+		\item PolarBear CreatePolarBear(): Létrehoz egy medvét.
+		\item Player CreatePolarExplorer(): Létrehoz egy sarkkutató játékost.
+		\item void Explore(Tile): Szól a feliratkozóknak, hogy egy sarkkutató felderített egy cellát.
+		\item void GameOver(): Ha vége a játéknak, szól a feliratkozóknak, hogy vesztettünk.
+		\item void Subsribe(GameObserver): Belerakja a kollekcióba.
 		\item void Turn(): Ezt a metódust a Controller hívja körönként, a körök vezénylésére szolgál. 
-		\item void Victory(): Ha vége a játéknak, szól a Controllernek, hogy nyertünk. Külső metódus.
+		\item void Victory(): Ha vége a játéknak, szól a feliratkozóknak, hogy nyertünk.
+		\item void Unsubscribe(GameObserver): Eltávolítja a kollekcióból.
+	\end{itemize}
+\end{itemize}
+
+\subsection{GameObserver}
+\begin{itemize}
+	\item Figyeli a játék eseményeket.
+	\item Metódusok:
+	\begin{itemize}
+		\item void GameOver(): Vereség esemény.
+		\item void Victory(): Győzelem esemény.
+		\item void Explore(Tile t): Sarkkutató felderít esemény.
 	\end{itemize}
 \end{itemize}
 
@@ -350,7 +362,7 @@
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item int Examine(direction: int): A játékos megnézheti, hogy egy adott irányban lévő Tile-nak mennyi a teherbírása.
+		\item void Examine(direction: int): A játékos megnézheti, hogy egy adott irányban lévő Tile-nak mennyi a teherbírása. A Game.Explore metódust hívja.
 	\end{itemize}
 \end{itemize}
 
