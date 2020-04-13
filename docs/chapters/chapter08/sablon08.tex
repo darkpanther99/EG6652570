@@ -668,10 +668,17 @@
 	\begin{itemize}
 		\item - void Add(Entity): Hozzáad egy entitást a táblához.
 		\item + void BreakShelter(): Ez a metódus eltávolítja a sátrat a tábláról.
+		\begin{lstlisting}
+		remove ChillStormStrategy object
+		\end{lstlisting}
 		\item + void BearAttack(): Ezt a metódust a Controller hívja 
 		\item + void ChillStorm(): Ezt a metódust a Controller hívja viharban. Hűti a játékosokat, ha nincsenek igluban vagy sátorban.
 		\item + void ChillWater(): Ezt a metódust a Controller hívja körönként. Hűti a játékosokat, ha ez a cella víz.
 		\item + void DecrementSnow(): A hómennyiséget csökkentő helper függvény.
+		\begin{lstlisting}
+		if ( snow > 0 )
+			decrement snow
+		\end{lstlisting}
 		\item - void Remove(Entity): Eltávolítja a rajta álló entitást.
 		\item + Item TakeItem(): A játékos megkapja a tartalmazott tárgyat.
 		\begin{lstlisting}
@@ -680,6 +687,9 @@
 			return the item
 		\end{lstlisting}
 		\item + Tile NeighborAt(direction): Visszaadja az adott irányban szomszédos cellát.
+		\begin{lstlisting}
+		return neighbour tile at direction
+		\end{lstlisting}
 		\item + StepOn(Entity): Játékos rálép a cellára, ha többen vannak mint a korlát, a jégtábla átfordul. A függvény futása során beállítja a megfelelő adattagokat az új értékekre.
 		\begin{lstlisting}
 		Add palyer to the tile
@@ -689,6 +699,10 @@
 		}
 		\end{lstlisting}
 		\item + StepOff(Entity): Játékos lelép a celláról. A függvény futása során beállítja a megfelelő adattagokat az új értékekre.
+		\begin{lstlisting}
+		if ( player is on the tile )
+			remove player
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
