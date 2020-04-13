@@ -1,6 +1,17 @@
 % Szglab4
 % ===========================================================================
 %
+
+\newcommand{\Fn}[3]{
+
+	\SetKwFunction{FMain}{#1}
+	\SetKwProg{Fn}{Function}{:}{}
+	\Fn{\FMain{#2}}{
+		#3
+	}
+	
+	
+}
 \chapter{Részletes tervek}
 
 \thispagestyle{fancy}
@@ -277,13 +288,57 @@
 		\item - void AddPlayer(pl: Player): Hozzáad egy játékost a játékhoz.
 		\item + Tile CreateTile(int: snow, int: weightLimit): Létrehoz egy cellát. 
 		\item + Player CreateEskimo(): Létrehoz egy eszkimó játékost.
+		\begin{lstlisting}
+create default (naked, no items) e : Eskimo;
+add e to entities;
+return e;
+		\end{lstlisting}
 		\item + PolarBear CreatePolarBear(): Létrehoz egy medvét.
+		\begin{lstlisting}
+create b : PolarBear;
+add b to entities;
+return b;
+		\end{lstlisting}		
 		\item + Player CreatePolarExplorer(): Létrehoz egy sarkkutató játékost.
+		\begin{lstlisting}
+create default (naked, no items) p : PolarExplorer;
+add p to entities;
+return p;		
+		\end{lstlisting}
 		\item + void Explore(Tile): Szól a feliratkozóknak, hogy egy sarkkutató felderített egy cellát.
 		\item + void GameOver(): Ha vége a játéknak, szól a feliratkozóknak, hogy vesztettünk.
+		\begin{lstlisting}		
+for all observer in observers
+	observer.gameOver();
+		\end{lstlisting}
 		\item + void Subsribe(GameObserver): Belerakja a kollekcióba.
 		\item + void Turn(): Ezt a metódust a Controller hívja körönként, a körök vezénylésére szolgál. 
+		\begin{lstlisting}
+for all p : player in entities {
+	p.setEnergy(4);
+}
+for all t : Tile in tiles {
+	t.Chill();
+}
+
+if time for snowstorm {
+	for all t : Tile in tiles
+		t.ChillStorm();
+}
+
+for all b: PolarBear in entities
+	b.Step();
+
+for all p : player in entities {
+	read input for p;
+	do turn for p;
+}
+		\end{lstlisting}
 		\item + void Victory(): Ha vége a játéknak, szól a feliratkozóknak, hogy nyertünk.
+		\begin{lstlisting}
+for all observer in observers
+	observer.victory();
+		\end{lstlisting}		
 		\item + void Unsubscribe(GameObserver): Eltávolítja a kollekcióból.
 	\end{itemize}
 \end{itemize}
@@ -408,17 +463,90 @@
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item + void AssembleFlare(): Összerakja a játék végéhez szükséges rakéta pisztolyt. 1 munkaegység
-		\item + void Chill(): A testhő 1-el csökken, ha 0 alá megy $\rightarrow$ GameOver.
-		\item + void DecrementEnergy(): Az energiát csökkentő helper metódus.
-		\item + void Dig(): Ezt a metódust a Controller hívja. A játékos havat ás. 1 munkaegység
-		\item + void EatFood(): Ezt a metódust a Controller hívja. A játékos eszik. A testhője megnő 1-el.
-		\item + void PickUp(): Ezt a metódust a Controller hívja. A játékos felvesz egy tárgyat. 1 munkaegység
-		\item + void Equip(inventorySlot: int): Ezt a metódust a Controller hívja. A játékos kiválaszt egy tárgyat használatra.
-		\item + void PlaceOn(Tile t): Init szekvencia része. RopeRescue szekvencia része. Rárak egy játékost egy másik Tile-ra.
-		\item + void RescueTeammate(direction: int): Ezt a metódust a Controller hívja. A játékos kiment egy másikat a vízből. 1 munkaegység
-		\item + void ResistWater(): A játékos testhője a WaterResistance szerint változik.
-		\item + void Step(direction: int): Ezt a metódust a Controller hívja. A játékos lép, ha van még hozzá elég energiája. 1 munkaegység
+		\item + void AssembleFlare(): Összerakja a játék végéhez szükséges rakéta pisztolyt. 1 munkaegység\\
+		\begin{algorithm}[H]
+			\Fn{AssembleFlare}{}{
+				\If{Every player is on the same tile \textbf{and} The players have three FlareParts} {
+					Victory
+				}
+			}
+		\end{algorithm}
+		\item + void Chill(): A testhő 1-el csökken, ha 0 alá megy $\rightarrow$ GameOver.\\
+		\begin{algorithm}[H]
+			\Fn{Chill}{}{
+				Decrements body temperature \\ 
+				\If {body temp equals to 0} {
+					The game is over
+				}
+			}
+		\end{algorithm}
+		\item + void DecrementEnergy(): Az energiát csökkentő helper metódus.\\
+\begin{algorithm}[H]
+	\Fn{decrementEnergy}{}{
+		Decrements the energy of the player
+	}
+	
+\end{algorithm}
+		\item + void Dig(): Ezt a metódust a Controller hívja. A játékos havat ás. 1 munkaegység\\
+		\begin{algorithm}[H]
+			\Fn{Dig}{}{
+				\If{Eneregy is greater than 0} {
+					Decrement energy \\
+					Dig based on the player's digStrategy
+				}
+			}
+		\end{algorithm}
+		\item + void EatFood(): Ezt a metódust a Controller hívja. A játékos eszik. A testhője megnő 1-el.\\
+		\begin{algorithm}[H]
+			\Fn{EatFood}{}{
+				Try to eat food from the FoodStore
+			}
+		\end{algorithm}
+		\item + void PickUp(): Ezt a metódust a Controller hívja. A játékos felvesz egy tárgyat. 1 munkaegység\\
+		\begin{algorithm}[H]
+			\Fn{pickUp}{}{
+				\If {Eneregy is greater than 0}{
+					Decrement energy \\
+					Move the item from the current tile to the inventory of the player
+				}	
+			}	
+		\end{algorithm}
+		\item + void Equip(inventorySlot: int): Ezt a metódust a Controller hívja. A játékos kiválaszt egy tárgyat használatra.\\
+		\begin{algorithm}[H]
+			\Fn{Equip}{int inventorySlot}{
+				Make the item in the inventorySlot-th slot active
+			}
+		\end{algorithm}
+		\item + void PlaceOn(Tile t): Init szekvencia része. RopeRescue szekvencia része. Rárak egy játékost egy másik Tile-ra.\\
+		\begin{algorithm}[H]
+			\Fn{placeOn}{Tile t}{
+				Place the player on tile t
+			}
+		\end{algorithm}
+		\item + void RescueTeammate(direction: int): Ezt a metódust a Controller hívja. A játékos kiment egy másikat a vízből. 1 munkaegység\\
+		\begin{algorithm}[H]
+			\Fn{RescueTeammate}{int d}{
+				\If{Eneregy is greater than 0} {
+					Decrement energy \\
+					Try to rescue the teammate on the neighbor tile in direction d based on the player's rescueStrategy
+				}
+			}
+		\end{algorithm}
+		\item + void ResistWater(): A játékos testhője a WaterResistance szerint változik.\\
+		\begin{algorithm}[H]
+			\Fn{ResistWater}{}{
+				Resist water based on the player's waterResistanceStrategy
+			}
+		\end{algorithm}
+		\item + void Step(direction: int): Ezt a metódust a Controller hívja. A játékos lép, ha van még hozzá elég energiája. 1 munkaegység\\
+		\begin{algorithm}[H]
+			\Fn{Step}{int direction}{
+				\If{Eneregy is greater than 0} {
+					Decrement energy \\
+					Move the player to the next tile in the given direction
+				}
+			}
+		\end{algorithm}
 		\item + void ToFoodStore(): Élelem megtalálásához helper metódus.
 	\end{itemize}
 \end{itemize}
