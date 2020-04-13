@@ -1,0 +1,10 @@
+# 08. BareHandsDig
+# Input:
+tile 2 *
+entity eskimo 5 2
+select player 0
+dig
+query
+# Output:
+tile 1 *
+entity eskimo 5 1

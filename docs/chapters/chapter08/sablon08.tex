@@ -1478,82 +1478,1261 @@ CommandParser
 	\end{itemize}
 \item Metódusok
 \begin{itemize}
-		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;}
+		\item \texttt{+parse(tokens: String[1..*] \string{seq\string}): Command;} \newline
 		Visszaad egy QueryCommandot.
 	\end{itemize}
 \end{itemize}
 
-\subsection{Osztály1}
-\begin{itemize}
-\item Felelősség\newline
-\comment{Mi az osztály felelőssége. Kb 1 bekezdés. Ha szükséges, akkor state-chart is.}
-\item Ősosztályok\newline
-\comment{Mely osztályokból származik (öröklési hierarchia)\newline
-Legősebb osztály $\rightarrow$ Ősosztály2 $\rightarrow$ Ősosztály3...}
-\item Interfészek\newline
-\comment{Mely interfészeket valósítja meg.}
-\item Attribútumok\newline
-\comment{Milyen attribútumai vannak}
-	\begin{itemize}
-		\item attribútum1: attribútum jellemzése: mire való, láthatósága (UML jelöléssel), típusa
-		\item attribútum2: attribútum jellemzése: mire való, láthatósága (UML jelöléssel), típusa
-	\end{itemize}
-\item Metódusok\newline
-\comment{Milyen publikus, protected és privát  metódusokkal rendelkezik. Metódusonként precíz leírás, ha szükséges, activity diagram is  a metódusban megvalósítandó algoritmusról.}
-	\begin{itemize}
-		\item int foo(Osztály3 o1, Osztály4 o2): metódus leírása, láthatósága (UML jelöléssel)
-		\item int bar(Osztály5 o1): metódus leírása, láthatósága (UML jelöléssel)
-	\end{itemize}
-\end{itemize}
+%\subsection{Osztály1}
+%\begin{itemize}
+%\item Felelősség\newline
+%\comment{Mi az osztály felelőssége. Kb 1 bekezdés. Ha szükséges, akkor state-chart is.}
+%\item Ősosztályok\newline
+%\comment{Mely osztályokból származik (öröklési hierarchia)\newline
+%Legősebb osztály $\rightarrow$ Ősosztály2 $\rightarrow$ Ősosztály3...}
+%\item Interfészek\newline
+%\comment{Mely interfészeket valósítja meg.}
+%\item Attribútumok\newline
+%\comment{Milyen attribútumai vannak}
+%	\begin{itemize}
+%		\item attribútum1: attribútum jellemzése: mire való, láthatósága (UML jelöléssel), típusa
+%		\item attribútum2: attribútum jellemzése: mire való, láthatósága (UML jelöléssel), típusa
+%	\end{itemize}
+%\item Metódusok\newline
+%\comment{Milyen publikus, protected és privát  metódusokkal rendelkezik. Metódusonként precíz leírás, ha szükséges, activity diagram is  a metódusban megvalósítandó algoritmusról.}
+%	\begin{itemize}
+%		\item int foo(Osztály3 o1, Osztály4 o2): metódus leírása, láthatósága (UML jelöléssel)
+%		\item int bar(Osztály5 o1): metódus leírása, láthatósága (UML jelöléssel)
+%	\end{itemize}
+%\end{itemize}
 
-\subsection{Osztály2}
-\begin{itemize}
-\item Felelősség\newline
-\comment{Mi az osztály felelőssége. Kb 1 bekezdés. Ha szükséges, akkor state-chart is.}
-\item Ősosztályok\newline
-\comment{Mely osztályokból származik (öröklési hierarchia)\newline
-Legősebb osztály $\rightarrow$ Ősosztály2 $\rightarrow$ Ősosztály3...}
-\item Interfészek\newline
-\comment{Mely interfészeket valósítja meg.}
-\item Attribútumok\newline
-\comment{Milyen attribútumai vannak}
-	\begin{itemize}
-		\item attribútum1: attribútum jellemzése: mire való, láthatósága (UML jelöléssel), típusa
-		\item attribútum2: attribútum jellemzése: mire való, láthatósága (UML jelöléssel), típusa
-	\end{itemize}
-\item Metódusok\newline
-\comment{Milyen publikus, protected és privát  metódusokkal rendelkezik. Metódusonként precíz leírás, ha szükséges, activity diagram is  a metódusban megvalósítandó algoritmusról.}
-	\begin{itemize}
-		\item int foo(Osztály3 o1, Osztály4 o2): metódus leírása, láthatósága (UML jelöléssel)
-		\item int bar(Osztály5 o1): metódus leírása, láthatósága (UML jelöléssel)
-	\end{itemize}
-\end{itemize}
+%\subsection{Osztály2}
+%\begin{itemize}
+%\item Felelősség\newline
+%\comment{Mi az osztály felelőssége. Kb 1 bekezdés. Ha szükséges, akkor state-chart is.}
+%\item Ősosztályok\newline
+%\comment{Mely osztályokból származik (öröklési hierarchia)\newline
+%Legősebb osztály $\rightarrow$ Ősosztály2 $\rightarrow$ Ősosztály3...}
+%\item Interfészek\newline
+%\comment{Mely interfészeket valósítja meg.}
+%\item Attribútumok\newline
+%\comment{Milyen attribútumai vannak}
+%	\begin{itemize}
+%		\item attribútum1: attribútum jellemzése: mire való, láthatósága (UML jelöléssel), típusa
+%		\item attribútum2: attribútum jellemzése: mire való, láthatósága (UML jelöléssel), típusa
+%	\end{itemize}
+%\item Metódusok\newline
+%\comment{Milyen publikus, protected és privát  metódusokkal rendelkezik. Metódusonként precíz leírás, ha szükséges, activity diagram is  a metódusban megvalósítandó algoritmusról.}
+%	\begin{itemize}
+%		\item int foo(Osztály3 o1, Osztály4 o2): metódus leírása, láthatósága (UML jelöléssel)
+%		\item int bar(Osztály5 o1): metódus leírása, láthatósága (UML jelöléssel)
+%	\end{itemize}
+%\end{itemize}
 
 \section{A tesztek részletes tervei, leírásuk a teszt nyelvén}
-[A tesztek részletes tervei alatt meg kell adni azokat a bemeneti adatsorozatokat, amelyekkel a program működése ellenőrizhető. Minden bemenő adatsorozathoz definiálni kell, hogy az adatsorozat végrehajtásától a program mely részeinek, funkcióinak ellenőrzését várjuk és konkrétan milyen eredményekre számítunk, ezek az eredmények hogyan vethetők össze a bemenetekkel.]
+%[A tesztek részletes tervei alatt meg kell adni azokat a bemeneti adatsorozatokat, amelyekkel a program működése ellenőrizhető. Minden bemenő adatsorozathoz definiálni kell, hogy az adatsorozat végrehajtásától a program mely részeinek, funkcióinak ellenőrzését várjuk és konkrétan milyen eredményekre számítunk, ezek az eredmények hogyan vethetők össze a bemenetekkel.]
 
-\subsection{Teszteset1}
+\subsection{PickUpFood}
 \begin{itemize}
 \item Leírás\newline
-\comment{szöveges leírás, kb. 1-5 mondat.}
 \item Ellenőrzött funkcionalitás, várható hibahelyek
-\item Bemenet\newline
-\comment{a proto bemeneti nyelvén megadva (lásd előző anyag)}
-\item Elvárt kimenet\newline
-\comment{a proto kimeneti nyelvén megadva (lásd előző anyag)}
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+tile 0 *
+item food
+select tile 0
+connect 1
+select player 0
+step 0
+pickup
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+tile 0 *
+entity eskimo 5 2
+item food
+select tile 0
+connect 1
+\end{lstlisting}
 \end{itemize}
 
-\subsection{Teszteset2}
+\subsection{PickUpPart}
 \begin{itemize}
 \item Leírás\newline
-\comment{szöveges leírás, kb. 1-5 mondat.}
 \item Ellenőrzött funkcionalitás, várható hibahelyek
-\item Bemenet\newline
-\comment{a proto bemeneti nyelvén megadva (lásd előző anyag)}
-\item Elvárt kimenet\newline
-\comment{a proto kimeneti nyelvén megadva (lásd előző anyag)}
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+tile 0 *
+item part
+select tile 0
+connect 1
+select player 0
+step 0
+pickup
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+tile 0 *
+entity eskimo 5 2
+item part
+select tile 0
+connect 1
+\end{lstlisting}
 \end{itemize}
+
+\subsection{PickUpShovel}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+tile 0 *
+item shovel
+select tile 0
+connect 1
+select player 0
+step 0
+pickup
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+tile 0 *
+entity eskimo 5 2
+item shovel
+select tile 0
+connect 1
+\end{lstlisting}
+\end{itemize}
+
+\subsection{PickUpBreakableShovel}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+tile 0 *
+item shovel durability 2
+select tile 0
+connect 1
+select player 0
+step 0
+pickup
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+tile 0 *
+entity eskimo 5 2
+item shovel durability 2
+select tile 0
+connect 1
+\end{lstlisting}
+\end{itemize}
+
+\subsection{PickUpRope}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+tile 0 *
+item rope
+select tile 0
+connect 1
+select player 0
+step 0
+pickup
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+tile 0 *
+entity eskimo 5 2
+item rope
+select tile 0
+connect 1
+\end{lstlisting}
+\end{itemize}
+
+\subsection{PickUpScubaGear}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+tile 0 *
+item scubagear
+select tile 0
+connect 1
+select player 0
+step 0
+pickup
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+tile 0 *
+entity eskimo 5 2
+item scubagear
+select tile 0
+connect 1
+\end{lstlisting}
+\end{itemize}
+
+\subsection{PickUpTent}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+tile 0 *
+item tentkit
+select tile 0
+connect 1
+select player 0
+step 0
+pickup
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+tile 0 *
+entity eskimo 5 2
+item tentkit
+select tile 0
+connect 1
+\end{lstlisting}
+\end{itemize}
+
+\subsection{BareHandsDig}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 2 *
+entity eskimo 5 2
+select player 0
+dig
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 1
+\end{lstlisting}
+\end{itemize}
+
+\subsection{ShovelDig}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 2 *
+entity eskimo 5 4
+item shovel
+equip all
+select player 0
+dig
+dig
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 0 *
+entity eskimo 5 3
+item shovel
+equip all
+\end{lstlisting}
+\end{itemize}
+
+\subsection{BreakingShovelDig}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 2 *
+entity eskimo 5 4
+item shovel durability 2
+select player 0
+dig
+dig
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 0 *
+entity eskimo 5 3
+item shovel durability 1
+\end{lstlisting}
+\end{itemize}
+
+\subsection{BreakingShovelDig2}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 2 *
+entity eskimo 5 4
+item shovel durability 1
+select player 0
+dig
+dig
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 0 *
+entity eskimo 5 3
+\end{lstlisting}
+\end{itemize}
+
+\subsection{StepOnStableIce}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+tile 1 *
+select tile 0
+connect 1
+select player 0
+step 0
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+tile 1 *
+entity eskimo 5 3
+select tile 0
+connect 1
+\end{lstlisting}
+\end{itemize}
+
+\subsection{StepOnUnstableIceWithScubaGearBreaking}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+item scubagear
+equip all
+tile 1 0
+select tile 0
+connect 1
+select player 0
+step 0
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+tile 1 0
+entity eskimo 5 3
+item scubagear
+select tile 0
+connect 1
+\end{lstlisting}
+\end{itemize}
+
+\subsection{StepOnUnstableIceWithScubaGearCanHold}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+item scubagear
+equip all
+tile 1 1
+select tile 0
+connect 0
+select player 0
+step 0
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+tile 1 1
+entity eskimo 5 3
+item scubagear
+equip all
+select tile 0
+connect 1
+\end{lstlisting}
+\end{itemize}
+
+\subsection{StepOnUnstableIceNakedBreaking}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+tile 1 0
+select tile 0
+connect 0
+select player 0
+step 0
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+tile 1 0
+entity eskimo 4 0
+select tile 0
+connect 1
+\end{lstlisting}
+\end{itemize}
+
+\subsection{StepOnUnstableIceNakedCanHold}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+tile 1 1
+select tile 0
+connect 0
+select player 0
+step 0
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+tile 1 1
+entity eskimo 5 3
+select tile 0
+connect 1
+\end{lstlisting}
+\end{itemize}
+
+\subsection{StepInWaterWithScubaGear}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+item scubagear
+equip all
+tile 0 0
+select tile 0
+connect 0
+select player 0
+step 0
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+tile 0 0
+entity eskimo 5 3
+item scubagear
+equip all
+select tile 0
+connect 1
+\end{lstlisting}
+\end{itemize}
+
+\subsection{StepInWaterNaked}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+tile 0 0
+select tile 0
+connect 0
+select player 0
+step 0
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+tile 0 0
+entity eskimo 4 0
+select tile 0
+connect 1
+\end{lstlisting}
+\end{itemize}
+
+\subsection{RopeRescue}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+item rope
+equip all
+tile 0 0
+entity eskimo 4 0
+select tile 0
+connect 1
+select tile 1
+connect 0
+select player 0
+rescue 1
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 3
+entity eskimo 4 0
+tile 0 0
+select tile 0
+connect 1
+select tile 1
+connect 0
+\end{lstlisting}
+\end{itemize}
+
+\subsection{EatFood}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 2 4
+item food 1
+equip all
+select player 0
+eat
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 3 4
+\end{lstlisting}
+\end{itemize}
+
+\subsection{AssembleFlare}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+item part 3
+entity eskimo 5 4
+entity eskimo 5 4
+select player 0
+assemble
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+Victory.
+\end{lstlisting}
+\end{itemize}
+
+\subsection{AssembleFlare}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+item part 2
+entity eskimo 5 4
+entity eskimo 5 4
+select player 0
+assemble
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 3
+item part 2
+entity eskimo 5 4
+entity eskimo 5 4
+\end{lstlisting}
+\end{itemize}
+
+\subsection{BuildIgloo}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+item tentkit
+select player 0
+build
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+building igloo
+entity eskimo 5 3
+\end{lstlisting}
+\end{itemize}
+
+\subsection{BuildTent}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity polarexplorer 4 4
+item tentkit
+equip all
+select player 0
+build
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+building tent
+entity polarexplorer 4 3
+\end{lstlisting}
+\end{itemize}
+
+\subsection{ExamineTile}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity polarexplorer 4 4
+tile 1 0
+tile 4 4
+select tile 0
+connect 1 2
+select tile 1
+connect 0
+select tile 2
+connect 0
+select player 0
+examine 1
+examine 2
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+Tile weight limit: 0
+Tile weight limit: 4
+\end{lstlisting}
+\end{itemize}
+
+\subsection{TurnOnStableIce}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 4 *
+entity eskimo 5 3
+turn
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 4 *
+entity eskimo 5 4
+\end{lstlisting}
+\end{itemize}
+
+\subsection{TurnInWaterNaked}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 0 0
+entity eskimo 4 0
+turn
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 0 0
+entity eskimo 3 0
+\end{lstlisting}
+\end{itemize}
+
+\subsection{TurnInWaterWitchScubaGear}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 0 0
+entity eskimo 5 4
+item scubagear
+equip all
+turn
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 0 0
+entity eskimo 5 4
+item scubagear
+equip all
+\end{lstlisting}
+\end{itemize}
+
+\subsection{ChillStormIgloo}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+building igloo
+entity eskimo 5 3
+storm
+turn
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+building igloo
+entity eskimo 5 4
+\end{lstlisting}
+\end{itemize}
+
+\subsection{ChillStormTent}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+building tent
+entity eskimo 5 3
+storm
+turn
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+\end{lstlisting}
+\end{itemize}
+
+\subsection{ChillStormBareIce}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 5 4
+storm
+turn
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo 4 4
+\end{lstlisting}
+\end{itemize}
+
+\subsection{TentBreaking}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+building tent
+turn
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+\end{lstlisting}
+\end{itemize}
+
+\subsection{PolarBearMoving}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity polarbear
+tile 1 *
+select tile 0
+connect 1
+select tile 1
+connect 0
+select polarbear 0
+step 1
+turn
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+tile 1 *
+entity polarbear
+select tile 0
+connect 1
+select tile 1
+connect 0
+\end{lstlisting}
+\end{itemize}
+
+\subsection{PolarBearAttack}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+entity eskimo
+tile 1 *
+entity polarbear
+select tile 0
+connect 1
+select tile 1
+connect 0
+select polarbear 0
+step 1
+turn
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+Game over.
+\end{lstlisting}
+\end{itemize}
+
+\subsection{PolarBearAttackTent}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+building tent
+entity eskimo
+tile 1 *
+entity polarbear
+select tile 0
+connect 1
+select tile 1
+connect 0
+select polarbear 0
+step 1
+turn
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+Game over.
+\end{lstlisting}
+\end{itemize}
+
+\subsection{PolarBearAttackIgloo}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 *
+building igloo
+entity eskimo
+tile 1 *
+entity polarbear
+sleect tile 0
+connect 1
+select tile 1
+connect 0
+select polarbear 0
+step 1
+turn
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 *
+building igloo
+entity eskimo
+entity polarbear
+select tile 0
+connect 1
+select tile 1
+connect 0
+\end{lstlisting}
+\end{itemize}
+
+\subsection{LargeTestBearAttack}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 2
+item part
+tile 1 *
+entitiy polarbear
+tile 0 0
+tile 0 0
+tile 1 *
+item part
+tile 1 2
+entitiy eskimo 5
+tile 0 0
+tile 1 *
+item part
+tile 1 *
+item shovel
+tile 0 0
+tile 0 0
+tile 1 2
+entitiy polarexplorer 4
+tile 1 *
+entitiy polarexplorer 4
+select tile 0
+connect 1 7 3
+select tile 1
+connect 2 0 3 4
+select tile 2
+connect 1 4 5
+select tile 3
+connect 4 1 0 7 8
+select tile 4
+connect 5 2 1 3 8 9
+select tile 5
+connect 6 2 4 9 12
+select tile 6
+connect 5 12
+select tile 7
+connect 8 3 0 12
+select tile 8
+connect 9 4 3 7 10 11
+select tile 9
+connect 12 6 4 8 11
+select tile 10
+connect 11 8 7
+select tile 11
+connect 12 9 8 10
+select tile 12
+connect 6 5 9 11
+select player 0
+step 3
+select player 1
+step 1
+select player 2
+step 2
+select polarbear
+step 4
+turn
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+Game over.
+\end{lstlisting}
+\end{itemize}
+
+\subsection{LargeTestStepOnUnstableIceNaked}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 2
+item part
+tile 1 *
+entitiy polarbear
+tile 0 0
+tile 0 0
+tile 1 *
+item part
+tile 1 2
+entitiy eskimo 5
+tile 0 0
+tile 1 *
+item part
+tile 1 *
+item shovel
+tile 0 0
+tile 0 0
+tile 1 2
+entitiy polarexplorer 4
+tile 1 *
+entitiy polarexplorer 4
+select tile 0
+connect 1 7 3
+select tile 1
+connect 2 0 3 4
+select tile 2
+connect 1 4 5
+select tile 3
+connect 4 1 0 7 8
+select tile 4
+connect 5 2 1 3 8 9
+select tile 5
+connect 6 2 4 9 12
+select tile 6
+connect 5 12
+select tile 7
+connect 8 3 0 12
+select tile 8
+connect 9 4 3 7 10 11
+select tile 9
+connect 12 6 4 8 11
+select tile 10
+connect 11 8 7
+select tile 11
+connect 12 9 8 10
+select tile 12
+connect 6 5 9 11
+select player 2
+step 2
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 2
+item part
+tile 1 *
+entitiy polarbear
+tile 0 0
+tile 0 0
+tile 1 *
+item part
+tile 1 2
+entitiy eskimo 4 0
+entitiy polarexplorer 3 0
+tile 0 0
+tile 1 *
+item part
+tile 1 *
+item shovel
+tile 0 0
+tile 0 0
+tile 1 2
+entitiy polarexplorer 4
+tile 1 *
+select tile 0
+connect 1 7 3
+select tile 1
+connect 2 0 3 4
+select tile 2
+connect 1 4 5
+select tile 3
+connect 4 1 0 7 8
+select tile 4
+connect 5 2 1 3 8 9
+select tile 5
+connect 6 2 4 9 12
+select tile 6
+connect 5 12
+select tile 7
+connect 8 3 0 12
+select tile 8
+connect 9 4 3 7 10 11
+select tile 9
+connect 12 6 4 8 11
+select tile 10
+connect 11 8 7
+select tile 11
+connect 12 9 8 10
+select tile 12
+connect 6 5 9 11
+\end{lstlisting}
+\end{itemize}
+
+\subsection{LargeTestBuildIgloo}
+\begin{itemize}
+\item Leírás\newline
+\item Ellenőrzött funkcionalitás, várható hibahelyek
+\item Bemenet
+\begin{lstlisting}
+tile 1 2
+item part
+tile 1 *
+entitiy polarbear
+tile 0 0
+tile 0 0
+tile 1 *
+item part
+tile 1 2
+entitiy eskimo 5
+tile 0 0
+tile 1 *
+item part
+tile 1 *
+item shovel
+tile 0 0
+tile 0 0
+tile 1 2
+entitiy polarexplorer 4
+tile 1 *
+entitiy polarexplorer 4
+select tile 0
+connect 1 7 3
+select tile 1
+connect 2 0 3 4
+select tile 2
+connect 1 4 5
+select tile 3
+connect 4 1 0 7 8
+select tile 4
+connect 5 2 1 3 8 9
+select tile 5
+connect 6 2 4 9 12
+select tile 6
+connect 5 12
+select tile 7
+connect 8 3 0 12
+select tile 8
+connect 9 4 3 7 10 11
+select tile 9
+connect 12 6 4 8 11
+select tile 10
+connect 11 8 7
+select tile 11
+connect 12 9 8 10
+select tile 12
+connect 6 5 9 11
+select player 0
+build
+query
+\end{lstlisting}
+\item Elvárt kimenet
+\begin{lstlisting}
+tile 1 2
+item part
+tile 1 *
+entitiy polarbear
+tile 0 0
+tile 0 0
+tile 1 *
+item part
+tile 1 2
+building igloo
+entitiy eskimo 5 3
+tile 0 0
+tile 1 *
+item part
+tile 1 *
+item shovel
+tile 0 0
+tile 0 0
+tile 1 2
+entitiy polarexplorer 4
+tile 1 *
+entitiy polarexplorer 4
+select tile 0
+connect 1 7 3
+select tile 1
+connect 2 0 3 4
+select tile 2
+connect 1 4 5
+select tile 3
+connect 4 1 0 7 8
+select tile 4
+connect 5 2 1 3 8 9
+select tile 5
+connect 6 2 4 9 12
+select tile 6
+connect 5 12
+select tile 7
+connect 8 3 0 12
+select tile 8
+connect 9 4 3 7 10 11
+select tile 9
+connect 12 6 4 8 11
+select tile 10
+connect 11 8 7
+select tile 11
+connect 12 9 8 10
+select tile 12
+connect 6 5 9 11
+\end{lstlisting}
+\end{itemize}
+
+%\subsection{Teszteset1}
+%\begin{itemize}
+%\item Leírás\newline
+%\comment{szöveges leírás, kb. 1-5 mondat.}
+%\item Ellenőrzött funkcionalitás, várható hibahelyek
+%\item Bemenet\newline
+%\comment{a proto bemeneti nyelvén megadva (lásd előző anyag)}
+%\item Elvárt kimenet\newline
+%\comment{a proto kimeneti nyelvén megadva (lásd előző anyag)}
+%\end{itemize}
+
+%\subsection{Teszteset2}
+%\begin{itemize}
+%\item Leírás\newline
+%\comment{szöveges leírás, kb. 1-5 mondat.}
+%\item Ellenőrzött funkcionalitás, várható hibahelyek
+%\item Bemenet\newline
+%\comment{a proto bemeneti nyelvén megadva (lásd előző anyag)}
+%\item Elvárt kimenet\newline
+%\comment{a proto kimeneti nyelvén megadva (lásd előző anyag)}
+%\end{itemize}
 
 \section{A tesztelést támogató programok tervei}
-\comment{A tesztadatok előállítására, a tesztek eredményeinek kiértékelésére szolgáló segédprogramok részletes terveit kell elkészíteni.}
+%\comment{A tesztadatok előállítására, a tesztek eredményeinek kiértékelésére szolgáló segédprogramok részletes terveit kell elkészíteni.}
+A tesztelő programot Java-ban írjuk. Két parancsori argumentuma, a Proto program elérési útja, és a végrehajtandó tesztfájl elérési útja. A tesztfájlok formátuma a következő: bemeneti parancsok sorozata a tesztnyelv szerint, majd egy elválasztó komment \texttt{\# Output:}, majd az elvárt kimenet. A tesztelő program beolvassa és kettéválasztja a tesztfájlt. Elindítja a Proto programot és a standard bemenetére vezeti a bemeneti parancsokat. A Proto program lefutását követően a tesztelő program karakterpontosan összeveti annak kimenetét az elvárt kimenettel. Ha megegyezik, a teszt sikeres, nem ír ki semmit, a kilépési kód 0. Eltérés esetén a teszt sikertelen, kíírja a teszt nevét, és hogy melyik kimeneti sorban volt eltérés, majd 1 kóddal lép ki.
+
+A tesztelést segíti egy batch script, ami végrehajtja az összes tesztet. A teszfájlok egy könyvtárban lesznek. A script meghívja a tesztelőprogramot minden egyes tesztfájlra a könyvtárban. Számolja, hogy hány tesztnek volt 1 a kilépési kódja, és a végén kiírja az összesítést.
 

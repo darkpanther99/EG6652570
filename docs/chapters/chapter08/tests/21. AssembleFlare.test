@@ -1,0 +1,12 @@
+# 21. AssembleFlare
+# Input:
+tile 1 *
+entity eskimo 5 4
+item part 3
+entity eskimo 5 4
+entity eskimo 5 4
+select player 0 
+assemble
+query
+# Output:
+Victory.

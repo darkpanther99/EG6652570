@@ -1,0 +1,12 @@
+# 23. BuildIgloo
+# Input:
+tile 1 *
+entity eskimo 5 4
+item tentkit
+select player 0
+build
+query
+# Output:
+tile 1 *
+building igloo
+entity eskimo 5 3

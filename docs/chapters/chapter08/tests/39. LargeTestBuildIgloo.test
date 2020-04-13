@@ -1,0 +1,101 @@
+# 39. LargeTestBuildIgloo
+# Input:
+tile 1 2
+item part
+tile 1 *
+entitiy polarbear
+tile 0 0
+tile 0 0
+tile 1 *
+item part
+tile 1 2
+entitiy eskimo 5
+tile 0 0
+tile 1 *
+item part
+tile 1 *
+item shovel
+tile 0 0
+tile 0 0
+tile 1 2
+entitiy polarexplorer 4
+tile 1 *
+entitiy polarexplorer 4
+select tile 0
+connect 1 7 3
+select tile 1
+connect 2 0 3 4
+select tile 2
+connect 1 4 5
+select tile 3
+connect 4 1 0 7 8
+select tile 4
+connect 5 2 1 3 8 9
+select tile 5
+connect 6 2 4 9 12
+select tile 6
+connect 5 12
+select tile 7
+connect 8 3 0 12
+select tile 8
+connect 9 4 3 7 10 11
+select tile 9
+connect 12 6 4 8 11
+select tile 10
+connect 11 8 7
+select tile 11 
+connect 12 9 8 10
+select tile 12
+connect 6 5 9 11
+select player 0
+build
+query
+# Output:
+tile 1 2
+item part
+tile 1 *
+entitiy polarbear
+tile 0 0
+tile 0 0
+tile 1 *
+item part
+tile 1 2
+building igloo
+entitiy eskimo 5 3
+tile 0 0
+tile 1 *
+item part
+tile 1 *
+item shovel
+tile 0 0
+tile 0 0
+tile 1 2
+entitiy polarexplorer 4
+tile 1 *
+entitiy polarexplorer 4
+select tile 0
+connect 1 7 3
+select tile 1
+connect 2 0 3 4
+select tile 2
+connect 1 4 5
+select tile 3
+connect 4 1 0 7 8
+select tile 4
+connect 5 2 1 3 8 9
+select tile 5
+connect 6 2 4 9 12
+select tile 6
+connect 5 12
+select tile 7
+connect 8 3 0 12
+select tile 8
+connect 9 4 3 7 10 11
+select tile 9
+connect 12 6 4 8 11
+select tile 10
+connect 11 8 7
+select tile 11 
+connect 12 9 8 10
+select tile 12
+connect 6 5 9 11
