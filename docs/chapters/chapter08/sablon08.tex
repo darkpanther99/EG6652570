@@ -28,6 +28,10 @@
 	\item Metódusok:
 	\begin{itemize}
 		\item bool Dig(Tile t): Csökkenti a tile-on található hó mennyiségét. Minden alkalommal fárasztó az ásás, ezért a visszatérési érték mindig true.
+		\begin{lstlisting}
+		Decrement Snow amount on t
+		return true
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -41,8 +45,16 @@
 	\item Metódusok:
 	\begin{itemize}
 		\item void ChillStorm(Tile t): A paraméterként kapott t Tilen álló játékosok testhője csökken.
-		\item void BearAttack(Tile t):
-		\item void Break(Tile t):
+		\begin{lstlisting}
+		for all e : Entity on t
+			e gets Chilled
+		\end{lstlisting}
+		\item void BearAttack(Tile t): A paraméterként kapott t Tilen álló minden játékost megtámad a medve.
+		\begin{lstlisting}
+		for all e : Entity on t
+			e gets Attacked by Bear
+		\end{lstlisting}
+		\item void Break(Tile t): Nem csinál semmit, mert a nem létező menedék nem törik el.
 	\end{itemize}
 \end{itemize}
 
@@ -51,12 +63,22 @@
 	\item A játékos így képes építeni. Iglut vagy sátrat.
 	\item Attribútumok:
 	\begin{itemize}
-		\item count: int:
+		\item count: int: Az építhető sátrak számát tárolja.
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void Build(): Épít valamit a táblára.
-		\item void Gain(): Kap egy sátrat.
+		\item void Build(Tile t): Épít egy sátrat a játékos a paraméterként kapott mezőre. Az építhető sátrak száma eggyel csökken.
+		\begin{lstlisting}
+		if the count of available tents is above 0
+			Decrements the amount of available tents.
+			Instantiates a Tent object as te
+			Sets the shelter of t to te
+		\end{lstlisting}
+		\item void Gain(): Kap egy sátrat, eggyel nő az építhető átrak száma.
+		\begin{lstlisting}
+		Increments the amount of available tents
+		\end{lstlisting}
+	
 	\end{itemize}
 \end{itemize}
 
@@ -69,7 +91,11 @@
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void GiveTo(Player p): A játékos így kap ásót.
+		\item void GiveTo(Player p): A játékos így kap ásót. Az ásója annyiszor tud majd ásni törés előtt, amennyit ez a metódus beállít neki.
+		\begin{lstlisting}
+		Instantiates a new BreakingShovelDig object as bsd
+		set the DigStrategy of p to bsd with the durability of the BreakingShovel
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -88,6 +114,14 @@
 	\item Metódusok:
 	\begin{itemize}
 		\item bool Dig(Tile t): Csökkenti a tile-on található hó mennyiségét.
+		\begin{lstlisting}
+		reduces the durability of this by one
+		Decrement snow on t
+		if the item was already used in this turn
+			return true
+		else
+			return false
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -153,11 +187,20 @@
 	\item Entitás osztály ami a pályát tartózkodhat.
 	\item Metódusok:
 	\begin{itemize}
-		\item Step(Direction d): Lép valamilyen irányba.
+		\item Step(int direction): Lép a paraméterként kapott irányba.
+		\begin{lstlisting}
+		Gets the Tile in the dir direction from the current Tile the entity is on
+		The entity steps off from the Tile
+		It gets placed on the new Tile
+		\end{lstlisting}
 		\item void PlaceOn(Tile t): Ráteszi az entitást egy másik táblára. A kötél használatakor használatos.
-		\item void Chill(): Hűti az entitést. A testhője csökken.
-		\item ResistWater(): Így viselkedik vízben.
-		\item BearAttack(): Így viselkedik, ha megtámadja a medve.
+		\begin{lstlisting}
+		The current tile of the entity becomes t
+		The entity gets placed into the occupants collection of t
+		\end{lstlisting}
+		\item void Chill(): Hűti az entitást. A testhője csökken. Nem csinál semmit, csak visszatér, majd a leszármazottak felüldefiniálják.
+		\item ResistWater(): Így viselkedik vízben. Nem csinál semmit, csak visszatér, majd a leszármazottak felüldefiniálják.
+		\item BearAttack(): Így viselkedik, ha megtámadja a medve. Nem csinál semmit, csak visszatér, majd a leszármazottak felüldefiniálják.
 	\end{itemize}
 \end{itemize}
 
@@ -170,7 +213,12 @@
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void BuildIgloo(): Épít egy iglut a mezőre, amin áll. Az iglu megvéd majd a hóvihartól. Beállítja a mező hóvihar stratégiáját Iglusra.
+		\item void Build(): Épít egy iglut a mezőre, amin áll, a BuildStrategyjétől függetlenül. Az iglu megvéd majd a hóvihartól. Beállítja a mező menedékét Iglura.
+		\begin{lstlisting}
+		The eskimo's energy decreases by one
+		An Igloo object is created as i.
+		The Shelter of the current Tile becomes i
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -184,6 +232,10 @@
 	\item Metódusok:
 	\begin{itemize}
 		\item void GiveTo(Player p): A paraméterként kapott játékos kap egy élelmet, az bekerül az élelemtárolójába.
+		\begin{lstlisting}
+		The amount of food in the foodstore of p increases by one
+		The food is removed from the Player's inventory
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -197,8 +249,15 @@
 	\item Metódusok:
 	\begin{itemize}
 		\item void feed(Player p): Játékos testhője megnő, az élelem mennyisége csökken, mivel a játékos megeszi azt.
-		\item void DecrementCount(): Csökkenti a benne található elemek számát.
+		\begin{lstlisting}
+		if the foodstore is not empty
+		The amount of food in the foodstore decreases by one
+		The body temperature of the player increases by one
+		\end{lstlisting}
 		\item void Gain(): növeli a benne található elemek számát.
+		\begin{lstlisting}
+		The food count increases by one
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -250,7 +309,8 @@
 	\item Metódusok:
 	\begin{itemize}
 		\item void ChillStorm(Tile t): A paraméterként kapott cellán álló játákosok testhője nem csökken, mivel igluban vannak.
-		\item void BearAttack(Tile t): Így viselkedik a mező ha valaki igluban van és megtámadja a medve.
+		\item void BearAttack(Tile t): Így viselkedik a mező ha valaki igluban van és megtámadja a medve. Visszatér, mert a medve az igluban meghúzódó játékosokat nem bántja.
+		\item void Break(): Visszatér, nem csinál semmit, mivel az iglu nem törik el soha.
 	\end{itemize}
 \end{itemize}
 
@@ -259,7 +319,7 @@
 	\item Tárgy, a játékos képes ilyeneket felvenni a cellákról. A tárgyak képesek a játékosak képességeket adni. A tárgyak alapvetően jégbe fagyva vannak a pályán.
 	\item Metódusok:
 	\begin{itemize}
-		\item void GiveTo(p: Player): A jétékos kap valamilyen tárgyat, az Item interfészt megvalóító tárgyak felüldefiniálják ezt.
+		\item void GiveTo(p: Player): A játékos kap valamilyen tárgyat, az Item interfészt megvalósító tárgyak felüldefiniálják ezt.
 	\end{itemize}
 \end{itemize}
 
@@ -273,6 +333,10 @@
 	\item Metódusok:
 	\begin{itemize}
 		\item void Chill(Player p): Játékosnak nincsen ereje a vízben úszni búvárruha nélkül.
+		\begin{lstlisting}
+		The energy of p becomes 0.
+		p gets Chilled
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -286,6 +350,10 @@
 	\item Metódusok:
 	\begin{itemize}
 		\item void GiveTo(Player p): A játékos tárolójába kerül egy darab a rakétapisztolyból.
+		\begin{lstlisting}
+		The amount of parts in the partstore of p increases by one
+		The part is removed from the Player's inventory
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -299,7 +367,22 @@
 	\item Metódusok:
 	\begin{itemize}
 		\item void Gain(PartStore ps): Átveszi az alkatrészeket a paraméterként kapott alkatrésztárolóból.
+		\begin{lstlisting}
+		The amount of parts in this store increases by the amount of parts in ps
+		The amount of parts in ps becomes 0
+		\end{lstlisting}
 		\item void Gain(int n): Megnő az alkatrészek száma, ami a játékosnál van.
+		\begin{lstlisting}
+		The amount of parts in the store increases by n
+		\end{lstlisting}
+		\item int getCount(): Visszaadja a count aktuális értékét, azaz a rakétadarabok számát.
+		\begin{lstlisting}
+		returns the amount of parts in the store
+		\end{lstlisting}
+		\item void setCount(int n): Beállítja a count aktuális értékét a paraméterként kapott rakétadarab számra.
+		\begin{lstlisting}
+		The amount of parts in the store becomes n
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -349,7 +432,19 @@
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item Step(Directon d): Lép az adott irányba.
+		\item Step(int direction): Lép az adott irányba.
+		\begin{lstlisting}
+		Calls the Step method of base class with parameter direction
+		Attacks the tile it has stepped on
+		\end{lstlisting}
+		\item void Chill(): Nem csinál semmit, csak visszatér, mert a jegesmaci nem fázik.
+		\item void ResistWater(): Nem csinál semmit, csak visszatér, mert a jegesmaci a vízben sem fázik.
+		\item void BearAttack(): Nem csinál semmit, csak visszatér, mert a jegesmaci nem támadja meg fajtársait, kizárólag a játékos húsát ízleli örömmel.
+		\item void PlaceOn(Tile t): A medve átkerül a paraméterként kapott t Tilera.
+		\begin{lstlisting}
+		The current tile of the polar bear becomes t.
+		The bear gets placed into the occupants collection of t.
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -362,7 +457,11 @@
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void Examine(direction: int): A játékos megnézheti, hogy egy adott irányban lévő Tile-nak mennyi a teherbírása. A Game.Explore metódust hívja.
+		\item void Examine(dir: int): A játékos megnézheti, hogy egy adott irányban lévő Tile-nak mennyi a teherbírása. A Game.Explore metódust hívja.
+		\begin{lstlisting}
+		Gets the tile in the dir direction from the current tile he is on, calls it t
+		Calls the Explore method of the game objects he knows of with the t as a parameter.
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -385,6 +484,10 @@
 	\item Metódusok
 	\begin{itemize}
 		\item void GiveTo(Player p): A játékos kap egy kötelet. Az bekerül az inventoryjába és a megfelelő stratégiájához is a kötél által adott képesség.
+		\begin{lstlisting}
+		Instantiates a RopeRescue object as rr
+		Sets the RescueStrategy of p to rr
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -398,6 +501,12 @@
 	\item Metódusok:
 	\begin{itemize}
 		\item void Rescue(Tile water, Tile land): A vízben lévők közül egyvalaki rákerül a kihúzó játékos cellájára.
+		\begin{lstlisting}
+		Asks for the collection of occupants in the water Tile
+		If there are more than 0 occupants
+			The first occupant in the collection gets placed on the land Tile
+			That occupant also steps off the water
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -411,6 +520,10 @@
 	\item Metódusok:
 	\begin{itemize}
 		\item void GiveTo(): A játékos búvárruhát kap. Az bekerül az inventoryjába és a megfelelő stratégiája helyére is a búvárruha által adott képesség.
+		\begin{lstlisting}
+		Instantiates a ScubaWearing object as sw
+		Sets the WaterResistanceStrategy of p to sw
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -423,7 +536,7 @@
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void Chill(p: Player): A játékost nem hűti a víz, mivel búvárruhát visel.
+		\item void Chill(p: Player): A játékost nem hűti a víz, mivel búvárruhát visel. A metódus csak visszatér, nem csinál semmit.
 	\end{itemize}
 \end{itemize}
 
@@ -437,6 +550,29 @@
 	\item Metódusok:
 	\begin{itemize}
 		\item void Chill(Tile t): Minden rajta álló testhője csökken a WaterResistanceStrategy szerint.
+		\begin{lstlisting}
+		For all e : Entities on Tile t
+			e tries to ResistWater
+		\end{lstlisting}
+	\end{itemize}
+\end{itemize}
+
+\subsection{Shelter}
+\begin{itemize}
+	\item Ez az absztrakt osztály a menedéket jelképezi egy mezőn.
+	\item Metódusok:
+	\begin{itemize}
+		\item void ChillStorm(Tile t): Minden a paraméterként kapott t mezőn lévő entitás fázik.
+		\begin{lstlisting}
+		For all e : Entities on t
+			e gets Chilled.
+		\end{lstlisting}
+		\item void BearAttack(Tile t): A menedéken lévő játékosok medvetámaáds áldozatai lesznek.
+		\begin{lstlisting}
+		For all e : Entities on t
+			e gets Attacked by bear
+		\end{lstlisting}
+		\item void Break(Tile t): Az adott mezőn lévő menedék eltörik. Nem csinál semmit, majd a különböző menedéktípusok másképp definiálják felül.
 	\end{itemize}
 \end{itemize}
 
@@ -450,6 +586,10 @@
 	\item Metódusok:
 	\begin{itemize}
 		\item void GiveTo(): A játékos ásót kap, ami bekerül az inventoryjába és a megfelelő stratégiájához is bekerül az ásó által adott képesség.
+		\begin{lstlisting}
+		Instantiates a ShovelDig object as sd
+		Sets the DigStrategy of p to sd
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -467,6 +607,13 @@
 	\item Metódusok:
 	\begin{itemize}
 		\item bool Dig(Tile t): Csökkenti a tile-on található hó mennyiségét. Minden második alkalommal fárasztó.
+		\begin{lstlisting}
+		Decrements the snow amount on t
+		if it was already used this turn
+			return true
+		else 
+			return false
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -479,8 +626,11 @@
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item void ChillStorm(Tile t): Így viselkedik a tábla, ha sátor van  rajta hóviharban.
-		\item void Break(Tile t): Így viselkedik a tábla, ha eltörik miközben valaki a sátorban van.
+		\item void ChillStorm(Tile t): Így viselkedik a tábla, ha sátor van rajta hóviharban. A sátorban lévő játékosok nem fáznak, a metódus csak visszatér, nem csinál semmit.
+		\item void Break(Tile t): Így viselkedik a sátor, ha eltörik. Beállítja a paraméterként kapott Tile menedékét sima jégre, ezzel jelezve halálát.
+		\begin{lstlisting}
+		sets the Shelter of t to BareIce
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
@@ -494,6 +644,10 @@
 	\item Metódusok:
 	\begin{itemize}
 		\item void GiveTo(Player p): A játékos így kap sátor alapanyagot.
+		\begin{lstlisting}
+		The BuildStrategy of p Gains a charge.
+		Removes the Tent from the inventory of p
+		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
