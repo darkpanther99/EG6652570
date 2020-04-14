@@ -797,9 +797,12 @@ for all observer in observers
 		\item - void Add(Entity): Hozzáad egy entitást a táblához.
 		\item + void BreakShelter(): Ez a metódus eltávolítja a sátrat a tábláról.
 		\begin{lstlisting}
-		remove ChillStormStrategy object
+		Calls the break method of the current shelter
 		\end{lstlisting}
 		\item + void BearAttack(): Ezt a metódust a Controller hívja 
+		\begin{lstlisting}
+		The bear attacks the tile, which forwards this event to the current shelter.
+		\end{lstlisting}
 		\item + void ChillStorm(): Ezt a metódust a Controller hívja viharban. Hűti a játékosokat, ha nincsenek igluban vagy sátorban.
 		\item + void ChillWater(): Ezt a metódust a Controller hívja körönként. Hűti a játékosokat, ha ez a cella víz.
 		\item + void DecrementSnow(): A hómennyiséget csökkentő helper függvény.
@@ -820,7 +823,7 @@ for all observer in observers
 		\end{lstlisting}
 		\item + StepOn(Entity): Játékos rálép a cellára, ha többen vannak mint a korlát, a jégtábla átfordul. A függvény futása során beállítja a megfelelő adattagokat az új értékekre.
 		\begin{lstlisting}
-		Add palyer to the tile
+		Add player to the tile
 		if ( weight limit is exceeded ) {
 			Set tile to sea
 			Chill the occupying players on the tile
@@ -889,7 +892,7 @@ createParsers();
 		Fut a parancsértelmezés.
 		\begin{lstlisting}
 running = true;
-while (runining) {
+while (running) {
 	getCommand();
 	try {
 		command.execute(this);
@@ -1843,7 +1846,9 @@ CommandParser
 \subsection{PickUpFood}
 \begin{itemize}
 \item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+A játékos az adott mezőre lép. A mezőn élelem található. A játékos felveszi és a saját zsebébe rakja az ételt.
+\item Ellenőrzött funkcionalitás\\
+Item felvétel teszt.
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -1871,7 +1876,9 @@ connect 1
 \subsection{PickUpPart}
 \begin{itemize}
 \item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+A játékos adott mezőre lép. A mezőn rakéta pisztoly darab található. A játékos felveszi és a megfelelő zsebébe rakja.
+\item Ellenőrzött funkcionalitás \\
+Item felvétel teszt.
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -1899,7 +1906,9 @@ connect 1
 \subsection{PickUpShovel}
 \begin{itemize}
 \item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+A játékos adott mezőre lép. A mezőn ásó található. A játékos felvesz és a zsebébe rakja. A játékos ez utána már tud ásni később.
+\item Ellenőrzött funkcionalitás\\
+Item felvétel teszt.
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -1927,7 +1936,9 @@ connect 1
 \subsection{PickUpBreakableShovel}
 \begin{itemize}
 \item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+A játékos adott mezőre lép. A mezőn törékeny ásó található. A játékos felvesz és a zsebébe rakja. A játékos ez utána már tud ásni később.
+\item Ellenőrzött funkcionalitás\\
+Item felvétel teszt.
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -1955,7 +1966,9 @@ connect 1
 \subsection{PickUpRope}
 \begin{itemize}
 \item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+A játékos adott mezőre lép. A mezőn kötél található. A játékos felvesz és a zsebébe rakja. A játékos ez utána már ki tudja menteni a csapattársait.
+\item Ellenőrzött funkcionalitás\\
+Item felvétel teszt.
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -1983,7 +1996,9 @@ connect 1
 \subsection{PickUpScubaGear}
 \begin{itemize}
 \item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+A játékos adott mezőre lép. A mezőn búvárruha található. A játékos felvesz és a zsebébe rakja. A játékos ez utána már képes túlélni a vízben.
+\item Ellenőrzött funkcionalitás\\
+Item felvétel teszt.
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2011,7 +2026,9 @@ connect 1
 \subsection{PickUpTent}
 \begin{itemize}
 \item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+A játékos adott mezőre lép. A mezőn sátor található. A játékos felvesz és a zsebébe rakja. A játékos ez utána már képes sátrat építeni egy mezőre.
+\item Ellenőrzött funkcionalitás\\
+Item felvétel teszt.
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2035,11 +2052,15 @@ select tile 0
 connect 1
 \end{lstlisting}
 \end{itemize}
-
+\newcommand{\fml}[2]{
+	\item Leírás \\
+{	#1}
+	\item Ellenőrzött funkcionalitás\\
+	{#2}
+}
 \subsection{BareHandsDig}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A játékos azon a mezőn ahol éppen áll havat lapátol. A hómennyiség az adott mezőn csökken}{Hó lapátolás.}
 \item Bemenet
 \begin{lstlisting}
 tile 2 *
@@ -2057,8 +2078,7 @@ entity eskimo 5 1
 
 \subsection{ShovelDig}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A játékos azon a mezőn ahol éppen áll havat lapátol, van nála lapát. A hómennyiség az adott mezőn csökken}{Hó lapátolás.}
 \item Bemenet
 \begin{lstlisting}
 tile 2 *
@@ -2081,8 +2101,7 @@ equip all
 
 \subsection{BreakingShovelDig}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A játékos azon a mezőn ahol éppen áll havat lapátol, van nála törékeny lapát. A hómennyiség az adott mezőn csökken. A lapát még nem törik el.}{Hó lapátolás.}
 \item Bemenet
 \begin{lstlisting}
 tile 2 *
@@ -2103,8 +2122,7 @@ item shovel durability 1
 
 \subsection{BreakingShovelDig2}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A játékos azon a mezőn ahol éppen áll havat lapátol, van nála törékeny lapát. A hómennyiség az adott mezőn csökken. A lapát eltörik}{Hó lapátolás.}
 \item Bemenet
 \begin{lstlisting}
 tile 2 *
@@ -2124,8 +2142,7 @@ entity eskimo 5 3
 
 \subsection{StepOnStableIce}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A játékos stabil jégre lép.}{Játékos mezőre lép.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2149,8 +2166,7 @@ connect 1
 
 \subsection{StepOnUnstableIceWithScubaGearBreaking}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A játékos instabil jégre lép. A játékoson van búvárruha. A jég eltörik, mert nem bírja el. Minden játékos vízbe esik aki ott volt.}{Játékos mezőre lép.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2177,8 +2193,7 @@ connect 1
 
 \subsection{StepOnUnstableIceWithScubaGearCanHold}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A játékos instabil jégre lép. A játékoson van búvárruha. A jég nem törik el.}{Játékos mezőre lép.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2206,8 +2221,7 @@ connect 1
 
 \subsection{StepOnUnstableIceNakedBreaking}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A játékos instabil jégre lép. A játékoson nincs búvárruha. A jég eltörik, mert nem bírja el. Minden játékos vízbe esik aki ott volt.}{Játékos mezőre lép.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2231,8 +2245,7 @@ connect 1
 
 \subsection{StepOnUnstableIceNakedCanHold}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A játékos instabil jégre lép. A játékoson nincs búvárruha. A jég nem törik el.}{Játékos mezőre lép.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2256,8 +2269,7 @@ connect 1
 
 \subsection{StepInWaterWithScubaGear}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A játékos víz mezőre lép. A játékoson van búvárruha. A játékos kibírja a vízbe esést.}{Játékos mezőre lép.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2285,8 +2297,7 @@ connect 1
 
 \subsection{StepInWaterNaked}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A játékos víz mezőre lép. A játékoson nincs búvárruha.A játékos meg fog fagyni, ha nem mentik ki később.}{Játékos mezőre lép.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2310,8 +2321,7 @@ connect 1
 
 \subsection{RopeRescue}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A játékosnak van kötele. Egy játékos kiment egy másik játékost a vízből és a saját táblájára húzza.}{Játékos cselekszik}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2343,8 +2353,7 @@ connect 0
 
 \subsection{EatFood}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A játékosnak van élelme. A játékos elfogyaszt 1 élelmet a zsebéből és nő a testhője.}{Játékos cselekszik.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2364,8 +2373,7 @@ entity eskimo 3 4
 
 \subsection{AssembleFlare}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A játékosnál van az összes rakéta darab. A játékos összeszereli azt.}{Játékos cselekszik.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2385,8 +2393,7 @@ Victory.
 
 \subsection{AssembleFlare}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A játékosnál nincs meg az összes rakéta darab és megpróbálja összeszerelni a pisztolyt.}{Játékos cselekszik.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2410,8 +2417,7 @@ entity eskimo 5 4
 
 \subsection{BuildIgloo}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{Az eszkimó felvesz egy TentKit-et. Az eszkimó a táblára iglut épít, nem pedig sátrat.}{Tábla esemény teszt.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2431,8 +2437,7 @@ entity eskimo 5 3
 
 \subsection{BuildTent}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A sarkkutató felvesz egy TentKit-et. A sarkkutató a táblára sátrat épít.}{Tábla esemény teszt.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2453,8 +2458,7 @@ entity polarexplorer 4 3
 
 \subsection{ExamineTile}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A sarkkutató a táblát vizsgálja.}{Tábla esemény teszt.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2480,8 +2484,7 @@ Tile weight limit: 4
 
 \subsection{TurnOnStableIce}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{Egy játék kör eltelik úgy, hogy a játékos a stabil jégen áll.}{Játék esemény teszt.}
 \item Bemenet
 \begin{lstlisting}
 tile 4 *
@@ -2498,8 +2501,7 @@ entity eskimo 5 4
 
 \subsection{TurnInWaterNaked}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{Egy játék kör eltelik úgy, hogy a játékos vízben áll. A játékoson van búvárruha.}{Játék esemény teszt.}
 \item Bemenet
 \begin{lstlisting}
 tile 0 0
@@ -2516,8 +2518,7 @@ entity eskimo 3 0
 
 \subsection{TurnInWaterWitchScubaGear}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{Egy játék kör eltelik úgy, hogy a játékos vízben áll. A játékoson nincs búvárruha.}{Játék esemény teszt.}
 \item Bemenet
 \begin{lstlisting}
 tile 0 0
@@ -2538,8 +2539,7 @@ equip all
 
 \subsection{ChillStormIgloo}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{Egy játék kör eltelik, úgy, hogy a játékost hóvihar éri. A játékos igluban van.}{Játék esemény teszt.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2559,8 +2559,7 @@ entity eskimo 5 4
 
 \subsection{ChillStormTent}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{Egy játék kör eltelik, úgy, hogy a játékost hóvihar éri. A játékos sátorban van.}{Játék esemény teszt.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2579,8 +2578,7 @@ entity eskimo 5 4
 
 \subsection{ChillStormBareIce}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{Egy játék kör eltelik, úgy, hogy a játékost hóvihar éri. A játékos szabad ég alatt van.}{Játék esemény teszt.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2598,8 +2596,7 @@ entity eskimo 4 4
 
 \subsection{TentBreaking}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A táblán a sátor eltörik a kör után.}{Játék esemény teszt.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2615,8 +2612,7 @@ tile 1 *
 
 \subsection{PolarBearMoving}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A medve véletlen irányba lép. Üres mezőre lép.}{Játék esemény teszt.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2645,8 +2641,7 @@ connect 0
 
 \subsection{PolarBearAttack}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A medve véletlen irányba lép. A mezőn van valaki.}{Játék esemény teszt.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2670,8 +2665,7 @@ Game over.
 
 \subsection{PolarBearAttackTent}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A medve véletlen irányba lép. A mezőn sátorban van valaki.}{Játék esemény teszt.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2696,8 +2690,7 @@ Game over.
 
 \subsection{PolarBearAttackIgloo}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{A medve véletlen irányba lép. A mezőn igluban van valaki.}{Játék esemény teszt.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 *
@@ -2729,8 +2722,7 @@ connect 0
 
 \subsection{LargeTestBearAttack}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{Mozog a medve és megeszik valakit, a játékosok csak fel-le mászkálnak.}{Külső ember által megadott pályán is működik a tesztelő nyelvünk, illetve a modellünk megfelelő része.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 2
@@ -2799,8 +2791,7 @@ Game over.
 
 \subsection{LargeTestStepOnUnstableIceNaked}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{Játékosok törékeny táblára mennek és az eltörik.}{Külső ember által megadott pályán is működik a tesztelő nyelvünk, illetve a modellünk megfelelő része.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 2
@@ -2908,8 +2899,8 @@ connect 6 5 9 11
 
 \subsection{LargeTestBuildIgloo}
 \begin{itemize}
-\item Leírás\newline
-\item Ellenőrzött funkcionalitás, várható hibahelyek
+\fml{Eszkimó iglut épít.
+}{Külső ember által megadott pályán is működik a tesztelő nyelvünk, illetve a modellünk megfelelő része.}
 \item Bemenet
 \begin{lstlisting}
 tile 1 2
