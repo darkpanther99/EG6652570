@@ -40,8 +40,8 @@
 	\begin{itemize}
 		\item bool Dig(Tile t): Csökkenti a tile-on található hó mennyiségét. Minden alkalommal fárasztó az ásás, ezért a visszatérési érték mindig true.
 		\begin{lstlisting}
-		Decrement Snow amount on t
-		return true
+Decrement Snow amount on t
+return true
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -57,13 +57,13 @@
 	\begin{itemize}
 		\item void ChillStorm(Tile t): A paraméterként kapott t Tilen álló játékosok testhője csökken.
 		\begin{lstlisting}
-		for all e : Entity on t
-			e gets Chilled
+for all e : Entity on t
+	e gets Chilled
 		\end{lstlisting}
 		\item void BearAttack(Tile t): A paraméterként kapott t Tilen álló minden játékost megtámad a medve.
 		\begin{lstlisting}
-		for all e : Entity on t
-			e gets Attacked by Bear
+for all e : Entity on t
+	e gets Attacked by Bear
 		\end{lstlisting}
 		\item void Break(Tile t): Nem csinál semmit, mert a nem létező menedék nem törik el.
 	\end{itemize}
@@ -80,14 +80,14 @@
 	\begin{itemize}
 		\item void Build(Tile t): Épít egy sátrat a játékos a paraméterként kapott mezőre. Az építhető sátrak száma eggyel csökken.
 		\begin{lstlisting}
-		if the count of available tents is above 0
-			Decrements the amount of available tents.
-			Instantiates a Tent object as te
-			Sets the shelter of t to te
+if the count of available tents is above 0
+	Decrements the amount of available tents.
+	Instantiates a Tent object as te
+	Sets the shelter of t to te
 		\end{lstlisting}
 		\item void Gain(): Kap egy sátrat, eggyel nő az építhető átrak száma.
 		\begin{lstlisting}
-		Increments the amount of available tents
+Increments the amount of available tents
 		\end{lstlisting}
 	
 	\end{itemize}
@@ -104,8 +104,8 @@
 	\begin{itemize}
 		\item + void GiveTo(Player p): A játékos így kap ásót. Az ásója annyiszor tud majd ásni törés előtt, amennyit ez a metódus beállít neki.
 		\begin{lstlisting}
-		Instantiates a new BreakingShovelDig object as bsd
-		set the DigStrategy of p to bsd with the durability of the BreakingShovel
+Instantiates a new BreakingShovelDig object as bsd
+set the DigStrategy of p to bsd with the durability of the BreakingShovel
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -113,6 +113,13 @@
 \subsection{BreakingShovelDig}
 \begin{itemize}
 	\item A játékos így ás, ha törhető ásó van nála.
+	\begin{figure}[H]
+        \begin{center}
+                \includegraphics[width=10cm]{chapters/chapter08/BreakingShovelStatechartDiagram.png}
+                \caption{BreakingShovelDig StateChart}
+                \label{BreakingShovelDig StateChart}
+        \end{center}
+	\end{figure}
 	\item Intefészek:
 	\begin{itemize}
 		\item DigStrategy
@@ -126,12 +133,12 @@
 	\begin{itemize}
 		\item + bool Dig(Tile t): Csökkenti a tile-on található hó mennyiségét.
 		\begin{lstlisting}
-		reduces the durability of this by one
-		Decrement snow on t
-		if the item was already used in this turn
-			return true
-		else
-			return false
+reduces the durability of this by one
+Decrement snow on t
+if the item was already used in this turn
+	return true
+else
+	return false
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -154,7 +161,7 @@
 	\item A jégtábla így hűti a vízbe esett játékosokat. Vízben tartózkodás esetén a játékos testhője csökken, a megvalósított stratégia alapján.
 	\item Metódusok:
 	\begin{itemize}
-		\item + abstract void Chill(Tile t): A startégiát megvalósító elem dolga implementálni mi történik.
+		\item + abstract void Chill(Tile t): A stratégiát megvalósító elem dolga implementálni mi történik.
 	\end{itemize}
 \end{itemize}
 
@@ -200,14 +207,14 @@
 	\begin{itemize}
 		\item + Step(int direction): Lép a paraméterként kapott irányba.
 		\begin{lstlisting}
-		Gets the Tile in the dir direction from the current Tile the entity is on
-		The entity steps off from the Tile
-		It gets placed on the new Tile
+Gets the Tile in the dir direction from the current Tile the entity is on
+The entity steps off from the Tile
+It gets placed on the new Tile
 		\end{lstlisting}
 		\item + void PlaceOn(Tile t): Ráteszi az entitást egy másik táblára. A kötél használatakor használatos.
 		\begin{lstlisting}
-		The current tile of the entity becomes t
-		The entity gets placed into the occupants collection of t
+The current tile of the entity becomes t
+The entity gets placed into the occupants collection of t
 		\end{lstlisting}
 		\item + void Chill(): Hűti az entitást. A testhője csökken. Nem csinál semmit, csak visszatér, majd a leszármazottak felüldefiniálják.
 		\item + void ResistWater(): Így viselkedik vízben. Nem csinál semmit, csak visszatér, majd a leszármazottak felüldefiniálják.
@@ -226,9 +233,9 @@
 	\begin{itemize}
 		\item + void Build(): Épít egy iglut a mezőre, amin áll, a BuildStrategyjétől függetlenül. Az iglu megvéd majd a hóvihartól. Beállítja a mező menedékét Iglura.
 		\begin{lstlisting}
-		The eskimo's energy decreases by one
-		An Igloo object is created as i.
-		The Shelter of the current Tile becomes i
+The eskimo's energy decreases by one
+An Igloo object is created as i.
+The Shelter of the current Tile becomes i
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -244,8 +251,8 @@
 	\begin{itemize}
 		\item + void GiveTo(Player p): A paraméterként kapott játékos kap egy élelmet, az bekerül az élelemtárolójába.
 		\begin{lstlisting}
-		The amount of food in the foodstore of p increases by one
-		The food is removed from the Player's inventory
+The amount of food in the foodstore of p increases by one
+The food is removed from the Player's inventory
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -261,13 +268,13 @@
 	\begin{itemize}
 		\item + void feed(Player p): Játékos testhője megnő, az élelem mennyisége csökken, mivel a játékos megeszi azt.
 		\begin{lstlisting}
-		if the foodstore is not empty
-		The amount of food in the foodstore decreases by one
-		The body temperature of the player increases by one
+if the foodstore is not empty
+The amount of food in the foodstore decreases by one
+The body temperature of the player increases by one
 		\end{lstlisting}
 		\item void Gain(): növeli a benne található elemek számát.
 		\begin{lstlisting}
-		The food count increases by one
+The food count increases by one
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -311,7 +318,7 @@ return p;
 for all observer in observers
 	observer.gameOver();
 		\end{lstlisting}
-		\item + void Subsribe(GameObserver): Belerakja a kollekcióba.
+		\item + void Subscribe(GameObserver): Belerakja a kollekcióba.
 		\item + void Turn(): Ezt a metódust a Controller hívja körönként, a körök vezénylésére szolgál. 
 		\begin{lstlisting}
 for all p : player in entities {
@@ -363,7 +370,7 @@ for all observer in observers
 	\end{itemize}
 	\item Metódusok:
 	\begin{itemize}
-		\item + void ChillStorm(Tile t): A paraméterként kapott cellán álló játákosok testhője nem csökken, mivel igluban vannak.
+		\item + void ChillStorm(Tile t): A paraméterként kapott cellán álló játékosok testhője nem csökken, mivel igluban vannak.
 		\item + void BearAttack(Tile t): Így viselkedik a mező ha valaki igluban van és megtámadja a medve. Visszatér, mert a medve az igluban meghúzódó játékosokat nem bántja.
 		\item + void Break(): Visszatér, nem csinál semmit, mivel az iglu nem törik el soha.
 	\end{itemize}
@@ -389,7 +396,7 @@ for all observer in observers
 	\begin{itemize}
 		\item + void Chill(Player p): Játékosnak nincsen ereje a vízben úszni búvárruha nélkül.
 		\begin{lstlisting}
-		The energy of p becomes 0.
+The energy of p becomes 0.
 		p gets Chilled
 		\end{lstlisting}
 	\end{itemize}
@@ -406,8 +413,8 @@ for all observer in observers
 	\begin{itemize}
 		\item + void GiveTo(Player p): A játékos tárolójába kerül egy darab a rakétapisztolyból.
 		\begin{lstlisting}
-		The amount of parts in the partstore of p increases by one
-		The part is removed from the Player's inventory
+The amount of parts in the partstore of p increases by one
+The part is removed from the Player's inventory
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -423,27 +430,27 @@ for all observer in observers
 	\begin{itemize}
 		\item + void Gain(PartStore ps): Átveszi az alkatrészeket a paraméterként kapott alkatrésztárolóból.
 		\begin{lstlisting}
-		The amount of parts in this store increases by the amount of parts in ps
-		The amount of parts in ps becomes 0
+The amount of parts in this store increases by the amount of parts in ps
+The amount of parts in ps becomes 0
 		\end{lstlisting}
 		\item + void Gain(int n): Megnő az alkatrészek száma, ami a játékosnál van.
 		\begin{lstlisting}
-		The amount of parts in the store increases by n
+The amount of parts in the store increases by n
 		\end{lstlisting}
 		\item + int getCount(): Visszaadja a count aktuális értékét, azaz a rakétadarabok számát.
 		\begin{lstlisting}
-		returns the amount of parts in the store
+returns the amount of parts in the store
 		\end{lstlisting}
 		\item + void setCount(int n): Beállítja a count aktuális értékét a paraméterként kapott rakétadarab számra.
 		\begin{lstlisting}
-		The amount of parts in the store becomes n
+The amount of parts in the store becomes n
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
 \subsection{Player}
 \begin{itemize}
-	\item Játékos osztály, amit a felhasználó irányít a grafikus felületen keresztül. Ilyen típussal nem lehet játszani, csak a leszármazottakkal. Felelsőssége a játékos által a controlleren keresztül kiadott műveletek elvégzése. Tárolja a játékos jelenlegi állapotát.
+	\item Játékos osztály, amit a felhasználó irányít a grafikus felületen keresztül. Ilyen típussal nem lehet játszani, csak a leszármazottakkal. Felelőssége a játékos által a controlleren keresztül kiadott műveletek elvégzése. Tárolja a játékos jelenlegi állapotát.
 	\item Ősosztályok:
 	\begin{itemize}
 		\item Entity
@@ -451,6 +458,7 @@ for all observer in observers
 	\item Attribútumok:
 	\begin{itemize}
 		\item - bodyTemp: int: Jelzi a játékos jelenlegi hőmérsékletét, ha 0 akkor megfagy $\rightarrow$ játék vége.
+		\item - buildStrategy: BuildStrategy: Így tud építeni a játékos.
 		\item - currentTile: Tile: A játékos ismeri a mezőt amin éppen áll.
 		\item - inventory: Item[*]: Tárolja a játékos tárgyait, amik képességekkel tudjak felruházni őt.
 		\item - digStrategy: DigStrategy: Eldönti hogyan képes ásni a játékos.
@@ -471,6 +479,19 @@ for all observer in observers
 				}
 			}
 		\end{algorithm}
+		\item + void Build(): A játékos épít.\\
+		\begin{algorithm}[H]
+			\Fn{Build}{}{
+				decrement energy \\
+				buildStrategy.Build(currentTile)
+			}
+		\end{algorithm}
+		\item + void BearAttack(): A játékost medvetámadás éri.\\
+		\begin{algorithm}[H]
+			\Fn{BearAttack}{}{
+				Game Over
+			}
+		\end{algorithm}
 		\item + void Chill(): A testhő 1-el csökken, ha 0 alá megy $\rightarrow$ GameOver.\\
 		\begin{algorithm}[H]
 			\Fn{Chill}{}{
@@ -481,16 +502,16 @@ for all observer in observers
 			}
 		\end{algorithm}
 		\item + void DecrementEnergy(): Az energiát csökkentő helper metódus.\\
-\begin{algorithm}[H]
-	\Fn{decrementEnergy}{}{
-		Decrements the energy of the player
-	}
-	
-\end{algorithm}
+		\begin{algorithm}[H]
+			\Fn{decrementEnergy}{}{
+				Decrements the energy of the player
+			}
+			
+		\end{algorithm}
 		\item + void Dig(): Ezt a metódust a Controller hívja. A játékos havat ás. 1 munkaegység\\
 		\begin{algorithm}[H]
 			\Fn{Dig}{}{
-				\If{Eneregy is greater than 0} {
+				\If{Energy is greater than 0} {
 					Decrement energy \\
 					Dig based on the player's digStrategy
 				}
@@ -505,7 +526,7 @@ for all observer in observers
 		\item + void PickUp(): Ezt a metódust a Controller hívja. A játékos felvesz egy tárgyat. 1 munkaegység\\
 		\begin{algorithm}[H]
 			\Fn{pickUp}{}{
-				\If {Eneregy is greater than 0}{
+				\If {Energy is greater than 0}{
 					Decrement energy \\
 					Move the item from the current tile to the inventory of the player
 				}	
@@ -517,16 +538,16 @@ for all observer in observers
 				Make the item in the inventorySlot-th slot active
 			}
 		\end{algorithm}
-		\item + void PlaceOn(Tile t): Init szekvencia része. RopeRescue szekvencia része. Rárak egy játékost egy másik Tile-ra.\\
-		\begin{algorithm}[H]
-			\Fn{placeOn}{Tile t}{
-				Place the player on tile t
-			}
-		\end{algorithm}
+		%\item + void PlaceOn(Tile t): Init szekvencia része. RopeRescue szekvencia része. Rárak egy játékost egy másik Tile-ra.\\
+		%\begin{algorithm}[H]
+		%	\Fn{placeOn}{Tile t}{
+		%		Place the player on tile t
+		%	}
+		%\end{algorithm}
 		\item + void RescueTeammate(direction: int): Ezt a metódust a Controller hívja. A játékos kiment egy másikat a vízből. 1 munkaegység\\
 		\begin{algorithm}[H]
 			\Fn{RescueTeammate}{int d}{
-				\If{Eneregy is greater than 0} {
+				\If{Energy is greater than 0} {
 					Decrement energy \\
 					Try to rescue the teammate on the neighbor tile in direction d based on the player's rescueStrategy
 				}
@@ -541,7 +562,7 @@ for all observer in observers
 		\item + void Step(direction: int): Ezt a metódust a Controller hívja. A játékos lép, ha van még hozzá elég energiája. 1 munkaegység\\
 		\begin{algorithm}[H]
 			\Fn{Step}{int direction}{
-				\If{Eneregy is greater than 0} {
+				\If{Energy is greater than 0} {
 					Decrement energy \\
 					Move the player to the next tile in the given direction
 				}
@@ -562,16 +583,16 @@ for all observer in observers
 	\begin{itemize}
 		\item + void Step(int direction): Lép az adott irányba.
 		\begin{lstlisting}
-		Calls the Step method of base class with parameter direction
-		Attacks the tile it has stepped on
+Calls the Step method of base class with parameter direction
+Attacks the tile it has stepped on
 		\end{lstlisting}
 		\item + void Chill(): Nem csinál semmit, csak visszatér, mert a jegesmaci nem fázik.
 		\item + void ResistWater(): Nem csinál semmit, csak visszatér, mert a jegesmaci a vízben sem fázik.
 		\item void BearAttack(): Nem csinál semmit, csak visszatér, mert a jegesmaci nem támadja meg fajtársait, kizárólag a játékos húsát ízleli örömmel.
 		\item + void PlaceOn(Tile t): A medve átkerül a paraméterként kapott t Tilera.
 		\begin{lstlisting}
-		The current tile of the polar bear becomes t.
-		The bear gets placed into the occupants collection of t.
+The current tile of the polar bear becomes t.
+The bear gets placed into the occupants collection of t.
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -587,8 +608,8 @@ for all observer in observers
 	\begin{itemize}
 		\item + void Examine(dir: int): A játékos megnézheti, hogy egy adott irányban lévő Tile-nak mennyi a teherbírása. A Game.Explore metódust hívja.
 		\begin{lstlisting}
-		Gets the tile in the dir direction from the current tile he is on, calls it t
-		Calls the Explore method of the game objects he knows of with the t as a parameter.
+Gets the tile in the dir direction from the current tile he is on, calls it t
+Calls the Explore method of the game objects he knows of with the t as a parameter.
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -613,8 +634,8 @@ for all observer in observers
 	\begin{itemize}
 		\item + void GiveTo(Player p): A játékos kap egy kötelet. Az bekerül az inventoryjába és a megfelelő stratégiájához is a kötél által adott képesség.
 		\begin{lstlisting}
-		Instantiates a RopeRescue object as rr
-		Sets the RescueStrategy of p to rr
+Instantiates a RopeRescue object as rr
+Sets the RescueStrategy of p to rr
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -630,10 +651,10 @@ for all observer in observers
 	\begin{itemize}
 		\item + void Rescue(Tile water, Tile land): A vízben lévők közül egyvalaki rákerül a kihúzó játékos cellájára.
 		\begin{lstlisting}
-		Asks for the collection of occupants in the water Tile
-		If there are more than 0 occupants
-			The first occupant in the collection gets placed on the land Tile
-			That occupant also steps off the water
+Asks for the collection of occupants in the water Tile
+If there are more than 0 occupants
+	The first occupant in the collection gets placed on the land Tile
+	That occupant also steps off the water
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -649,8 +670,8 @@ for all observer in observers
 	\begin{itemize}
 		\item + void GiveTo(): A játékos búvárruhát kap. Az bekerül az inventoryjába és a megfelelő stratégiája helyére is a búvárruha által adott képesség.
 		\begin{lstlisting}
-		Instantiates a ScubaWearing object as sw
-		Sets the WaterResistanceStrategy of p to sw
+Instantiates a ScubaWearing object as sw
+Sets the WaterResistanceStrategy of p to sw
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -679,8 +700,8 @@ for all observer in observers
 	\begin{itemize}
 		\item + void Chill(Tile t): Minden rajta álló testhője csökken a WaterResistanceStrategy szerint.
 		\begin{lstlisting}
-		For all e : Entities on Tile t
-			e tries to ResistWater
+For all e : Entities on Tile t
+	e tries to ResistWater
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -692,13 +713,13 @@ for all observer in observers
 	\begin{itemize}
 		\item + void ChillStorm(Tile t): Minden a paraméterként kapott t mezőn lévő entitás fázik.
 		\begin{lstlisting}
-		For all e : Entities on t
-			e gets Chilled.
+For all e : Entities on t
+	e gets Chilled.
 		\end{lstlisting}
-		\item + void BearAttack(Tile t): A menedéken lévő játékosok medvetámaáds áldozatai lesznek.
+		\item + void BearAttack(Tile t): A menedéken lévő játékosok medvetámadás áldozatai lesznek.
 		\begin{lstlisting}
-		For all e : Entities on t
-			e gets Attacked by bear
+For all e : Entities on t
+	e gets Attacked by bear
 		\end{lstlisting}
 		\item + void Break(Tile t): Az adott mezőn lévő menedék eltörik. Nem csinál semmit, majd a különböző menedéktípusok másképp definiálják felül.
 	\end{itemize}
@@ -715,8 +736,8 @@ for all observer in observers
 	\begin{itemize}
 		\item + void GiveTo(): A játékos ásót kap, ami bekerül az inventoryjába és a megfelelő stratégiájához is bekerül az ásó által adott képesség.
 		\begin{lstlisting}
-		Instantiates a ShovelDig object as sd
-		Sets the DigStrategy of p to sd
+Instantiates a ShovelDig object as sd
+Sets the DigStrategy of p to sd
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -724,6 +745,13 @@ for all observer in observers
 \subsection{ShovelDig}
 \begin{itemize}
 	\item Egyszer lehet ásni vele fáradság nélkül is.
+	\begin{figure}[H]
+        \begin{center}
+                \includegraphics[width=10cm]{chapters/chapter08/ShovelStatechartDiagram.png}
+                \caption{ShovelDig StateChart}
+                \label{ShovelDig StateChart}
+        \end{center}
+	\end{figure}
 	\item Interfészek:
 	\begin{itemize}
 		\item DigStrategy
@@ -736,11 +764,11 @@ for all observer in observers
 	\begin{itemize}
 		\item + bool Dig(Tile t): Csökkenti a tile-on található hó mennyiségét. Minden második alkalommal fárasztó.
 		\begin{lstlisting}
-		Decrements the snow amount on t
-		if it was already used this turn
-			return true
-		else 
-			return false
+Decrements the snow amount on t
+if it was already used this turn
+	return true
+else 
+	return false
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -757,7 +785,7 @@ for all observer in observers
 		\item + void ChillStorm(Tile t): Így viselkedik a tábla, ha sátor van rajta hóviharban. A sátorban lévő játékosok nem fáznak, a metódus csak visszatér, nem csinál semmit.
 		\item + void Break(Tile t): Így viselkedik a sátor, ha eltörik. Beállítja a paraméterként kapott Tile menedékét sima jégre, ezzel jelezve halálát.
 		\begin{lstlisting}
-		sets the Shelter of t to BareIce
+sets the Shelter of t to BareIce
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -773,8 +801,8 @@ for all observer in observers
 	\begin{itemize}
 		\item + void GiveTo(Player p): A játékos így kap sátor alapanyagot.
 		\begin{lstlisting}
-		The BuildStrategy of p Gains a charge.
-		Removes the Tent from the inventory of p
+The BuildStrategy of p Gains a charge.
+Removes the Tent from the inventory of p
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
@@ -797,49 +825,46 @@ for all observer in observers
 		\item - void Add(Entity): Hozzáad egy entitást a táblához.
 		\item + void BreakShelter(): Ez a metódus eltávolítja a sátrat a tábláról.
 		\begin{lstlisting}
-		Calls the break method of the current shelter
+Calls the break method of the current shelter
 		\end{lstlisting}
-		\item + void BearAttack(): Ezt a metódust a Controller hívja 
-		\begin{lstlisting}
-		The bear attacks the tile, which forwards this event to the current shelter.
-		\end{lstlisting}
+		\item + void BearAttack(): Medve megtámadja a cellán állókat.
 		\item + void ChillStorm(): Ezt a metódust a Controller hívja viharban. Hűti a játékosokat, ha nincsenek igluban vagy sátorban.
 		\item + void ChillWater(): Ezt a metódust a Controller hívja körönként. Hűti a játékosokat, ha ez a cella víz.
 		\item + void DecrementSnow(): A hómennyiséget csökkentő helper függvény.
 		\begin{lstlisting}
-		if ( snow > 0 )
-			decrement snow
+if ( snow > 0 )
+	decrement snow
 		\end{lstlisting}
 		\item - void Remove(Entity): Eltávolítja a rajta álló entitást.
 		\item + Item TakeItem(): A játékos megkapja a tartalmazott tárgyat.
 		\begin{lstlisting}
-		if( Tile has item on it)
-			Remove item from the tile
-			return the item
+if( Tile has item on it)
+	Remove item from the tile
+	return the item
 		\end{lstlisting}
 		\item + Tile NeighborAt(direction): Visszaadja az adott irányban szomszédos cellát.
 		\begin{lstlisting}
-		return neighbour tile at direction
+return neighbor tile at direction
 		\end{lstlisting}
 		\item + StepOn(Entity): Játékos rálép a cellára, ha többen vannak mint a korlát, a jégtábla átfordul. A függvény futása során beállítja a megfelelő adattagokat az új értékekre.
 		\begin{lstlisting}
-		Add player to the tile
-		if ( weight limit is exceeded ) {
-			Set tile to sea
-			Chill the occupying players on the tile
-		}
+Add player to the tile
+if ( weight limit is exceeded ) {
+	Set tile to sea
+	Chill the occupying players on the tile
+}
 		\end{lstlisting}
 		\item + StepOff(Entity): Játékos lelép a celláról. A függvény futása során beállítja a megfelelő adattagokat az új értékekre.
 		\begin{lstlisting}
-		if ( player is on the tile )
-			remove player
+if ( player is on the tile )
+	remove player
 		\end{lstlisting}
 	\end{itemize}
 \end{itemize}
 
 \subsection{WaterResistanceStrategy}
 \begin{itemize}
-	\item Így reagál a játékos a hideg vízre. A vízben búvárruh nélkül nem lehet mozogni. A vízből ha búvárruha nélkül nem húznak ki, nem lehet életben maradni.
+	\item Így reagál a játékos a hideg vízre. A vízben búvárruha nélkül nem lehet mozogni. A vízből ha búvárruha nélkül nem húznak ki, nem lehet életben maradni.
 	\item Metódusok:
 	\begin{itemize}
 		\item + abstract void Chill(Player p): A stratégiát megvalósító elem dolga implementálni mi történik.
@@ -850,6 +875,13 @@ for all observer in observers
 \begin{itemize}
 \item Felelősség\newline
 Beolvas parancsokat, értelmezi és futtatja őket.
+\begin{figure}[H]
+	\begin{center}
+			\includegraphics[width=14cm]{chapters/chapter08/ProtoStatechartDiagram.png}
+			\caption{Proto StateChart}
+			\label{Proto StateChart}
+	\end{center}
+\end{figure}
 \item Attribútumok
 	\begin{itemize}
 		\item \texttt{+game: Game}; \newline
@@ -870,7 +902,7 @@ Beolvas parancsokat, értelmezi és futtatja őket.
 		\item \texttt{+hasSelectedTile(): boolean;}
 		\item \texttt{+hasSelectedPlayer(): boolean;}
 		\item \texttt{+hasSelectedBear(): boolean;}
-		\item \texttt{+getSelectedTile(): Tile;}
+		\item \texttt{+getSelectedTile(): Tile;} \newline
 		Kivételt dob ha nincs kiválaszvta dolog.			
 		\item \texttt{+getSelectedPlayer(): Player;} \newline
 		Kivételt dob ha nincs kiválaszvta dolog.
@@ -963,7 +995,7 @@ Elkészít egy fajta parancsot.
 \item Attribútumok
 	\begin{itemize}
 		\item \texttt{+/keyword: abstract String \string{readOnly\string};} \newline
-		A parancs kulcszava.
+		A parancs kulcsszava.
 	\end{itemize}
 \item Metódusok
 \begin{itemize}
@@ -975,6 +1007,7 @@ Elkészít egy fajta parancsot.
 \subsection{TileCommand}
 \begin{itemize}
 \item Felelősség\newline
+Cella definíciós parancs.
 \item Interfészek\newline
 Command
 \item Metódusok
@@ -989,7 +1022,6 @@ return "tile " + snow + " " + weightLimit;
 \end{itemize}
 \subsection{TileCommandParser}
 \begin{itemize}
-\item Felelősség\newline
 \item Interfészek\newline
 CommandParser
 \item Attribútumok
@@ -1011,6 +1043,7 @@ create TileCommand;
 \subsection{BuildingCommand}
 \begin{itemize}
 \item Felelősség\newline
+Épület (Iglu vagy Sátor) definíciós parancs.
 \item Interfészek\newline
 Command
 \item Metódusok
@@ -1034,7 +1067,6 @@ set state.selectedTile.shelter;
 \end{itemize}
 \subsection{BuildingCommandParser}
 \begin{itemize}
-\item Felelősség\newline
 \item Interfészek\newline
 CommandParser
 \item Attribútumok
@@ -1055,6 +1087,7 @@ create BuildingCommand;
 \subsection{ItemCommand}
 \begin{itemize}
 \item Felelősség\newline
+Tárgy definíciós parancs.
 \item Interfészek\newline
 Command
 \item Metódusok
@@ -1088,7 +1121,7 @@ if (state has tile selected and count > 1)
 if (state has no tile selected and state has no player selected)
 	throw an exception;
 for (count times) {
-	if (type equal "empty") create Emty;
+	if (type equal "empty") create Empty;
 	if (type equal "food") create Food;
 	if (type equal "part") create Part;
 	if (type equal "scubagear") create ScubaGear;
@@ -1108,7 +1141,6 @@ for (count times) {
 \end{itemize}
 \subsection{ItemCommandParser}
 \begin{itemize}
-\item Felelősség\newline
 \item Interfészek\newline
 CommandParser
 \item Attribútumok
@@ -1148,6 +1180,7 @@ return the ItemCommand;
 \subsection{EquipCommand}
 \begin{itemize}
 \item Felelősség\newline
+Tárgy kiválasztó parancs.
 \item Interfészek\newline
 Command
 \item Metódusok
@@ -1177,7 +1210,6 @@ else {
 \end{itemize}
 \subsection{EquipCommandParser}
 \begin{itemize}
-\item Felelősség\newline
 \item Interfészek\newline
 CommandParser
 \item Attribútumok
@@ -1200,6 +1232,7 @@ else {
 \subsection{SelectCommand}
 \begin{itemize}
 \item Felelősség\newline
+Kiválasztó parancs. Játékost, cellát vagy medvét lehet kiválasztani. 
 \item Interfészek\newline
 Command
 \item Metódusok
@@ -1249,6 +1282,7 @@ create SelectCommand with type and index;
 \subsection{EntityCommand}
 \begin{itemize}
 \item Felelősség\newline
+Entitás definíciós parancs.
 \item Interfészek\newline
 Command
 \item Attribútumok
@@ -1297,7 +1331,6 @@ if (type equals "polarbear") {
 \end{itemize}
 \subsection{EntityCommandParser}
 \begin{itemize}
-\item Felelősség\newline
 \item Interfészek\newline
 CommandParser
 \item Attribútumok
@@ -1322,6 +1355,7 @@ create EntityCommand;
 \subsection{ConnectCommand}
 \begin{itemize}
 \item Felelősség\newline
+Cella topológia definíciós parancs.
 \item Interfészek\newline
 Command
 \item Attribútumok
@@ -1332,7 +1366,7 @@ Command
 \begin{itemize}
 		\item \texttt{+toString(): String;}
 		\begin{lstlisting}
-"connect " + the indices joinded by spaces;
+"connect " + the indices joined by spaces;
 		\end{lstlisting}
 		\item \texttt{+execute(state: Proto);}
 		\begin{lstlisting}
@@ -1344,7 +1378,6 @@ for (each index in indices) {
 \end{itemize}
 \subsection{ConnectCommandParser}
 \begin{itemize}
-\item Felelősség\newline
 \item Interfészek\newline
 CommandParser
 \item Attribútumok
@@ -1364,6 +1397,7 @@ create ConnectCommand;
 \subsection{StepCommand}
 \begin{itemize}
 \item Felelősség\newline
+Entitás lépés parancs.
 \item Interfészek\newline
 Command
 \item Metódusok
@@ -1383,7 +1417,6 @@ return "step " + direction;
 \end{itemize}
 \subsection{StepCommandParser}
 \begin{itemize}
-\item Felelősség\newline
 \item Interfészek\newline
 CommandParser
 \item Attribútumok
@@ -1403,6 +1436,7 @@ create StepCommand with direction;
 \subsection{RescueCommand}
 \begin{itemize}
 \item Felelősség\newline
+Játékos kiment parancs.
 \item Interfészek\newline
 Command
 \item Metódusok
@@ -1422,7 +1456,6 @@ return "rescue " + direction;
 \end{itemize}
 \subsection{RescueCommandParser}
 \begin{itemize}
-\item Felelősség\newline
 \item Interfészek\newline
 CommandParser
 \item Attribútumok
@@ -1442,6 +1475,7 @@ create RescueCommand with direction;
 \subsection{ExamineCommand}
 \begin{itemize}
 \item Felelősség\newline
+Sarkkutató felderít parancs.
 \item Interfészek\newline
 Command
 \item Metódusok
@@ -1461,7 +1495,6 @@ return "examine " + direction;
 \end{itemize}
 \subsection{ExamineCommandParser}
 \begin{itemize}
-\item Felelősség\newline
 \item Interfészek\newline
 CommandParser
 \item Attribútumok
@@ -1481,6 +1514,7 @@ create ExamineCommand with direction;
 \subsection{DigCommand}
 \begin{itemize}
 \item Felelősség\newline
+Játékos ás parancs.
 \item Interfészek\newline
 Command
 \item Metódusok
@@ -1511,7 +1545,6 @@ CommandParser
 
 \subsection{PickUpCommand}
 \begin{itemize}
-\item Felelősség\newline
 \item Interfészek\newline
 Command
 \item Metódusok
@@ -1543,6 +1576,7 @@ CommandParser
 \subsection{BuildCommand}
 \begin{itemize}
 \item Felelősség\newline
+Játékos épít parancs.
 \item Interfészek\newline
 Command
 \item Metódusok
@@ -1557,7 +1591,6 @@ return "build";
 \end{itemize}
 \subsection{BuildCommandParser}
 \begin{itemize}
-\item Felelősség\newline
 \item Interfészek\newline
 CommandParser
 \item Attribútumok
@@ -1574,6 +1607,7 @@ CommandParser
 \subsection{AssembleCommand}
 \begin{itemize}
 \item Felelősség\newline
+Játékos összeszerel parancs.
 \item Interfészek\newline
 Command
 \item Metódusok
@@ -1605,6 +1639,7 @@ CommandParser
 \subsection{EatCommand}
 \begin{itemize}
 \item Felelősség\newline
+Játékos evés parancs.
 \item Interfészek\newline
 Command
 \item Metódusok
@@ -1619,7 +1654,6 @@ return "eat";
 \end{itemize}
 \subsection{EatCommandParser}
 \begin{itemize}
-\item Felelősség\newline
 \item Interfészek\newline
 CommandParser
 \item Attribútumok
@@ -1636,6 +1670,7 @@ CommandParser
 \subsection{TurnCommand}
 \begin{itemize}
 \item Felelősség\newline
+Játék új kör parancs.
 \item Interfészek\newline
 Command
 \item Metódusok
@@ -1667,6 +1702,7 @@ CommandParser
 \subsection{StormCommand}
 \begin{itemize}
 \item Felelősség\newline
+Vihar parancs.
 \item Interfészek\newline
 Command
 \item Metódusok
@@ -1684,7 +1720,6 @@ for (each tile in state.game.tiles)
 \end{itemize}
 \subsection{StormCommandParser}
 \begin{itemize}
-\item Felelősség\newline
 \item Interfészek\newline
 CommandParser
 \item Attribútumok
@@ -1701,6 +1736,7 @@ CommandParser
 \subsection{QueryCommand}
 \begin{itemize}
 \item Felelősség\newline
+Lekérdezi a játék állapotát.
 \item Interfészek\newline
 Command
 \item Metódusok
@@ -1763,7 +1799,7 @@ if (player.digStrategy is instance of BreakingShovelDig) {
 return result;
 		\end{lstlisting}		
 		\item \texttt{-makeTileCommand(tile: Tile): TileCommand;} \newline
-		Készít egy TileCommandot tile.snow és tile.weightLimit tulajdonságokal.
+		Készít egy TileCommandot tile.snow és tile.weightLimit tulajdonságokkal.
 		\item \texttt{-makeBuildingCommand(tile: Tile): BuildingCommand;} \newline
 		Készít egy BuildingCommandot a tile.shelter alapján.
 		\item \texttt{-makeItemCommand(item: Item): ItemCommand;} \newline
@@ -1775,12 +1811,11 @@ return result;
 		\item \texttt{-makeSelectTileCommand(tile: Tile, game: Game): SelectCommand;} \newline
 		Készít egy SelectCommandot, a tile game.tiles-beli indexével.
 		\item \texttt{-makeConnectCommand(tile: Tile, game: Game): ConnectCommand;} \newline
-		Készít egy ConnectCommandot. Megkeresi a tile.neightbors indexeit a game.tiles tömbben és azokat rakja a ConnectCommandba.
+		Készít egy ConnectCommandot. Megkeresi a tile.neighbors indexeit a game.tiles tömbben és azokat rakja a ConnectCommandba.
 	\end{itemize} 
 \end{itemize}
 \subsection{QueryCommandParser}
 \begin{itemize}
-\item Felelősség\newline
 \item Interfészek\newline
 CommandParser
 \item Attribútumok
