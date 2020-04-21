@@ -1,7 +1,7 @@
 package proto.model;
 
 public class BareHands implements DigStrategy {
-    public boolean Dig(Tile t) {
+    public boolean dig(Tile t) {
         return true;
     }
 }

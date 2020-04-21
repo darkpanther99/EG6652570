@@ -1,7 +1,7 @@
 package proto.model;
 
 public class Naked implements WaterResistanceStrategy {
-    public void Chill(Player p) {
+    public void chill(Player p) {
         throw new RuntimeException();
     }
 }

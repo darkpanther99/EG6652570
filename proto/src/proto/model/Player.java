@@ -14,67 +14,67 @@ public abstract class Player extends Entity {
     private List<Item> inventory;
     private BuildStrategy buildStrategy;
 
-    public void Step(int direction) {
+    public void step(int direction) {
         throw new RuntimeException();
     }
 
-    public void ResistWater() {
+    public void resistWater() {
         throw new RuntimeException();
     }
 
-    public void Chill() {
+    public void chill() {
         throw new RuntimeException();
     }
 
-    public void BearAttack() {
+    public void bearAttack() {
         throw new RuntimeException();
     }
 
-    public void DecrementEnergy() {
+    public void decrementEnergy() {
         throw new RuntimeException();
     }
 
-    public void IncrementBodyTemp() {
+    public void incrementBodyTemp() {
         throw new RuntimeException();
     }
 
-    public void PickUp() {
+    public void pickUp() {
         throw new RuntimeException();
     }
 
-    private void AddToInventory(Item i) {
+    private void addToInventory(Item i) {
         throw new RuntimeException();
     }
 
-    private void RemoveFromInventory(Item i) {
+    private void removeFromInventory(Item i) {
         throw new RuntimeException();
     }
 
-    public void Equip(int inventorySlot) {
+    public void equip(int inventorySlot) {
         throw new RuntimeException();
     }
 
-    public void ToFoodStore() {
+    public void toFoodStore() {
         throw new RuntimeException();
     }
 
-    public void EatFood() {
+    public void eatFood() {
         throw new RuntimeException();
     }
 
-    public void Dig() {
+    public void dig() {
         throw new RuntimeException();
     }
 
-    public void Build() {
+    public void build() {
         throw new RuntimeException();
     }
 
-    public void RescueTeammate(int direction) {
+    public void rescueTeammate(int direction) {
         throw new RuntimeException();
     }
 
-    public void AssembleFlare() {
+    public void assembleFlare() {
         throw new RuntimeException();
     }
 }

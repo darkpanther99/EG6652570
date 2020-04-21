@@ -1,7 +1,7 @@
 package proto.model;
 
 public class PolarExplorer extends Player {
-    public void Examine(int direction) {
+    public void examine(int direction) {
         throw new RuntimeException();
     }
 }

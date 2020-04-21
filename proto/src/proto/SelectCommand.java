@@ -2,7 +2,7 @@ package proto;
 
 public class SelectCommand implements Command {
     @Override
-    public void Execute(Proto state) {
+    public void execute(Proto state) {
         throw new RuntimeException();
     }
 

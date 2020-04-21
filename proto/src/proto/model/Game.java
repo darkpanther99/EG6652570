@@ -8,43 +8,43 @@ public class Game {
     private List<PolarBear> bears;
     private List<GameObserver> observers;
 
-    public void Turn() {
+    public void turn() {
         throw new RuntimeException();
     }
 
-    public void Victory() {
+    public void victory() {
         throw new RuntimeException();
     }
 
-    public void GameOver() {
+    public void gameOver() {
         throw new RuntimeException();
     }
 
-    private void AddTile(Tile t) {
+    private void addTile(Tile t) {
         throw new RuntimeException();
     }
 
-    private void AddPlayer(Player p) {
+    private void addPlayer(Player p) {
         throw new RuntimeException();
     }
 
-    public void AddPolarBear(PolarBear pb) {
+    public void addPolarBear(PolarBear pb) {
         throw new RuntimeException();
     }
 
-    public PolarExplorer CreatePolarExplorer() {
+    public PolarExplorer createPolarExplorer() {
         throw new RuntimeException();
     }
 
-    public Eskimo CreateEskimo() {
+    public Eskimo createEskimo() {
         throw new RuntimeException();
     }
 
-    public PolarBear CreatePolarBear() {
+    public PolarBear createPolarBear() {
         throw new RuntimeException();
     }
 
-    public Tile CreateTile(int snow, int weightLimit) {
+    public Tile createTile(int snow, int weightLimit) {
         throw new RuntimeException();
     }
 }

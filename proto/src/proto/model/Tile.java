@@ -11,47 +11,48 @@ public class Tile {
     private Item item;
     private Entity occupants;
 
-    public Tile NeighborAt(int direction) {
+    public Tile neighborAt(int direction) {
         throw new RuntimeException();
     }
 
-    public void DecrementSnow() {
+    public void decrementSnow() {
         throw new RuntimeException();
     }
 
-    public Item TakeItem() {
+    public Item takeItem() {
         throw new RuntimeException();
     }
 
-    private void Add(Entity e) {
+    private void add(Entity e) {
         throw new RuntimeException();
     }
 
-    private void Remove(Entity e) {
+    private void remove(Entity e) {
         throw new RuntimeException();
     }
 
-    public void StepOn(Entity e) {
+    public void stepOn(Entity e) {
         throw new RuntimeException();
     }
 
-    public void StepOff(Entity e) {
+    public void stepOff(Entity e) {
         throw new RuntimeException();
     }
 
-    public void ChillStorm() {
+    public void chillStorm() {
         throw new RuntimeException();
     }
 
-    public void BreakShelter() {
+    // Tile.breakShelter
+    public void ruinShelter() {
         throw new RuntimeException();
     }
 
-    public void BearAttack() {
+    public void bearAttack() {
         throw new RuntimeException();
     }
 
-    public void ChillWater() {
+    public void chillWater() {
         throw new RuntimeException();
     }
 }

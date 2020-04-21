@@ -1,11 +1,11 @@
 package proto.model;
 
 public class Igloo extends Shelter {
-    public void ChillStorm(Tile t) {
+    public void chillStorm(Tile t) {
         return;
     }
 
-    public void BearAttack(Tile t) {
+    public void bearAttack(Tile t) {
         return;
     }
 }

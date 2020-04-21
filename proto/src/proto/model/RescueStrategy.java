@@ -1,5 +1,5 @@
 package proto.model;
 
 public interface RescueStrategy {
-    void Rescue(Tile water, Tile land);
+    void rescue(Tile water, Tile land);
 }

@@ -1,7 +1,7 @@
 package proto.model;
 
 public class PolarBear extends Entity {
-    public void Step(int direction) {
+    public void step(int direction) {
         throw new RuntimeException();
     }
 }

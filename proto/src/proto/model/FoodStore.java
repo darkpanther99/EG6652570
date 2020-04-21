@@ -2,15 +2,15 @@ package proto.model;
 
 public class FoodStore {
     private int count = 0;
-    public void Feed(Player p) {
+    public void feed(Player p) {
         throw new RuntimeException();
     }
 
-    private void DecrementCount() {
+    private void decrementCount() {
         count--;
     }
 
-    public void Gain() {
+    public void gain() {
         count++;
     }
 }

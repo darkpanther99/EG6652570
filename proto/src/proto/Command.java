@@ -1,6 +1,6 @@
 package proto;
 
 public interface Command {
-    void Execute(Proto state);
+    void execute(Proto state);
     String toString();
 }

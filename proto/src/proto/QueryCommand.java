@@ -4,7 +4,7 @@ package proto;
 
 public class QueryCommand implements Command {
     @Override
-    public void Execute(Proto state) {
+    public void execute(Proto state) {
         throw new RuntimeException();
     }
 

@@ -2,23 +2,23 @@ package proto.model;
 
 public class Entity {
     private Tile currentTile;
-    public void Step(int direction) {
+    public void step(int direction) {
         throw new RuntimeException();
     }
 
-    public void PlaceOn(Tile t) {
+    public void placeOn(Tile t) {
         throw new RuntimeException();
     }
 
-    public void Chill() {
+    public void chill() {
        return;
     }
 
-    public void ResistWater() {
+    public void resistWater() {
         return;
     }
 
-    public void BearAttack() {
+    public void bearAttack() {
         return;
     }
 }

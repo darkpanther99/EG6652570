@@ -2,7 +2,7 @@ package proto;
 
 public class EatCommand implements Command {
     @Override
-    public void Execute(Proto state) {
+    public void execute(Proto state) {
         throw new RuntimeException();
     }
 

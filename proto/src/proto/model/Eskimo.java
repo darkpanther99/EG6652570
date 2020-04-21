@@ -1,7 +1,7 @@
 package proto.model;
 
 public class Eskimo extends Player {
-    public void Build() {
+    public void build() {
         throw new RuntimeException();
     }
 }

@@ -2,11 +2,11 @@ package proto.model;
 
 public class BuildStrategy {
     private int count = 0;
-    public void Build() {
+    public void build() {
         throw new RuntimeException();
     }
 
-    public void Gain() {
+    public void gain() {
         throw new RuntimeException();
     }
 }

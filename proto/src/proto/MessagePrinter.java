@@ -5,17 +5,17 @@ import proto.model.Tile;
 
 public class MessagePrinter implements GameObserver {
     @Override
-    public void GameOver() {
+    public void gameOver() {
         throw new RuntimeException();
     }
 
     @Override
-    public void Victory() {
+    public void victory() {
         throw new RuntimeException();
     }
 
     @Override
-    public void Explore(Tile t) {
+    public void explore(Tile t) {
         throw new RuntimeException();
     }
 }

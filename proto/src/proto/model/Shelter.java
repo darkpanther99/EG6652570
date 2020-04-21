@@ -1,15 +1,16 @@
 package proto.model;
 
 public abstract class Shelter {
-    public void ChillStorm(Tile t) {
+    public void chillStorm(Tile t) {
         throw new RuntimeException();
     }
 
-    public void BearAttack(Tile t) {
+    public void bearAttack(Tile t) {
         throw new RuntimeException();
     }
 
-    public void Break(Tile t) {
+    // Shelter.break ütközik a break; kulcsszóval...
+    public void ruin(Tile t) {
         throw new RuntimeException();
     }
 }
