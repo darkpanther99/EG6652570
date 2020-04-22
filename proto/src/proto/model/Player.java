@@ -77,4 +77,8 @@ public abstract class Player extends Entity {
     public void assembleFlare() {
         throw new RuntimeException();
     }
+    
+    public void setDigStrategy(DigStrategy d) {
+    	digStrategy=d;
+    }
 }

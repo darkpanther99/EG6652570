@@ -1,5 +1,6 @@
 package proto.model;
 
+import java.util.*;
 import java.util.Map;
 
 public class Tile {
@@ -9,7 +10,7 @@ public class Tile {
     private Shelter shelter;
     private ChillWaterStrategy chillWaterStrategy;
     private Item item;
-    private Entity occupants;
+    private ArrayList<Entity> occupants;
 
     public Tile neighborAt(int direction) {
         throw new RuntimeException();
@@ -54,5 +55,12 @@ public class Tile {
 
     public void chillWater() {
         throw new RuntimeException();
+    }
+    
+    public ArrayList<Entity> getOccupants(){
+    	return occupants;
+    }
+    public void setShelter(Shelter s) {
+    	shelter=s;
     }
 }
