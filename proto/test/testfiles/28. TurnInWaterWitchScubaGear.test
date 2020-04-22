@@ -1,0 +1,13 @@
+# 28. TurnInWaterWitchScubaGear
+# Input:
+tile 0 0
+entity eskimo 5 4
+item scubagear 
+equip all
+turn
+query
+# Output:
+tile 0 0
+entity eskimo 5 4
+item scubagear
+equip all

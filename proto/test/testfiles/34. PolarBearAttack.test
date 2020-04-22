@@ -1,0 +1,16 @@
+# 34. PolarBearAttack
+# Input:
+tile 1 *
+entity eskimo
+tile 1 *
+entity polarbear
+select tile 0
+connect 1
+select tile 1
+connect 0
+select polarbear 0
+step 1
+turn
+query
+# Output:
+Game over.

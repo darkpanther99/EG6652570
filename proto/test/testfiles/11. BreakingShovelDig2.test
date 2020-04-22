@@ -1,0 +1,12 @@
+# 11. BreakingShovelDig2
+# Input:
+tile 2 *
+entity eskimo 5 4
+item shovel durability 1
+select player 0
+dig
+dig
+query
+# Output:
+tile 0 *
+entity eskimo 5 3

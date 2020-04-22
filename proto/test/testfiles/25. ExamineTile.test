@@ -1,0 +1,18 @@
+# 25. ExamineTile
+# Input:
+tile 1 *
+entity polarexplorer 4 4
+tile 1 0
+tile 4 4
+select tile 0
+connect 1 2
+select tile 1
+connect 0
+select tile 2
+connect 0
+select player 0
+examine 1
+examine 2
+# Output:
+Tile weight limit: 0
+Tile weight limit: 4

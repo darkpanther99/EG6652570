@@ -1,0 +1,13 @@
+# 24. BuildTent
+# Input:
+tile 1 *
+entity polarexplorer 4 4
+item tentkit
+equip all
+select player 0
+build
+query
+# Output:
+tile 1 *
+building tent
+entity polarexplorer 4 3

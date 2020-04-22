@@ -1,0 +1,9 @@
+# 26. TurnOnStableIce
+# Input:
+tile 4 *
+entity eskimo 5 3
+turn
+query
+# Output:
+tile 4 *
+entity eskimo 5 4

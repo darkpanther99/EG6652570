@@ -1,0 +1,8 @@
+# 32. TentBreaking
+# Input:
+tile 1 *
+building tent
+turn
+query
+# Output:
+tile 1 *
