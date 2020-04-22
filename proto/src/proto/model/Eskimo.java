@@ -1,27 +1,26 @@
 package proto.model;
+
 /**
- * 
- * Játékos fajta. 5 egységnyi testhõvel kezd. Képes iglut építeni. A játékos irányítja. 
- *
+ * JÃ¡tÃ©kos fajta. 5 egysÃ©gnyi testhÅ‘vel kezd. KÃ©pes iglut Ã©pÃ­teni. A jÃ¡tÃ©kos irÃ¡nyÃ­tja.
  */
 public class Eskimo extends Player {
-	
-	/**
-	 * Konstruktor, ami létrehoz egy játékost, majd beállítja a teshõjét ötre, mint az eszkimóknak.
-	 */
-	public Eskimo() {
-		super();
-		this.bodyTemp=5;
-	}
-	
-	/**
-	 * Épít egy iglut a mezõre, amin áll, a BuildStrategyjétõl függetlenül. Az iglu megvéd majd a hóvihartól. Beállítja a mezõ menedékét Iglura. 
-	 */
+
+    /**
+     * Konstruktor, ami lÃ©trehoz egy jÃ¡tÃ©kost, majd beÃ¡llÃ­tja a testhÅ‘jÃ©t Ã¶tre, mint az eszkimÃ³knak.
+     */
+    public Eskimo() {
+        super();
+        this.bodyTemp = 5;
+    }
+
+    /**
+     * Ã‰pÃ­t egy iglut a mezÅ‘re, amin Ã¡ll, a BuildStrategy-jÃ©tÅ‘l fÃ¼ggetlenÃ¼l. Az iglu megvÃ©d majd a hÃ³vihartÃ³l. BeÃ¡llÃ­tja a mezÅ‘ menedÃ©kÃ©t Iglura.
+     */
     public void build() {
-        if (energy>0) {
-        	energy--;
-        	Igloo i=new Igloo();
-        	currentTile.setShelter(i);
+        if (energy > 0) {
+            energy--;
+            Igloo i = new Igloo();
+            currentTile.setShelter(i);
         }
     }
 }

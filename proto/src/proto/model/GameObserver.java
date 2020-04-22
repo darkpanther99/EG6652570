@@ -1,24 +1,24 @@
 package proto.model;
+
 /**
- * 
- * Figyeli a játék eseményeket.
- *
+ * Figyeli a jÃ¡tÃ©k esemÃ©nyeket.
  */
 public interface GameObserver {
-	
-	/**
-	 * Vereség esemény
-	 */
-    void gameOver();
-    
+
     /**
-     * Gyõzelem esemény
+     * VeresÃ©g esemÃ©ny
+     */
+    void gameOver();
+
+    /**
+     * GyÅ‘zelem esemÃ©ny
      */
     void victory();
-    
+
     /**
-     * Sarkkutató felderít esemény.
-     * @param t A Tile típúsú mezõ objektum, amit a sarkkutató feldírtett.
+     * SarkkutatÃ³ felderÃ­t esemÃ©ny.
+     *
+     * @param t A Tile tÃ­pusÃº mezÅ‘ objektum, amit a sarkkutatÃ³ felderÃ­tett.
      */
     void explore(Tile t);
 }

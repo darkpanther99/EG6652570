@@ -1,15 +1,15 @@
 package proto.model;
+
 /**
- * Élelem, amit a játékos meg tud enni, hogy növelje a testhojét. Élelem a pályán lesz található. 
- * 
- *
+ * Ã‰lelem, amit a jÃ¡tÃ©kos meg tud enni, hogy nÃ¶velje a testhÅ‘jÃ©t. Ã‰lelem a pÃ¡lyÃ¡n lesz talÃ¡lhatÃ³.
  */
 public class Food implements Item {
-	
-	/**
-	 * A paraméterként kapott játékos kap egy élelmet, az bekerül az élelemtárolójába
-	 * @param p A játékos, akinek növelni kell az élelem mennyiségét.
-	 */
+
+    /**
+     * A paramÃ©terkÃ©nt kapott jÃ¡tÃ©kos kap egy Ã©lelmet, az bekerÃ¼l az Ã©lelemtÃ¡rolÃ³jÃ¡ba
+     *
+     * @param p A jÃ¡tÃ©kos, akinek nÃ¶velni kell az Ã©lelem mennyisÃ©gÃ©t.
+     */
     public void giveTo(Player p) {
         p.getFoodStore().gain();
         p.removeFromInventory(this);

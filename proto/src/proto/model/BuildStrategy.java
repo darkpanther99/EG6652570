@@ -1,31 +1,30 @@
 package proto.model;
 
 /**
- * 
- * A j·tÈkos Ìgy kÈpes s·trat ÈpÌteni.
- *
+ * A j√°t√©kos √≠gy k√©pes s√°trat √©p√≠teni.
  */
 public class BuildStrategy {
-	
-	/**
-	 * Az ÈpÌthetı s·trak sz·ma.
-	 */
-    private int count = 0;
-    
+
     /**
-     * …pÌt egy s·trat a j·tÈkos a paramÈterkÈnt kapott mezıre. Az ÈpÌthetı s·trak sz·ma eggyel csˆkken.
-     * @param t A Tile tÌp˙s˙ mezı, ahova ÈpÌteni akarja a j·tÈkos a s·trat.
+     * Az √©p√≠thet≈ë s√°trak sz√°ma.
+     */
+    private int count = 0;
+
+    /**
+     * √âp√≠t egy s√°trat a j√°t√©kos a param√©terk√©nt kapott mez≈ëre. Az √©p√≠thet≈ë s√°trak sz√°ma eggyel cs√∂kken.
+     *
+     * @param t A Tile t√≠pus√∫ mez≈ë, ahova √©p√≠teni akarja a j√°t√©kos a s√°trat.
      */
     public void build(Tile t) {
-        if (count >0) {
-        	count--;
-        	Tent te=new Tent();
-        	t.setShelter(te);
+        if (count > 0) {
+            count--;
+            Tent te = new Tent();
+            t.setShelter(te);
         }
     }
 
     /**
-     * Kap egy s·trat, eggyel nı az ÈpÌthetı ·trak sz·ma
+     * Kap egy s√°trat, eggyel n≈ë az √©p√≠thet≈ë √°trak sz√°ma
      */
     public void gain() {
         count++;

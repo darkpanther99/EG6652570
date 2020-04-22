@@ -1,36 +1,36 @@
 package proto.model;
+
 import java.util.Random;
+
 /**
- * 
- * Törheto ásó osztály.
- *
+ * TÃ¶rhetÅ‘ Ã¡sÃ³ osztÃ¡ly.
  */
 public class BreakingShovel implements Item {
-	
-	/**
-	 * Tárolja az aktuális BreakingShovelDig instanceot, amivel a játékos ásni fog.
-	 */
-    private BreakingShovelDig instance;
-    
+
     /**
-     * Konstruktor létrehozza a random durabilityjû törékeny ásó instancet.
+     * TÃ¡rolja az aktuÃ¡lis BreakingShovelDig instance-et, amivel a jÃ¡tÃ©kos Ã¡sni fog.
+     */
+    private BreakingShovelDig instance;
+
+    /**
+     * Konstruktor lÃ©trehozza a random durability-jÅ± tÃ¶rÃ©keny Ã¡sÃ³ instance-et.
      */
     public BreakingShovel() {
-    	instance=new BreakingShovelDig(this);
-    	instance.setDurability(new Random().nextInt(5)+1);
+        instance = new BreakingShovelDig(this);
+        instance.setDurability(new Random().nextInt(5) + 1);
     }
-    
+
     /**
-     * A játékos így kap ásót. Az ásója annyiszor tud majd ásni törés elõtt, amennyit ez a metódus beállít neki.
+     * A jÃ¡tÃ©kos Ã­gy kap Ã¡sÃ³t. Az Ã¡sÃ³ja annyiszor tud majd Ã¡sni tÃ¶rÃ©s elÅ‘tt, amennyit ez a metÃ³dus beÃ¡llÃ­t neki.
      */
     public void giveTo(Player p) {
-    	p.setDigStrategy(instance);
+        p.setDigStrategy(instance);
     }
-    
+
     /**
-     * Dekrementálja a tárolt lapát instance durabilityjét.
+     * CsÃ¶kkenti a tÃ¡rolt lapÃ¡t instance durability-jÃ©t.
      */
     public void decrementInstanceDurability() {
-    	instance.decrementDurability();
+        instance.decrementDurability();
     }
 }

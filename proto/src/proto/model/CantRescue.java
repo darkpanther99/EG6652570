@@ -1,16 +1,16 @@
 package proto.model;
+
 /**
- * 
- * A játékos nem tudja kihúzni a csapattársát. A játékos ilyen állapotban van, ha nincs nála kötél.
- *
+ * A jÃ¡tÃ©kos nem tudja kihÃºzni a csapattÃ¡rsÃ¡t. A jÃ¡tÃ©kos ilyen Ã¡llapotban van, ha nincs nÃ¡la kÃ¶tÃ©l.
  */
 public class CantRescue implements RescueStrategy {
-	
-	/**
-	 * Mivel a játékos ebben az állapotban nem tudja megmenteni a csapattársát, ez a fv nem csinál vele semmit.
-	 * @param water A Tile típusú objektum, amin a kimentendõ játékos áll.
-	 * @param land A Tile típusú objektum, amin a kimentõ játékos áll.
-	 */
+
+    /**
+     * Mivel a jÃ¡tÃ©kos ebben az Ã¡llapotban nem tudja megmenteni a csapattÃ¡rsÃ¡t, ez a fv nem csinÃ¡l vele semmit.
+     *
+     * @param water A Tile tÃ­pusÃº objektum, amin a kimentendÅ‘ jÃ¡tÃ©kos Ã¡ll.
+     * @param land  A Tile tÃ­pusÃº objektum, amin a kimentÅ‘ jÃ¡tÃ©kos Ã¡ll.
+     */
     public void rescue(Tile water, Tile land) {
         return;
     }

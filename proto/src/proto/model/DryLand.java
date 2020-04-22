@@ -1,16 +1,16 @@
 package proto.model;
 
 /**
- * 
- * A szárazföld nem hûti a játékosokat. A játékos nincsen vízben. Ezt reprezentáló osztály.
- *
+ * A szÃ¡razfÃ¶ld nem hÅ±ti a jÃ¡tÃ©kosokat. A jÃ¡tÃ©kos nincsen vÃ­zben. Ezt reprezentÃ¡lÃ³ osztÃ¡ly.
  */
 public class DryLand implements ChillWaterStrategy {
-	
-	/**
-	 * A stratégia megvalósítása miatt kér be egy t Tile paramétert, a rajta levõ játékossal viszont nem csinál semmit, mert az nincs vízben, nem csökkenti testhojét.
-	 * @param A stratégia megvalósítása miatt kér be egy t Tile paramétert, a rajta levõ játékossal viszont nem csinál semmit.
-	 */
+
+    /**
+     * A stratÃ©gia megvalÃ³sÃ­tÃ¡sa miatt kÃ©r be egy t Tile paramÃ©tert, a rajta levÅ‘ jÃ¡tÃ©kossal viszont nem csinÃ¡l semmit,
+     * mert az nincs vÃ­zben, nem csÃ¶kkenti testhÅ‘jÃ©t.
+     *
+     * @param t A stratÃ©gia megvalÃ³sÃ­tÃ¡sa miatt kÃ©r be egy t Tile paramÃ©tert, a rajta levÅ‘ jÃ¡tÃ©kossal viszont nem csinÃ¡l semmit.
+     */
     public void chill(Tile t) {
         return;
     }

@@ -1,28 +1,27 @@
 package proto.model;
+
 /**
- * 
- * Ezen a jégtáblán iglu áll, a játékosok védve vannak a vihartól. Az ilyen táblán nem csökken a viharban a rajta állók testhõje. 
- *
+ * Ezen a jÃ©gtÃ¡blÃ¡n iglu Ã¡ll, a jÃ¡tÃ©kosok vÃ©dve vannak a vihartÃ³l. Az ilyen tÃ¡blÃ¡n nem csÃ¶kken a viharban a rajta Ã¡llÃ³k testhÅ‘je.
  */
 public class Igloo extends Shelter {
-	/**
-	 * A paraméterként kapott cellán álló játékosok testhoje nem csökken, mivel igluban vannak.
-	 */
+    /**
+     * A paramÃ©terkÃ©nt kapott cellÃ¡n Ã¡llÃ³ jÃ¡tÃ©kosok testhÅ‘je nem csÃ¶kken, mivel igluban vannak.
+     */
     public void chillStorm(Tile t) {
         return;
     }
 
     /**
-     * Így viselkedik a mezo ha valaki igluban van és megtámadja a medve. Visszatér, mert a medve az igluban meghúzódó játékosokat nem bántja.
+     * Ãgy viselkedik a mezÅ‘ ha valaki igluban van Ã©s megtÃ¡madja a medve. VisszatÃ©r, mert a medve az igluban meghÃºzÃ³dÃ³ jÃ¡tÃ©kosokat nem bÃ¡ntja.
      */
     public void bearAttack(Tile t) {
         return;
     }
-    
+
     /**
-     * Visszatér, nem csinál semmit, mivel az iglu nem törik el soha.
+     * VisszatÃ©r, nem csinÃ¡l semmit, mivel az iglu nem tÃ¶rik el soha.
      */
     public void ruin(Tile t) {
-    	return;
+        return;
     }
 }

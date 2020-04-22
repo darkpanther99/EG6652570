@@ -1,13 +1,12 @@
 package proto.model;
+
 /**
- * 
- * A játékos védtelen a hideg vízzel szemben. A játékos ha így esik vízbe és nem menekítik ki megfullad.
- *
+ * A jÃ¡tÃ©kos vÃ©dtelen a hideg vÃ­zzel szemben. A jÃ¡tÃ©kos, ha Ã­gy esik vÃ­zbe Ã©s nem menekÃ­tik ki, megfullad.
  */
 public class Naked implements WaterResistanceStrategy {
-	/**
-	 * Játékosnak nincsen ereje a vízben úszni búvárruha nélkül. Emellett fázik is.
-	 */
+    /**
+     * JÃ¡tÃ©kosnak nincsen ereje a vÃ­zben Ãºszni bÃºvÃ¡rruha nÃ©lkÃ¼l. Emellett fÃ¡zik is.
+     */
     public void chill(Player p) {
         p.setEnergy(0);
         p.chill();

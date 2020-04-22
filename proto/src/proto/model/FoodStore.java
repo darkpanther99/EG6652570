@@ -1,34 +1,34 @@
 package proto.model;
+
 /**
- * 
- * A j·tÈkos ebben a zsebben t·rolja az Èlelmet.
- *
+ * A j√°t√©kos ebben a zsebben t√°rolja az √©lelmet.
  */
 public class FoodStore {
-	
-	/**
-	 * H·ny Èlelem van a j·tÈkosn·l.
-	 */
-    private int count = 0;
-    
+
     /**
-     * J·tÈkos testhoje megnı, az Èlelem mennyisÈge csˆkken, mivel a j·tÈkos megeszi azt.
+     * H√°ny √©lelem van a j√°t√©kosn√°l.
+     */
+    private int count = 0;
+
+    /**
+     * J√°t√©kos testh≈ëje megn≈ë, az √©lelem mennyis√©ge cs√∂kken, mivel a j√°t√©kos megeszi azt.
+     *
      * @param p
      */
     public void feed(Player p) {
-        if(count>0) {
-        	count--;
-        	p.incrementBodyTemp();
+        if (count > 0) {
+            count--;
+            p.incrementBodyTemp();
         }
     }
 
-    /*Ez a fv lehet nem kell, kikommentezve bent hagyom egyelıre.
+    /*Ez a fv lehet nem kell, kikommentezve bent hagyom egyel≈ëre.
      * public void decrementCount() {
         count--;
     }*/
 
     /**
-     * Nˆveli a benne tal·lhatÛ elemek sz·m·t.
+     * N√∂veli a benne tal√°lhat√≥ elemek sz√°m√°t.
      */
     public void gain() {
         count++;

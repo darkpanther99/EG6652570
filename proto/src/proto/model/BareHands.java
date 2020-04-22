@@ -2,21 +2,19 @@ package proto.model;
 
 
 /**
- * 
- *  A játékos így ás, ha nincs ásója, ezt a fajta ásást reprezentáló osztály.
- *
+ * A jÃ¡tÃ©kos Ã­gy Ã¡s, ha nincs Ã¡sÃ³ja, ezt a fajta Ã¡sÃ¡st reprezentÃ¡lÃ³ osztÃ¡ly.
  */
 public class BareHands implements DigStrategy {
-	/**
-     * Az implementált DigStrategy interface Dig metódusát felüldefiniálja.
-     * Csökkenteni szeretné a t Tile-en lévõ hó mennyiségét, annak decrementSnow metódusának meghívásával.
-     * Puszta kézzel ásást reprezentáló metódus.
+    /**
+     * Az implementÃ¡lt DigStrategy interface Dig metÃ³dusÃ¡t felÃ¼ldefiniÃ¡lja.
+     * CsÃ¶kkenteni szeretnÃ© a t Tile-en lÃ©vÅ‘ hÃ³ mennyisÃ©gÃ©t, annak decrementSnow metÃ³dusÃ¡nak meghÃ­vÃ¡sÃ¡val.
+     * Puszta kÃ©zzel Ã¡sÃ¡st reprezentÃ¡lÃ³ metÃ³dus.
      *
-     * @param t A Tile típusú jégtábla objektum, amin a játékos ásni szeretne.
-     * @return Visszaadja, hogy a játékos fárad-e az ásástól, mivel puszta kézzel mindig fárad, ezért mindig true.
+     * @param t A Tile tÃ­pusÃº jÃ©gtÃ¡bla objektum, amin a jÃ¡tÃ©kos Ã¡sni szeretne.
+     * @return Visszaadja, hogy a jÃ¡tÃ©kos fÃ¡rad-e az Ã¡sÃ¡stÃ³l, mivel puszta kÃ©zzel mindig fÃ¡rad, ezÃ©rt mindig true.
      */
     public boolean dig(Tile t) {
-    	t.decrementSnow();
+        t.decrementSnow();
         return true;
     }
 }

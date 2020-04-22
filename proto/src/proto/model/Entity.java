@@ -1,51 +1,52 @@
 package proto.model;
+
 /**
- * 
- * Entitás osztály ami a pályán tartózkodhat
- *
+ * EntitÃ¡s osztÃ¡ly ami a pÃ¡lyÃ¡n tartÃ³zkodhat
  */
 public class Entity {
-	
-	/**
-	 * Tárolja a Tile típusú jégtáblát, amin az entitás éppen tartózkodik.
-	 */
-    protected Tile currentTile;
-    
+
     /**
-     * Az entitás a paraméterként kapott irányba lép.
-     * @param direction Az irány
+     * TÃ¡rolja a Tile tÃ­pusÃº jÃ©gtÃ¡blÃ¡t, amin az entitÃ¡s Ã©ppen tartÃ³zkodik.
+     */
+    protected Tile currentTile;
+
+    /**
+     * Az entitÃ¡s a paramÃ©terkÃ©nt kapott irÃ¡nyba lÃ©p.
+     *
+     * @param direction Az irÃ¡ny
      */
     public void step(int direction) {
-        Tile t=currentTile.getNeighbor(direction);
+        Tile t = currentTile.getNeighbor(direction);
         t.stepOff(this);
         this.placeOn(t);
     }
 
     /**
-     * Ráteszi az entitást egy másik táblára. A kötél használatakor is használatos.
-     * @param t A mezõ, amire az entitás lép.
+     * RÃ¡teszi az entitÃ¡st egy mÃ¡sik tÃ¡blÃ¡ra. A kÃ¶tÃ©l hasznÃ¡latakor is hasznÃ¡latos.
+     *
+     * @param t A mezÅ‘, amire az entitÃ¡s lÃ©p.
      */
     public void placeOn(Tile t) {
-    	t.stepOn(this);
-        currentTile=t;
+        t.stepOn(this);
+        currentTile = t;
     }
 
     /**
-     *  Hûti az entitást. A testhõje csökken. Nem csinál semmit, csak visszatér, majd a leszármazottak felüldefiniálják.
+     * HÅ±ti az entitÃ¡st. A testhÅ‘je csÃ¶kken. Nem csinÃ¡l semmit, csak visszatÃ©r, majd a leszÃ¡rmazottak felÃ¼ldefiniÃ¡ljÃ¡k.
      */
     public void chill() {
-       return;
+        return;
     }
 
     /**
-     *  Így viselkedik vízben. Nem csinál semmit, csak visszatér, majd a leszármazottak felüldefiniálják.
+     * Ãgy viselkedik vÃ­zben. Nem csinÃ¡l semmit, csak visszatÃ©r, majd a leszÃ¡rmazottak felÃ¼ldefiniÃ¡ljÃ¡k.
      */
     public void resistWater() {
         return;
     }
 
     /**
-     *Így viselkedik, ha megtámadja a medve. Nem csinál semmit, csak visszatér, majd a leszármazottak felüldefiniálják.
+     * Ãgy viselkedik, ha megtÃ¡madja a medve. Nem csinÃ¡l semmit, csak visszatÃ©r, majd a leszÃ¡rmazottak felÃ¼ldefiniÃ¡ljÃ¡k.
      */
     public void bearAttack() {
         return;

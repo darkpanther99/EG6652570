@@ -77,16 +77,16 @@ public abstract class Player extends Entity {
     public void assembleFlare() {
         throw new RuntimeException();
     }
-    
+
     public void setDigStrategy(DigStrategy d) {
-    	digStrategy=d;
+        digStrategy = d;
     }
-    
+
     public FoodStore getFoodStore() {
-    	return foodStore;
+        return foodStore;
     }
-    
+
     public void setEnergy(int n) {
-    	energy=n;
+        energy = n;
     }
 }
