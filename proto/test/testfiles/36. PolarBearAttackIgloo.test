@@ -1,0 +1,24 @@
+# 36. PolarBearAttackIgloo
+# Input:
+tile 1 *
+building igloo
+entity eskimo
+tile 1 *
+entity polarbear
+sleect tile 0
+connect 1 
+select tile 1
+connect 0
+select polarbear 0
+step 1
+turn
+query
+# Output:
+tile 1 *
+building igloo
+entity eskimo
+entity polarbear
+select tile 0
+connect 1
+select tile 1
+connect 0

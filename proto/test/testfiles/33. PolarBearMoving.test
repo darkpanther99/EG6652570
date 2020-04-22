@@ -1,0 +1,21 @@
+# 33. PolarBearMoving
+# Input:
+tile 1 *
+entity polarbear
+tile 1 *
+select tile 0
+connect 1
+select tile 1
+connect 0
+select polarbear 0
+step 1
+turn
+query
+# Output:
+tile 1 *
+tile 1 *
+entity polarbear
+select tile 0
+connect 1
+select tile 1
+connect 0

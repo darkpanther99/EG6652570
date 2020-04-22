@@ -1,0 +1,12 @@
+# 29. ChillStormIgloo
+# Input:
+tile 1 *
+building igloo
+entity eskimo 5 3
+storm
+turn
+query
+# Output:
+tile 1 * 
+building igloo
+entity eskimo 5 4

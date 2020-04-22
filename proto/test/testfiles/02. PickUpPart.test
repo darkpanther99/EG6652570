@@ -1,0 +1,19 @@
+# 02. PickUpPart
+# Input:
+tile 1 *
+entity eskimo 5 4
+tile 0 *
+item part
+select tile 0
+connect 1
+select player 0
+step 0
+pickup
+query
+# Output:
+tile 1 *
+tile 0 *
+entity eskimo 5 2
+item part
+select tile 0
+connect 1

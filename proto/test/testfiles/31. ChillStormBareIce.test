@@ -1,0 +1,10 @@
+# 31. ChillStormBareIce
+# Input:
+tile 1 *
+entity eskimo 5 4
+storm
+turn
+query
+# Output:
+tile 1 *
+entity eskimo 4 4

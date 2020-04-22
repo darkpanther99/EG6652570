@@ -1,0 +1,9 @@
+# 27. TurnInWaterNaked
+# Input:
+tile 0 0
+entity eskimo 4 0
+turn
+query
+# Output:
+tile 0 0
+entity eskimo 3 0

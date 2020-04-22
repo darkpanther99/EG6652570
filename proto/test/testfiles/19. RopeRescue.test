@@ -1,0 +1,24 @@
+# 19. RopeRescue
+# Input:
+tile 1 *
+entity eskimo 5 4
+item rope
+equip all
+tile 0 0
+entity eskimo 4 0
+select tile 0
+connect 1
+select tile 1
+connect 0
+select player 0
+rescue 1
+query
+# Output:
+tile 1 *
+entity eskimo 5 3
+entity eskimo 4 0
+tile 0 0
+select tile 0
+connect 1
+select tile 1
+connect 0

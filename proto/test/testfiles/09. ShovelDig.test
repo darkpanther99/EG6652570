@@ -1,0 +1,15 @@
+# 09. ShovelDig
+# Input:
+tile 2 *
+entity eskimo 5 4
+item shovel
+equip all
+select player 0
+dig
+dig
+query
+# Output:
+tile 0 *
+entity eskimo 5 3
+item shovel
+equip all
