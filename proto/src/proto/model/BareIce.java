@@ -1,37 +1,39 @@
 package proto.model;
 
 /**
- * 
- *Ilyen a jégtábla, ha nincs rajta iglu. A jégtáblán nincs védelem a vihar elol.
- *
+ * Ilyen a jÃ©gtÃ¡bla, ha nincs rajta iglu. A jÃ©gtÃ¡blÃ¡n nincs vÃ©delem a vihar elÅ‘l.
  */
 public class BareIce extends Shelter {
-	
-	/**
-	 * A paraméterként kapott t Tilen álló játékosok testhõje csökken.
-	 * @param t A Tile típusú jégtábla objektum, amin a menedék(jelen esetben a semmi) található, és a rajta lévõ entitások fáznak rajta.
-	 *
-	 */
-	public void chillStorm(Tile t) {
-        for (Entity e:t.getOccupants()) {
-        	e.chill();
+
+    /**
+     * A paramÃ©terkÃ©nt kapott t Tile-en Ã¡llÃ³ jÃ¡tÃ©kosok testhÅ‘je csÃ¶kken.
+     *
+     * @param t A Tile tÃ­pusÃº jÃ©gtÃ¡bla objektum, amin a menedÃ©k(jelen esetben a semmi) talÃ¡lhatÃ³,
+     *         Ã©s a rajta lÃ©vÅ‘ entitÃ¡sok fÃ¡znak rajta.
+     */
+    public void chillStorm(Tile t) {
+        for (Entity e : t.getOccupants()) {
+            e.chill();
         }
     }
 
-	/**
-	 *  A paraméterként kapott t Tilen álló minden játékost megtámad a medve.
-	 * @param t A Tile típusú jégtábla objektum, amin a menedék(jelen esetben a semmi) található, és a rajta lévõ entitások medvetámadás áldozatai lettek.
-	 *
-	 */
+    /**
+     * A paramÃ©terkÃ©nt kapott t Tile-en Ã¡llÃ³ minden jÃ¡tÃ©kost megtÃ¡mad a medve.
+     *
+     * @param t A Tile tÃ­pusÃº jÃ©gtÃ¡bla objektum, amin a menedÃ©k (jelen esetben a semmi) talÃ¡lhatÃ³,
+     *         Ã©s a rajta lÃ©vÅ‘ entitÃ¡sok medvetÃ¡madÃ¡s Ã¡ldozatai lettek.
+     */
     public void bearAttack(Tile t) {
-    	for (Entity e:t.getOccupants()) {
-        	e.bearAttack();
+        for (Entity e : t.getOccupants()) {
+            e.bearAttack();
         }
     }
+
     /**
-    * Nem csinál semmit, mert a nem létezõ menedék nem törik el.
-    * @param t A Tile típusú jégtábla objektum, amin a menedék(jelen esetben a semmi) található.
-    */
+     * Nem csinÃ¡l semmit, mert a nem lÃ©tezÅ‘ menedÃ©k nem tÃ¶rik el.
+     *
+     * @param t A Tile tÃ­pusÃº jÃ©gtÃ¡bla objektum, amin a menedÃ©k(jelen esetben a semmi) talÃ¡lhatÃ³.
+     */
     public void ruin(Tile t) {
         return;
     }

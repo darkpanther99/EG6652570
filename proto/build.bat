@@ -6,8 +6,6 @@ set outjar=%~dp0out\proto.jar
 if exist %classfolder% rd /S /Q %classfolder%
 if exist %outjar% del %outjar%
 set JAVA_HOME=C:\Program Files\Java\jdk-11.0.2
-REM Andor kódja elbaszta a fordítást...
-REM "%JAVA_HOME%\bin\javac.exe" -encoding UTF-8 -d %classfolder% %src%\proto\*.java %src%\proto\model\*.java 
-"%JAVA_HOME%\bin\javac.exe" -d %classfolder% %src%\proto\*.java %src%\proto\model\*.java 
+"%JAVA_HOME%\bin\javac.exe" -encoding UTF-8 -d %classfolder% %src%\proto\*.java %src%\proto\model\*.java 
 "%JAVA_HOME%\bin\jar.exe" cfm %outjar% %src%\META-INF\MANIFEST.MF -C %classfolder% .
 endlocal

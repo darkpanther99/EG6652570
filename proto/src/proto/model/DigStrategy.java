@@ -1,14 +1,14 @@
 package proto.model;
+
 /**
- * 
- * A játékos így ás. Ásáskor a cellán a hómennyiség csökken.
- *
+ * A jÃ¡tÃ©kos Ã­gy Ã¡s. ÃsÃ¡skor a cellÃ¡n a hÃ³mennyisÃ©g csÃ¶kken.
  */
 public interface DigStrategy {
-	/**
-	 * A stratégiát megvalósító elem dolga implementálni mi történik ásáskor. Visszaadja, hogy az ásás fárasztó-e.
-	 * @param t A Tile típusú objektum, ahol a játékos ásni szeretne.
-	 * @return Igaz vagy hamis attól függõen, hogy az ásás fárasztó-e.
-	 */
-   boolean dig(Tile t);
+    /**
+     * A stratÃ©giÃ¡t megvalÃ³sÃ­tÃ³ elem dolga implementÃ¡lni mi tÃ¶rtÃ©nik Ã¡sÃ¡skor. Visszaadja, hogy az Ã¡sÃ¡s fÃ¡rasztÃ³-e.
+     *
+     * @param t A Tile tÃ­pusÃº objektum, ahol a jÃ¡tÃ©kos Ã¡sni szeretne.
+     * @return Igaz vagy hamis attÃ³l fÃ¼ggÅ‘en, hogy az Ã¡sÃ¡s fÃ¡rasztÃ³-e.
+     */
+    boolean dig(Tile t);
 }

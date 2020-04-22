@@ -1,15 +1,14 @@
 package proto.model;
 
 /**
- * 
- * Nincs jégbe fagyott tárgy. Ez az üres eszköz típus, nem képes semmi extra tulajdonságot biztosítani a tulajdonosnak.
- *
+ * Nincs jÃ©gbe fagyott tÃ¡rgy. Ez az Ã¼res eszkÃ¶z tÃ­pus, nem kÃ©pes semmi extra tulajdonsÃ¡got biztosÃ­tani a tulajdonosnak.
  */
 public class Empty implements Item {
-	/**
-	 * A paraméterként kapott játékost nem ruházza fel extra tulajdonsággal, mivel épp nincs itt jégbe fagyott tárgy.
-	 * @param A játékos, aki nem kap semmi extra tulajdonságot.
-	 */
+    /**
+     * A paramÃ©terkÃ©nt kapott jÃ¡tÃ©kost nem ruhÃ¡zza fel extra tulajdonsÃ¡ggal, mivel Ã©pp nincs itt jÃ©gbe fagyott tÃ¡rgy.
+     *
+     * @param p A jÃ¡tÃ©kos, aki nem kap semmi extra tulajdonsÃ¡got.
+     */
     public void giveTo(Player p) {
         return;
     }

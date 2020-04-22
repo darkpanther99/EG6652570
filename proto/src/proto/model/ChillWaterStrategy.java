@@ -1,13 +1,14 @@
 package proto.model;
+
 /**
- * 
- * A jégtábla így hûti a vízbe esett játékosokat. Vízben tartózkodás esetén a játékos testhõje csökken, a megvalósított stratégia alapján.
- *
+ * A jÃ©gtÃ¡bla Ã­gy hÅ±ti a vÃ­zbe esett jÃ¡tÃ©kosokat.
+ * VÃ­zben tartÃ³zkodÃ¡s esetÃ©n a jÃ¡tÃ©kos testhÅ‘je csÃ¶kken, a megvalÃ³sÃ­tott stratÃ©gia alapjÃ¡n.
  */
 public interface ChillWaterStrategy {
-	/**
-	 * A stratégiát megvalósító elem dolga implementálni mi történik
-	 * @param t A Tile típusú objektum, amin a játékos fázni fog.
-	 */
+    /**
+     * A stratÃ©giÃ¡t megvalÃ³sÃ­tÃ³ elem dolga implementÃ¡lni mi tÃ¶rtÃ©nik
+     *
+     * @param t A Tile tÃ­pusÃº objektum, amin a jÃ¡tÃ©kos fÃ¡zni fog.
+     */
     void chill(Tile t);
 }
