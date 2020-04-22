@@ -63,4 +63,8 @@ public class Tile {
     public void setShelter(Shelter s) {
     	shelter=s;
     }
+    
+    public Tile getNeighbor(int direction) {
+    	return neighbors.get(new Integer(direction));
+    }
 }

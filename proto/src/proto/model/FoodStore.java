@@ -1,15 +1,35 @@
 package proto.model;
-
+/**
+ * 
+ * A játékos ebben a zsebben tárolja az élelmet.
+ *
+ */
 public class FoodStore {
+	
+	/**
+	 * Hány élelem van a játékosnál.
+	 */
     private int count = 0;
+    
+    /**
+     * Játékos testhoje megnõ, az élelem mennyisége csökken, mivel a játékos megeszi azt.
+     * @param p
+     */
     public void feed(Player p) {
-        throw new RuntimeException();
+        if(count>0) {
+        	count--;
+        	p.incrementBodyTemp();
+        }
     }
 
-    private void decrementCount() {
+    /*Ez a fv lehet nem kell, kikommentezve bent hagyom egyelõre.
+     * public void decrementCount() {
         count--;
-    }
+    }*/
 
+    /**
+     * Növeli a benne található elemek számát.
+     */
     public void gain() {
         count++;
     }

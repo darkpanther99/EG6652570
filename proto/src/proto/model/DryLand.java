@@ -6,6 +6,7 @@ package proto.model;
  *
  */
 public class DryLand implements ChillWaterStrategy {
+	
 	/**
 	 * A stratégia megvalósítása miatt kér be egy t Tile paramétert, a rajta levõ játékossal viszont nem csinál semmit, mert az nincs vízben, nem csökkenti testhojét.
 	 * @param A stratégia megvalósítása miatt kér be egy t Tile paramétert, a rajta levõ játékossal viszont nem csinál semmit.

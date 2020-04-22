@@ -5,6 +5,7 @@ package proto.model;
  *
  */
 public interface DigStrategy {
+	
 	/**
 	 * A stratégiát megvalósító elem dolga implementálni mi történik ásáskor. Visszaadja, hogy az ásás fárasztó-e.
 	 * @param t A Tile típusú objektum, ahol a játékos ásni szeretne.

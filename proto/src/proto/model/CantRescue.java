@@ -5,6 +5,7 @@ package proto.model;
  *
  */
 public class CantRescue implements RescueStrategy {
+	
 	/**
 	 * Mivel a játékos ebben az állapotban nem tudja megmenteni a csapattársát, ez a fv nem csinál vele semmit.
 	 * @param water A Tile típusú objektum, amin a kimentendõ játékos áll.

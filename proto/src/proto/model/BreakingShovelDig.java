@@ -5,14 +5,17 @@ package proto.model;
  *
  */
 public class BreakingShovelDig implements DigStrategy {
+	
 	/**
 	 * Volt-e használva a körben.
 	 */
     private boolean lastUsed;
+    
     /**
      * Mennyiszer lehet még ásni vele.
      */
     private int durability;
+    
     /**
      * Tárolja a "szülõ" BreakingShovelt
      */
@@ -46,9 +49,17 @@ public class BreakingShovelDig implements DigStrategy {
     	}
     }
     
+    /**
+     * Durability setter metódus.
+     * @param n A leendõ durability értéke.
+     */
     public void setDurability(int n){
     	durability=n;
     }
+    
+    /**
+     * Durability dekrementáló metódus.
+     */
     public void decrementDurability() {
     	durability--;
     }

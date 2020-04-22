@@ -5,6 +5,7 @@ package proto.model;
  *
  */
 public interface ChillWaterStrategy {
+	
 	/**
 	 * A stratégiát megvalósító elem dolga implementálni mi történik
 	 * @param t A Tile típusú objektum, amin a játékos fázni fog.

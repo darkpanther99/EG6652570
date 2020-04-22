@@ -6,6 +6,7 @@ package proto.model;
  *
  */
 public class BuildStrategy {
+	
 	/**
 	 * Az építhetõ sátrak száma.
 	 */

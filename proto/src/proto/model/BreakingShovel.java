@@ -6,10 +6,12 @@ import java.util.Random;
  *
  */
 public class BreakingShovel implements Item {
+	
 	/**
 	 * Tárolja az aktuális BreakingShovelDig instanceot, amivel a játékos ásni fog.
 	 */
     private BreakingShovelDig instance;
+    
     /**
      * Konstruktor létrehozza a random durabilityjû törékeny ásó instancet.
      */
@@ -17,6 +19,7 @@ public class BreakingShovel implements Item {
     	instance=new BreakingShovelDig(this);
     	instance.setDurability(new Random().nextInt(5)+1);
     }
+    
     /**
      * A játékos így kap ásót. Az ásója annyiszor tud majd ásni törés elõtt, amennyit ez a metódus beállít neki.
      */
@@ -24,6 +27,9 @@ public class BreakingShovel implements Item {
     	p.setDigStrategy(instance);
     }
     
+    /**
+     * Dekrementálja a tárolt lapát instance durabilityjét.
+     */
     public void decrementInstanceDurability() {
     	instance.decrementDurability();
     }

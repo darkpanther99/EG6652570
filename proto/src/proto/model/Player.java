@@ -3,13 +3,13 @@ package proto.model;
 import java.util.List;
 
 public abstract class Player extends Entity {
-    private int bodyTemp;
-    private int energy;
+    protected int bodyTemp;
+    protected int energy;
     private Game game;
     private DigStrategy digStrategy;
     private RescueStrategy rescueStrategy;
     private WaterResistanceStrategy waterResistanceStrategy;
-    private FoodStore foodStore;
+    protected FoodStore foodStore;
     private PartStore partStore;
     private List<Item> inventory;
     private BuildStrategy buildStrategy;
@@ -46,7 +46,7 @@ public abstract class Player extends Entity {
         throw new RuntimeException();
     }
 
-    private void removeFromInventory(Item i) {
+    public void removeFromInventory(Item i) {
         throw new RuntimeException();
     }
 
@@ -80,5 +80,13 @@ public abstract class Player extends Entity {
     
     public void setDigStrategy(DigStrategy d) {
     	digStrategy=d;
+    }
+    
+    public FoodStore getFoodStore() {
+    	return foodStore;
+    }
+    
+    public void setEnergy(int n) {
+    	energy=n;
     }
 }

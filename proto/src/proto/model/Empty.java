@@ -6,6 +6,7 @@ package proto.model;
  *
  */
 public class Empty implements Item {
+	
 	/**
 	 * A paraméterként kapott játékost nem ruházza fel extra tulajdonsággal, mivel épp nincs itt jégbe fagyott tárgy.
 	 * @param A játékos, aki nem kap semmi extra tulajdonságot.

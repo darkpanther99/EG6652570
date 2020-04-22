@@ -21,15 +21,15 @@ public class Game {
     }
 
     private void addTile(Tile t) {
-        throw new RuntimeException();
+        iceField.add(t);
     }
 
     private void addPlayer(Player p) {
-        throw new RuntimeException();
+        players.add(p);
     }
 
     public void addPolarBear(PolarBear pb) {
-        throw new RuntimeException();
+        bears.add(pb);
     }
 
     public PolarExplorer createPolarExplorer() {
