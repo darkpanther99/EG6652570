@@ -68,4 +68,16 @@ public class Tile {
     public Tile getNeighbor(int direction) {
         return neighbors.get(direction);
     }
+    
+    public void setSnow(int n) {
+    	snow=n;
+    }
+    
+    public void setWeightLimit(int n) {
+    	weightLimit=n;
+    }
+    
+    public void setChillWaterStrategy(ChillWaterStrategy cws) {
+    	chillWaterStrategy=cws;
+    }
 }

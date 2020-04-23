@@ -14,10 +14,10 @@ public class BreakingShovel implements Item {
 
     /**
      * Konstruktor létrehozza a random durability-jű törékeny ásó instance-et.
+     * Mivel tesztelhetetlen a random durability(nem determinisztikus), most nem ad neki random értéket, majd a tesztelő osztály beállítja egy megadott értékre.
      */
     public BreakingShovel() {
         instance = new BreakingShovelDig(this);
-        instance.setDurability(new Random().nextInt(5) + 1);
     }
 
     /**
