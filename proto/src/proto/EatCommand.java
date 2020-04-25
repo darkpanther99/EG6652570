@@ -2,12 +2,12 @@ package proto;
 
 public class EatCommand implements Command {
     @Override
-    public void execute(Proto state) {
-        throw new RuntimeException();
+    public void execute(Proto state) throws Exception {
+        state.getSelectedPlayer().eatFood();
     }
 
     @Override
     public String toString() {
-        throw new RuntimeException();
+        return "eat";
     }
 }

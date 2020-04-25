@@ -127,4 +127,28 @@ public class Tile {
     public void setChillWaterStrategy(ChillWaterStrategy cws) {
     	chillWaterStrategy=cws;
     }
+
+    public Shelter getShelter() {
+        return shelter;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public int getWeightLimit() {
+        return weightLimit;
+    }
+
+    public int getSnow() {
+        return snow;
+    }
+
+    public Map<Integer, Tile> getNeighbors() {
+        return neighbors;
+    }
+
+    public void addNeighbor(Tile t, int direction) {
+        neighbors.put(direction, t);
+    }
 }

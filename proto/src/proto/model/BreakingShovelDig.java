@@ -64,4 +64,8 @@ public class BreakingShovelDig implements DigStrategy {
         durability--;
     }
 
+    public int getDurability() {
+        return durability;
+    }
+
 }

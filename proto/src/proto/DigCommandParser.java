@@ -3,13 +3,17 @@ package proto;
 import java.util.List;
 
 public class DigCommandParser implements CommandParser {
+    private String keyword;
+    public DigCommandParser() {
+        keyword = "dig";
+    }
     @Override
     public String getKeyword() {
-        throw new RuntimeException();
+        return keyword;
     }
 
     @Override
     public Command parse(List<String> tokens) {
-        throw new RuntimeException();
+        return new DigCommand();
     }
 }

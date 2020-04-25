@@ -1,13 +1,27 @@
 package proto;
 
+import proto.model.Igloo;
+import proto.model.Tent;
+
 public class BuildingCommand implements Command {
+    private String type;
+    public BuildingCommand(String t) {
+        type = t;
+    }
+
     @Override
-    public void execute(Proto state) {
-        throw new RuntimeException();
+    public void execute(Proto state) throws Exception {
+        if (type.equals("igloo")) {
+            state.getSelectedTile().setShelter(new Igloo());
+        }
+        if (type.equals("tent")) {
+            state.getSelectedTile().setShelter(new Tent());
+        }
+
     }
 
     @Override
     public String toString() {
-        throw new RuntimeException();
+        return "building " + type;
     }
 }

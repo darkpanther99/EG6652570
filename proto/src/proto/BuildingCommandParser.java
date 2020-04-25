@@ -3,13 +3,17 @@ package proto;
 import java.util.List;
 
 public class BuildingCommandParser implements CommandParser {
+    public String keyword;
+    public BuildingCommandParser() {
+        keyword = "building";
+    }
     @Override
     public String getKeyword() {
-        throw new RuntimeException();
+        return keyword;
     }
 
     @Override
     public Command parse(List<String> tokens) {
-        throw new RuntimeException();
+        return new BuildingCommand(tokens.get(1));
     }
 }

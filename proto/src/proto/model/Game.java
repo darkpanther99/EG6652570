@@ -169,4 +169,16 @@ public class Game {
     	addTile(t);
         return t;
     }
+
+    public List<Tile> getIceField() {
+        return iceField;
+    }
+
+    public List<PolarBear> getBears() {
+        return bears;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
 }

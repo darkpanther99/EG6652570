@@ -2,12 +2,13 @@ package proto;
 
 public class AssembleCommand implements Command {
     @Override
-    public void execute(Proto state) {
-        throw new RuntimeException();
+    public void execute(Proto state) throws Exception {
+        state.getSelectedPlayer().assembleFlare();
     }
 
     @Override
     public String toString() {
-        throw new RuntimeException();
+        return "assemble";
+
     }
 }

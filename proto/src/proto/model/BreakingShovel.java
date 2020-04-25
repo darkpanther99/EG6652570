@@ -33,4 +33,7 @@ public class BreakingShovel implements Item {
     public void decrementInstanceDurability() {
         instance.decrementDurability();
     }
+    public BreakingShovelDig getInstance() {
+        return instance;
+    }
 }

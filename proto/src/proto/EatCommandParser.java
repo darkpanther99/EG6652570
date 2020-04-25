@@ -3,13 +3,18 @@ package proto;
 import java.util.List;
 
 public class EatCommandParser implements CommandParser {
+    private String keyword;
+    public EatCommandParser() {
+        keyword = "eat";
+    }
     @Override
     public String getKeyword() {
-        throw new RuntimeException();
+        return keyword;
     }
 
     @Override
     public Command parse(List<String> tokens) {
-        throw new RuntimeException();
+        return new EatCommand();
+
     }
 }

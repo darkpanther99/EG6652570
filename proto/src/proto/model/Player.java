@@ -208,4 +208,31 @@ public abstract class Player extends Entity {
     public void setRescueStrategy(RescueStrategy rescueStrategy) {
         this.rescueStrategy = rescueStrategy;
     }
+
+    public List<Item> getInventory() {
+        return inventory;
+    }
+
+    public BuildStrategy getBuildStrategy() {
+        return buildStrategy;
+    }
+
+    public PartStore getPartStore() {
+        return partStore;
+    }
+
+    public WaterResistanceStrategy getWaterResistanceStrategy() {
+        return waterResistanceStrategy;
+    }
+
+    public DigStrategy getDigStrategy() {
+        return digStrategy;
+    }
+
+    public int getBodyTemp() {
+        return bodyTemp;
+    }
+    public int getEnergy() {
+        return energy;
+    }
 }

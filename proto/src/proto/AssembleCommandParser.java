@@ -3,13 +3,17 @@ package proto;
 import java.util.List;
 
 public class AssembleCommandParser implements CommandParser {
+    private String keyword;
+    public AssembleCommandParser() {
+        keyword = "assemble";
+    }
     @Override
     public String getKeyword() {
-        throw new RuntimeException();
+        return keyword;
     }
 
     @Override
     public Command parse(List<String> tokens) {
-        throw new RuntimeException();
+        return new AssembleCommand();
     }
 }
