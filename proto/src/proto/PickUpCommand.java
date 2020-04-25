@@ -3,11 +3,11 @@ package proto;
 public class PickUpCommand implements Command {
     @Override
     public void execute(Proto state) {
-        throw new RuntimeException();
+        state.selectedPlayer.pickUp();
     }
 
     @Override
     public String toString() {
-        throw new RuntimeException();
+        return "pickup";
     }
 }

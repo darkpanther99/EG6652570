@@ -1,13 +1,19 @@
 package proto;
 
 public class RescueCommand implements Command {
+    private int direction;
+
+    public RescueCommand(int direction) {
+        this.direction = direction;
+    }
+
     @Override
     public void execute(Proto state) {
-        throw new RuntimeException();
+        state.selectedPlayer.rescueTeammate(direction);
     }
 
     @Override
     public String toString() {
-        throw new RuntimeException();
+        return "rescue " + direction;
     }
 }

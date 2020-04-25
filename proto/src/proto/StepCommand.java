@@ -1,13 +1,19 @@
 package proto;
 
 public class StepCommand implements Command {
+    private int direction;
+
+    public StepCommand(int direction) {
+        this.direction = direction;
+    }
+
     @Override
     public void execute(Proto state) {
-        throw new RuntimeException();
+        state.selectedPlayer.step(direction);
     }
 
     @Override
     public String toString() {
-        throw new RuntimeException();
+        return "step " + direction;
     }
 }

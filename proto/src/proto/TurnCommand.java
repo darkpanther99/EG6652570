@@ -3,11 +3,11 @@ package proto;
 public class TurnCommand implements Command {
     @Override
     public void execute(Proto state) {
-        throw new RuntimeException();
+        state.game.turn();
     }
 
     @Override
     public String toString() {
-        throw new RuntimeException();
+        return "turn";
     }
 }
