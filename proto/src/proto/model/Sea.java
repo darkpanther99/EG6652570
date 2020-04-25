@@ -1,7 +1,13 @@
 package proto.model;
 
 public class Sea implements ChillWaterStrategy {
+    /**
+     * Minden rajta álló testhoje csökken a WaterResistanceStrategy szerint
+     * @param t
+     */
     public void chill(Tile t) {
-        throw new RuntimeException();
+        for (Entity e : t.getOccupants()) {
+            e.ResistWater();
+        }
     }
 }

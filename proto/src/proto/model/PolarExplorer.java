@@ -1,7 +1,16 @@
 package proto.model;
 
 public class PolarExplorer extends Player {
+    /**
+     * A játékos megnézheti, hogy egy adott irányban lévo Tile-nak mennyi a ˝
+     * teherbírása. A Game.Explore metódust hívja
+     * @param direction
+     */
     public void examine(int direction) {
-        throw new RuntimeException();
+        if(energy > 0){
+            decrementEnergy();
+            Tile t = currentTile.neighbourAt(direction);
+            Game.explore(t);
+        }
     }
 }

@@ -3,13 +3,37 @@ package proto.model;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Cella, ilyenekbol áll a jégmez ˝ o ahol a játékosok játszanak
+ */
 public class Tile {
+    /**
+     * Rajta lévo hómennyiség.
+     */
     private int snow;
+    /**
+     *  Rajta lévo játékosok számának maximuma
+     */
     private int weightLimit;
+    /**
+     * Szomszédos cellákat ismer.
+     */
     private Map<Integer, Tile> neighbors;
+    /**
+     * Eldönti, kinek változik a testhoje vihar esetén.
+     */
     private Shelter shelter;
+    /**
+     *  Eldönti, kinek változik a testhoje víz esetén.
+     */
     private ChillWaterStrategy chillWaterStrategy;
+    /**
+     * Ezt a tárgyat lehet kiásni belole.
+     */
     private Item item;
+    /**
+     *  Rajta lévo entitások.
+     */
     private List<Entity> occupants;
 
     public Tile neighborAt(int direction) {
@@ -17,19 +41,34 @@ public class Tile {
     }
 
     public void decrementSnow() {
-        throw new RuntimeException();
+        if(snow > 0) snow--;
     }
 
+    /**
+     * A játékos megkapja a tartalmazott tárgyat.
+     * @return
+     */
     public Item takeItem() {
-        throw new RuntimeException();
+        if(item){
+            // todo: remove item az mit jelent, nincs kedvem amr szekkvencian kibogozni, fuj OO
+            return item
+        }
     }
 
+    /**
+     *  Hozzáad egy entitást a táblához.
+     * @param e
+     */
     private void add(Entity e) {
-        throw new RuntimeException();
+        occupants.add(e);
     }
 
+    /**
+     * Eltávolítja egy entitást a táblárol.
+     * @param e
+     */
     private void remove(Entity e) {
-        throw new RuntimeException();
+        occupants.remove(e);
     }
 
     public void stepOn(Entity e) {
@@ -40,17 +79,25 @@ public class Tile {
         throw new RuntimeException();
     }
 
+    /**
+     * Ezt a metódust a Controller hívja viharban. H ˝uti a játékosokat, ha nincsenek
+     * igluban vagy sátorban.
+     */
     public void chillStorm() {
-        throw new RuntimeException();
+        // Gabor TODO: this
     }
 
-    // Tile.breakShelter
+    /**
+     * Ez a metódus eltávolítja a sátrat a tábláró
+     */
     public void ruinShelter() {
-        throw new RuntimeException();
+        shelter.ruin();
     }
 
     public void bearAttack() {
-        throw new RuntimeException();
+        for (Entity e : occupants) {
+            e.bearAttack();
+        }
     }
 
     public void chillWater() {

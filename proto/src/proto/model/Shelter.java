@@ -1,16 +1,33 @@
 package proto.model;
 
+/**
+ * Ez az absztrakt osztály a menedéket jelképezi egy mezon
+ */
 public abstract class Shelter {
+    /**
+     * Minden a paraméterként kapott t mezon lév ˝ o entitás fázik.
+     * @param t
+     */
     public void chillStorm(Tile t) {
-        throw new RuntimeException();
+        for (Entity e : t.getOccupants()) {
+            e.chillStorm();
+        }
     }
 
+    /**
+     * A menedéken lévo játékosok medvetámadás áldozatai lesznek.
+     * @param t
+     */
     public void bearAttack(Tile t) {
-        throw new RuntimeException();
+        for (Entity e : t.getOccupants()) {
+            e.bearAttack();
+        }
     }
 
-    // Shelter.break ütközik a break; kulcsszóval...
-    public void ruin(Tile t) {
-        throw new RuntimeException();
-    }
+    /**
+     * Az adott mezon lév ˝ o menedék eltörik. Nem csinál semmit, majd a különböz ˝ o˝
+     * menedéktípusok másképp definiálják felül.
+     * @param t
+     */
+    public void ruin(Tile t)
 }

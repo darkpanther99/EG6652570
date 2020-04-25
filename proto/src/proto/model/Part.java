@@ -1,7 +1,12 @@
 package proto.model;
 
 public class Part implements Item {
+    /**
+     * A játékos tárolójába kerül egy darab a rakétapisztolyból.
+     * @param p játékos
+     */
     public void giveTo(Player p) {
-        throw new RuntimeException();
+        p.getPartStore().Gain(1);
+        p.removeFromInventory(this);
     }
 }
