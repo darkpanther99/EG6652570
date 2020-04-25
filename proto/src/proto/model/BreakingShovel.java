@@ -1,7 +1,5 @@
 package proto.model;
 
-import java.util.Random;
-
 /**
  * Törhető ásó osztály.
  */
@@ -13,11 +11,12 @@ public class BreakingShovel implements Item {
     private BreakingShovelDig instance;
 
     /**
-     * Konstruktor létrehozza a random durability-jű törékeny ásó instance-et.
+     * Konstruktor létrehozza a ~~random~~ durability-jű törékeny ásó instance-et.
      * Mivel tesztelhetetlen a random durability(nem determinisztikus), most nem ad neki random értéket, majd a tesztelő osztály beállítja egy megadott értékre.
      */
-    public BreakingShovel() {
+    public BreakingShovel(int durability) {
         instance = new BreakingShovelDig(this);
+        instance.setDurability(durability);
     }
 
     /**
@@ -33,6 +32,7 @@ public class BreakingShovel implements Item {
     public void decrementInstanceDurability() {
         instance.decrementDurability();
     }
+
     public BreakingShovelDig getInstance() {
         return instance;
     }

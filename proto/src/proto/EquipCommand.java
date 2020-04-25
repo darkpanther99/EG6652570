@@ -12,19 +12,19 @@ public class EquipCommand implements Command {
     }
 
     @Override
-    public void execute(Proto state) {
-        if(index  > -1) {
-            state.selectedPlayer.equip(index);
+    public void execute(Proto state) throws Exception {
+        if (index > -1) {
+            state.getSelectedPlayer().equip(index);
         } else {
-            for(int i = 0; i < state.selectedPlayer.getInventory().size(); i++) {
-                state.selectedPlayer.equip(i);
+            for (int i = 0; i < state.getSelectedPlayer().getInventory().size(); i++) {
+                state.getSelectedPlayer().equip(i);
             }
         }
     }
 
     @Override
     public String toString() {
-        if(index > -1) return "equip " + index;
+        if (index > -1) return "equip " + index;
         else return "equip all";
     }
 }

@@ -14,7 +14,7 @@ public abstract class Player extends Entity {
     /**
      * A játékos ismeri a játékot.
      */
-    private Game game;
+    protected Game game;
     /**
      * Eldönti hogyan képes ásni a játékos.
      */
@@ -30,7 +30,7 @@ public abstract class Player extends Entity {
      */
     private WaterResistanceStrategy waterResistanceStrategy;
     /**
-     *  Tárolja a játékos ételeit.
+     * Tárolja a játékos ételeit.
      */
     protected FoodStore foodStore;
     /**
@@ -45,25 +45,22 @@ public abstract class Player extends Entity {
      * Így tud építeni a játékos.
      */
     private BuildStrategy buildStrategy;
-    /**
-     * A játékos ismeri a mezot amin éppen áll.
-     */
-    private Tile currentTile;
 
     /**
      * Ezt a metódust a Controller hívja. A játékos lép, ha van még hozzá elég
      * energiája. 1 munkaegység
+     *
      * @param direction
      */
     public void step(int direction) {
-        if(energy > 0){
+        if (energy > 0) {
             decrementEnergy();
             step(direction);
         }
     }
 
     /**
-     *  A játékos testhoje a WaterResistance szerint változik.
+     * A játékos testhoje a WaterResistance szerint változik.
      */
     public void resistWater() {
         waterResistanceStrategy.chill(this);
@@ -74,7 +71,7 @@ public abstract class Player extends Entity {
      */
     public void chill() {
         bodyTemp--;
-        if(bodyTemp == 0){
+        if (bodyTemp == 0) {
             game.gameOver();
         }
     }
@@ -104,7 +101,7 @@ public abstract class Player extends Entity {
      * Ezt a metódust a Controller hívja. A játékos felvesz egy tárgyat. 1 munkaegység
      */
     public void pickUp() {
-        if( energy > 0 || !(currentTile.getItem() instanceof Empty)){
+        if (energy > 0 || !(currentTile.getItem() instanceof Empty)) {
             decrementEnergy();
             Item item = currentTile.takeItem();
             addToInventory(item);
@@ -112,7 +109,7 @@ public abstract class Player extends Entity {
         }
     }
 
-    private void addToInventory(Item i) {
+    public void addToInventory(Item i) {
         inventory.add(i);
     }
 
@@ -123,6 +120,7 @@ public abstract class Player extends Entity {
     /**
      * Ezt a metódust a Controller hívja. A játékos kiválaszt egy tárgyat
      * használatra.
+     *
      * @param inventorySlot
      */
     public void equip(int inventorySlot) {
@@ -130,7 +128,7 @@ public abstract class Player extends Entity {
     }
 
     /**
-     *  Élelem megtalálásához helper metódus.
+     * Élelem megtalálásához helper metódus.
      */
     public void toFoodStore() {
         foodStore.gain();
@@ -148,7 +146,7 @@ public abstract class Player extends Entity {
      */
     public void dig() {
 
-        if(energy > 0){
+        if (energy > 0) {
             decrementEnergy();
             digStrategy.dig(currentTile);
         }
@@ -165,26 +163,27 @@ public abstract class Player extends Entity {
     /**
      * Ezt a metódust a Controller hívja. A játékos kiment egy
      * másikat a vízbol. 1 munkaegység
+     *
      * @param direction
      */
     public void rescueTeammate(int direction) {
-        if( energy > 0){
+        if (energy > 0) {
             decrementEnergy();
             rescueStrategy.rescue(currentTile.getNeighbor(direction), currentTile);
         }
     }
 
     /**
-     *  Összerakja a játék végéhez szükséges rakéta pisztolyt. 1 munkaegység
+     * Összerakja a játék végéhez szükséges rakéta pisztolyt. 1 munkaegység
      */
     public void assembleFlare() {
         for (Player p : game.getPlayers()) {
             if (p == this) continue;
-            if(p.currentTile == this.currentTile){
+            if (p.currentTile == this.currentTile) {
                 partStore.gain(p.getPartStore());
             }
         }
-        if(partStore.getCount() >= 3){
+        if (partStore.getCount() >= 3) {
             game.victory();
         }
     }
@@ -225,6 +224,10 @@ public abstract class Player extends Entity {
         return waterResistanceStrategy;
     }
 
+    public void setWaterResistanceStrategy(WaterResistanceStrategy wrs) {
+        waterResistanceStrategy = wrs;
+    }
+
     public DigStrategy getDigStrategy() {
         return digStrategy;
     }
@@ -232,6 +235,7 @@ public abstract class Player extends Entity {
     public int getBodyTemp() {
         return bodyTemp;
     }
+
     public int getEnergy() {
         return energy;
     }

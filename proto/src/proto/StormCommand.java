@@ -1,11 +1,11 @@
 package proto;
 
-import proto.model.*;
+import proto.model.Tile;
 
 public class StormCommand implements Command {
     @Override
     public void execute(Proto state) {
-        for(Tile t : state.game.tiles) {
+        for (Tile t : state.game.getTiles()) {
             t.chillStorm();
         }
     }

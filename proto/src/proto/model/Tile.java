@@ -12,7 +12,7 @@ public class Tile {
      */
     private int snow;
     /**
-     *  Rajta lévo játékosok számának maximuma
+     * Rajta lévo játékosok számának maximuma
      */
     private int weightLimit;
     /**
@@ -24,7 +24,7 @@ public class Tile {
      */
     private Shelter shelter;
     /**
-     *  Eldönti, kinek változik a testhoje víz esetén.
+     * Eldönti, kinek változik a testhoje víz esetén.
      */
     private ChillWaterStrategy chillWaterStrategy;
     /**
@@ -32,7 +32,7 @@ public class Tile {
      */
     private Item item;
     /**
-     *  Rajta lévo entitások.
+     * Rajta lévo entitások.
      */
     private List<Entity> occupants;
 
@@ -41,15 +41,16 @@ public class Tile {
     }
 
     public void decrementSnow() {
-        if(snow > 0) snow--;
+        if (snow > 0) snow--;
     }
 
     /**
      * A játékos megkapja a tartalmazott tárgyat.
+     *
      * @return
      */
     public Item takeItem() {
-        if(!(item instanceof Empty)){
+        if (item != null) {
             // todo: remove item az mit jelent, nincs kedvem amr szekkvencian kibogozni, fuj OO
 
             return item;
@@ -58,7 +59,8 @@ public class Tile {
     }
 
     /**
-     *  Hozzáad egy entitást a táblához.
+     * Hozzáad egy entitást a táblához.
+     *
      * @param e
      */
     private void add(Entity e) {
@@ -67,6 +69,7 @@ public class Tile {
 
     /**
      * Eltávolítja egy entitást a táblárol.
+     *
      * @param e
      */
     private void remove(Entity e) {
@@ -87,6 +90,7 @@ public class Tile {
      */
     public void chillStorm() {
         // Gabor TODO: this
+        throw new RuntimeException();
     }
 
     /**
@@ -117,17 +121,17 @@ public class Tile {
     public Tile getNeighbor(int direction) {
         return neighbors.get(direction);
     }
-    
+
     public void setSnow(int n) {
-    	snow=n;
+        snow = n;
     }
-    
+
     public void setWeightLimit(int n) {
-    	weightLimit=n;
+        weightLimit = n;
     }
-    
+
     public void setChillWaterStrategy(ChillWaterStrategy cws) {
-    	chillWaterStrategy=cws;
+        chillWaterStrategy = cws;
     }
 
     public Shelter getShelter() {
@@ -136,6 +140,10 @@ public class Tile {
 
     public Item getItem() {
         return item;
+    }
+
+    public void setItem(Item i) {
+        item = i;
     }
 
     public int getWeightLimit() {

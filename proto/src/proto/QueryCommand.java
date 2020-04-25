@@ -24,16 +24,16 @@ public class QueryCommand implements Command {
         List<Command> result = new ArrayList<Command>();
         for (Tile t : game.getIceField()) {
             result.add(makeTileCommand(t));
-            if (!(t.getShelter() instanceof BareIce )) {
+            if (!(t.getShelter() instanceof BareIce)) {
                 result.add(makeBuildingCommand(t));
             }
-            if (!(t.getItem() instanceof Empty )) {
+            if (!(t.getItem() instanceof Empty)) {
                 result.add(makeItemCommand(t.getItem().getClass().getSimpleName().toLowerCase(), -1));
             }
             for (Entity e : t.getOccupants()) {
                 result.add(makeEntityCommand(e));
                 if (e instanceof Player) {
-                    Player p = (Player)e;
+                    Player p = (Player) e;
                     result.add(makePlayerCommand(p));
                     result.addAll(listPlayerEquippedItems(p));
                     // TODO(Mark): add "equip all" command to result;
@@ -48,7 +48,7 @@ public class QueryCommand implements Command {
             result.add(makeConnectCommand(t, game));
         }
 
-            return result;
+        return result;
     }
 
     private List<ItemCommand> listPlayerEquippedItems(Player p) {
@@ -72,7 +72,7 @@ public class QueryCommand implements Command {
             result.add(makeItemCommand("shovel", -1));
         }
         if (p.getDigStrategy() instanceof BreakingShovelDig) {
-            BreakingShovelDig bsd = (BreakingShovelDig)(p.getDigStrategy());
+            BreakingShovelDig bsd = (BreakingShovelDig) (p.getDigStrategy());
             result.add(makeItemCommand("breakingshovel", bsd.getDurability()));
         }
 
@@ -88,9 +88,11 @@ public class QueryCommand implements Command {
                 (t.getShelter() instanceof Tent) ? "tent" : (t.getShelter() instanceof Igloo) ? "igloo" : ""
         );
     }
+
     private ConnectCommand makeConnectCommand(List<Integer> i) {
         return new ConnectCommand(i);
     }
+
     private ConnectCommand makeConnectCommand(Tile t, Game game) {
         return new ConnectCommand(t, game);
     }
@@ -109,9 +111,9 @@ public class QueryCommand implements Command {
 
     private EntityCommand makeEntityCommand(Entity e) {
         if (e instanceof Eskimo)
-            return new EntityCommand("eskikmo", ((Eskimo)e).getBodyTemp(), ((Eskimo)e).getEnergy());
+            return new EntityCommand("eskikmo", ((Eskimo) e).getBodyTemp(), ((Eskimo) e).getEnergy());
         else if (e instanceof PolarExplorer)
-            return new EntityCommand("polarexplorer", ((Eskimo)e).getBodyTemp(), ((Eskimo)e).getEnergy());
+            return new EntityCommand("polarexplorer", ((Eskimo) e).getBodyTemp(), ((Eskimo) e).getEnergy());
         else return new EntityCommand("polarbear");
     }
 
@@ -120,13 +122,11 @@ public class QueryCommand implements Command {
     }
 
 
-
-
-
     private ItemCommand makeItemCommand(String i, int c) {
-        return new ItemCommand(i, c);
+        ItemCommand ic = new ItemCommand(i);
+        ic.count = c;
+        return ic;
     }
-
 
 
 }

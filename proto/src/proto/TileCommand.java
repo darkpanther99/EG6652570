@@ -1,5 +1,7 @@
 package proto;
 
+import proto.model.Tile;
+
 public class TileCommand implements Command {
     private int snow;
     private int weightLimit;
@@ -11,8 +13,8 @@ public class TileCommand implements Command {
 
     @Override
     public void execute(Proto state) {
-        state.createTile(snow, weightLimit);
-        state.selectTile(state.game.tiles.size() - 1);
+        Tile t = state.game.createTile(snow, weightLimit);
+        state.selectTile(t);
     }
 
     @Override

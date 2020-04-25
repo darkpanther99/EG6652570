@@ -8,8 +8,8 @@ public class RescueCommand implements Command {
     }
 
     @Override
-    public void execute(Proto state) {
-        state.selectedPlayer.rescueTeammate(direction);
+    public void execute(Proto state) throws Exception {
+        state.getSelectedPlayer().rescueTeammate(direction);
     }
 
     @Override

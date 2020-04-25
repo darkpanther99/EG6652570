@@ -9,6 +9,7 @@ public class Shovel implements Item {
     /**
      * A játékos ásót kap, ami bekerül az inventoryjába és a megfelelo stratégiájához is ˝
      * bekerül az ásó által adott képesség
+     *
      * @param p
      */
     public void giveTo(Player p) {
