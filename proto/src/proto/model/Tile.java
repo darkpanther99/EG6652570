@@ -49,10 +49,12 @@ public class Tile {
      * @return
      */
     public Item takeItem() {
-        if(item){
+        if(!(item instanceof Empty)){
             // todo: remove item az mit jelent, nincs kedvem amr szekkvencian kibogozni, fuj OO
-            return item
+
+            return item;
         }
+        return new Empty();
     }
 
     /**
@@ -91,7 +93,7 @@ public class Tile {
      * Ez a metódus eltávolítja a sátrat a tábláró
      */
     public void ruinShelter() {
-        shelter.ruin();
+        shelter.ruin(this);
     }
 
     public void bearAttack() {

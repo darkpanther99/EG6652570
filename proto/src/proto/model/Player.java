@@ -83,7 +83,7 @@ public abstract class Player extends Entity {
      * A játékost medvetámadás éri.
      */
     public void bearAttack() {
-        game.gameOver()
+        game.gameOver();
     }
 
     /**
@@ -104,11 +104,11 @@ public abstract class Player extends Entity {
      * Ezt a metódust a Controller hívja. A játékos felvesz egy tárgyat. 1 munkaegység
      */
     public void pickUp() {
-        if( energy > 0){
+        if( energy > 0 || !(currentTile.getItem() instanceof Empty)){
             decrementEnergy();
             Item item = currentTile.takeItem();
             addToInventory(item);
-            i.giveTo(this);
+            item.giveTo(this);
         }
     }
 
@@ -159,7 +159,7 @@ public abstract class Player extends Entity {
      */
     public void build() {
         decrementEnergy();
-        buildStrategy.Build(currentTile);
+        buildStrategy.build(currentTile);
     }
 
     /**
@@ -170,7 +170,7 @@ public abstract class Player extends Entity {
     public void rescueTeammate(int direction) {
         if( energy > 0){
             decrementEnergy();
-            rescueStrategy.rescue(currentTile.getNeighbourAt(direction), currentTile);
+            rescueStrategy.rescue(currentTile.getNeighbor(direction), currentTile);
         }
     }
 
@@ -178,8 +178,8 @@ public abstract class Player extends Entity {
      *  Összerakja a játék végéhez szükséges rakéta pisztolyt. 1 munkaegység
      */
     public void assembleFlare() {
-        for (Player p : game.getPlayers();) {
-            if (player == this) continue;
+        for (Player p : game.getPlayers()) {
+            if (p == this) continue;
             if(p.currentTile == this.currentTile){
                 partStore.gain(p.getPartStore());
             }
