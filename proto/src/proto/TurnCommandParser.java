@@ -3,13 +3,19 @@ package proto;
 import java.util.List;
 
 public class TurnCommandParser implements CommandParser {
+    private String keyword = "turn";
+
     @Override
     public String getKeyword() {
-        throw new RuntimeException();
+        return keyword;
     }
 
     @Override
     public Command parse(List<String> tokens) {
-        throw new RuntimeException();
+        if(tokens.size() < 1 || !tokens.get(0).contentEquals(keyword)) {
+            throw new RuntimeException();
+        }
+
+        return new TurnCommand();
     }
 }

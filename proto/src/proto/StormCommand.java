@@ -1,13 +1,17 @@
 package proto;
 
+import proto.model.*;
+
 public class StormCommand implements Command {
     @Override
     public void execute(Proto state) {
-        throw new RuntimeException();
+        for(Tile t : state.game.tiles) {
+            t.chillStorm();
+        }
     }
 
     @Override
     public String toString() {
-        throw new RuntimeException();
+        return "storm";
     }
 }
