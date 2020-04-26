@@ -32,7 +32,7 @@ public abstract class Shelter {
      *
      * @param t
      */
-    public void ruin(Tile t) {
-        throw new RuntimeException();
+    public void ruin(Tile t){
+        return;
     }
 }
