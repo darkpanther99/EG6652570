@@ -13,7 +13,7 @@ public class Shovel implements Item {
      * @param p
      */
     public void giveTo(Player p) {
-        sd = new ShovelDig();
+        sd = new ShovelDig(this);
         p.setDigStrategy(sd);
     }
 }

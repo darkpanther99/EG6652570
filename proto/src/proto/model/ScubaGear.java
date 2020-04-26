@@ -8,7 +8,7 @@ public class ScubaGear implements Item {
      * @param p
      */
     public void giveTo(Player p) {
-        ScubaWearing sw = new ScubaWearing();
+        ScubaWearing sw = new ScubaWearing(this);
         p.setWaterResistanceStrategy(sw);
     }
 }

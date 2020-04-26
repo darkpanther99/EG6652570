@@ -42,9 +42,19 @@ public class QueryCommand implements Command {
                     Player p = (Player) e;
                     //result.add(makePlayerCommand(p));
                     result.addAll(listPlayerEquippedItems(p));
-                    // TODO(Mark): add "equip all" command to result;
                     for (Item i : p.getInventory()) {
-                        result.add(makeItemCommand(i.getClass().getSimpleName().toLowerCase(), -1));
+                        if ((i instanceof ScubaGear) && i == ((ScubaWearing)(p.getWaterResistanceStrategy())).getSource() )
+                            continue;
+                        else if ((i instanceof Rope) && i == ((RopeRescue)(p.getRescueStrategy())).getSource() )
+                            continue;
+                        else if ((i instanceof TentKit) && i == p.getBuildStrategy().getSource() )
+                            continue;
+                        else if ((i instanceof Shovel) && i == ((ShovelDig)(p.getDigStrategy())).getSource() )
+                            continue;
+                        else if ((i instanceof BreakingShovel) && i == ((BreakingShovelDig)(p.getDigStrategy())).getSource() )
+                            continue;
+                        else
+                            result.add(makeItemCommand(i.getClass().getSimpleName().toLowerCase(), -1));
                     }
                 }
             }

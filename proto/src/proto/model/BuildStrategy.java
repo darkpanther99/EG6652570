@@ -1,9 +1,11 @@
 package proto.model;
 
+
 /**
  * A játékos így képes sátrat építeni.
  */
 public class BuildStrategy {
+    private TentKit source;
 
     /**
      * Az építhető sátrak száma.
@@ -31,5 +33,13 @@ public class BuildStrategy {
     }
     public int getCount() {
         return count;
+    }
+
+    public TentKit getSource() {
+        return source;
+    }
+
+    public void setSource(TentKit source) {
+        this.source = source;
     }
 }
