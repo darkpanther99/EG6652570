@@ -8,6 +8,6 @@ turn
 query
 # Output:
 tile 0 0
-entity eskimo 5 4
+entity eskimo 4 4
 item scubagear
-equip all
+

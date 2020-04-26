@@ -204,9 +204,11 @@ public abstract class Player extends Entity {
                 partStore.gain(p.getPartStore());
             }
         }
-        if (partStore.getCount() >= 3) {
+        if (partStore.getCount() >= 3 && energy > 0) {
             game.victory();
         }
+        energy--;
+
     }
 
     public void setDigStrategy(DigStrategy d) {
