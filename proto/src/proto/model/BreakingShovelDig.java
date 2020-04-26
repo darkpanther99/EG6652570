@@ -39,9 +39,11 @@ public class BreakingShovelDig implements DigStrategy {
     public boolean dig(Tile t) {
         if (durability > 0) {
             t.decrementSnow();
-            b.decrementInstanceDurability();
-            durability--;
+            if (!lastUsed) {
+                durability--;
+            }
             lastUsed = !lastUsed;
+
             return !lastUsed; //dupla negálás, az eredetit adja vissza
         } else {
             return true;
