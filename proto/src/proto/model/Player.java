@@ -55,7 +55,7 @@ public abstract class Player extends Entity {
     public void step(int direction) {
         if (energy > 0) {
             decrementEnergy();
-            step(direction);
+            super.step(direction);
         }
     }
 
