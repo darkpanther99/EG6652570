@@ -131,9 +131,7 @@ public class Tile {
      * Medve megtámadja a cellán állókat.
      */
     public void bearAttack() {
-        for (Entity e : occupants) {
-            e.bearAttack();
-        }
+        shelter.bearAttack(this);
     }
 
     /**
