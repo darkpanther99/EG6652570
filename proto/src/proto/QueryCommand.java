@@ -34,18 +34,13 @@ public class QueryCommand implements Command {
                 result.add(makeBuildingCommand(t));
             }
             if (!(t.getItem() instanceof Empty)) {
-                result.add(makeItemCommand(t.getItem().getClass().getSimpleName().toLowerCase(), -1));
+                result.add(makeItemCommand(t.getItem(), 1));
             }
             for (Entity e : t.getOccupants()) {
                 result.add(makeEntityCommand(e));
                 if (e instanceof Player) {
                     Player p = (Player) e;
-                    //result.add(makePlayerCommand(p));
-                    result.addAll(listPlayerEquippedItems(p));
-                    // TODO(Mark): add "equip all" command to result;
-                    for (Item i : p.getInventory()) {
-                        result.add(makeItemCommand(i.getClass().getSimpleName().toLowerCase(), -1));
-                    }
+                    listPlayerItems(p, result);
                 }
             }
 
@@ -60,32 +55,56 @@ public class QueryCommand implements Command {
         return result;
     }
 
-    private List<ItemCommand> listPlayerEquippedItems(Player p) {
-        List<ItemCommand> result = new ArrayList<ItemCommand>();
+    private void listPlayerItems(Player p, List<Command> result) {
         if (p.getBuildStrategy() != null && p.getBuildStrategy().getCount() > 0) {
-            result.add(makeItemCommand("tentkit", p.getBuildStrategy().getCount()));
+            result.add(new ItemCommand("tentkit", p.getBuildStrategy().getCount()));
         }
         if (p.getFoodStore().getCount() > 0) {
-            result.add(makeItemCommand("food", p.getFoodStore().getCount()));
+            result.add(new ItemCommand("food", p.getFoodStore().getCount()));
         }
         if (p.getPartStore().getCount() > 0) {
-            result.add(makeItemCommand("part", p.getPartStore().getCount()));
-        }
-        if (p.getRescueStrategy() != null && p.getRescueStrategy() instanceof RopeRescue) {
-            result.add(makeItemCommand("rope", -1));
-        }
-        if (p.getWaterResistanceStrategy() != null && p.getWaterResistanceStrategy() instanceof ScubaWearing) {
-            result.add(makeItemCommand("scubagear", -1));
-        }
-        if (p.getDigStrategy() instanceof ShovelDig) {
-            result.add(makeItemCommand("shovel", -1));
-        }
-        if (p.getDigStrategy() instanceof BreakingShovelDig) {
-            BreakingShovelDig bsd = (BreakingShovelDig)(p.getDigStrategy());
-            result.add(makeItemCommand("breakingshovel", bsd.getDurability()));
+            result.add(new ItemCommand("part", p.getPartStore().getCount()));
         }
 
-        return result;
+        boolean hasRope = false, hasShovel = false, hasScuba = false, hasBreakingShovel = false;
+
+        if (p.getRescueStrategy() != null && p.getRescueStrategy() instanceof RopeRescue) {
+            result.add(new ItemCommand("rope"));
+            hasRope = true;
+        }
+        if (p.getWaterResistanceStrategy() != null && p.getWaterResistanceStrategy() instanceof ScubaWearing) {
+            result.add(new ItemCommand("scubagear" ));
+            hasScuba = true;
+        }
+        if (p.getDigStrategy() instanceof ShovelDig) {
+            result.add(new ItemCommand("shovel"));
+            hasShovel = true;
+        }
+        if (p.getDigStrategy() instanceof BreakingShovelDig) {
+            BreakingShovelDig bsd = (BreakingShovelDig) (p.getDigStrategy());
+            result.add(new ItemCommand("shovel", 1, bsd.getDurability()));
+            hasBreakingShovel = true;
+        }
+
+        for (Item i : p.getInventory()) {
+            if (i instanceof Rope && hasRope) {
+                hasRope = false;
+                continue;
+            }
+            if (i instanceof ScubaGear && hasScuba) {
+                hasScuba = false;
+                continue;
+            }
+            if (i instanceof Shovel && hasShovel) {
+                hasShovel = false;
+                continue;
+            }
+            if (i instanceof BreakingShovel && hasBreakingShovel) {
+                hasBreakingShovel = false;
+                continue;
+            }
+            result.add(makeItemCommand(i, 1));
+        }
     }
 
     private TileCommand makeTileCommand(Tile t) {
@@ -120,22 +139,16 @@ public class QueryCommand implements Command {
 
     private EntityCommand makeEntityCommand(Entity e) {
         if (e instanceof Eskimo)
-            return new EntityCommand("eskimo", ((Eskimo)e).getBodyTemp(), ((Eskimo)e).getEnergy());
+            return new EntityCommand("eskimo", ((Eskimo) e).getBodyTemp(), ((Eskimo) e).getEnergy());
         else if (e instanceof PolarExplorer)
-            return new EntityCommand("polarexplorer", ((PolarExplorer)e).getBodyTemp(), ((PolarExplorer)e).getEnergy());
+            return new EntityCommand("polarexplorer", ((PolarExplorer) e).getBodyTemp(), ((PolarExplorer) e).getEnergy());
         else return new EntityCommand("polarbear");
     }
 
-    private Command makePlayerCommand(Player p) {
-        return makeEntityCommand(p);
+    private ItemCommand makeItemCommand(Item i, int c) {
+        if (i instanceof BreakingShovel) {
+            return new ItemCommand("shovel", c, ((BreakingShovel) i).getInstance().getDurability());
+        }
+        return new ItemCommand(i.getClass().getSimpleName().toLowerCase(), c);
     }
-
-
-    private ItemCommand makeItemCommand(String i, int c) {
-        ItemCommand ic = new ItemCommand(i);
-        ic.count = c;
-        return ic;
-    }
-
-
 }
