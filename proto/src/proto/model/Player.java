@@ -2,6 +2,11 @@ package proto.model;
 
 import java.util.List;
 
+/**
+ * Játékos osztály, amit a felhasználó irányít a grafikus felületen keresztül. Ilyen típussal nem lehet játszani,
+ * csak a leszármazottakkal. Felelo ̋ssége a játékos által a controlleren keresztül kiadott mu ̋veletek elvégzése.
+ * Tárolja a játékos jelenlegi állapotát.
+ */
 public abstract class Player extends Entity {
     /**
      * Jelzi a játékos jelenlegi homérsékletét, ha 0 akkor megfagy -> játék vége.
