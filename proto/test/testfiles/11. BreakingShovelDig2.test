@@ -11,3 +11,5 @@ query
 # Output:
 tile 0 *
 entity eskimo 5 3
+item shovel durability 0
+equip all

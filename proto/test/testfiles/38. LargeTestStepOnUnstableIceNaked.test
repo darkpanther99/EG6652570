@@ -43,7 +43,7 @@ select tile 9
 connect 12 6 4 8 11
 select tile 10
 connect 11 8 7
-select tile 11 
+select tile 11
 connect 12 9 8 10
 select tile 12
 connect 6 5 9 11
@@ -94,7 +94,7 @@ select tile 9
 connect 12 6 4 8 11
 select tile 10
 connect 11 8 7
-select tile 11 
+select tile 11
 connect 12 9 8 10
 select tile 12
 connect 6 5 9 11
