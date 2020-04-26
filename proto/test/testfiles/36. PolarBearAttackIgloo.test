@@ -5,7 +5,7 @@ building igloo
 entity eskimo
 tile 1 *
 entity polarbear
-sleect tile 0
+select tile 0
 connect 1 
 select tile 1
 connect 0
