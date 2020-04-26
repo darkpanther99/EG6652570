@@ -23,16 +23,12 @@ public class ItemCommand implements Command {
 
     @Override
     public void execute(Proto state) throws ProtoException {
-        if (state.hasSelectedTile() && count > 1) {
+        if (!state.hasSelectedPlayer() && state.hasSelectedTile() && count > 1) {
             throw new ProtoException("Mezonek csak 1 itemet lehet adni");
         }
 
-        if (!state.hasSelectedTile() && !state.hasSelectedPlayer()) {
-            throw new ProtoException("Nincs mezo/jatekos kivalasztva");
-        }
-
-        Item item = null;
         for (int i = 0; i < count; i++) {
+            Item item = null;
             if (type.contentEquals("empty")) item = new Empty();
             else if (type.contentEquals("food")) item = new Food();
             else if (type.contentEquals("part")) item = new Part();
@@ -45,13 +41,14 @@ public class ItemCommand implements Command {
             } else {
                 throw new ProtoException("Rossz item tipus");
             }
-        }
 
-        if (state.hasSelectedTile()) {
-            state.getSelectedTile().setItem(item);
-        }
-        if (state.hasSelectedPlayer()) {
-            state.getSelectedPlayer().addToInventory(item);
+            if (state.hasSelectedPlayer()) {
+                state.getSelectedPlayer().addToInventory(item);
+            } else if (state.hasSelectedTile()) {
+                state.getSelectedTile().setItem(item);
+            } else {
+                throw new ProtoException("Nincs mezo/jatekos kivalasztva");
+            }
         }
     }
 
