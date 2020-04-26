@@ -35,24 +35,23 @@ public class ItemCommandParser implements CommandParser {
         }
 
         try {
+            int count = 1;
+            int durability = -1;
             ItemCommand command = null;
-            if (type.contentEquals("shovel")) {
-                int count = 1;
-                int durability = -1;
-                if (tokens.get(2).contentEquals("durability")) {
-                    durability = Integer.parseInt(tokens.get(3));
-                } else {
-                    count = Integer.parseInt(tokens.get(2));
-                    if (tokens.size() > 3 && tokens.get(3).contentEquals("durability")) {
-                        durability = Integer.parseInt(tokens.get(4));
+            if(tokens.size() > 2) {
+                for (int i = 2; i < tokens.size(); i++) {
+                    String token = tokens.get(i);
+                    if(token.contentEquals("durability")) {
+                        i++;
+                        token = tokens.get(i);
+                        durability = Integer.parseInt(token);
+                    } else {
+                        count = Integer.parseInt(token);
                     }
                 }
-                command = new ItemCommand(type, count, durability);
-            } else {
-                int count = Integer.parseInt(tokens.get(2));
-                command = new ItemCommand(type, count);
             }
 
+            command = new ItemCommand(type, count, durability);
             return command;
         } catch(NumberFormatException e) {
             throw new ProtoException(e.getMessage(), e.getCause());
