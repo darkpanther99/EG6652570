@@ -2,14 +2,30 @@ package proto;
 
 import java.util.List;
 
+/**
+ * Argumentum listából EntityCommand-ot generáló osztály.
+ */
 public class EntityCommandParser implements CommandParser {
+    /**
+     * A parancshoz tartozó kulcsszó
+     */
     private String keyword = "entity";
 
+    /**
+     * Visszaadja a parancshoz tartozó kulcsszót.
+     * @return A kulcsszó. Mindig "entity".
+     */
     @Override
     public String getKeyword() {
         return keyword;
     }
 
+    /**
+     * Letrehoz egy EntityCommand-ot a bejovo argumentumokbol
+     * @param tokens a parancs argumentumai. { "entity", "$type", ["playerBodyHeat", ["playerEnergy"]]}
+     * @return EntityCommand, a bejovo argumentumokkal
+     * @throws ProtoException helytelen bemenet esetén kivételt dob.
+     */
     @Override
     public Command parse(List<String> tokens) throws ProtoException {
         if(tokens.size() < 2 || !tokens.get(0).contentEquals(keyword)) {

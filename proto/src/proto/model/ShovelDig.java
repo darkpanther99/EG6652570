@@ -9,6 +9,7 @@ public class ShovelDig implements DigStrategy {
     /**
      *  Csökkenti a tile-on található hó mennyiségét. Minden második alkalommal
      * fárasztó.
+     *
      * @param t
      * @return
      */

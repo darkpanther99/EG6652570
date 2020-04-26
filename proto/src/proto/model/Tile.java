@@ -37,7 +37,7 @@ public class Tile {
     private List<Entity> occupants;
 
     public Tile neighborAt(int direction) {
-        throw new RuntimeException();
+        return neighbors.get(direction);
     }
 
     public void decrementSnow() {
@@ -51,9 +51,9 @@ public class Tile {
      */
     public Item takeItem() {
         if (item != null) {
-            // todo: remove item az mit jelent, nincs kedvem amr szekkvencian kibogozni, fuj OO
-
-            return item;
+            Item i = getItem();
+            setItem(null);
+            return i;
         }
         return new Empty();
     }
@@ -76,12 +76,32 @@ public class Tile {
         occupants.remove(e);
     }
 
+    /**
+     * Játékos rálép a cellára, ha többen vannak mint a korlát, a jégtábla átfordul. A függvény futása során beállítja a megfelelo ̋ adattagokat az új értékekre.
+     *
+     * @param e
+     */
     public void stepOn(Entity e) {
-        throw new RuntimeException();
+        this.add(e);
+        if(occupants.size() > weightLimit){
+            setSnow(0);
+            setWeightLimit(0);
+            setItem(new Empty());
+            setShelter(new BareIce());
+            setChillWaterStrategy(new Sea());
+            chillWater();
+        }
     }
 
+    /**
+     * Játékos lelép a celláról. A függvény futása során beállítja a megfelelo ̋ adattago- kat az új értékekre
+     *
+     *  @param e
+     */
     public void stepOff(Entity e) {
-        throw new RuntimeException();
+        if(occupants.contains(e)){
+            remove(e);
+        }
     }
 
     /**
@@ -89,8 +109,7 @@ public class Tile {
      * igluban vagy sátorban.
      */
     public void chillStorm() {
-        // Gabor TODO: this
-        throw new RuntimeException();
+        shelter.chill(this);
     }
 
     /**
@@ -100,14 +119,20 @@ public class Tile {
         shelter.ruin(this);
     }
 
+    /**
+     * Medve megtámadja a cellán állókat.
+     */
     public void bearAttack() {
         for (Entity e : occupants) {
             e.bearAttack();
         }
     }
 
+    /**
+     * Ezt a metódust a Controller hívja körönként. Hu ̋ti a játékosokat, ha ez a cella víz.
+     */
     public void chillWater() {
-        throw new RuntimeException();
+        chillWaterStrategy.chill(this);
     }
 
     public List<Entity> getOccupants() {

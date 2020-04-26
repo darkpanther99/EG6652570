@@ -11,6 +11,12 @@ public class ExamineCommandParser implements CommandParser {
         return keyword;
     }
 
+    /**
+     *
+     * @param tokens Formátum: {"examine", "$dir : int"}
+     * @return ExamineCommand parancs a megfelelő argumentumokkal
+     * @throws ProtoException Hibás bemenet esetén kivételt dob.
+     */
     @Override
     public Command parse(List<String> tokens) throws ProtoException {
         if(tokens.size() < 2 || !tokens.get(0).contentEquals(keyword)) {
