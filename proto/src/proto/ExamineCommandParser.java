@@ -12,12 +12,16 @@ public class ExamineCommandParser implements CommandParser {
     }
 
     @Override
-    public Command parse(List<String> tokens) {
+    public Command parse(List<String> tokens) throws ProtoException {
         if(tokens.size() < 2 || !tokens.get(0).contentEquals(keyword)) {
-            throw new RuntimeException();
+            throw new ProtoException("Rossz bemenet");
         }
 
-        String direction = tokens.get(1);
-        return new ExamineCommand(Integer.parseInt(direction));
+        try {
+            int direction = Integer.parseInt(tokens.get(1));
+            return new ExamineCommand(direction);
+        } catch(NumberFormatException e) {
+            throw new ProtoException(e.getMessage(), e.getCause());
+        }
     }
 }

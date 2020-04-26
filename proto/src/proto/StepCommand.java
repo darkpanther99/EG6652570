@@ -9,7 +9,11 @@ public class StepCommand implements Command {
 
     @Override
     public void execute(Proto state) throws ProtoException {
-        state.getSelectedPlayer().step(direction);
+        try {
+            state.getSelectedPlayer().step(direction);
+        } catch(NullPointerException e) {
+            throw new ProtoException("Nincs jatekos kivalasztva", e.getCause());
+        }
     }
 
     @Override

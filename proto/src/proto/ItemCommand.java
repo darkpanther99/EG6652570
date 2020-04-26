@@ -4,21 +4,31 @@ import proto.model.*;
 
 public class ItemCommand implements Command {
     private String type;
-    public int count = 1;
-    public int durability = -1;
+    public int count;
+    public int durability;
+
+    public ItemCommand(String type, int count, int durability) {
+        this.type = type;
+        this.count = count;
+        this.durability = durability;
+    }
+
+    public ItemCommand(String type, int count) {
+        this(type, count, -1);
+    }
 
     public ItemCommand(String type) {
-        this.type = type;
+        this(type, 1);
     }
 
     @Override
     public void execute(Proto state) throws ProtoException {
         if (state.hasSelectedTile() && count > 1) {
-            throw new RuntimeException();
+            throw new ProtoException("Mezonek csak 1 itemet lehet adni");
         }
 
         if (!state.hasSelectedTile() && !state.hasSelectedPlayer()) {
-            throw new RuntimeException();
+            throw new ProtoException("Nincs mezo/jatekos kivalasztva");
         }
 
         Item item = null;
@@ -33,7 +43,7 @@ public class ItemCommand implements Command {
                 if (durability > -1) item = new BreakingShovel(durability);
                 else item = new Shovel();
             } else {
-                throw new RuntimeException();
+                throw new ProtoException("Rossz item tipus");
             }
         }
 

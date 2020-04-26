@@ -11,17 +11,21 @@ public class TileCommandParser implements CommandParser {
     }
 
     @Override
-    public Command parse(List<String> tokens) {
+    public Command parse(List<String> tokens) throws ProtoException {
         if(tokens.size() < 3 || !tokens.get(0).contentEquals(keyword)) {
-            throw new RuntimeException();
+            throw new ProtoException("Rossz bemenet");
         }
 
-        int snow = Integer.parseInt(tokens.get(1));
-        int weightLimit = 999;
-        if(!tokens.get(2).contentEquals("*")) {
-            weightLimit = Integer.parseInt(tokens.get(2));
-        }
+        try {
+            int snow = Integer.parseInt(tokens.get(1));
+            int weightLimit = 999;
+            if (!tokens.get(2).contentEquals("*")) {
+                weightLimit = Integer.parseInt(tokens.get(2));
+            }
 
-        return new TileCommand(snow, weightLimit);
+            return new TileCommand(snow, weightLimit);
+        } catch(NumberFormatException e) {
+            throw new ProtoException(e.getMessage(), e.getCause());
+        }
     }
 }

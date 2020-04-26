@@ -24,30 +24,41 @@ public class ItemCommandParser implements CommandParser {
     }
 
     @Override
-    public Command parse(List<String> tokens) {
+    public Command parse(List<String> tokens) throws ProtoException {
         if (tokens.size() < 2 || !tokens.get(0).contentEquals(keyword)) {
-            throw new RuntimeException();
+            throw new ProtoException("Rossz bemenet");
         }
 
         String type = tokens.get(1);
         if (!acceptedTypes.contains(type)) {
-            throw new RuntimeException();
+            throw new ProtoException("Rossz item tipus");
         }
 
-        ItemCommand command = new ItemCommand(type);
-        if (type.contentEquals("shovel")) {
-            if (tokens.get(3).contentEquals("durability")) {
-                command.durability = Integer.parseInt(tokens.get(4));
-            } else {
-                command.count = Integer.parseInt(tokens.get(3));
-                if (tokens.size() > 3 && tokens.get(4).contentEquals("durability")) {
-                    command.durability = Integer.parseInt(tokens.get(5));
+        try {
+            ItemCommand command = null;
+            if (type.contentEquals("shovel")) {
+                int count = 1;
+                int durability = -1;
+                if (tokens.get(3).contentEquals("durability")) {
+                    durability = Integer.parseInt(tokens.get(4));
+                } else {
+                    count = Integer.parseInt(tokens.get(3));
+                    if (tokens.size() > 3 && tokens.get(4).contentEquals("durability")) {
+                        durability = Integer.parseInt(tokens.get(5));
+                    }
                 }
+                command = new ItemCommand(type, count, durability);
+            } else {
+                int count = Integer.parseInt(tokens.get(3));
+                command = new ItemCommand(type, count);
             }
-        } else {
-            command.count = Integer.parseInt(tokens.get(3));
+
+            return command;
+        } catch(NumberFormatException e) {
+            throw new ProtoException(e.getMessage(), e.getCause());
+        } catch(IndexOutOfBoundsException e) {
+            throw new ProtoException(e.getMessage(), e.getCause());
         }
 
-        return command;
     }
 }
