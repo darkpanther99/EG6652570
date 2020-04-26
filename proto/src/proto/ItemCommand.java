@@ -61,7 +61,7 @@ public class ItemCommand implements Command {
         b.append("item " + type);
 
         if(count > 1) {
-            b.append(' ' + count);
+            b.append(" " + count);
         }
 
         if(type.contentEquals("shovel") && durability > -1) {
