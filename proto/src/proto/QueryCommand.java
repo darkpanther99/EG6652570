@@ -12,7 +12,10 @@ public class QueryCommand implements Command {
 
     @Override
     public void execute(Proto state) {
-        throw new RuntimeException();
+        List<Command> commands = new ArrayList<>(makeCommands(state.game));
+        for (Command c : commands) {
+            System.out.println(c.toString());
+        }
     }
 
     @Override
@@ -38,7 +41,7 @@ public class QueryCommand implements Command {
                     result.addAll(listPlayerEquippedItems(p));
                     // TODO(Mark): add "equip all" command to result;
                     for (Item i : p.getInventory()) {
-                        result.add(makeItemCommand(i.getClass().getSimpleName().toString().toLowerCase(), -1));
+                        result.add(makeItemCommand(i.getClass().getSimpleName().toLowerCase(), -1));
                     }
                 }
             }
@@ -72,7 +75,7 @@ public class QueryCommand implements Command {
             result.add(makeItemCommand("shovel", -1));
         }
         if (p.getDigStrategy() instanceof BreakingShovelDig) {
-            BreakingShovelDig bsd = (BreakingShovelDig) (p.getDigStrategy());
+            BreakingShovelDig bsd = (BreakingShovelDig)(p.getDigStrategy());
             result.add(makeItemCommand("breakingshovel", bsd.getDurability()));
         }
 
@@ -111,9 +114,9 @@ public class QueryCommand implements Command {
 
     private EntityCommand makeEntityCommand(Entity e) {
         if (e instanceof Eskimo)
-            return new EntityCommand("eskikmo", ((Eskimo) e).getBodyTemp(), ((Eskimo) e).getEnergy());
+            return new EntityCommand("eskikmo", ((Eskimo)e).getBodyTemp(), ((Eskimo)e).getEnergy());
         else if (e instanceof PolarExplorer)
-            return new EntityCommand("polarexplorer", ((Eskimo) e).getBodyTemp(), ((Eskimo) e).getEnergy());
+            return new EntityCommand("polarexplorer", ((Eskimo)e).getBodyTemp(), ((Eskimo)e).getEnergy());
         else return new EntityCommand("polarbear");
     }
 
