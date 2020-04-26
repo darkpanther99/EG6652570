@@ -178,7 +178,6 @@ public abstract class Player extends Entity {
     public void build() {
         decrementEnergy();
         buildStrategy.build(currentTile);
-        buildStrategy.build(currentTile);
     }
 
     /**
