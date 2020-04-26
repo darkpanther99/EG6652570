@@ -11,9 +11,9 @@ public class TurnCommandParser implements CommandParser {
     }
 
     @Override
-    public Command parse(List<String> tokens) {
+    public Command parse(List<String> tokens) throws ProtoException {
         if(tokens.size() < 1 || !tokens.get(0).contentEquals(keyword)) {
-            throw new RuntimeException();
+            throw new ProtoException("Rossz bemenet");
         }
 
         return new TurnCommand();

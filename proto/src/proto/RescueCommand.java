@@ -1,5 +1,7 @@
 package proto;
 
+import proto.model.*;
+
 public class RescueCommand implements Command {
     private int direction;
 
@@ -9,7 +11,11 @@ public class RescueCommand implements Command {
 
     @Override
     public void execute(Proto state) throws ProtoException {
-        state.getSelectedPlayer().rescueTeammate(direction);
+        try {
+            state.getSelectedPlayer().rescueTeammate(direction);
+        } catch(NullPointerException e) {
+            throw new ProtoException("Nincs jatekos kivalasztva", e.getCause());
+        }
     }
 
     @Override

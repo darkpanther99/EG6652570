@@ -11,12 +11,16 @@ public class RescueCommandParser implements CommandParser {
     }
 
     @Override
-    public Command parse(List<String> tokens) {
+    public Command parse(List<String> tokens) throws ProtoException {
         if(tokens.size() < 2 || !tokens.get(0).contentEquals(keyword)) {
-            throw new RuntimeException();
+            throw new ProtoException("Rossz bemenet");
         }
 
-        int direction = Integer.parseInt(tokens.get(1));
-        return new RescueCommand(direction);
+        try {
+            int direction = Integer.parseInt(tokens.get(1));
+            return new RescueCommand(direction);
+        } catch(NumberFormatException e) {
+            throw new ProtoException(e.getMessage(), e.getCause());
+        }
     }
 }

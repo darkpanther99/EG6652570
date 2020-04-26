@@ -12,7 +12,7 @@ public class TileCommand implements Command {
     }
 
     @Override
-    public void execute(Proto state) {
+    public void execute(Proto state) throws ProtoException {
         Tile t = state.game.createTile(snow, weightLimit);
         state.selectTile(t);
     }

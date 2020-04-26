@@ -11,18 +11,22 @@ public class SelectCommandParser implements CommandParser {
     }
 
     @Override
-    public Command parse(List<String> tokens) {
+    public Command parse(List<String> tokens) throws ProtoException {
         if(tokens.size() < 2 || !tokens.get(0).contentEquals(keyword)) {
-            throw new RuntimeException();
+            throw new ProtoException("Rossz bemenet");
         }
 
-        String type = tokens.get(1);
-        if(type.contentEquals("polarbear")) {
-            return new SelectCommand(type, 0);
+        try {
+            String type = tokens.get(1);
+            if (type.contentEquals("polarbear")) {
+                return new SelectCommand(type, 0);
+            }
+
+            int index = Integer.parseInt(tokens.get(2));
+            return new SelectCommand(type, index);
+        } catch(NumberFormatException e) {
+            throw new ProtoException(e.getMessage(), e.getCause());
         }
 
-        int index = Integer.parseInt(tokens.get(2));
-
-        return new SelectCommand(type, index);
     }
 }
