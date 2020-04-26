@@ -55,23 +55,19 @@ public class ItemCommand implements Command {
 
     @Override
     public String toString() {
-        if (count > 1) {
-            if (type.contentEquals("shovel") && durability > -1) {
-                if(durability == 0) {
-                    return "";
-                }
-                return "item shovel " + count + " durability " + durability;
-            } else {
-                return "item " + type + " " + count;
-            }
-        } else if(count > 0) {
-            if (type.contentEquals("shovel") && durability > 0) {
-                return "item shovel durability " + durability;
-            } else {
-                return "item " + type;
-            }
-        } else {
-            return "";
+        if(count <= 0) return "";
+
+        StringBuilder b = new StringBuilder();
+        b.append("item " + type);
+
+        if(count > 1) {
+            b.append(' ' + count);
         }
+
+        if(type.contentEquals("shovel") && durability > -1) {
+            b.append("durability " + durability);
+        }
+
+        return b.toString();
     }
 }
