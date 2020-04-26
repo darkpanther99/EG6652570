@@ -64,12 +64,14 @@ public class ItemCommand implements Command {
             } else {
                 return "item " + type + " " + count;
             }
-        } else {
+        } else if(count > 0) {
             if (type.contentEquals("shovel") && durability > 0) {
                 return "item shovel durability " + durability;
             } else {
                 return "item " + type;
             }
+        } else {
+            return "";
         }
     }
 }
