@@ -56,7 +56,10 @@ public class ItemCommand implements Command {
     @Override
     public String toString() {
         if (count > 1) {
-            if (type.contentEquals("shovel") && durability > 0) {
+            if (type.contentEquals("shovel") && durability > -1) {
+                if(durability == 0) {
+                    return "";
+                }
                 return "item shovel " + count + " durability " + durability;
             } else {
                 return "item " + type + " " + count;
