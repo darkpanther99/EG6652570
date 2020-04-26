@@ -15,12 +15,15 @@ public class ConnectCommandParser implements CommandParser {
 
     @Override
     public Command parse(List<String> tokens) {
-        List<Integer> tmp = new ArrayList<Integer>();
-        for (var i : tokens) {
-            tmp.add(Integer.parseInt(i));
-        }
+        List<String> tmp = new ArrayList<String>(tokens);
         tmp.remove(0);
-        return new ConnectCommand(tmp);
+
+        List<Integer> res = new ArrayList<Integer>();
+        for (String s : tmp) {
+            res.add(Integer.parseInt(s));
+        }
+
+        return new ConnectCommand(res);
 
     }
 }

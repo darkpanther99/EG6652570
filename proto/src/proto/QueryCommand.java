@@ -28,7 +28,7 @@ public class QueryCommand implements Command {
         List<Command> result = new ArrayList<Command>();
         for (Tile t : game.getIceField()) {
             result.add(makeTileCommand(t));
-            result.add(makeSelectTileCommand(t, game));
+            //result.add(makeSelectTileCommand(t, game));
 
             if (!(t.getShelter() instanceof BareIce)) {
                 result.add(makeBuildingCommand(t));
