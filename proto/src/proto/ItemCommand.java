@@ -12,7 +12,7 @@ public class ItemCommand implements Command {
     }
 
     @Override
-    public void execute(Proto state) throws Exception {
+    public void execute(Proto state) throws ProtoException {
         if (state.hasSelectedTile() && count > 1) {
             throw new RuntimeException();
         }

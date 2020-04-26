@@ -10,7 +10,7 @@ public class ExamineCommand implements Command {
     }
 
     @Override
-    public void execute(Proto state) throws Exception {
+    public void execute(Proto state) throws ProtoException {
         if (state.getSelectedPlayer() instanceof PolarExplorer) {
             PolarExplorer p = (PolarExplorer) state.getSelectedPlayer();
             p.examine(direction);

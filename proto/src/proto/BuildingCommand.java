@@ -10,7 +10,7 @@ public class BuildingCommand implements Command {
     }
 
     @Override
-    public void execute(Proto state) throws Exception {
+    public void execute(Proto state) throws ProtoException {
         if (type.equals("igloo")) {
             state.getSelectedTile().setShelter(new Igloo());
         }

@@ -8,7 +8,7 @@ public class StepCommand implements Command {
     }
 
     @Override
-    public void execute(Proto state) throws Exception {
+    public void execute(Proto state) throws ProtoException {
         state.getSelectedPlayer().step(direction);
     }
 

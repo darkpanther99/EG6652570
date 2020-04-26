@@ -30,7 +30,7 @@ public class ConnectCommand implements Command {
         }
     }
     @Override
-    public void execute(Proto state) throws Exception {
+    public void execute(Proto state) throws ProtoException {
         int j = 0;
         for (int i : indices) {
             state.getSelectedTile().addNeighbor(state.game.getIceField().get(i), j);

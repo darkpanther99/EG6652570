@@ -12,7 +12,7 @@ public class EquipCommand implements Command {
     }
 
     @Override
-    public void execute(Proto state) throws Exception {
+    public void execute(Proto state) throws ProtoException {
         if (index > -1) {
             state.getSelectedPlayer().equip(index);
         } else {

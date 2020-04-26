@@ -1,5 +1,9 @@
 package proto;
-import proto.model.*;
+
+import proto.model.Game;
+import proto.model.Player;
+import proto.model.PolarBear;
+import proto.model.Tile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,15 +45,17 @@ public class Proto {
         parsers = new ArrayList<>(createParses());
 
     }
+
     /**
      * Létrehozz egy listát, ami tartalmaz egyet az összes CommandParser típusból.
+     *
      * @return A parsereket tartalmazó lista
      */
     private List<CommandParser> createParses() {
-        return (Arrays.asList(new AssembleCommandParser(),new BuildCommandParser(), new ConnectCommandParser(),
+        return (Arrays.asList(new AssembleCommandParser(), new BuildCommandParser(), new ConnectCommandParser(),
                 new DigCommandParser(), new EatCommandParser(), new EntityCommandParser(),
                 new EquipCommandParser(), new ExamineCommandParser(), new ItemCommandParser(),
-                new PickUpCommandParser(),new QueryCommandParser(), new RescueCommandParser(),
+                new PickUpCommandParser(), new QueryCommandParser(), new RescueCommandParser(),
                 new SelectCommandParser(), new StepCommandParser(), new StormCommandParser(),
                 new TileCommandParser(), new TurnCommandParser(), new BuildingCommandParser()));
     }
@@ -57,16 +63,14 @@ public class Proto {
     /**
      * Futtatja a parancsértelmezést.
      */
-    public void run() throws Exception {
+    public void run() {
         running = true;
         while (running) {
-            Command c = getCommand();
             try {
+                Command c = getCommand();
                 c.execute(this);
-            } catch (Exception e) {
+            } catch (ProtoException e) {
                 e.printStackTrace();
-                System.out.println(e);
-
             }
         }
     }
@@ -79,11 +83,12 @@ public class Proto {
     }
 
     // TODO(Mark): this is not done yet boi
+
     /**
      * Beolvas egy parancsot a standard bemenetről.
      */
 
-    private Command getCommand() throws Exception {
+    private Command getCommand() throws ProtoException {
         Scanner input = new Scanner(System.in);
         String line = input.nextLine();
         line = line.trim();
@@ -94,11 +99,12 @@ public class Proto {
                 return p.parse(tokens);
             }
         }
-        throw new Exception("Unable to parse command.");
+        throw new ProtoException("Unable to parse command.");
     }
 
     /**
      * Beállítja a selectedTile-t és lenullozza a selectedPlayer-t és a selectedBear-t.
+     *
      * @param t: A kiválasztandó Tile
      */
     public void selectTile(Tile t) {
@@ -106,8 +112,10 @@ public class Proto {
         selectedBear = null;
         selectedPlayer = null;
     }
+
     /**
      * Beállítja a selectedPlayer-t és lenullozza a selectedTile-t és a selectedBear-t.
+     *
      * @param p: A kiválasztandó Player
      */
     public void selectPlayer(Player p) {
@@ -118,6 +126,7 @@ public class Proto {
 
     /**
      * Beállítja a selectedBear-t és lenullozza a selectedTile-t és a selectedPlayer-t.
+     *
      * @param b: A kiválasztandó PolarBear
      */
     public void selectBear(PolarBear b) {
@@ -128,51 +137,62 @@ public class Proto {
 
     /**
      * Megmondja, hogy van e kiválasztott Tile.
+     *
      * @return True, ha van False, ha nincs
      */
     public boolean hasSelectedTile() {
         return selectedTile != null;
     }
+
     /**
      * Megmondja, hogy van e kiválasztott Player.
+     *
      * @return True, ha van False, ha nincs
      */
     public boolean hasSelectedPlayer() {
         return selectedPlayer != null;
     }
+
     /**
      * Megmondja, hogy van e kiválasztott PolarBear.
+     *
      * @return True, ha van False, ha nincs
      */
     public boolean hasSelectedBear() {
         return selectedBear != null;
     }
+
     /**
      * Visszaadja a kiválasztott Tile-t, ha nincs ilyen, akkor kivételt dob.
+     *
      * @return A kiválasztott Tile.
      */
-    public Tile getSelectedTile() throws Exception {
+    public Tile getSelectedTile() throws ProtoException {
         if (hasSelectedTile())
             return selectedTile;
-        else throw new Exception("No tile is selected right now!");
+        else throw new ProtoException("No tile is selected right now!");
     }
+
     /**
      * Visszaadja a kiválasztott Player-t, ha nincs ilyen, akkor kivételt dob.
+     *
      * @return A kiválasztott Player.
      */
-    public Player getSelectedPlayer() throws Exception {
+    public Player getSelectedPlayer() throws ProtoException {
         if (hasSelectedPlayer())
             return selectedPlayer;
-        else throw new Exception("No player is selected right now!");
+        else throw new ProtoException("No player is selected right now!");
     }
+
     /**
      * Visszaadja a kiválasztott PolarBear-t, ha nincs ilyen, akkor kivételt dob.
+     *
      * @return A kiválasztott PolarBear.
      */
-    public PolarBear getSelectedBear() throws Exception {
+    public PolarBear getSelectedBear() throws ProtoException {
         if (hasSelectedBear())
             return selectedBear;
-        else throw new Exception("No bear is selected right now!");
+        else throw new ProtoException("No bear is selected right now!");
     }
 
 }
