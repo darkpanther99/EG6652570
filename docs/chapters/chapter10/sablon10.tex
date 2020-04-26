@@ -12,17 +12,87 @@
 
 \begin{fajllista}
 
-\fajl
-{Main.java} % Kezdet
-{250 byte} % Idptartam
-{2009.10.10~18:05~} % Résztvevők
-{...} % Leírás
+% Console.Write(string.Join(Environment.NewLine, Directory.EnumerateFiles(@"proto\src", "*.java", SearchOption.AllDirectories).Select(x => new FileInfo(x)).Select(x => $"\\fajl{{{x.Name}}}{{{x.Length / 1000.0:0.00}KB}}{{{x.CreationTime:yyy.MM.dd~HH:mm~}}}{{{Path.GetFileNameWithoutExtension(x.Name)} osztály forráskódja.}}")));
 
-\fajl
-{...}
-{...}
-{...}
-{...}
+\fajl{AssembleCommand.java}{0,29KB}{2020.04.21~22:28~}{AssembleCommand osztály forráskódja.}
+\fajl{AssembleCommandParser.java}{0,31KB}{2020.04.21~22:31~}{AssembleCommandParser osztály forráskódja.}
+\fajl{BuildCommand.java}{0,38KB}{2020.04.21~22:27~}{BuildCommand osztály forráskódja.}
+\fajl{BuildCommandParser.java}{0,30KB}{2020.04.21~22:32~}{BuildCommandParser osztály forráskódja.}
+\fajl{BuildingCommand.java}{0,72KB}{2020.04.21~22:20~}{BuildingCommand osztály forráskódja.}
+\fajl{BuildingCommandParser.java}{0,32KB}{2020.04.21~22:32~}{BuildingCommandParser osztály forráskódja.}
+\fajl{Command.java}{0,13KB}{2020.04.21~22:12~}{Command osztály forráskódja.}
+\fajl{CommandParser.java}{0,17KB}{2020.04.21~22:14~}{CommandParser osztály forráskódja.}
+\fajl{ConnectCommand.java}{1,41KB}{2020.04.21~22:22~}{ConnectCommand osztály forráskódja.}
+\fajl{ConnectCommandParser.java}{0,60KB}{2020.04.21~22:33~}{ConnectCommandParser osztály forráskódja.}
+\fajl{DigCommand.java}{0,27KB}{2020.04.21~22:26~}{DigCommand osztály forráskódja.}
+\fajl{DigCommandParser.java}{0,29KB}{2020.04.21~22:33~}{DigCommandParser osztály forráskódja.}
+\fajl{EatCommand.java}{0,28KB}{2020.04.21~22:28~}{EatCommand osztály forráskódja.}
+\fajl{EatCommandParser.java}{0,29KB}{2020.04.21~22:33~}{EatCommandParser osztály forráskódja.}
+\fajl{EntityCommand.java}{1,90KB}{2020.04.21~22:21~}{EntityCommand osztály forráskódja.}
+\fajl{EntityCommandParser.java}{1,79KB}{2020.04.21~22:34~}{EntityCommandParser osztály forráskódja.}
+\fajl{EquipCommand.java}{1,57KB}{2020.04.21~22:21~}{EquipCommand osztály forráskódja.}
+\fajl{EquipCommandParser.java}{1,33KB}{2020.04.21~22:34~}{EquipCommandParser osztály forráskódja.}
+\fajl{ExamineCommand.java}{1,11KB}{2020.04.21~22:26~}{ExamineCommand osztály forráskódja.}
+\fajl{ExamineCommandParser.java}{1,03KB}{2020.04.21~22:35~}{ExamineCommandParser osztály forráskódja.}
+\fajl{ItemCommand.java}{2,40KB}{2020.04.21~22:20~}{ItemCommand osztály forráskódja.}
+\fajl{ItemCommandParser.java}{1,85KB}{2020.04.21~22:35~}{ItemCommandParser osztály forráskódja.}
+\fajl{Main.java}{0,15KB}{2020.04.21~20:45~}{Main osztály forráskódja.}
+\fajl{MessagePrinter.java}{0,89KB}{2020.04.21~22:11~}{MessagePrinter osztály forráskódja.}
+\fajl{PickUpCommand.java}{0,28KB}{2020.04.21~22:27~}{PickUpCommand osztály forráskódja.}
+\fajl{PickUpCommandParser.java}{0,47KB}{2020.04.21~22:36~}{PickUpCommandParser osztály forráskódja.}
+\fajl{Proto.java}{6,13KB}{2020.04.21~22:10~}{Proto osztály forráskódja.}
+\fajl{ProtoException.java}{0,38KB}{2020.04.26~11:33~}{ProtoException osztály forráskódja.}
+\fajl{QueryCommand.java}{5,62KB}{2020.04.21~22:22~}{QueryCommand osztály forráskódja.}
+\fajl{QueryCommandParser.java}{0,30KB}{2020.04.21~22:36~}{QueryCommandParser osztály forráskódja.}
+\fajl{RescueCommand.java}{0,59KB}{2020.04.21~22:25~}{RescueCommand osztály forráskódja.}
+\fajl{RescueCommandParser.java}{0,69KB}{2020.04.21~22:36~}{RescueCommandParser osztály forráskódja.}
+\fajl{SelectCommand.java}{0,98KB}{2020.04.21~22:21~}{SelectCommand osztály forráskódja.}
+\fajl{SelectCommandParser.java}{0,85KB}{2020.04.21~22:36~}{SelectCommandParser osztály forráskódja.}
+\fajl{StepCommand.java}{0,83KB}{2020.04.21~22:24~}{StepCommand osztály forráskódja.}
+\fajl{StepCommandParser.java}{0,68KB}{2020.04.21~22:37~}{StepCommandParser osztály forráskódja.}
+\fajl{StormCommand.java}{0,33KB}{2020.04.21~22:28~}{StormCommand osztály forráskódja.}
+\fajl{StormCommandParser.java}{0,47KB}{2020.04.21~22:37~}{StormCommandParser osztály forráskódja.}
+\fajl{TileCommand.java}{0,58KB}{2020.04.21~22:19~}{TileCommand osztály forráskódja.}
+\fajl{TileCommandParser.java}{0,85KB}{2020.04.21~22:37~}{TileCommandParser osztály forráskódja.}
+\fajl{TurnCommand.java}{0,24KB}{2020.04.21~22:28~}{TurnCommand osztály forráskódja.}
+\fajl{TurnCommandParser.java}{0,47KB}{2020.04.21~22:37~}{TurnCommandParser osztály forráskódja.}
+\fajl{BareHands.java}{0,76KB}{2020.04.22~16:27~}{BareHands osztály forráskódja.}
+\fajl{BareIce.java}{1,23KB}{2020.04.22~16:27~}{BareIce osztály forráskódja.}
+\fajl{BreakingShovel.java}{1,18KB}{2020.04.22~16:27~}{BreakingShovel osztály forráskódja.}
+\fajl{BreakingShovelDig.java}{1,80KB}{2020.04.22~16:27~}{BreakingShovelDig osztály forráskódja.}
+\fajl{BuildStrategy.java}{0,80KB}{2020.04.22~16:27~}{BuildStrategy osztály forráskódja.}
+\fajl{CantRescue.java}{0,58KB}{2020.04.22~16:27~}{CantRescue osztály forráskódja.}
+\fajl{ChillWaterStrategy.java}{0,44KB}{2020.04.22~16:27~}{ChillWaterStrategy osztály forráskódja.}
+\fajl{DigStrategy.java}{0,48KB}{2020.04.22~16:27~}{DigStrategy osztály forráskódja.}
+\fajl{DryLand.java}{0,61KB}{2020.04.22~16:27~}{DryLand osztály forráskódja.}
+\fajl{Empty.java}{0,49KB}{2020.04.22~16:27~}{Empty osztály forráskódja.}
+\fajl{Entity.java}{1,58KB}{2020.04.22~16:27~}{Entity osztály forráskódja.}
+\fajl{Eskimo.java}{0,74KB}{2020.04.22~16:27~}{Eskimo osztály forráskódja.}
+\fajl{Food.java}{0,50KB}{2020.04.22~16:27~}{Food osztály forráskódja.}
+\fajl{FoodStore.java}{0,81KB}{2020.04.22~16:27~}{FoodStore osztály forráskódja.}
+\fajl{Game.java}{5,29KB}{2020.04.22~16:27~}{Game osztály forráskódja.}
+\fajl{GameObserver.java}{0,42KB}{2020.04.22~16:27~}{GameObserver osztály forráskódja.}
+\fajl{Igloo.java}{0,79KB}{2020.04.22~16:27~}{Igloo osztály forráskódja.}
+\fajl{Item.java}{0,47KB}{2020.04.22~16:27~}{Item osztály forráskódja.}
+\fajl{Naked.java}{0,41KB}{2020.04.22~16:27~}{Naked osztály forráskódja.}
+\fajl{Part.java}{0,31KB}{2020.04.22~16:27~}{Part osztály forráskódja.}
+\fajl{PartStore.java}{0,63KB}{2020.04.22~16:27~}{PartStore osztály forráskódja.}
+\fajl{Player.java}{6,73KB}{2020.04.22~16:27~}{Player osztály forráskódja.}
+\fajl{PolarBear.java}{0,76KB}{2020.04.22~16:27~}{PolarBear osztály forráskódja.}
+\fajl{PolarExplorer.java}{0,53KB}{2020.04.22~16:27~}{PolarExplorer osztály forráskódja.}
+\fajl{RescueStrategy.java}{0,25KB}{2020.04.22~16:27~}{RescueStrategy osztály forráskódja.}
+\fajl{Rope.java}{0,38KB}{2020.04.22~16:27~}{Rope osztály forráskódja.}
+\fajl{RopeRescue.java}{0,54KB}{2020.04.22~16:27~}{RopeRescue osztály forráskódja.}
+\fajl{ScubaGear.java}{0,41KB}{2020.04.22~16:27~}{ScubaGear osztály forráskódja.}
+\fajl{ScubaWearing.java}{0,32KB}{2020.04.22~16:27~}{ScubaWearing osztály forráskódja.}
+\fajl{Sea.java}{0,33KB}{2020.04.22~16:27~}{Sea osztály forráskódja.}
+\fajl{Shelter.java}{0,88KB}{2020.04.22~16:27~}{Shelter osztály forráskódja.}
+\fajl{Shovel.java}{0,54KB}{2020.04.22~16:27~}{Shovel osztály forráskódja.}
+\fajl{ShovelDig.java}{0,47KB}{2020.04.22~16:27~}{ShovelDig osztály forráskódja.}
+\fajl{Tent.java}{0,66KB}{2020.04.22~16:27~}{Tent osztály forráskódja.}
+\fajl{TentKit.java}{0,33KB}{2020.04.22~16:27~}{TentKit osztály forráskódja.}
+\fajl{Tile.java}{4,46KB}{2020.04.22~16:27~}{Tile osztály forráskódja.}
+\fajl{WaterResistanceStrategy.java}{0,41KB}{2020.04.22~16:27~}{WaterResistanceStrategy osztály forráskódja.}
 
 \end{fajllista}
 
