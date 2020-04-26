@@ -1,5 +1,7 @@
 package proto.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +37,12 @@ public class Tile {
      * Rajta lévo entitások.
      */
     private List<Entity> occupants;
+
+    public Tile() {
+        item = new Empty();
+        occupants = new ArrayList<>();
+        neighbors = new HashMap<Integer, Tile>();
+    }
 
     public Tile neighborAt(int direction) {
         return neighbors.get(direction);
@@ -109,7 +117,7 @@ public class Tile {
      * igluban vagy sátorban.
      */
     public void chillStorm() {
-        shelter.chill(this);
+        shelter.chillStorm(this);
     }
 
     /**

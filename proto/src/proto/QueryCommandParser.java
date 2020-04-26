@@ -5,11 +5,11 @@ import java.util.List;
 public class QueryCommandParser implements CommandParser {
     private String keyword;
     public QueryCommandParser() {
-        keyword = "querry";
+        keyword = "query";
     }
     @Override
     public String getKeyword() {
-        throw new RuntimeException();
+        return keyword;
     }
 
     @Override
