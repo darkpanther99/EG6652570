@@ -6,7 +6,7 @@ item scubagear
 equip all
 tile 1 1
 select tile 0
-connect 0
+connect 1
 select player 0
 step 0
 query
