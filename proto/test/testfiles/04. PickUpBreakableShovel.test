@@ -15,5 +15,6 @@ tile 1 *
 tile 0 *
 entity eskimo 5 2
 item shovel durability 2
+equip all
 select tile 0
 connect 1

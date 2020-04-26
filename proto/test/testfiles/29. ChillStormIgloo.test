@@ -7,6 +7,6 @@ storm
 turn
 query
 # Output:
-tile 1 * 
+tile 1 *
 building igloo
 entity eskimo 5 4

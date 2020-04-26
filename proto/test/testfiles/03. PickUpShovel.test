@@ -15,5 +15,6 @@ tile 1 *
 tile 0 *
 entity eskimo 5 2
 item shovel
+equip all
 select tile 0
 connect 1

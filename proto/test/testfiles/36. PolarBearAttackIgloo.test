@@ -16,7 +16,7 @@ query
 # Output:
 tile 1 *
 building igloo
-entity eskimo
+entity eskimo 5 4
 entity polarbear
 select tile 0
 connect 1

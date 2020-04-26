@@ -56,37 +56,42 @@ public class QueryCommand implements Command {
     }
 
     private void listPlayerItems(Player p, List<Command> result) {
+        List<ItemCommand> equipped = new ArrayList<>();
         if (p.getBuildStrategy() != null && p.getBuildStrategy().getCount() > 0) {
-            result.add(new ItemCommand("tentkit", p.getBuildStrategy().getCount()));
+            equipped.add(new ItemCommand("tentkit", p.getBuildStrategy().getCount()));
         }
         if (p.getFoodStore().getCount() > 0) {
-            result.add(new ItemCommand("food", p.getFoodStore().getCount()));
+            equipped.add(new ItemCommand("food", p.getFoodStore().getCount()));
         }
         if (p.getPartStore().getCount() > 0) {
-            result.add(new ItemCommand("part", p.getPartStore().getCount()));
+            equipped.add(new ItemCommand("part", p.getPartStore().getCount()));
         }
 
         boolean hasRope = false, hasShovel = false, hasScuba = false, hasBreakingShovel = false;
 
         if (p.getRescueStrategy() != null && p.getRescueStrategy() instanceof RopeRescue) {
-            result.add(new ItemCommand("rope"));
+            equipped.add(new ItemCommand("rope"));
             hasRope = true;
         }
         if (p.getWaterResistanceStrategy() != null && p.getWaterResistanceStrategy() instanceof ScubaWearing) {
-            result.add(new ItemCommand("scubagear"));
+            equipped.add(new ItemCommand("scubagear"));
             hasScuba = true;
         }
         if (p.getDigStrategy() instanceof ShovelDig) {
-            result.add(new ItemCommand("shovel"));
+            equipped.add(new ItemCommand("shovel"));
             hasShovel = true;
         }
         if (p.getDigStrategy() instanceof BreakingShovelDig) {
             BreakingShovelDig bsd = (BreakingShovelDig) (p.getDigStrategy());
-            result.add(new ItemCommand("shovel", 1, bsd.getDurability()));
+            equipped.add(new ItemCommand("shovel", 1, bsd.getDurability()));
             hasBreakingShovel = true;
         }
 
-        List<ItemCommand> inventoryCommands = new ArrayList<>();
+        if (equipped.size() > 0) {
+            result.addAll(equipped);
+            result.add(new EquipCommand());
+        }
+
         for (Item i : p.getInventory()) {
             if (i instanceof Rope && hasRope) {
                 hasRope = false;
@@ -105,12 +110,7 @@ public class QueryCommand implements Command {
                 continue;
             }
             if (!(i instanceof Food) && !(i instanceof TentKit) && !(i instanceof Part))
-                inventoryCommands.add(makeItemCommand(i, 1));
-        }
-
-        if (inventoryCommands.size() > 0) {
-            result.add(new EquipCommand());
-            result.addAll(inventoryCommands);
+                result.add(makeItemCommand(i, 1));
         }
     }
 
