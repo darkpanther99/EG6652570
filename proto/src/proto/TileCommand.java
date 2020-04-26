@@ -19,6 +19,6 @@ public class TileCommand implements Command {
 
     @Override
     public String toString() {
-        return "tile " + snow + " " + weightLimit;
+        return "tile " + snow + " " + ((weightLimit < 999) ? weightLimit : "*");
     }
 }

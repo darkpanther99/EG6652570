@@ -10,6 +10,7 @@ public class Entity {
      */
     protected Tile currentTile;
 
+
     /**
      * Az entitás a paraméterként kapott irányba lép.
      *
@@ -50,5 +51,13 @@ public class Entity {
      */
     public void bearAttack() {
         return;
+    }
+
+    public Tile getCurrentTile() {
+        return currentTile;
+    }
+
+    public void setCurrentTile(Tile currentTile) {
+        this.currentTile = currentTile;
     }
 }

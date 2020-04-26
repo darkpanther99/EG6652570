@@ -5,22 +5,23 @@ import java.util.List;
 
 public class ConnectCommandParser implements CommandParser {
     private String keyword;
+
     public ConnectCommandParser() {
         keyword = "connect";
     }
+
     @Override
     public String getKeyword() {
         return keyword;
     }
 
     @Override
-    public Command parse(List<String> tokens) {
+    public Command parse(List<String> tokens) throws ProtoException {
         List<Integer> tmp = new ArrayList<Integer>();
-        for (var i : tokens) {
+        if(tokens.size() < 2) throw new ProtoException("Invalid connect command.");
+        for (var i : tokens.subList(1, tokens.size())) {
             tmp.add(Integer.parseInt(i));
         }
-        tmp.remove(0);
         return new ConnectCommand(tmp);
-
     }
 }

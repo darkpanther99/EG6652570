@@ -1,5 +1,7 @@
 package proto;
 
+import proto.model.Entity;
+
 public class StepCommand implements Command {
     private int direction;
 
@@ -9,11 +11,15 @@ public class StepCommand implements Command {
 
     @Override
     public void execute(Proto state) throws ProtoException {
-        try {
-            state.getSelectedPlayer().step(direction);
-        } catch(NullPointerException e) {
-            throw new ProtoException("Nincs jatekos kivalasztva", e.getCause());
-        }
+        Entity e = null;
+        if (state.hasSelectedPlayer())
+            e = state.getSelectedPlayer();
+        else if (state.hasSelectedBear())
+            e = state.getSelectedBear();
+        else throw new ProtoException("Player or bear must be selected");
+        if (e.getCurrentTile().getNeighbors().containsKey(direction))
+            e.step(direction);
+        else throw new ProtoException("Invalid step direction.");
     }
 
     @Override
