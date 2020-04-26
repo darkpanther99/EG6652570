@@ -40,11 +40,14 @@ public class ConnectCommand implements Command {
 
     @Override
     public String toString() {
-        StringBuilder res = new StringBuilder("connect");
-        for (int i : indices) {
-            res.append(" ").append(i);
-        }
-        return res.toString();
+        if (!indices.isEmpty()) {
+            StringBuilder res = new StringBuilder("connect");
+            for (int i : indices) {
+                res.append(" ").append(i);
+            }
+            return res.toString();
 
+        }
+        return "";
     }
 }

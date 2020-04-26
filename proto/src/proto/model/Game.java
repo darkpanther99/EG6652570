@@ -1,5 +1,6 @@
 package proto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +29,14 @@ public class Game {
      * Őket értesíti a játék eseményekről.
      */
     private List<GameObserver> observers;
+
+    public Game() {
+        players = new ArrayList<>();
+        iceField = new ArrayList<>();
+        bears = new ArrayList<>();
+        observers = new ArrayList<>();
+    }
+
 
     /**
      * Ezt a metódust a Controller hívja körönként, a körök vezénylésére szolgál.

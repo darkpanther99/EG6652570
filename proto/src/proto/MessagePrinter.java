@@ -35,8 +35,7 @@ public class MessagePrinter implements GameObserver {
      */
     @Override
     public void explore(Tile t) {
-        // FIXME(Mark): Majd ha Gabor megirta
-        // System.out.printf(t.getWeightLimit());
+        System.out.println(t.getWeightLimit());
 
     }
 }

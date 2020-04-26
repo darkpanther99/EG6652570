@@ -1,5 +1,6 @@
 package proto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,6 +52,15 @@ public abstract class Player extends Entity {
      */
     private BuildStrategy buildStrategy;
 
+
+
+    public Player() {
+        inventory = new ArrayList<>();
+        waterResistanceStrategy = new Naked();
+        partStore = new PartStore();
+        foodStore = new FoodStore();
+        digStrategy = new BareHands();
+    }
     /**
      * Ezt a metódust a Controller hívja. A játékos lép, ha van még hozzá elég
      * energiája. 1 munkaegység
@@ -203,6 +213,9 @@ public abstract class Player extends Entity {
 
     public void setEnergy(int n) {
         energy = n;
+    }
+    public void setBodyTemp(int n) {
+        bodyTemp = n;
     }
 
     public RescueStrategy getRescueStrategy() {

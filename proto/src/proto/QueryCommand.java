@@ -14,7 +14,8 @@ public class QueryCommand implements Command {
     public void execute(Proto state) {
         List<Command> commands = new ArrayList<>(makeCommands(state.game));
         for (Command c : commands) {
-            System.out.println(c.toString());
+            if (c.toString().length() > 0)
+                System.out.println(c.toString());
         }
     }
 
@@ -27,6 +28,8 @@ public class QueryCommand implements Command {
         List<Command> result = new ArrayList<Command>();
         for (Tile t : game.getIceField()) {
             result.add(makeTileCommand(t));
+            //result.add(makeSelectTileCommand(t, game));
+
             if (!(t.getShelter() instanceof BareIce)) {
                 result.add(makeBuildingCommand(t));
             }
@@ -37,7 +40,7 @@ public class QueryCommand implements Command {
                 result.add(makeEntityCommand(e));
                 if (e instanceof Player) {
                     Player p = (Player) e;
-                    result.add(makePlayerCommand(p));
+                    //result.add(makePlayerCommand(p));
                     result.addAll(listPlayerEquippedItems(p));
                     // TODO(Mark): add "equip all" command to result;
                     for (Item i : p.getInventory()) {
@@ -45,10 +48,13 @@ public class QueryCommand implements Command {
                     }
                 }
             }
+
         }
         for (Tile t : game.getIceField()) {
-            result.add(makeSelectTileCommand(t, game));
-            result.add(makeConnectCommand(t, game));
+            if (t.getNeighbors().size() > 0) {
+                result.add(makeSelectTileCommand(t, game));
+                result.add(makeConnectCommand(t, game));
+            }
         }
 
         return result;
@@ -56,7 +62,7 @@ public class QueryCommand implements Command {
 
     private List<ItemCommand> listPlayerEquippedItems(Player p) {
         List<ItemCommand> result = new ArrayList<ItemCommand>();
-        if (p.getBuildStrategy().getCount() > 0) {
+        if (p.getBuildStrategy() != null && p.getBuildStrategy().getCount() > 0) {
             result.add(makeItemCommand("tentkit", p.getBuildStrategy().getCount()));
         }
         if (p.getFoodStore().getCount() > 0) {
@@ -65,10 +71,10 @@ public class QueryCommand implements Command {
         if (p.getPartStore().getCount() > 0) {
             result.add(makeItemCommand("part", p.getPartStore().getCount()));
         }
-        if (p.getRescueStrategy() instanceof RopeRescue) {
+        if (p.getRescueStrategy() != null && p.getRescueStrategy() instanceof RopeRescue) {
             result.add(makeItemCommand("rope", -1));
         }
-        if (p.getWaterResistanceStrategy() instanceof ScubaWearing) {
+        if (p.getWaterResistanceStrategy() != null && p.getWaterResistanceStrategy() instanceof ScubaWearing) {
             result.add(makeItemCommand("scubagear", -1));
         }
         if (p.getDigStrategy() instanceof ShovelDig) {
@@ -114,9 +120,9 @@ public class QueryCommand implements Command {
 
     private EntityCommand makeEntityCommand(Entity e) {
         if (e instanceof Eskimo)
-            return new EntityCommand("eskikmo", ((Eskimo)e).getBodyTemp(), ((Eskimo)e).getEnergy());
+            return new EntityCommand("eskimo", ((Eskimo)e).getBodyTemp(), ((Eskimo)e).getEnergy());
         else if (e instanceof PolarExplorer)
-            return new EntityCommand("polarexplorer", ((Eskimo)e).getBodyTemp(), ((Eskimo)e).getEnergy());
+            return new EntityCommand("polarexplorer", ((PolarExplorer)e).getBodyTemp(), ((PolarExplorer)e).getEnergy());
         else return new EntityCommand("polarbear");
     }
 
