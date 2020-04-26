@@ -1,4 +1,4 @@
-# 22. AssembleFlare
+# 22. AssembleFlare2
 # Input:
 tile 1 *
 entity eskimo 5 4
@@ -12,5 +12,6 @@ query
 tile 1 *
 entity eskimo 5 3
 item part 2
+equip all
 entity eskimo 5 4
 entity eskimo 5 4

@@ -11,3 +11,4 @@ query
 tile 0 *
 entity eskimo 5 3
 item shovel durability 1
+equip all
