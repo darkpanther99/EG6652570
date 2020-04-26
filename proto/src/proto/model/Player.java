@@ -54,13 +54,16 @@ public abstract class Player extends Entity {
 
 
 
-    public Player() {
+    public Player(Game g) {
+        game = g;
         inventory = new ArrayList<>();
         waterResistanceStrategy = new Naked();
         partStore = new PartStore();
         foodStore = new FoodStore();
         digStrategy = new BareHands();
         buildStrategy = new BuildStrategy();
+        bodyTemp = 5;
+        energy = 4;
     }
     /**
      * Ezt a metódust a Controller hívja. A játékos lép, ha van még hozzá elég
@@ -126,6 +129,7 @@ public abstract class Player extends Entity {
     }
 
     public void addToInventory(Item i) {
+        i.giveTo(this);
         inventory.add(i);
     }
 

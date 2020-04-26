@@ -135,7 +135,7 @@ public class Game {
      * @return Visszaadja a létrehozott sarkkutatót.
      */
     public PolarExplorer createPolarExplorer() {
-        PolarExplorer p = new PolarExplorer();
+        PolarExplorer p = new PolarExplorer(this);
         addPlayer(p);
         return p;
     }
@@ -146,7 +146,7 @@ public class Game {
      * @return Visszaadja a létrehozott eszkimót.
      */
     public Eskimo createEskimo() {
-        Eskimo e = new Eskimo();
+        Eskimo e = new Eskimo(this);
         addPlayer(e);
         return e;
     }

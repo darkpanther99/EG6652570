@@ -8,8 +8,8 @@ public class Eskimo extends Player {
     /**
      * Konstruktor, ami létrehoz egy játékost, majd beállítja a testhőjét ötre, mint az eszkimóknak.
      */
-    public Eskimo() {
-        super();
+    public Eskimo(Game g) {
+        super(g);
         this.bodyTemp = 5;
     }
 

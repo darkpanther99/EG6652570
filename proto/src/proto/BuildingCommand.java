@@ -11,6 +11,7 @@ public class BuildingCommand implements Command {
 
     @Override
     public void execute(Proto state) throws ProtoException {
+        if (!state.hasSelectedTile()) throw new ProtoException("There is no selected tile!");
         if (type.equals("igloo")) {
             state.getSelectedTile().setShelter(new Igloo());
         }
