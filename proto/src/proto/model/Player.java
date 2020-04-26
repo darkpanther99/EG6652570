@@ -197,6 +197,7 @@ public abstract class Player extends Entity {
      * Összerakja a játék végéhez szükséges rakéta pisztolyt. 1 munkaegység
      */
     public void assembleFlare() {
+        decrementEnergy();
         for (Player p : game.getPlayers()) {
             if (p == this) continue;
             if (p.currentTile == this.currentTile) {

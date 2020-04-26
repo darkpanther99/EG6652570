@@ -2,8 +2,11 @@
 # Input:
 tile 1 *
 entity eskimo 5 4
-item part 3
+item part 2
+equip all
 entity eskimo 5 4
+item part 1
+equip all
 entity eskimo 5 4
 select player 0 
 assemble

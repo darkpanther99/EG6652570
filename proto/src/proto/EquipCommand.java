@@ -2,6 +2,8 @@ package proto;
 
 import proto.model.*;
 
+import java.util.List;
+
 public class EquipCommand implements Command {
     /**
      * Az inventory index, amivel felruházzuk a játékost
@@ -11,6 +13,7 @@ public class EquipCommand implements Command {
 
     /**
      * Konstruktor
+     *
      * @param index Az inventory index, amivel felruházzuk a játékost. -1, ha mindegyikkel felruházzuk
      */
     public EquipCommand(int index) {
@@ -27,22 +30,25 @@ public class EquipCommand implements Command {
 
     /**
      * Lefuttatja a parancsot, ami felruházza a kijelölt játékost.
+     *
      * @param state
      * @throws ProtoException Ha nincs kiválasztott játékos, kivételt dob
      */
     @Override
     public void execute(Proto state) throws ProtoException {
-        try {
-            if (index > -1) {
-                state.getSelectedPlayer().equip(index);
-            } else {
-                for (int i = 0; i < state.getSelectedPlayer().getInventory().size(); i++) {
-                    state.getSelectedPlayer().equip(i);
-                }
+        Player p = state.getSelectedPlayer();
+        if (index > -1) {
+            state.getSelectedPlayer().equip(index);
+        } else {
+            List<Item> inv = p.getInventory();
+            for (int i = 0; i < state.getSelectedPlayer().getInventory().size(); i++) {
+                Item t = inv.get(i);
+                state.getSelectedPlayer().equip(i);
+                if ((t instanceof Food) || (t instanceof Part) || (t instanceof TentKit))
+                    i--; // consumable
             }
-        } catch(NullPointerException e) {
-            throw new ProtoException("Nincs jatekos kivalasztva", e.getCause());
         }
+
     }
 
     @Override

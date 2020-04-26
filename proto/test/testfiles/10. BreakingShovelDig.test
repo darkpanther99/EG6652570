@@ -3,6 +3,7 @@
 tile 2 *
 entity eskimo 5 4
 item shovel durability 2
+equip all
 select player 0
 dig
 dig

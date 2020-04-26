@@ -3,6 +3,7 @@
 tile 1 *
 entity eskimo 5 4
 item part 2
+equip all
 entity eskimo 5 4
 entity eskimo 5 4
 select player 0 

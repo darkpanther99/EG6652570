@@ -11,5 +11,6 @@ public class TentKit implements Item {
      */
     public void giveTo(Player p) {
         p.getBuildStrategy().gain();
+        p.removeFromInventory(this);
     }
 }
