@@ -39,17 +39,17 @@ public class ItemCommandParser implements CommandParser {
             if (type.contentEquals("shovel")) {
                 int count = 1;
                 int durability = -1;
-                if (tokens.get(3).contentEquals("durability")) {
-                    durability = Integer.parseInt(tokens.get(4));
+                if (tokens.get(2).contentEquals("durability")) {
+                    durability = Integer.parseInt(tokens.get(3));
                 } else {
-                    count = Integer.parseInt(tokens.get(3));
-                    if (tokens.size() > 3 && tokens.get(4).contentEquals("durability")) {
-                        durability = Integer.parseInt(tokens.get(5));
+                    count = Integer.parseInt(tokens.get(2));
+                    if (tokens.size() > 3 && tokens.get(3).contentEquals("durability")) {
+                        durability = Integer.parseInt(tokens.get(4));
                     }
                 }
                 command = new ItemCommand(type, count, durability);
             } else {
-                int count = Integer.parseInt(tokens.get(3));
+                int count = Integer.parseInt(tokens.get(2));
                 command = new ItemCommand(type, count);
             }
 
