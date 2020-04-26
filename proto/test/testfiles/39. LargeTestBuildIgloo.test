@@ -70,9 +70,9 @@ item shovel
 tile 0 0
 tile 0 0
 tile 1 2
-entity polarexplorer 4
+entity polarexplorer 4 4
 tile 1 *
-entity polarexplorer 4
+entity polarexplorer 4 4
 select tile 0
 connect 1 7 3
 select tile 1
@@ -95,7 +95,7 @@ select tile 9
 connect 12 6 4 8 11
 select tile 10
 connect 11 8 7
-select tile 11 
+select tile 11
 connect 12 9 8 10
 select tile 12
 connect 6 5 9 11
