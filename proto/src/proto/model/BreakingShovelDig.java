@@ -44,7 +44,7 @@ public class BreakingShovelDig implements DigStrategy {
             lastUsed = !lastUsed;
             return !lastUsed; //dupla negálás, az eredetit adja vissza
         } else {
-            return false;
+            return true;
         }
     }
 

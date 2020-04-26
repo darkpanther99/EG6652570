@@ -162,8 +162,8 @@ public abstract class Player extends Entity {
     public void dig() {
 
         if (energy > 0) {
-            decrementEnergy();
-            digStrategy.dig(currentTile);
+            if (digStrategy.dig(currentTile)) decrementEnergy();
+
         }
     }
 

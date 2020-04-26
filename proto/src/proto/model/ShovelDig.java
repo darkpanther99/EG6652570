@@ -21,7 +21,8 @@ public class ShovelDig implements DigStrategy {
      */
     public boolean dig(Tile t) {
         t.decrementSnow();
-        return lastUsed ? true : false;
+        lastUsed = !lastUsed;
+        return !lastUsed;
     }
     public Shovel getSource() {
         return source;
