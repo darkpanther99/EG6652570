@@ -10,6 +10,26 @@ import java.util.List;
  */
 public abstract class Player extends Entity {
     /**
+     * A játékos ismeri a játékot.
+     */
+    protected final Game game;
+    /**
+     * Tárolja a játékos ételeit.
+     */
+    protected final FoodStore foodStore;
+    /**
+     * Tárolja a játékos rakéta alkatrészeit.
+     */
+    private final PartStore partStore;
+    /**
+     * Tárolja a játékos tárgyait, amik képességekkel tudjak felruházni ot.
+     */
+    private final List<Item> inventory;
+    /**
+     * Így tud építeni a játékos.
+     */
+    private final BuildStrategy buildStrategy;
+    /**
      * Jelzi a játékos jelenlegi homérsékletét, ha 0 akkor megfagy -> játék vége.
      */
     protected int bodyTemp;
@@ -18,14 +38,9 @@ public abstract class Player extends Entity {
      */
     protected int energy;
     /**
-     * A játékos ismeri a játékot.
-     */
-    protected Game game;
-    /**
      * Eldönti hogyan képes ásni a játékos.
      */
     private DigStrategy digStrategy;
-
     /**
      * Eldönti, hogy megmenthet egy játékos egy másikat a vízbeesés után.
      */
@@ -35,23 +50,6 @@ public abstract class Player extends Entity {
      * vízbeesés esetén.
      */
     private WaterResistanceStrategy waterResistanceStrategy;
-    /**
-     * Tárolja a játékos ételeit.
-     */
-    protected FoodStore foodStore;
-    /**
-     * Tárolja a játékos rakéta alkatrészeit.
-     */
-    private PartStore partStore;
-    /**
-     * Tárolja a játékos tárgyait, amik képességekkel tudjak felruházni ot.
-     */
-    private List<Item> inventory;
-    /**
-     * Így tud építeni a játékos.
-     */
-    private BuildStrategy buildStrategy;
-
 
 
     public Player(Game g) {
@@ -62,9 +60,11 @@ public abstract class Player extends Entity {
         foodStore = new FoodStore();
         digStrategy = new BareHands();
         buildStrategy = new BuildStrategy();
-        bodyTemp = 5;
+        rescueStrategy = new CantRescue();
+        bodyTemp = 4;
         energy = 4;
     }
+
     /**
      * Ezt a metódust a Controller hívja. A játékos lép, ha van még hozzá elég
      * energiája. 1 munkaegység
@@ -129,7 +129,6 @@ public abstract class Player extends Entity {
     }
 
     public void addToInventory(Item i) {
-        //i.giveTo(this); // ez nem való ide
         inventory.add(i);
     }
 
@@ -165,10 +164,9 @@ public abstract class Player extends Entity {
      * Ezt a metódust a Controller hívja. A játékos havat ás. 1 munkaegység
      */
     public void dig() {
-
         if (energy > 0) {
-            if (digStrategy.dig(currentTile)) decrementEnergy();
-
+            if (digStrategy.dig(currentTile))
+                decrementEnergy();
         }
     }
 
@@ -209,19 +207,8 @@ public abstract class Player extends Entity {
         }
     }
 
-    public void setDigStrategy(DigStrategy d) {
-        digStrategy = d;
-    }
-
     public FoodStore getFoodStore() {
         return foodStore;
-    }
-
-    public void setEnergy(int n) {
-        energy = n;
-    }
-    public void setBodyTemp(int n) {
-        bodyTemp = n;
     }
 
     public RescueStrategy getRescueStrategy() {
@@ -256,11 +243,23 @@ public abstract class Player extends Entity {
         return digStrategy;
     }
 
+    public void setDigStrategy(DigStrategy d) {
+        digStrategy = d;
+    }
+
     public int getBodyTemp() {
         return bodyTemp;
     }
 
+    public void setBodyTemp(int n) {
+        bodyTemp = n;
+    }
+
     public int getEnergy() {
         return energy;
+    }
+
+    public void setEnergy(int n) {
+        energy = n;
     }
 }

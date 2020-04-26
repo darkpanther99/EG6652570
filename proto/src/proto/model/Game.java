@@ -13,22 +13,22 @@ public class Game {
     /**
      * Tárolja a játékosokat.
      */
-    private List<Player> players;
+    private final List<Player> players;
 
     /**
      * Tárolja a pályát alkotó elemeket.
      */
-    private List<Tile> iceField;
+    private final List<Tile> iceField;
 
     /**
      * Tárolja a medvé(ke)t, ha több van akkor is.
      */
-    private List<PolarBear> bears;
+    private final List<PolarBear> bears;
 
     /**
      * Őket értesíti a játék eseményekről.
      */
-    private List<GameObserver> observers;
+    private final List<GameObserver> observers;
 
     public Game() {
         players = new ArrayList<>();

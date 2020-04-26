@@ -20,7 +20,7 @@ public class Tile {
     /**
      * Szomszédos cellákat ismer.
      */
-    private Map<Integer, Tile> neighbors;
+    private final Map<Integer, Tile> neighbors;
     /**
      * Eldönti, kinek változik a testhoje vihar esetén.
      */
@@ -36,12 +36,12 @@ public class Tile {
     /**
      * Rajta lévo entitások.
      */
-    private List<Entity> occupants;
+    private final List<Entity> occupants;
 
     public Tile() {
         item = new Empty();
         occupants = new ArrayList<>();
-        neighbors = new HashMap<Integer, Tile>();
+        neighbors = new HashMap<>();
     }
 
     public Tile neighborAt(int direction) {
@@ -145,20 +145,8 @@ public class Tile {
         return occupants;
     }
 
-    public void setShelter(Shelter s) {
-        shelter = s;
-    }
-
     public Tile getNeighbor(int direction) {
         return neighbors.get(direction);
-    }
-
-    public void setSnow(int n) {
-        snow = n;
-    }
-
-    public void setWeightLimit(int n) {
-        weightLimit = n;
     }
 
     public void setChillWaterStrategy(ChillWaterStrategy cws) {
@@ -167,6 +155,10 @@ public class Tile {
 
     public Shelter getShelter() {
         return shelter;
+    }
+
+    public void setShelter(Shelter s) {
+        shelter = s;
     }
 
     public Item getItem() {
@@ -182,8 +174,16 @@ public class Tile {
         return weightLimit;
     }
 
+    public void setWeightLimit(int n) {
+        weightLimit = n;
+    }
+
     public int getSnow() {
         return snow;
+    }
+
+    public void setSnow(int n) {
+        snow = n;
     }
 
     public Map<Integer, Tile> getNeighbors() {

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QueryCommand implements Command {
-    private Proto state;
 
     @Override
     public void execute(Proto state) {
@@ -25,7 +24,7 @@ public class QueryCommand implements Command {
     }
 
     private List<Command> makeCommands(Game game) {
-        List<Command> result = new ArrayList<Command>();
+        List<Command> result = new ArrayList<>();
         for (Tile t : game.getIceField()) {
             result.add(makeTileCommand(t));
             //result.add(makeSelectTileCommand(t, game));
@@ -122,10 +121,6 @@ public class QueryCommand implements Command {
         return new BuildingCommand(
                 (t.getShelter() instanceof Tent) ? "tent" : (t.getShelter() instanceof Igloo) ? "igloo" : ""
         );
-    }
-
-    private ConnectCommand makeConnectCommand(List<Integer> i) {
-        return new ConnectCommand(i);
     }
 
     private ConnectCommand makeConnectCommand(Tile t, Game game) {

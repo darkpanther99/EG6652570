@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class ConnectCommand implements Command {
 
-    private List<Integer> indices;
+    private final List<Integer> indices;
 
     public ConnectCommand(List<Integer> i) {
         indices = new ArrayList<>(i);
@@ -29,6 +29,7 @@ public class ConnectCommand implements Command {
             }
         }
     }
+
     @Override
     public void execute(Proto state) throws ProtoException {
         int j = 0;

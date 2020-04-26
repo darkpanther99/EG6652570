@@ -3,9 +3,9 @@ package proto;
 import proto.model.*;
 
 public class ItemCommand implements Command {
-    private String type;
-    public int count;
-    public int durability;
+    public final int count;
+    public final int durability;
+    private final String type;
 
     public ItemCommand(String type, int count, int durability) {
         this.type = type;
@@ -28,7 +28,7 @@ public class ItemCommand implements Command {
         }
 
         for (int i = 0; i < count; i++) {
-            Item item = null;
+            Item item;
             if (type.contentEquals("empty")) item = new Empty();
             else if (type.contentEquals("food")) item = new Food();
             else if (type.contentEquals("part")) item = new Part();
@@ -55,17 +55,17 @@ public class ItemCommand implements Command {
 
     @Override
     public String toString() {
-        if(count <= 0) return "";
+        if (count <= 0) return "";
 
         StringBuilder b = new StringBuilder();
-        b.append("item " + type);
+        b.append("item ").append(type);
 
-        if(count > 1) {
-            b.append(" " + count);
+        if (count > 1) {
+            b.append(" ").append(count);
         }
 
-        if(type.contentEquals("shovel") && durability > -1) {
-            b.append(" durability " + durability);
+        if (type.contentEquals("shovel") && durability > -1) {
+            b.append(" durability ").append(durability);
         }
 
         return b.toString();

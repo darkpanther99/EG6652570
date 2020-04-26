@@ -4,7 +4,7 @@ package proto.model;
  * Jégbe fagyott ásó. Ezzel lehet több havat eltakarítani a celláról.
  */
 public class Shovel implements Item {
-    private ShovelDig sd;
+    private ShovelDig instance;
 
     /**
      * A játékos ásót kap, ami bekerül az inventoryjába és a megfelelo stratégiájához is ˝
@@ -13,7 +13,8 @@ public class Shovel implements Item {
      * @param p
      */
     public void giveTo(Player p) {
-        sd = new ShovelDig();
-        p.setDigStrategy(sd);
+        if (instance == null)
+            instance = new ShovelDig();
+        p.setDigStrategy(instance);
     }
 }

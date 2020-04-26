@@ -16,17 +16,9 @@ public class BreakingShovelDig implements DigStrategy {
     private int durability;
 
     /**
-     * Tárolja a "szülő" BreakingShovelt
-     */
-    private BreakingShovel b;
-
-    /**
      * Konstruktor, beállítja a "szülő" BreakingShovelt
-     *
-     * @param br A BreakingShovel, ami tartalmazza ezt az objektumot instance-ként
      */
-    public BreakingShovelDig(BreakingShovel br) {
-        b = br;
+    public BreakingShovelDig() {
         lastUsed = false;
     }
 
@@ -56,15 +48,6 @@ public class BreakingShovelDig implements DigStrategy {
     }
 
     /**
-     * Durability setter metódus.
-     *
-     * @param n A leendő durability értéke.
-     */
-    public void setDurability(int n) {
-        durability = n;
-    }
-
-    /**
      * Durability csökkentő metódus.
      */
     public void decrementDurability() {
@@ -73,6 +56,15 @@ public class BreakingShovelDig implements DigStrategy {
 
     public int getDurability() {
         return durability;
+    }
+
+    /**
+     * Durability setter metódus.
+     *
+     * @param n A leendő durability értéke.
+     */
+    public void setDurability(int n) {
+        durability = n;
     }
 
 }

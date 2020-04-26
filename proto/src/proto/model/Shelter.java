@@ -32,7 +32,7 @@ public abstract class Shelter {
      *
      * @param t
      */
-    public void ruin(Tile t){
+    public void ruin(Tile t) {
         return;
     }
 }

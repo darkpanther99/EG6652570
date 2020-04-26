@@ -3,7 +3,7 @@ package proto;
 import proto.model.Entity;
 
 public class StepCommand implements Command {
-    private int direction;
+    private final int direction;
 
     public StepCommand(int direction) {
         this.direction = direction;
@@ -11,7 +11,7 @@ public class StepCommand implements Command {
 
     @Override
     public void execute(Proto state) throws ProtoException {
-        Entity e = null;
+        Entity e;
         if (state.hasSelectedPlayer())
             e = state.getSelectedPlayer();
         else if (state.hasSelectedBear())

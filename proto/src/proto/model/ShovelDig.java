@@ -7,7 +7,7 @@ public class ShovelDig implements DigStrategy {
     private boolean lastUsed = false;
 
     /**
-     *  Csökkenti a tile-on található hó mennyiségét. Minden második alkalommal
+     * Csökkenti a tile-on található hó mennyiségét. Minden második alkalommal
      * fárasztó.
      *
      * @param t

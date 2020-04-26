@@ -1,8 +1,8 @@
 package proto;
 
 public class SelectCommand implements Command {
-    private String type;
-    private int index;
+    private final String type;
+    private final int index;
 
     public SelectCommand(String type, int index) {
         this.type = type;
@@ -18,7 +18,7 @@ public class SelectCommand implements Command {
             else {
                 throw new ProtoException("Sanity check failed");
             }
-        } catch(IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new ProtoException(e.getMessage(), e.getCause());
         }
     }

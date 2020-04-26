@@ -6,10 +6,11 @@ public class ExamineCommand implements Command {
     /**
      * Az szomszédos mező iránya, amit a sarkkutató vizsgál
      */
-    private int direction;
+    private final int direction;
 
     /**
      * Konstruktor
+     *
      * @param direction Az szomszédos mező iránya, amit a sarkkutató vizsgál
      */
     public ExamineCommand(int direction) {
@@ -18,6 +19,7 @@ public class ExamineCommand implements Command {
 
     /**
      * Megvizsgálja a sarkkutató a szomszédos mezőt.
+     *
      * @param state
      * @throws ProtoException ha nincs játékos/nem sarkkutató van kiválasztva, kivételt dob.
      */

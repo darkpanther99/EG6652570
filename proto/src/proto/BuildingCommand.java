@@ -4,7 +4,8 @@ import proto.model.Igloo;
 import proto.model.Tent;
 
 public class BuildingCommand implements Command {
-    private String type;
+    private final String type;
+
     public BuildingCommand(String t) {
         type = t;
     }

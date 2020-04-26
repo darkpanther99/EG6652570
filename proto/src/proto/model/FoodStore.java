@@ -33,6 +33,7 @@ public class FoodStore {
     public void gain() {
         count++;
     }
+
     public int getCount() {
         return count;
     }

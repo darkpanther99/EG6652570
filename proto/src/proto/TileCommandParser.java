@@ -3,16 +3,14 @@ package proto;
 import java.util.List;
 
 public class TileCommandParser implements CommandParser {
-    private String keyword = "tile";
-
     @Override
     public String getKeyword() {
-        return keyword;
+        return "tile";
     }
 
     @Override
     public Command parse(List<String> tokens) throws ProtoException {
-        if(tokens.size() < 3 || !tokens.get(0).contentEquals(keyword)) {
+        if (tokens.size() < 3 || !tokens.get(0).contentEquals(getKeyword())) {
             throw new ProtoException("Rossz bemenet");
         }
 
@@ -24,7 +22,7 @@ public class TileCommandParser implements CommandParser {
             }
 
             return new TileCommand(snow, weightLimit);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new ProtoException(e.getMessage(), e.getCause());
         }
     }

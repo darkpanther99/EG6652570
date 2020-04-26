@@ -29,6 +29,7 @@ public class BuildStrategy {
     public void gain() {
         count++;
     }
+
     public int getCount() {
         return count;
     }

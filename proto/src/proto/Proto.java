@@ -17,7 +17,7 @@ public class Proto {
     /**
      * A teljes játékot tartalmazó változó.
      */
-    public Game game;
+    public final Game game;
     /**
      * A parancsok feldolgozásának állapota.
      */
@@ -25,7 +25,7 @@ public class Proto {
     /**
      * A parancsfeldolgozók tömbje.
      */
-    private ArrayList<CommandParser> parsers;
+    private final ArrayList<CommandParser> parsers;
     /**
      * A kiválasztott mező.
      */

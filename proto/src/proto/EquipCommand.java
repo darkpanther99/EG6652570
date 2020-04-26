@@ -9,7 +9,7 @@ public class EquipCommand implements Command {
      * Az inventory index, amivel felruházzuk a játékost
      * -1, ha mindegyikkel felruházzuk
      */
-    private int index;
+    private final int index;
 
     /**
      * Konstruktor

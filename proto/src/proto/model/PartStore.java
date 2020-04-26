@@ -16,6 +16,7 @@ public class PartStore {
 
     /**
      * Megno az alkatrészek száma, ami a játékosnál van.
+     *
      * @param n db al nő
      */
     public void gain(int n) {
@@ -23,7 +24,7 @@ public class PartStore {
     }
 
     public void gain(PartStore ps) {
-        if(ps != this){
+        if (ps != this) {
             this.gain(ps.getCount());
             ps.setCount(0);
         }

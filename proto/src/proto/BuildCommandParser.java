@@ -3,14 +3,10 @@ package proto;
 import java.util.List;
 
 public class BuildCommandParser implements CommandParser {
-    private String keyword;
 
-    public BuildCommandParser() {
-        keyword = "build";
-    }
     @Override
     public String getKeyword() {
-        return keyword;
+        return "build";
     }
 
     @Override

@@ -2,23 +2,24 @@ package proto;
 
 import proto.model.Player;
 import proto.model.PolarBear;
-import proto.model.PolarExplorer;
 
 public class EntityCommand implements Command {
-    String type;
-    int playerBodyHeat;
-    int playerEnergy;
+    final String type;
+    final int playerBodyHeat;
+    final int playerEnergy;
 
     public EntityCommand(String t) {
         type = t;
         playerBodyHeat = -1;
         playerEnergy = -1;
     }
+
     public EntityCommand(String t, int pb) {
         type = t;
         playerBodyHeat = pb;
         playerEnergy = -1;
     }
+
     public EntityCommand(String t, int pb, int pe) {
         type = t;
         playerBodyHeat = pb;
@@ -31,8 +32,7 @@ public class EntityCommand implements Command {
             Player p;
             if (type.equals("eskimo")) {
                 p = state.game.createEskimo();
-            }
-            else {
+            } else {
                 p = state.game.createPolarExplorer();
             }
             if (playerEnergy > -1) {
@@ -57,11 +57,8 @@ public class EntityCommand implements Command {
             if (playerBodyHeat > -1) {
                 if (playerEnergy > -1) {
                     return "entity " + type + " " + playerBodyHeat + " " + playerEnergy;
-                }
-                else return "entity " + type + " " + playerBodyHeat;
-            }
-            else return "entity " + type;
-        }
-        else return "entity polarbear";
+                } else return "entity " + type + " " + playerBodyHeat;
+            } else return "entity " + type;
+        } else return "entity polarbear";
     }
 }

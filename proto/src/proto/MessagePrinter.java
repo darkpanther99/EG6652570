@@ -5,7 +5,7 @@ import proto.model.Tile;
 
 public class MessagePrinter implements GameObserver {
 
-    private Proto proto;
+    private final Proto proto;
 
     public MessagePrinter(Proto p) {
         proto = p;
@@ -37,6 +37,6 @@ public class MessagePrinter implements GameObserver {
      */
     @Override
     public void explore(Tile t) {
-        System.out.printf("Tile weight limit: %d%n",t.getWeightLimit());
+        System.out.printf("Tile weight limit: %d%n", t.getWeightLimit());
     }
 }
