@@ -66,18 +66,14 @@ public class Proto {
     /**
      * Futtatja a parancsértelmezést.
      */
-    public void run() {
+    public void run() throws ProtoException {
         running = true;
         final BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         while (running) {
-            try {
-                Command c = getCommand(input);
-                if (c != null)
-                    c.execute(this);
-                else running = false;
-            } catch (ProtoException e) {
-                e.printStackTrace();
-            }
+            Command c = getCommand(input);
+            if (c != null)
+                c.execute(this);
+            else running = false;
         }
     }
 

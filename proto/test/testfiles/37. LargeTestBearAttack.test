@@ -48,13 +48,13 @@ connect 12 9 8 10
 select tile 12
 connect 6 5 9 11
 select player 0
-step 3
-select player 1
-step 1
-select player 2
 step 2
+select player 1
+step 0
+select player 2
+step 1
 select polarbear
-step 4
+step 3
 turn
 query
 # Output:
