@@ -8,7 +8,7 @@ tile 0 0
 tile 0 0
 tile 1 *
 item part
-tile 1 2
+tile 1 1
 entity eskimo 5
 tile 0 0
 tile 1 *
@@ -48,7 +48,7 @@ connect 12 9 8 10
 select tile 12
 connect 6 5 9 11
 select player 2
-step 2
+step 1
 query
 # Output:
 tile 1 2
@@ -59,7 +59,7 @@ tile 0 0
 tile 0 0
 tile 1 *
 item part
-tile 1 2
+tile 0 0
 entity eskimo 4 0
 entity polarexplorer 3 0
 tile 0 0
@@ -70,7 +70,7 @@ item shovel
 tile 0 0
 tile 0 0
 tile 1 2
-entity polarexplorer 4
+entity polarexplorer 4 4
 tile 1 *
 select tile 0
 connect 1 7 3
