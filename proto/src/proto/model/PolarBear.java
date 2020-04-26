@@ -7,7 +7,7 @@ public class PolarBear extends Entity {
      * @param direction
      */
     public void step(int direction) {
-        step(direction);
+        super.step(direction);
     }
 
     /**
