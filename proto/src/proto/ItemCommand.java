@@ -44,6 +44,7 @@ public class ItemCommand implements Command {
 
             if (state.hasSelectedPlayer()) {
                 state.getSelectedPlayer().addToInventory(item);
+                item.giveTo(state.getSelectedPlayer());
             } else if (state.hasSelectedTile()) {
                 state.getSelectedTile().setItem(item);
             } else {
