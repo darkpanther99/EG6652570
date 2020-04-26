@@ -126,7 +126,6 @@ public abstract class Player extends Entity {
     }
 
     public void addToInventory(Item i) {
-        i.giveTo(this);
         inventory.add(i);
     }
 

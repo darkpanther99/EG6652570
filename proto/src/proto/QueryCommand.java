@@ -73,7 +73,7 @@ public class QueryCommand implements Command {
             hasRope = true;
         }
         if (p.getWaterResistanceStrategy() != null && p.getWaterResistanceStrategy() instanceof ScubaWearing) {
-            result.add(new ItemCommand("scubagear" ));
+            result.add(new ItemCommand("scubagear"));
             hasScuba = true;
         }
         if (p.getDigStrategy() instanceof ShovelDig) {
@@ -86,6 +86,7 @@ public class QueryCommand implements Command {
             hasBreakingShovel = true;
         }
 
+        List<ItemCommand> inventoryCommands = new ArrayList<>();
         for (Item i : p.getInventory()) {
             if (i instanceof Rope && hasRope) {
                 hasRope = false;
@@ -103,7 +104,13 @@ public class QueryCommand implements Command {
                 hasBreakingShovel = false;
                 continue;
             }
-            result.add(makeItemCommand(i, 1));
+            if (!(i instanceof Food) && !(i instanceof TentKit) && !(i instanceof Part))
+                inventoryCommands.add(makeItemCommand(i, 1));
+        }
+
+        if (inventoryCommands.size() > 0) {
+            result.add(new EquipCommand());
+            result.addAll(inventoryCommands);
         }
     }
 
