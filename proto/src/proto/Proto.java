@@ -124,28 +124,26 @@ public class Proto {
      */
     public void selectTile(Tile t) {
         selectedTile = t;
-        //selectedBear = null; // mégsem
-        //selectedPlayer = null; // mégsem
+        selectedBear = null;
+        selectedPlayer = null;
     }
 
     /**
-     * Beállítja a selectedPlayer-t és lenullozza a selectedTile-t és a selectedBear-t.
+     * Beállítja a selectedPlayer-t és lenullozza ~~a selectedTile-t és~~ a selectedBear-t.
      *
      * @param p: A kiválasztandó Player
      */
     public void selectPlayer(Player p) {
-        //selectedTile = null; // mégsem
         selectedBear = null;
         selectedPlayer = p;
     }
 
     /**
-     * Beállítja a selectedBear-t és lenullozza a selectedTile-t és a selectedPlayer-t.
+     * Beállítja a selectedBear-t és lenullozza ~~a selectedTile-t és~~ a selectedPlayer-t.
      *
      * @param b: A kiválasztandó PolarBear
      */
     public void selectBear(PolarBear b) {
-        //selectedTile = null; //mégsem
         selectedBear = b;
         selectedPlayer = null;
     }

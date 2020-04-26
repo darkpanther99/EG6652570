@@ -17,8 +17,8 @@ public class Entity {
      * @param direction Az irány
      */
     public void step(int direction) {
+        currentTile.stepOff(this);
         Tile t = currentTile.getNeighbor(direction);
-        t.stepOff(this);
         this.placeOn(t);
     }
 

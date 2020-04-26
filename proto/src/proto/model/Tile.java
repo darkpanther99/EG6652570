@@ -91,7 +91,7 @@ public class Tile {
      */
     public void stepOn(Entity e) {
         this.add(e);
-        if(occupants.size() > weightLimit){
+        if (occupants.size() > weightLimit) {
             setSnow(0);
             setWeightLimit(0);
             setItem(new Empty());
@@ -104,10 +104,10 @@ public class Tile {
     /**
      * Játékos lelép a celláról. A függvény futása során beállítja a megfelelo ̋ adattago- kat az új értékekre
      *
-     *  @param e
+     * @param e
      */
     public void stepOff(Entity e) {
-        if(occupants.contains(e)){
+        if (occupants.contains(e)) {
             remove(e);
         }
     }
@@ -172,6 +172,7 @@ public class Tile {
     }
 
     public Item getItem() {
+        if (item == null) return new Empty();
         return item;
     }
 
