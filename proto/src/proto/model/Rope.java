@@ -8,7 +8,7 @@ public class Rope implements Item {
      * @param p
      */
     public void giveTo(Player p) {
-        RopeRescue rr = new RopeRescue(this);
+        RopeRescue rr = new RopeRescue();
         p.setRescueStrategy(rr);
     }
 }

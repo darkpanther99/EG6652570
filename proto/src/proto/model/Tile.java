@@ -60,7 +60,7 @@ public class Tile {
     public Item takeItem() {
         if (item != null) {
             Item i = getItem();
-            setItem(new Empty());
+            setItem(null);
             return i;
         }
         return new Empty();
