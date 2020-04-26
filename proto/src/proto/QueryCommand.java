@@ -89,7 +89,7 @@ public class QueryCommand implements Command {
 
         if (equipped.size() > 0) {
             result.addAll(equipped);
-//            result.add(new EquipCommand()); ilyet szerintem nem irunk ki
+            result.add(new EquipCommand());
         }
 
         for (Item i : p.getInventory()) {

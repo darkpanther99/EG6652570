@@ -10,4 +10,4 @@ query
 tile 0 0
 entity eskimo 4 4
 item scubagear
-
+equip all

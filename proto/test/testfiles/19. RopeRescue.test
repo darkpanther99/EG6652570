@@ -17,6 +17,7 @@ query
 tile 1 *
 entity eskimo 5 3
 item rope
+equip all
 entity eskimo 3 0
 tile 0 0
 select tile 0

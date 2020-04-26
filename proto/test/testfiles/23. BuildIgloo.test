@@ -3,6 +3,7 @@
 tile 1 *
 entity eskimo 5 4
 item tentkit
+equip all
 select player 0
 build
 query
@@ -11,3 +12,4 @@ tile 1 *
 building igloo
 entity eskimo 5 3
 item tentkit
+equip all
