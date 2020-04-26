@@ -3,13 +3,13 @@
 tile 1 2
 item part
 tile 1 *
-entitiy polarbear
+entity polarbear
 tile 0 0
 tile 0 0
 tile 1 *
 item part
 tile 1 2
-entitiy eskimo 5
+entity eskimo 5
 tile 0 0
 tile 1 *
 item part
@@ -18,9 +18,9 @@ item shovel
 tile 0 0
 tile 0 0
 tile 1 2
-entitiy polarexplorer 4
+entity polarexplorer 4
 tile 1 *
-entitiy polarexplorer 4
+entity polarexplorer 4
 select tile 0
 connect 1 7 3
 select tile 1
