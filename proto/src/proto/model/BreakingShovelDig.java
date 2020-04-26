@@ -37,8 +37,13 @@ public class BreakingShovelDig implements DigStrategy {
      * @return Attól függően ad vissza igazat vagy hamisat, ha a játékos ásott-e már a körben:Minden második ásás legyen fárasztó.
      */
     public boolean dig(Tile t) {
+        // @NOTE(boti): mivel nincs unequip-ünk, ezért szerintem jobb, ha az eltört ásó
+        //              úgy viselkedik, mint a BareHands.
+        //              Ezért mindig van decrement snow, csak eltört ásó esetén mindig csökkentjük az energiát is.
+        t.decrementSnow();
+
         if (durability > 0) {
-            t.decrementSnow();
+
             if (!lastUsed) {
                 durability--;
             }
