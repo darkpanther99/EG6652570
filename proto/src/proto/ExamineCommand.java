@@ -2,6 +2,10 @@ package proto;
 
 import proto.model.PolarExplorer;
 
+/**
+ * Parancs, ami a kiválasztott sarkkutatóval megvizsgálja
+ * az egyik szomszédos mezőt.
+ */
 public class ExamineCommand implements Command {
     /**
      * Az szomszédos mező iránya, amit a sarkkutató vizsgál

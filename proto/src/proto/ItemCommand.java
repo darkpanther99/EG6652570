@@ -2,25 +2,59 @@ package proto;
 
 import proto.model.*;
 
+/**
+ * Itemet létrehozó, és azt játékoson, vagy mezőn elhelyező parancs.
+ */
 public class ItemCommand implements Command {
+    /**
+     * Az item darabszáma
+     */
     public final int count;
+    /**
+     * Ásó esetén az ásó "életereje"
+     * -1 a nem törékeny ásót jelenti.
+     */
     public final int durability;
+    /**
+     * Az item típus
+     */
     private final String type;
 
+    /**
+     * Konstruktor
+     * @param type az item típusa
+     * @param count az item darabszáma
+     * @param durability ásó esetén az életerő
+     */
     public ItemCommand(String type, int count, int durability) {
         this.type = type;
         this.count = count;
         this.durability = durability;
     }
 
+    /**
+     * Konstruktor
+     * @param type az item típusa
+     * @param count az item darabszáma
+     */
     public ItemCommand(String type, int count) {
         this(type, count, -1);
     }
 
+    /**
+     * Konstruktor
+     * @param type az item típusa
+     */
     public ItemCommand(String type) {
         this(type, 1);
     }
 
+    /**
+     * Lefuttatja a parancsot, ami lérehoz count db itemet, és odaadja azt
+     * a kiválasztott játékosnak/mezőnek. A játékosoknak precedenciája van.
+     * @param state
+     * @throws ProtoException Exceptiont dob, ha count > 1 és mezőnek akarunk itemet adni, ha type egy nem létező item típus, vagy ha nincs senki kiválasztva
+     */
     @Override
     public void execute(Proto state) throws ProtoException {
         if (!state.hasSelectedPlayer() && state.hasSelectedTile() && count > 1) {
@@ -53,6 +87,10 @@ public class ItemCommand implements Command {
         }
     }
 
+    /**
+     * A parancs, szöveges formában
+     * @return
+     */
     @Override
     public String toString() {
         if (count <= 0) return "";

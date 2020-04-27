@@ -4,6 +4,9 @@ import proto.model.*;
 
 import java.util.List;
 
+/**
+ * Parancs, ami felruházza a kiválasztott játékost az egyik invetoryban lévő eszközével
+ */
 public class EquipCommand implements Command {
     /**
      * Az inventory index, amivel felruházzuk a játékost

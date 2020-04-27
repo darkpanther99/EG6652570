@@ -2,6 +2,9 @@ package proto;
 
 import java.util.List;
 
+/**
+ * Argumentum listából ExamineCommand-ot létrehozó osztály
+ */
 public class ExamineCommandParser implements CommandParser {
     /**
      * Visszaadja a parancshoz tartozó kulcsszót

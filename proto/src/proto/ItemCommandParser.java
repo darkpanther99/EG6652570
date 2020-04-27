@@ -4,7 +4,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Argumentum listából ItemCommand-ot létrehozó osztály
+ */
 public class ItemCommandParser implements CommandParser {
+    /**
+     * Az elfogadott item típusok
+     */
     private static final Set<String> acceptedTypes = new HashSet<>();
 
     static {
@@ -17,11 +23,21 @@ public class ItemCommandParser implements CommandParser {
         acceptedTypes.add("shovel");
     }
 
+    /**
+     * Visszaadja a parancshoz tartozó kulcsszót
+     * @return A kulcsszó, mindig "item"
+     */
     @Override
     public String getKeyword() {
         return "item";
     }
 
+    /**
+     * Létrehoz egy ItemCommand-ot az argumentumlistából
+     * @param tokens az argumentumok. Formátum: { "item", "$type", [count], ["durability", durablity]}
+     * @return ItemCommand, a megfelelő argumentumokkal.
+     * @throws ProtoException Hibás bemenet esetén kivételt dob.
+     */
     @Override
     public Command parse(List<String> tokens) throws ProtoException {
         if (tokens.size() < 2 || !tokens.get(0).contentEquals(getKeyword())) {
