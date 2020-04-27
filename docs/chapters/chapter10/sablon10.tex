@@ -5,6 +5,16 @@
 
 \thispagestyle{fancy}
 
+\setcounter{section}{-1}
+
+\section{Változások}
+\begin{itemize}
+\item Az eddigi dokumentumban végső osztályleírásoknál PascalCase stílusban szerepeltek a metódusaink, viszont implementáció közben rájöttünk, hogy camelCase stílusban szebb lenne, ezért az összeset átírtuk olyanra.
+\item A Shelter break metódusa nem elfogadott a Java beépített break utasítása miatt, ezért a metódus új neve ruin.
+\item A különféle játékos típusok Entity és Player osztályokból való öröklése miatt a tagváltozók protectedek lettek, a könnyebb elérés miatt.
+\item Új osztály: ProtoException. Az Exception osztály leszármazottja. Felelőssége: A Protó fázis során dobott szándékos kivételek kezelésének megkönnyítése.
+\end{itemize}
+
 \section{Fordítási és futtatási útmutató}
 %\comment{A feltöltött program fordításával és futtatásával kapcsolatos útmutatás. Ennek tartalmaznia kell leltárszerűen az egyes fájlok pontos nevét, méretét byte-ban, keletkezési idejét, valamint azt, hogy a fájlban mi került megvalósításra.}
 
@@ -77,32 +87,32 @@
 \fajl{EatCommandParser.java}{0,55KB}{2020.04.21~22:33~}{EatCommandParser osztály forráskódja.}
 \fajl{EntityCommand.java}{2,38KB}{2020.04.21~22:21~}{EntityCommand osztály forráskódja.}
 \fajl{EntityCommandParser.java}{1,79KB}{2020.04.21~22:34~}{EntityCommandParser osztály forráskódja.}
-\fajl{EquipCommand.java}{1,57KB}{2020.04.21~22:21~}{EquipCommand osztály forráskódja.}
+\fajl{EquipCommand.java}{1,68KB}{2020.04.21~22:21~}{EquipCommand osztály forráskódja.}
 \fajl{EquipCommandParser.java}{1,33KB}{2020.04.21~22:34~}{EquipCommandParser osztály forráskódja.}
-\fajl{ExamineCommand.java}{1,11KB}{2020.04.21~22:26~}{ExamineCommand osztály forráskódja.}
-\fajl{ExamineCommandParser.java}{1,03KB}{2020.04.21~22:35~}{ExamineCommandParser osztály forráskódja.}
-\fajl{ItemCommand.java}{2,40KB}{2020.04.21~22:20~}{ItemCommand osztály forráskódja.}
-\fajl{ItemCommandParser.java}{1,85KB}{2020.04.21~22:35~}{ItemCommandParser osztály forráskódja.}
+\fajl{ExamineCommand.java}{1,22KB}{2020.04.21~22:26~}{ExamineCommand osztály forráskódja.}
+\fajl{ExamineCommandParser.java}{1,10KB}{2020.04.21~22:35~}{ExamineCommandParser osztály forráskódja.}
+\fajl{ItemCommand.java}{3,48KB}{2020.04.21~22:20~}{ItemCommand osztály forráskódja.}
+\fajl{ItemCommandParser.java}{2,40KB}{2020.04.21~22:35~}{ItemCommandParser osztály forráskódja.}
 \fajl{Main.java}{0,15KB}{2020.04.21~20:45~}{Main osztály forráskódja.}
 \fajl{MessagePrinter.java}{0,95KB}{2020.04.21~22:11~}{MessagePrinter osztály forráskódja.}
-\fajl{PickUpCommand.java}{0,28KB}{2020.04.21~22:27~}{PickUpCommand osztály forráskódja.}
-\fajl{PickUpCommandParser.java}{0,47KB}{2020.04.21~22:36~}{PickUpCommandParser osztály forráskódja.}
+\fajl{PickUpCommand.java}{0,61KB}{2020.04.21~22:27~}{PickUpCommand osztály forráskódja.}
+\fajl{PickUpCommandParser.java}{0,85KB}{2020.04.21~22:36~}{PickUpCommandParser osztály forráskódja.}
 \fajl{Proto.java}{6,13KB}{2020.04.21~22:10~}{Proto osztály forráskódja.}
 \fajl{ProtoException.java}{0,38KB}{2020.04.26~11:33~}{ProtoException osztály forráskódja.}
 \fajl{QueryCommand.java}{7,00KB}{2020.04.21~22:22~}{QueryCommand osztály forráskódja.}
 \fajl{QueryCommandParser.java}{0,58KB}{2020.04.21~22:36~}{QueryCommandParser osztály forráskódja.}
-\fajl{RescueCommand.java}{0,59KB}{2020.04.21~22:25~}{RescueCommand osztály forráskódja.}
-\fajl{RescueCommandParser.java}{0,69KB}{2020.04.21~22:36~}{RescueCommandParser osztály forráskódja.}
-\fajl{SelectCommand.java}{0,98KB}{2020.04.21~22:21~}{SelectCommand osztály forráskódja.}
-\fajl{SelectCommandParser.java}{0,85KB}{2020.04.21~22:36~}{SelectCommandParser osztály forráskódja.}
-\fajl{StepCommand.java}{0,83KB}{2020.04.21~22:24~}{StepCommand osztály forráskódja.}
-\fajl{StepCommandParser.java}{0,68KB}{2020.04.21~22:37~}{StepCommandParser osztály forráskódja.}
-\fajl{StormCommand.java}{0,33KB}{2020.04.21~22:28~}{StormCommand osztály forráskódja.}
-\fajl{StormCommandParser.java}{0,47KB}{2020.04.21~22:37~}{StormCommandParser osztály forráskódja.}
-\fajl{TileCommand.java}{0,58KB}{2020.04.21~22:19~}{TileCommand osztály forráskódja.}
-\fajl{TileCommandParser.java}{0,85KB}{2020.04.21~22:37~}{TileCommandParser osztály forráskódja.}
-\fajl{TurnCommand.java}{0,24KB}{2020.04.21~22:28~}{TurnCommand osztály forráskódja.}
-\fajl{TurnCommandParser.java}{0,47KB}{2020.04.21~22:37~}{TurnCommandParser osztály forráskódja.}
+\fajl{RescueCommand.java}{1,11KB}{2020.04.21~22:25~}{RescueCommand osztály forráskódja.}
+\fajl{RescueCommandParser.java}{1,11KB}{2020.04.21~22:36~}{RescueCommandParser osztály forráskódja.}
+\fajl{SelectCommand.java}{1,55KB}{2020.04.21~22:21~}{SelectCommand osztály forráskódja.}
+\fajl{SelectCommandParser.java}{1,28KB}{2020.04.21~22:36~}{SelectCommandParser osztály forráskódja.}
+\fajl{StepCommand.java}{1,32KB}{2020.04.21~22:24~}{StepCommand osztály forráskódja.}
+\fajl{StepCommandParser.java}{1,10KB}{2020.04.21~22:37~}{StepCommandParser osztály forráskódja.}
+\fajl{StormCommand.java}{0,53KB}{2020.04.21~22:28~}{StormCommand osztály forráskódja.}
+\fajl{StormCommandParser.java}{0,83KB}{2020.04.21~22:37~}{StormCommandParser osztály forráskódja.}
+\fajl{TileCommand.java}{1,08KB}{2020.04.21~22:19~}{TileCommand osztály forráskódja.}
+\fajl{TileCommandParser.java}{1,25KB}{2020.04.21~22:37~}{TileCommandParser osztály forráskódja.}
+\fajl{TurnCommand.java}{0,44KB}{2020.04.21~22:28~}{TurnCommand osztály forráskódja.}
+\fajl{TurnCommandParser.java}{0,84KB}{2020.04.21~22:37~}{TurnCommandParser osztály forráskódja.}
 \fajl{BareHands.java}{0,76KB}{2020.04.22~16:27~}{BareHands osztály forráskódja.}
 \fajl{BareIce.java}{1,23KB}{2020.04.22~16:27~}{BareIce osztály forráskódja.}
 \fajl{BreakingShovel.java}{1,18KB}{2020.04.22~16:27~}{BreakingShovel osztály forráskódja.}
@@ -161,9 +171,18 @@ proto\run.bat
 
 \subsection{Tesztelés}
 
+Összes teszt futtatása egyszerre.
+
 \lstset{escapeinside=`', xleftmargin=10pt, frame=single, basicstyle=\ttfamily\footnotesize, language=C}
 \begin{lstlisting}
 proto\test\runalltests.bat
+\end{lstlisting}
+
+Egy teszt futtatása.
+
+\lstset{escapeinside=`', xleftmargin=10pt, frame=single, basicstyle=\ttfamily\footnotesize, language=C}
+\begin{lstlisting}
+proto\test\runtest.bat <C:\absolute\path\to>\proto\run.bat proto\test\testfiles\<testfile.test>
 \end{lstlisting}
 
 \section{Tesztek jegyzőkönyvei}
@@ -377,10 +396,10 @@ proto\test\runalltests.bat
 Az értékelést a tagok elolvasták és elfogadták.
 
 \begin{ertekeles}
-\tag{Glávits}{..}{-}
-\tag{Kiss}{..}{-}
-\tag{Konrád}{..}{-}
-\tag{Lant}{..}{-}
-\tag{Máté}{..}{-}
+\tag{Glávits}{27\%}{-}
+\tag{Kiss}{23\%}{-}
+\tag{Konrád}{17,5\%}{-}
+\tag{Máté}{17,5\%}{-}
+\tag{Lant}{15\%}{-}
 \end{ertekeles}
 
