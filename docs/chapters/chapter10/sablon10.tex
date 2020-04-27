@@ -6,13 +6,59 @@
 \thispagestyle{fancy}
 
 \section{Fordítási és futtatási útmutató}
-\comment{A feltöltött program fordításával és futtatásával kapcsolatos útmutatás. Ennek tartalmaznia kell leltárszerűen az egyes fájlok pontos nevét, méretét byte-ban, keletkezési idejét, valamint azt, hogy a fájlban mi került megvalósításra.}
+%\comment{A feltöltött program fordításával és futtatásával kapcsolatos útmutatás. Ennek tartalmaznia kell leltárszerűen az egyes fájlok pontos nevét, méretét byte-ban, keletkezési idejét, valamint azt, hogy a fájlban mi került megvalósításra.}
 
 \subsection{Fájllista}
 
 \begin{fajllista}
 
 % Console.Write(string.Join(Environment.NewLine, Directory.EnumerateFiles(@"proto\src", "*.java", SearchOption.AllDirectories).Select(x => new FileInfo(x)).Select(x => $"\\fajl{{{x.Name}}}{{{x.Length / 1000.0:0.00}KB}}{{{x.CreationTime:yyy.MM.dd~HH:mm~}}}{{{Path.GetFileNameWithoutExtension(x.Name)} osztály forráskódja.}}")));
+
+\fajl{build.bat}{0,43KB}{2020.04.22~12:50~}{Fordító script.}
+\fajl{run.bat}{0,19KB}{2020.04.22~14:28~}{Futtató script.}
+\fajl{ProtoTest.java}{3,54KB}{2020.04.21~00:41~}{Teszt ellenőrző program forráskódja.}
+\fajl{runalltests.bat}{0,58KB}{2020.04.22~12:48~}{Az összes tesztet futtató script.}
+\fajl{runtest.bat}{0,34KB}{2020.04.22~12:53~}{Egy teszt futtatására szolgáló script.}
+
+\fajl{01. PickUpFood.test}{0,24KB}{2020.04.22~12:48~}{01. PickUpFood tesztfájl}
+\fajl{02. PickUpPart.test}{0,24KB}{2020.04.22~12:48~}{02. PickUpPart tesztfájl}
+\fajl{03. PickUpShovel.test}{0,25KB}{2020.04.22~12:48~}{03. PickUpShovel tesztfájl}
+\fajl{04. PickUpBreakableShovel.test}{0,28KB}{2020.04.22~12:48~}{04. PickUpBreakableShovel tesztfájl}
+\fajl{05. PickUpRope.test}{0,24KB}{2020.04.22~12:48~}{05. PickUpRope tesztfájl}
+\fajl{06. PickUpScubaGear.test}{0,26KB}{2020.04.22~12:48~}{06. PickUpScubaGear tesztfájl}
+\fajl{07. PickUpTent.test}{0,25KB}{2020.04.22~12:48~}{07. PickUpTent tesztfájl}
+\fajl{08. BareHandsDig.test}{0,13KB}{2020.04.22~12:48~}{08. BareHandsDig tesztfájl}
+\fajl{09. ShovelDig.test}{0,18KB}{2020.04.22~12:48~}{09. ShovelDig tesztfájl}
+\fajl{10. BreakingShovelDig.test}{0,21KB}{2020.04.22~12:48~}{10. BreakingShovelDig tesztfájl}
+\fajl{11. BreakingShovelDig2.test}{0,21KB}{2020.04.22~12:48~}{11. BreakingShovelDig2 tesztfájl}
+\fajl{12. StepOnStableIce.test}{0,21KB}{2020.04.22~12:48~}{12. StepOnStableIce tesztfájl}
+\fajl{13. StepOnUnstableIceWithScubaGearBreaking.test}{0,28KB}{2020.04.22~12:48~}{13. StepOnUnstableIceWithScubaGearBreaking tesztfájl}
+\fajl{14. StepOnUnstableIceWithScubaGearCanHold.test}{0,28KB}{2020.04.22~12:48~}{14. StepOnUnstableIceWithScubaGearCanHold tesztfájl}
+\fajl{15. StepOnUnstableIceNakedBreaking.test}{0,22KB}{2020.04.22~12:48~}{15. StepOnUnstableIceNakedBreaking tesztfájl}
+\fajl{16. StepOnUnstableIceNakedCanHold.test}{0,22KB}{2020.04.22~12:48~}{16. StepOnUnstableIceNakedCanHold tesztfájl}
+\fajl{17. StepInWaterWithScubaGear.test}{0,27KB}{2020.04.22~12:48~}{17. StepInWaterWithScubaGear tesztfájl}
+\fajl{18. StepInWaterNaked.test}{0,21KB}{2020.04.22~12:48~}{18. StepInWaterNaked tesztfájl}
+\fajl{19. RopeRescue.test}{0,34KB}{2020.04.22~12:48~}{19. RopeRescue tesztfájl}
+\fajl{20. EatFood.test}{0,15KB}{2020.04.22~12:48~}{20. EatFood tesztfájl}
+\fajl{21. AssembleFlare.test}{0,20KB}{2020.04.22~12:48~}{21. AssembleFlare tesztfájl}
+\fajl{22. AssembleFlare2.test}{0,26KB}{2020.04.22~12:48~}{22. AssembleFlare2 tesztfájl}
+\fajl{23. BuildIgloo.test}{0,19KB}{2020.04.22~12:48~}{23. BuildIgloo tesztfájl}
+\fajl{24. BuildTent.test}{0,18KB}{2020.04.22~12:48~}{24. BuildTent tesztfájl}
+\fajl{25. ExamineTile.test}{0,26KB}{2020.04.22~12:48~}{25. ExamineTile tesztfájl}
+\fajl{26. TurnOnStableIce.test}{0,12KB}{2020.04.22~12:48~}{26. TurnOnStableIce tesztfájl}
+\fajl{27. TurnInWaterNaked.test}{0,12KB}{2020.04.22~12:48~}{27. TurnInWaterNaked tesztfájl}
+\fajl{28. TurnInWaterWitchScubaGear.test}{0,18KB}{2020.04.22~12:48~}{28. TurnInWaterWitchScubaGear tesztfájl}
+\fajl{29. ChillStormIgloo.test}{0,15KB}{2020.04.22~12:48~}{29. ChillStormIgloo tesztfájl}
+\fajl{30. ChillStormTent.test}{0,14KB}{2020.04.22~12:48~}{30. ChillStormTent tesztfájl}
+\fajl{31. ChillStormBareIce.test}{0,12KB}{2020.04.22~12:48~}{31. ChillStormBareIce tesztfájl}
+\fajl{32. TentBreaking.test}{0,09KB}{2020.04.22~12:48~}{32. TentBreaking tesztfájl}
+\fajl{33. PolarBearMoving.test}{0,27KB}{2020.04.22~12:48~}{33. PolarBearMoving tesztfájl}
+\fajl{34. PolarBearAttack.test}{0,20KB}{2020.04.22~12:48~}{34. PolarBearAttack tesztfájl}
+\fajl{35. PolarBearAttackTent.test}{0,22KB}{2020.04.22~12:48~}{35. PolarBearAttackTent tesztfájl}
+\fajl{36. PolarBearAttackIgloo.test}{0,34KB}{2020.04.22~12:48~}{36. PolarBearAttackIgloo tesztfájl}
+\fajl{37. LargeTestBearAttack.test}{0,87KB}{2020.04.22~12:48~}{37. LargeTestBearAttack tesztfájl}
+\fajl{38. LargeTestStepOnUnstableIceNaked.test}{1,48KB}{2020.04.22~12:48~}{38. LargeTestStepOnUnstableIceNaked tesztfájl}
+\fajl{39. LargeTestBuildIgloo.test}{1,49KB}{2020.04.22~12:48~}{39. LargeTestBuildIgloo tesztfájl}
 
 \fajl{AssembleCommand.java}{0,29KB}{2020.04.21~22:28~}{AssembleCommand osztály forráskódja.}
 \fajl{AssembleCommandParser.java}{0,31KB}{2020.04.21~22:31~}{AssembleCommandParser osztály forráskódja.}
@@ -97,45 +143,245 @@
 \end{fajllista}
 
 \subsection{Fordítás}
-\comment{A fenti listában szereplő forrásfájlokból milyen műveletekkel lehet a bináris, futtatható kódot előállítani. Az előállításhoz csak a 2. Követelmények c. dokumentumban leírt környezetet szabad előírni.}
+%\comment{A fenti listában szereplő forrásfájlokból milyen műveletekkel lehet a bináris, futtatható kódot előállítani. Az előállításhoz csak a 2. Követelmények c. dokumentumban leírt környezetet szabad előírni.}
 
 \lstset{escapeinside=`', xleftmargin=10pt, frame=single, basicstyle=\ttfamily\footnotesize, language=sh}
 \begin{lstlisting}
-javac -d bin *.java
+proto\build.bat
 \end{lstlisting}
 
 \subsection{Futtatás}
-\comment{A futtatható kód elindításával kapcsolatos teendők leírása. Az indításhoz csak a 2. Követelmények c. dokumentumban leírt környezetet szabad előírni.}
+%\comment{A futtatható kód elindításával kapcsolatos teendők leírása. Az indításhoz csak a 2. Követelmények c. dokumentumban leírt környezetet szabad előírni.}
 
 \lstset{escapeinside=`', xleftmargin=10pt, frame=single, basicstyle=\ttfamily\footnotesize, language=sh}
 \begin{lstlisting}
-cd bin
-java Main.java
+proto\run.bat
+\end{lstlisting}
+
+\subsection{Tesztelés}
+
+\lstset{escapeinside=`', xleftmargin=10pt, frame=single, basicstyle=\ttfamily\footnotesize, language=C}
+\begin{lstlisting}
+proto\test\runalltests.bat
 \end{lstlisting}
 
 
 \section{Tesztek jegyzőkönyvei}
 
-\subsection{Teszteset1}
-\comment{Az alábbi táblázatot az utolsó, sikeres tesztfuttatáshoz kell kitölteni}
+%\subsection{Teszteset1}
+%\comment{Az alábbi táblázatot az utolsó, sikeres tesztfuttatáshoz kell kitölteni}
+%% tesztelő neve, teszt időpontja
+%\tesztok{Glávits}{2020.04.26~23:47~}
+%\comment{Az alábbi táblázatot a megismételt (hibás) tesztek esetén kell kitölteni minden ismétléshez egyszer. Ha szükséges, akkor a valós kimenet is mellékelhető mint a teszt eredménye.}
+%% tesztelő, időpont, a teszt eredménye, lehetséges hibaok, változtatások
+%\tesztfail{...}{...}{...}{...}{...}
 
-\tesztok{...}{...}
+\textbf{Az összes teszt hibátlanul lefutott 2020.04.26~23:47~időpontban.}
 
-\comment{Az alábbi táblázatot a megismételt (hibás) tesztek esetén kell kitölteni minden ismétléshez egyszer. Ha szükséges, akkor a valós kimenet is mellékelhető mint a teszt eredménye.}
+\subsection{01. PickUpFood}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 2 lines changed
+\tesztfail{Glávits}{2020.04.26~19:58~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
 
-\tesztfail{...}{...}{...}{...}{...}
+\subsection{02. PickUpPart}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 2 lines changed
+\tesztfail{Glávits}{2020.04.26~19:58~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+
+\subsection{03. PickUpShovel}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 2 lines changed
+\tesztfail{Glávits}{2020.04.26~19:58~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+
+\subsection{04. PickUpBreakableShovel}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 2 lines changed
+\tesztfail{Glávits}{2020.04.26~19:58~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+
+\subsection{05. PickUpRope}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 2 lines changed
+\tesztfail{Glávits}{2020.04.26~19:58~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+
+\subsection{06. PickUpScubaGear}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 2 lines changed
+\tesztfail{Glávits}{2020.04.26~19:58~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+
+\subsection{07. PickUpTent}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 2 lines changed
+\tesztfail{Glávits}{2020.04.26~19:58~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+
+\subsection{08. BareHandsDig}
+\tesztok{Glávits}{2020.04.26~23:47~}
+
+\subsection{09. ShovelDig}
+\tesztok{Glávits}{2020.04.26~23:47~}
+
+\subsection{10. BreakingShovelDig}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 7 lines changed
+\tesztfail{Glávits}{2020.04.26~20:59~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+\tesztfail{Glávits}{2020.04.26~21:32~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+
+\subsection{11. BreakingShovelDig2}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 6 lines changed
+\tesztfail{Glávits}{2020.04.26~21:32~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+\tesztfail{Glávits}{2020.04.26~22:52~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+
+\subsection{12. StepOnStableIce}
+\tesztok{Glávits}{2020.04.26~23:47~}
+
+\subsection{13. StepOnUnstableIceWithScubaGearBreaking}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 3 lines changed
+\tesztfail{Konrád}{2020.04.26~19:37~}{Váratlan kimenet.}{hibás index}{Tesztfájl javítása.}
+\tesztfail{Glávits}{2020.04.26~19:58~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+
+\subsection{14. StepOnUnstableIceWithScubaGearCanHold}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 1 lines changed
+\tesztfail{Konrád}{2020.04.26~19:46~}{Váratlan kimenet.}{hibás index}{Tesztfájl javítása.}
+
+\subsection{15. StepOnUnstableIceNakedBreaking}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 2 lines changed
+\tesztfail{Konrád}{2020.04.26~20:08~}{Váratlan kimenet.}{hibás index}{Tesztfájl javítása.}
+\tesztfail{Glávits}{2020.04.26~20:59~}{Váratlan kimenet.}{szemantikai hiba}{Tesztfájl javítása.}
+
+\subsection{16. StepOnUnstableIceNakedCanHold}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 1 lines changed
+\tesztfail{Konrád}{2020.04.26~20:08~}{Váratlan kimenet.}{hibás index}{Tesztfájl javítása.}
+
+\subsection{17. StepInWaterWithScubaGear}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 1 lines changed
+\tesztfail{Konrád}{2020.04.26~20:08~}{Váratlan kimenet.}{hibás index}{Tesztfájl javítása.}
+
+\subsection{18. StepInWaterNaked}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 1 lines changed
+\tesztfail{Konrád}{2020.04.26~20:08~}{Váratlan kimenet.}{hibás index}{Tesztfájl javítása.}
+
+\subsection{19. RopeRescue}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 7 lines changed
+\tesztfail{Konrád}{2020.04.26~20:33~}{Váratlan kimenet.}{hibás index}{Tesztfájl javítása.}
+\tesztfail{Glávits}{2020.04.26~20:59~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+\tesztfail{Konrád}{2020.04.26~21:40~}{Váratlan kimenet.}{szemantikai hiba}{Tesztfájl javítása.}
+\tesztfail{Glávits}{2020.04.26~22:04~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+
+\subsection{20. EatFood}
+\tesztok{Glávits}{2020.04.26~23:47~}
+
+\subsection{21. AssembleFlare}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 7 lines changed
+\tesztfail{Glávits}{2020.04.26~21:32~}{Váratlan kimenet.}{szemantikai hiba}{Tesztfájl javítása.}
+
+\subsection{22. AssembleFlare2}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 11 lines changed
+\tesztfail{Glávits}{2020.04.26~20:59~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+\tesztfail{Glávits}{2020.04.26~21:32~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+
+\subsection{23. BuildIgloo}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 7 lines changed
+\tesztfail{Konrád}{2020.04.26~21:40~}{Váratlan kimenet.}{szemantikai hiba}{Tesztfájl javítása.}
+\tesztfail{Glávits}{2020.04.26~22:04~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+
+\subsection{24. BuildTent}
+\tesztok{Glávits}{2020.04.26~23:47~}
+
+\subsection{25. ExamineTile}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 2 lines changed
+\tesztfail{Konrád}{2020.04.26~20:33~}{Váratlan kimenet.}{hibás index}{Tesztfájl javítása.}
+
+\subsection{26. TurnOnStableIce}
+\tesztok{Glávits}{2020.04.26~23:47~}
+
+\subsection{27. TurnInWaterNaked}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 1 lines changed
+\tesztfail{Konrád}{2020.04.26~21:40~}{Váratlan kimenet.}{szemantikai hiba}{Tesztfájl javítása.}
+
+\subsection{28. TurnInWaterWitchScubaGear}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 1 lines changed
+\tesztfail{Konrád}{2020.04.26~21:40~}{Váratlan kimenet.}{szemantikai hiba}{Tesztfájl javítása.}
+\tesztfail{Glávits}{2020.04.26~22:04~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+
+\subsection{29. ChillStormIgloo}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 1 lines changed
+\tesztfail{Glávits}{2020.04.26~19:58~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+
+\subsection{30. ChillStormTent}
+\tesztok{Glávits}{2020.04.26~23:47~}
+
+\subsection{31. ChillStormBareIce}
+\tesztok{Glávits}{2020.04.26~23:47~}
+
+\subsection{32. TentBreaking}
+\tesztok{Glávits}{2020.04.26~23:47~}
+
+\subsection{33. PolarBearMoving}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 1 lines changed
+\tesztfail{Konrád}{2020.04.26~20:33~}{Váratlan kimenet.}{hibás index}{Tesztfájl javítása.}
+
+\subsection{34. PolarBearAttack}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 1 lines changed
+\tesztfail{Glávits}{2020.04.26~20:49~}{Váratlan kimenet.}{hibás index}{Tesztfájl javítása.}
+
+\subsection{35. PolarBearAttackTent}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 1 lines changed
+\tesztfail{Glávits}{2020.04.26~20:49~}{Váratlan kimenet.}{hibás index}{Tesztfájl javítása.}
+
+\subsection{36. PolarBearAttackIgloo}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 7 lines changed
+\tesztfail{Máté}{2020.04.26~16:30~}{Váratlan kimenet.}{typo}{Tesztfájl javítása.}
+\tesztfail{Glávits}{2020.04.26~19:58~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+\tesztfail{Konrád}{2020.04.26~21:58~}{Váratlan kimenet.}{hibás index}{Tesztfájl javítása.}
+
+\subsection{37. LargeTestBearAttack}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 8 lines changed
+\tesztfail{Máté}{2020.04.26~16:30~}{Váratlan kimenet.}{typo}{Tesztfájl javítása.}
+\tesztfail{Glávits}{2020.04.26~20:49~}{Váratlan kimenet.}{hibás index}{Tesztfájl javítása.}
+
+\subsection{38. LargeTestStepOnUnstableIceNaked}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 13 lines changed
+\tesztfail{Máté}{2020.04.26~16:30~}{Váratlan kimenet.}{typo}{Tesztfájl javítása.}
+\tesztfail{Konrád}{2020.04.26~22:49~}{Váratlan kimenet.}{hibás index}{Tesztfájl javítása.}
+\tesztfail{Glávits}{2020.04.26~22:52~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+
+\subsection{39. LargeTestBuildIgloo}
+\tesztok{Glávits}{2020.04.26~23:47~}
+% 9 lines changed
+\tesztfail{Máté}{2020.04.26~16:30~}{Váratlan kimenet.}{typo}{Tesztfájl javítása.}
+\tesztfail{Glávits}{2020.04.26~20:14~}{Váratlan kimenet.}{szintaktikai hiba}{Tesztfájl javítása.}
+
 
 \section{Értékelés}
-\comment{A projekt kezdete óta az értékelésig eltelt időben tagokra bontva, százalékban.}
+%\comment{A projekt kezdete óta az értékelésig eltelt időben tagokra bontva, százalékban.}
+
+Az értékelést a tagok elolvasták és elfogadták.
 
 \begin{ertekeles}
-\tag{Horváth} % Tag neve
-{23.5}        % Munka szazalekban
-\tag{Német}
-{24.5}
-\tag{Tóth}
-{25}
-\tag{Oláh}
-{27}
+\tag{Glávits}{..}{-}
+\tag{Kiss}{..}{-}
+\tag{Konrád}{..}{-}
+\tag{Lant}{..}{-}
+\tag{Máté}{..}{-}
 \end{ertekeles}
 
