@@ -3,6 +3,9 @@ package proto;
 import proto.model.GameObserver;
 import proto.model.Tile;
 
+/**
+ * Az események konzolra kiírásáért felelős.
+ */
 public class MessagePrinter implements GameObserver {
 
     private final Proto proto;

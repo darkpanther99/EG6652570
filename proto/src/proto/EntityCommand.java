@@ -3,9 +3,21 @@ package proto;
 import proto.model.Player;
 import proto.model.PolarBear;
 
+/**
+ * Entitás definíciós parancs.
+ */
 public class EntityCommand implements Command {
+    /**
+     * Az entitás típusa
+     */
     final String type;
+    /**
+     * Ha játékos, akkor a testhője.
+     */
     final int playerBodyHeat;
+    /**
+     * Ha játékos, akkor az energiája.
+     */
     final int playerEnergy;
 
     public EntityCommand(String t) {
@@ -26,6 +38,11 @@ public class EntityCommand implements Command {
         playerEnergy = pe;
     }
 
+    /**
+     * Létrehozza a megfelelő típusú entitást és elhelyezi a jelenleg kiválasztott mezőn.
+     * @param state
+     * @throws ProtoException
+     */
     @Override
     public void execute(Proto state) throws ProtoException {
         if (type.equals("eskimo") || type.equals("polarexplorer")) {
@@ -51,6 +68,10 @@ public class EntityCommand implements Command {
         }
     }
 
+    /**
+     * Így jelenik meg a parancs a konzolon.
+     * @return A parancs String
+     */
     @Override
     public String toString() {
         if (type.contentEquals("eskimo") || type.contentEquals("polarexplorer")) {

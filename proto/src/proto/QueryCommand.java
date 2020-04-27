@@ -7,8 +7,15 @@ import proto.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Olyan parancs, ami lekérdezi és kiírja a játék állapotát.
+ */
 public class QueryCommand implements Command {
 
+    /**
+     * Parancsok formájában kiírja a játék állapotát.
+     * @param state
+     */
     @Override
     public void execute(Proto state) {
         List<Command> commands = new ArrayList<>(makeCommands(state.game));
@@ -18,6 +25,10 @@ public class QueryCommand implements Command {
         }
     }
 
+    /**
+     * Így jelenik meg a konzolon.
+     * @return A parancs.
+     */
     @Override
     public String toString() {
         return "query";
@@ -54,6 +65,11 @@ public class QueryCommand implements Command {
         return result;
     }
 
+    /**
+     * Megvizsgálja, hogy milyen tárgyak vannak a játékosnál.
+     * @param p: A játékos
+     * @param result: void
+     */
     private void listPlayerItems(Player p, List<Command> result) {
         List<ItemCommand> equipped = new ArrayList<>();
         if (p.getBuildStrategy() != null && p.getBuildStrategy().getCount() > 0) {
@@ -113,21 +129,40 @@ public class QueryCommand implements Command {
         }
     }
 
+    /**
+     * Létrehoz egy TileCommand-ot egy Tile-hoz.
+     * @param t: A tile
+     * @return A létrehozott TileCommand.
+     */
     private TileCommand makeTileCommand(Tile t) {
         return new TileCommand(t.getSnow(), t.getWeightLimit());
     }
-
+    /**
+     * Létrehoz egy BuildingCommand-ot egy Tile-hoz.
+     * @param t: A tile
+     * @return A létrehozott BuildingCommand.
+     */
     private BuildingCommand makeBuildingCommand(Tile t) {
         return new BuildingCommand(
                 (t.getShelter() instanceof Tent) ? "tent" : (t.getShelter() instanceof Igloo) ? "igloo" : ""
         );
     }
-
+    /**
+     * Létrehoz egy ConnectCommand-ot egy Tile-hoz és a Game-hez.
+     * @param t: A tile
+     * @param game: A Game
+     * @return A létrehozott ConnectCommand.
+     */
     private ConnectCommand makeConnectCommand(Tile t, Game game) {
         return new ConnectCommand(t, game);
     }
 
-
+    /**
+     * Létrehoz egy SelectCommand-ot egy Tile-hoz és a Game-hez.
+     * @param t: A tile
+     * @param game: A Game
+     * @return A létrehozott SelectCommand.
+     */
     private SelectCommand makeSelectTileCommand(Tile t, Game game) {
         int index = -2;
         for (int i = 0; i < game.getIceField().size(); i++) {
@@ -138,7 +173,11 @@ public class QueryCommand implements Command {
         }
         return new SelectCommand("tile", index);
     }
-
+    /**
+     * Létrehoz egy EntityCommand-ot egy Entity-hez.
+     * @param e: Az Entity
+     * @return A létrehozott EntityCommand.
+     */
     private EntityCommand makeEntityCommand(Entity e) {
         if (e instanceof Eskimo)
             return new EntityCommand("eskimo", ((Eskimo) e).getBodyTemp(), ((Eskimo) e).getEnergy());
@@ -146,7 +185,12 @@ public class QueryCommand implements Command {
             return new EntityCommand("polarexplorer", ((PolarExplorer) e).getBodyTemp(), ((PolarExplorer) e).getEnergy());
         else return new EntityCommand("polarbear");
     }
-
+    /**
+     * Létrehoz egy ItemCommand-ot egy Item-hez.
+     * @param i: Az Item
+     * @param c: Az Item számossága
+     * @return A létrehozott ItemCommand.
+     */
     private ItemCommand makeItemCommand(Item i, int c) {
         if (i instanceof BreakingShovel) {
             return new ItemCommand("shovel", c, ((BreakingShovel) i).getInstance().getDurability());

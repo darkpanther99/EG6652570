@@ -7,8 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Celle topológia definíciós parancs.
+ */
 public class ConnectCommand implements Command {
 
+    /**
+     * A cellához csatlakozó további cellák indexei.
+     */
     private final List<Integer> indices;
 
     public ConnectCommand(List<Integer> i) {
@@ -30,6 +36,11 @@ public class ConnectCommand implements Command {
         }
     }
 
+    /**
+     * Hozzáadja a kiválasztott cella szomszédaihoz az index tömbben szereplő cellákat.
+     * @param state
+     * @throws ProtoException
+     */
     @Override
     public void execute(Proto state) throws ProtoException {
         int j = 0;
@@ -39,6 +50,10 @@ public class ConnectCommand implements Command {
         }
     }
 
+    /**
+     * Így jelenik meg a parancs a konzolon.
+     * @return A parancs String
+     */
     @Override
     public String toString() {
         if (!indices.isEmpty()) {

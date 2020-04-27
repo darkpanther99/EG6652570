@@ -2,13 +2,25 @@ package proto;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * ConnectCommand-ot tokenekből létrehozó osztály.
+ */
 public class ConnectCommandParser implements CommandParser {
+
+    /**
+     * A parancs kulcsszava.
+     * @return A kulcsszó
+     */
     @Override
     public String getKeyword() {
         return "connect";
     }
 
+    /**
+     * Tokenekből létrehozza a parancsot.
+     * @param tokens: A tokenek
+     * @return A parancs
+     */
     @Override
     public Command parse(List<String> tokens) throws ProtoException {
         List<Integer> tmp = new ArrayList<>();
