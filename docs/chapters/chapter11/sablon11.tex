@@ -58,6 +58,13 @@ A jégmezőn néha feltámad a hóvihar, ez az alábbihoz hasonló animációval
 \subsection{A felület működési elve}
 \comment{Le kell írni, hogy a grafikai megjelenésért felelős osztályok, objektumok hogyan kapcsolódnak a meglevő rendszerhez, a megjelenítés során mi volt az alapelv. Törekedni kell az MVC megvalósításra. Alapelvek lehetnek: \textbf{push} alapú: a modell értesíti a felületet, hogy változott; \textbf{pull} alapú: a felület kérdezi le a modellt, hogy változott-e; \textbf{kevert}: a kettő kombinációja.}
 
+A feladat megvalósítása során törekedtünk az MVC architechtúrára. A modellt a korábbi fázisokban elkészült program biztosítja. A modell önmagában csak adatokat szogláltat ezért minden adata hozzáférhető getterek segítségével. A View pullolja a modell adatait, míg a Controller pusholja azt. A modell önmagában nem observable, mert minden változást a Controller vált ki futása során.
+
+A View egy pálya nézet. Megkapja a Modellt mint dependecy injection. Update hatására kiolvassa a Modell álapotát és megjeleníti azt. A View implementálja a GameObservert.
+
+A Controller felelős a UI elemek kezeléséért. Megkapja a Modell-t és a View-t, mint dependency injection. Feliratkozhat a View eventjeire, ha az is irányítható. Fontos feladata az felhasználótól érkező inputok lekezelése. Írja a modell álapotát, frissíti a View-t.
+
+A főprogram felelős a játék főmenüjének megjelenítéséért és az ehhez kapcsolódó inputok lekezeléséért. A főmenüben meg lehet adni a játékosok számát, neveit. Modellt épít a Proto-val. Implementálja a GameObserver-t, ezzel képes a játék végét kezelni. View-t és Controller-t nyit és zár.
 \subsection{A felület osztály-struktúrája}
 \comment{Osztálydiagram. Minden új osztály, és azon régiek, akik az újakhoz közvetlenül kapcsolódnak.}
 
