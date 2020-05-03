@@ -71,49 +71,219 @@ A főprogram felelős a játék főmenüjének megjelenítéséért és az ehhez
 \section{A grafikus objektumok felsorolása}
 \comment{Az új osztályok felsorolása. Az régi osztályok közül azoknak a felsorolása, ahol változás volt. Ezek esetén csak a változásokat kell leírni.}
 
-\subsection{Osztály1}
+\subsection{View}
 \begin{itemize}
 \item Felelősség\newline
-\comment{Mi az osztály felelőssége. Kb 1 bekezdés. Ha szükséges, akkor state-chart is.}
+Felelőssége a játékpálya megjelenítése és felépítése. A játékpálya TileView-k ból épül majd fel.
 \item Ősosztályok\newline
-\comment{Mely osztályokból származik (öröklési hierarchia)\newline
-Legősebb osztály $\rightarrow$ Ősosztály2 $\rightarrow$ Ősosztály3...}
+JScrollPane
 \item Interfészek\newline
-\comment{Mely interfészeket valósítja meg.}
+MouseListener GameObserver
 \item Attribútumok\newline
-\comment{Milyen attribútumai vannak}
 	\begin{itemize}
-		\item attribútum1: attribútum jellemzése: mire való, láthatósága (UML jelöléssel), típusa
-		\item attribútum2: attribútum jellemzése: mire való, láthatósága (UML jelöléssel), típusa
+		\item isStorm: bool: Havazik-e a pályán +
 	\end{itemize}
 \item Metódusok\newline
-\comment{Milyen publikus, protected és privát  metódusokkal rendelkezik. Metódusonként precíz leírás, ha szükséges, activity diagram is  a metódusban megvalósítandó algoritmusról.}
 	\begin{itemize}
-		\item int foo(Osztály3 o1, Osztály4 o2): metódus leírása, láthatósága (UML jelöléssel)
-		\item int bar(Osztály5 o1): metódus leírása, láthatósága (UML jelöléssel)
+		\item void update(): Frissíti a tábla elemeit. +
+		\item void addTileClickedListener(TileClickedListener tcl): Szól neki ha a TileView-ra klikkeltek +
+		\item void explore(Tile t): Beállítja a megdfelelő TileView.isExplored-et. +
 	\end{itemize}
 \end{itemize}
 
-\subsection{Osztály2}
+\subsection{TileClickedListener}
+\begin{itemize}
+	\item Felelősség\newline
+	Figyeli a kattintást a tilen. Interfész
+\end{itemize}
+
+\subsection{TileView}
+\begin{itemize}
+	\item Felelősség\newline
+	Felelős egy tile kirajzolásáért.
+	\item Ősosztályok\newline
+	JPanel
+	\item Attribútumok\newline
+	\begin{itemize}
+		\item tile: Tile: Maga a tile amit ismer -
+		\item isExplored: bool: Felderítették-e. +
+	\end{itemize}
+	\item Metódusok\newline
+	\begin{itemize}
+		\item void update(): Kiolvassa a Tile információit és rajzol. +
+	\end{itemize}
+\end{itemize}
+
+\subsection{Controller}
+\begin{itemize}
+	\item Felelősség\newline
+	Felelőssége az Modell és a View közötti kapcsolat megteremtése. Kezeli a modell adatait érzékeli a view-n megadott inputokat.
+	\item Ősosztályok\newline
+	JFrame
+	\item Interfészek\newline
+	TileClickListener
+	\item Attribútumok\newline
+	\begin{itemize}
+		\item selectedPlayer: Player: Első játákos/kiválasztott +
+		\item game: Game: Maga a játék instance, modell. +
+		\item view: View: A tartalmazott View osztály amit megjelenít. +
+		\item inventoryMenu: InventoryMenu: Ez az oldalt megjelenített sáv. +
+		\item actionsMenu: ActionsMenu: Az alul megjelenített gomb sáv. +
+		\item playerList: PlayerList: Játékosok listája. +	
+	\end{itemize}
+	\item Metódusok\newline
+	\begin{itemize}
+		\item void update(): Frissíti az összes grafikai elemet. +
+		\item void nextTurn(): Egy kör lefutását kezeli. +
+		\item void tileClick(Tile t): Ha a cella szomszédos a jelenleg kiválasztott játékossal akkor odalép. +
+	\end{itemize}
+\end{itemize}
+
+\subsection{InventoryMenu }
+\begin{itemize}
+	\item Felelősség\newline
+	Felelőssége kezelni az oldalt megjelenített tároló panelt.
+	\item Ősosztályok\newline
+	JPanel
+	\item Attribútumok\newline
+	\begin{itemize}
+		\item controller: Controller: Ismeri a hozzá tartozó vezérlőt. +	
+	\end{itemize}
+	\item Metódusok\newline
+	\begin{itemize}
+		\item void update(): Frissíti az itemiconokat. +
+	\end{itemize}
+\end{itemize}
+
+\subsection{ItemIcon}
+\begin{itemize}
+	\item Felelősség\newline
+	Mutat egy itemet, számosságot, mutatja, hogy equippelve van.
+	\item Ősosztályok\newline
+	JPanel
+	\item Interfészek\newline
+	MouseListener
+	\item Attribútumok\newline
+	\begin{itemize}
+		\item item: Item: Milyen tárgyról van szó +
+		\item controller: Controller: Ismeri a hozzá tartozó vezérlőt. +	
+		\item isEquipped: bool: Kézben van-e éppen. +
+	\end{itemize}
+	\item Metódusok\newline
+	\begin{itemize}
+		\item void equip(): Equipped állapot beállítása. +
+	\end{itemize}
+\end{itemize}
+
+\subsection{ActionsMenu}
+\begin{itemize}
+	\item Felelősség\newline
+	Kezeli a műveleti gombok működését.
+	\item Ősosztályok\newline
+	JPanel
+	\item Interfészek\newline
+	ActionListener
+	\item Attribútumok\newline
+	\begin{itemize}
+		\item controller: Controller: Ismeri a hozzá tartozó vezérlőt. +	
+	\end{itemize}
+	\item Metódusok\newline
+	\begin{itemize}
+		\item void update(): Frissíti a gombokat megnyomásukkor, figyeli melyik lehet aktív az adott eszközök alapján. +
+		\item void doDig(): Ásás gomb esemény. +
+		\item void doBuild(): Iglu/sátor gomb esemény. +
+		\item void doEat(): Evés gomb esemény. +
+		\item void doRescue(): Kimentés gomb esemény. +
+		\item void doAssemble(): Pisztoly építés gomb esemény. +
+		\item void exit(): Kilépés. +
+		\item void nextTurn(): Következő kör gomb esemény. +
+	\end{itemize}
+\end{itemize}
+
+\subsection{PlayerList}
+\begin{itemize}
+	\item Felelősség\newline
+	PlayerIconok függőleges listája
+	\item Ősosztályok\newline
+	JPanel
+	\item Interfészek\newline
+	PlayerSelectListener
+	\item Attribútumok\newline
+	\begin{itemize}
+		\item controller: Controller: Ismeri a hozzá tartozó vezérlőt. +	
+	\end{itemize}
+	\item Metódusok\newline
+	\begin{itemize}
+		\item void update(): Kiválasztott játékos panel frissítése. +
+	\end{itemize}
+\end{itemize}
+
+\subsection{PlayerIcon}
+\begin{itemize}
+	\item Felelősség\newline
+	Mutatja a Player ikonját, nevét, testhőjét, energiáját
+	\item Ősosztályok\newline
+	JPanel
+	\item Interfészek\newline
+	MouseListener
+	\item Attribútumok\newline
+	\begin{itemize}
+		\item controller: Controller: Ismeri a hozzá tartozó vezérlőt. +	
+		\item player: Player: Maga a játékos. +
+		\item isSelected: bool: kivan kiválasztva. +
+	\end{itemize}
+	\item Metódusok\newline
+	\begin{itemize}
+		\item void update(): Kiválasztott játékos panel frissítése. +
+	\end{itemize}
+\end{itemize}
+
+\subsection{PlayerSelectListener }
+\begin{itemize}
+	\item Felelősség\newline
+	Interfész, kezeli a kiválasztást.
+\end{itemize}
+
+\subsection{Main}
+\begin{itemize}
+	\item Felelősség\newline
+	Belépési pont.
+	\item Metódusok\newline
+	\begin{itemize}
+		\item void main(): Fő szál. +
+	\end{itemize}
+\end{itemize}
+
+\subsection{MainMenu}
+\begin{itemize}
+	\item Felelősség\newline
+	Főmenü működése.
+	\item Ősosztályok\newline
+	JFrame
+	\item Interfészek\newline
+	WindowAdapter, ActionListener, GameObserver
+	\item Attribútumok\newline
+	\begin{itemize}
+		\item controller: Controller: Ismeri a hozzá tartozó vezérlőt. +	
+		\item numEskimos: int: Eszkimók száma. +
+		\item numExplorers: int: PolarExplorererk száma. +	
+	\end{itemize}
+	\item Metódusok\newline
+	\begin{itemize}
+		\item void victory(): Játék vége. +
+		\item void gameOver(): Játék vége. +
+		\item Game createGame(): Játék létrehozása. -
+		\item Controller createController(Game g): Controller létrehozása. -
+	\end{itemize}
+\end{itemize}
+
+\subsection{MapLoader}
 \begin{itemize}
 \item Felelősség\newline
-\comment{Mi az osztály felelőssége. Kb 1 bekezdés. Ha szükséges, akkor state-chart is.}
-\item Ősosztályok\newline
-\comment{Mely osztályokból származik (öröklési hierarchia)\newline
-Legősebb osztály $\rightarrow$ Ősosztály2 $\rightarrow$ Ősosztály3...}
-\item Interfészek\newline
-\comment{Mely interfészeket valósítja meg.}
-\item Attribútumok\newline
-\comment{Milyen attribútumai vannak}
-	\begin{itemize}
-		\item attribútum1: attribútum jellemzése: mire való, láthatósága (UML jelöléssel), típusa
-		\item attribútum2: attribútum jellemzése: mire való, láthatósága (UML jelöléssel), típusa
-	\end{itemize}
+Pálya betöltése
 \item Metódusok\newline
-\comment{Milyen publikus, protected és privát  metódusokkal rendelkezik. Metódusonként precíz leírás, ha szükséges, activity diagram is  a metódusban megvalósítandó algoritmusról.}
 	\begin{itemize}
-		\item int foo(Osztály3 o1, Osztály4 o2): metódus leírása, láthatósága (UML jelöléssel)
-		\item int bar(Osztály5 o1): metódus leírása, láthatósága (UML jelöléssel)
+		\item void run(filePath: string): Utasítások betöltése fájlból. +
 	\end{itemize}
 \end{itemize}
 
