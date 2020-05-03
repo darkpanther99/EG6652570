@@ -8,12 +8,48 @@
 \section{A grafikus interfész}
 \comment{A menürendszer, a kezelői felület grafikus képe. A grafikus felület megjelenését, a használt ikonokat, stb screenshot-szerű képekkel kell bemutatni. Az építészetben ez a homlokzati terv.}
 
-\begin{figure}[h]
-\begin{center}
-%\includegraphics[width=17cm]{chapters/chapter11/example.pdf}
-\caption{x}
-\label{fig:Grafikus}
-\end{center}
+A játék indításakor az alábbi menü jön be:
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=11cm]{chapters/chapter11/res/menu.png}
+		\caption{A játék menüjét bemutató ábra}
+		\label{fig:Menu}
+	\end{center}
+\end{figure}
+
+A két Spinner segítségével kiválasztható a játékosok száma, kutatókra és eszkimókra lebontva.
+A New Game gomb segítségével indítható el a játék, ami működés közben valahogy így néz ki:
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=11cm]{chapters/chapter11/res/game1.png}
+		\caption{Kép a játékról, eszközökkel}
+		\label{fig:Game1}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=11cm]{chapters/chapter11/res/game2.png}
+		\caption{Kép a játékról, eszközök nélkül}
+		\label{fig:Game2}
+	\end{center}
+\end{figure}
+
+A képen láthatók a játékosok jobb oldalt, akik részt vesznek a játékban. Az ikonjuk alapján megkülönböztethetőek egyértelműen. Az ikon alatt pirossal a testhő, sárgával a játékos energiája látható.
+Az aktuálisan kiválasztott játékost, akit zöld keret vesz körül, lehet irányítani, és láthatóak a tárgyai a bal oldalon. Az éppen használatban lévő tárgyakat szintén zöld keret veszi körül. Az élelem és sátorzacskó fogyócikkek fölött számláló helyezkedik el, ami a kiválasztott játékosnak éppen birtokában lévő mennyiséget jelzi belőlük. A tárgyak között látható törékeny falapát, míg törhetetlen lila kristálylapát is.
+A képernyő alján az akciógombok helyezkednek el, ezekkel lehet a modellben specifikált use-casek szerint irányítani az éppen kiválasztott játékost. Emellett ha már nem szeretne akciót végezni, véget vethet körének a játékos. A játékból való kilépés és a hang kikapcsolása is ezen a gombsoron kapott helyet.
+A képernyő közepén található a lényeg, maga a játék megjelenítése. A jégmezőt a hideg, fagyos óceán veszi körül, míg a tükörsima jégen félelmetes jegesmedve szörny, és tőle rettegő, onnan menekülni vágyó játékosok láthatók. Kapucniban az iglulakó eszkimók találhatók, míg sapkában a sarkkutatók fedezik fel a jégtáblák rejtelmeit. Felfedezett jégtábláik teherbírását zászlóval jelölik: zölddel, ha az nem törhet el, míg pirossal és egy számmal, ha az eltörhet a számot meghaladó játékosok lába alatt.
+A jégen találhatók tárgyak is, sátorzacskó, törhetetlen lapát, emellett vannak épületek is lerakva, iglu és sátor is.
+A jégmezőn található hóval nem fedett vizesgödör, hóval fedett és sima jégtábla is. A hómennyiség az üres jégtől kezdve 5 réteg hóig terjedhet, mindegyik látható a pillanatképünkön.
+A jégmezőn néha feltámad a hóvihar, ez az alábbihoz hasonló animációval lesz majd megjelenítve:
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=11cm]{chapters/chapter11/res/storm.png}
+		\caption{Kép a játékban a hóviharról}
+		\label{fig:Snowstorm}
+	\end{center}
 \end{figure}
 
 \section{A grafikus rendszer architektúrája}
