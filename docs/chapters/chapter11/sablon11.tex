@@ -6,9 +6,9 @@
 \thispagestyle{fancy}
 
 \section{A grafikus interfész}
-\comment{A menürendszer, a kezelői felület grafikus képe. A grafikus felület megjelenését, a használt ikonokat, stb screenshot-szerű képekkel kell bemutatni. Az építészetben ez a homlokzati terv.}
+%\comment{A menürendszer, a kezelői felület grafikus képe. A grafikus felület megjelenését, a használt ikonokat, stb screenshot-szerű képekkel kell bemutatni. Az építészetben ez a homlokzati terv.}
 
-A játék indításakor az alábbi menü jön be:
+A játék indításakor megjelenő főmenü szerkezete a következő:
 
 \begin{figure}[H]
 	\begin{center}
@@ -18,7 +18,7 @@ A játék indításakor az alábbi menü jön be:
 	\end{center}
 \end{figure}
 
-A két Spinner segítségével kiválasztható a játékosok száma, kutatókra és eszkimókra lebontva.
+A két spinner segítségével kiválasztható a játékosok száma, kutatókra és eszkimókra lebontva.
 A New Game gomb segítségével indítható el a játék, ami működés közben valahogy így néz ki:
 
 \begin{figure}[H]
@@ -42,7 +42,7 @@ A képernyő alján az akciógombok helyezkednek el, ezekkel lehet a modellben s
 A képernyő közepén található a lényeg, maga a játék megjelenítése. A jégmezőt a hideg, fagyos óceán veszi körül, míg a tükörsima jégen félelmetes jegesmedve szörny, és tőle rettegő, onnan menekülni vágyó játékosok láthatók. Kapucniban az iglulakó eszkimók találhatók, míg sapkában a sarkkutatók fedezik fel a jégtáblák rejtelmeit. Felfedezett jégtábláik teherbírását zászlóval jelölik: zölddel, ha az nem törhet el, míg pirossal és egy számmal, ha az eltörhet a számot meghaladó játékosok lába alatt.
 A jégen találhatók tárgyak is, sátorzacskó, törhetetlen lapát, emellett vannak épületek is lerakva, iglu és sátor is.
 A jégmezőn található hóval nem fedett vizesgödör, hóval fedett és sima jégtábla is. A hómennyiség az üres jégtől kezdve 5 réteg hóig terjedhet, mindegyik látható a pillanatképünkön.
-A jégmezőn néha feltámad a hóvihar, ez az alábbihoz hasonló animációval lesz majd megjelenítve:
+A jégmezőn néha feltámad a hóvihar, ami áttetsző szürke grafikával lesz majd megjelenítve:
 
 \begin{figure}[H]
 	\begin{center}
@@ -53,17 +53,17 @@ A jégmezőn néha feltámad a hóvihar, ez az alábbihoz hasonló animációval
 \end{figure}
 
 \section{A grafikus rendszer architektúrája}
-\comment{A felület működésének elve, a grafikus rendszer architektúrája (struktúra diagramok). A struktúra diagramokon a prototípus azon és csak azon osztályainak is szerepelnie kell, amelyekhez a grafikus felületet létrehozó osztályok kapcsolódnak.}
+%\comment{A felület működésének elve, a grafikus rendszer architektúrája (struktúra diagramok). A struktúra diagramokon a prototípus azon és csak azon osztályainak is szerepelnie kell, amelyekhez a grafikus felületet létrehozó osztályok kapcsolódnak.}
 
 \subsection{A felület működési elve}
 
-A feladat megvalósítása során törekedtünk az MVC architechtúrára. A modellt a korábbi fázisokban elkészült program biztosítja. A modell önmagában csak adatokat szogláltat ezért minden adata hozzáférhető getterek segítségével. A View pullolja a modell adatait, míg a Controller pusholja azt. A modell önmagában nem observable, mert minden változást a Controller vált ki futása során.
+A feladat megvalósítása során törekedtünk az MVC architektúrára. A modellt a korábbi fázisokban elkészült program biztosítja. A modell nem okoz eseményeket: minden modellbeli változást a Controller okoz, ezért View akkor pullolja a modell változásait, miután a Controller pusholta azokat. Kivételek a GameObserver.victory, GameObserver.gameOver, GameObserver.explore események, amik külön kezelést igényelnek.
 
-A View egy pálya nézet. Megkapja a Modellt mint dependecy injection. Update hatására kiolvassa a Modell álapotát és megjeleníti azt. A View implementálja a GameObservert.
+A View a pálya nézet. Megkapja a Modellt mint dependency injection. Update hatására kiolvassa a Modell állapotát és megjeleníti azt. A View implementálja a GameObserver.explore eventet, a felderített cellák megjelenítésére. A könnyebb irányítás érdekében biztosít egy TileClick eventet, amire a Controller feliratkozhat.
 
-A Controller felelős a UI elemek kezeléséért. Megkapja a Modell-t és a View-t, mint dependency injection. Feliratkozhat a View eventjeire, ha az is irányítható. Fontos feladata az felhasználótól érkező inputok lekezelése. Írja a modell álapotát, frissíti a View-t.
+A Controller felelős a UI elemek kezeléséért. Megkapja a Modell-t és a View-t, mint dependency injection. Számon tartja, hogy melyik játékos van soron. A UI események alapján végrehajt változtatásokat a modellen a kiválasztott játékossal, majd frissíti a View-t. Megvalósítja a kör logikát, vezérli a jegesmedvét és a hóviharokat.
 
-A főprogram felelős a játék főmenüjének megjelenítéséért és az ehhez kapcsolódó inputok lekezeléséért. A főmenüben meg lehet adni a játékosok számát, neveit. Modellt épít a Proto-val. Implementálja a GameObserver-t, ezzel képes a játék végét kezelni. View-t és Controller-t nyit és zár.
+A főprogram felelős a játék főmenüjének megjelenítéséért és az ehhez kapcsolódó inputok lekezeléséért. A főmenüben meg lehet adni a játékosok számát. Modellt épít a MapLoader-rel. Létrehozza a View-t és a Controllert, elindítja a játékot. Implementálja a GameObserver-t, ezzel képes játék végén bezárni a Controllert.
 \subsection{A felület osztály-struktúrája}
 
 \begin{figure}[H]
@@ -79,7 +79,7 @@ A főprogram felelős a játék főmenüjének megjelenítéséért és az ehhez
 \subsection{View}
 \begin{itemize}
 \item Felelősség\newline
-Felelőssége a játékpálya megjelenítése és felépítése. A játékpálya TileView-k ból épül majd fel.
+Felelőssége a játékpálya megjelenítése és felépítése. A játékpálya TileView-kból épül majd fel.
 \item Ősosztályok\newline
 JScrollPane
 \item Interfészek\newline
@@ -92,7 +92,8 @@ MouseListener GameObserver
 	\begin{itemize}
 		\item void update(): Frissíti a tábla elemeit. +
 		\item void addTileClickedListener(TileClickedListener tcl): Szól neki ha a TileView-ra klikkeltek +
-		\item void explore(Tile t): Beállítja a megdfelelő TileView.isExplored-et. +
+		\item void explore(Tile t): Beállítja a megfelelő TileView.isExplored-et. +
+		\item void mouseClicked(): TileClicked eventet küld.
 	\end{itemize}
 \end{itemize}
 
@@ -100,6 +101,10 @@ MouseListener GameObserver
 \begin{itemize}
 	\item Felelősség\newline
 	Figyeli a kattintást a tilen. Interfész
+	\item Metódusok\newline
+	\begin{itemize}
+		\item void tileClick(Tile)
+	\end{itemize}	
 \end{itemize}
 
 \subsection{TileView}
@@ -110,7 +115,7 @@ MouseListener GameObserver
 	JPanel
 	\item Attribútumok\newline
 	\begin{itemize}
-		\item tile: Tile: Maga a tile amit ismer -
+		\item tile: Tile: A tile amit ismer +
 		\item isExplored: bool: Felderítették-e. +
 	\end{itemize}
 	\item Metódusok\newline
@@ -129,8 +134,8 @@ MouseListener GameObserver
 	TileClickListener
 	\item Attribútumok\newline
 	\begin{itemize}
-		\item selectedPlayer: Player: Első játákos/kiválasztott +
-		\item game: Game: Maga a játék instance, modell. +
+		\item selectedPlayer: Player: Ez a játékos van soron, rá vonatkozik az irányítás +
+		\item game: Game: A játék instance, modell. +
 		\item view: View: A tartalmazott View osztály amit megjelenít. +
 		\item inventoryMenu: InventoryMenu: Ez az oldalt megjelenített sáv. +
 		\item actionsMenu: ActionsMenu: Az alul megjelenített gomb sáv. +
@@ -138,7 +143,8 @@ MouseListener GameObserver
 	\end{itemize}
 	\item Metódusok\newline
 	\begin{itemize}
-		\item void update(): Frissíti az összes grafikai elemet. +
+		\item Controller(Game, View): beállítódik a Game és a View. Létrejönnek az alrészek.
+		\item void update(): Frissíti az összes grafikai elemet: View, InventoryMenu, PlayerList, ActionsMenu. +
 		\item void nextTurn(): Egy kör lefutását kezeli. +
 		\item void tileClick(Tile t): Ha a cella szomszédos a jelenleg kiválasztott játékossal akkor odalép. +
 	\end{itemize}
@@ -176,6 +182,7 @@ MouseListener GameObserver
 	\end{itemize}
 	\item Metódusok\newline
 	\begin{itemize}
+		\item void mouseClicked(): equip()
 		\item void equip(): Equipped állapot beállítása. +
 	\end{itemize}
 \end{itemize}
@@ -191,6 +198,12 @@ MouseListener GameObserver
 	\item Attribútumok\newline
 	\begin{itemize}
 		\item controller: Controller: Ismeri a hozzá tartozó vezérlőt. +	
+		\item digButton: JButton
+		\item buildButton: JButton
+		\item rescueButton: JButton
+		\item assembleButton: JButton
+		\item exitButton: JButton
+		\item newxtTurnButton: JButton
 	\end{itemize}
 	\item Metódusok\newline
 	\begin{itemize}
@@ -220,6 +233,8 @@ MouseListener GameObserver
 	\item Metódusok\newline
 	\begin{itemize}
 		\item void update(): Kiválasztott játékos panel frissítése. +
+		\item void select(Player): Szól a Controllernek hogy új játékos következik.
+		\item void deselect(Player): Szól a Controllernek hogy új játékos következik.
 	\end{itemize}
 \end{itemize}
 
@@ -240,13 +255,20 @@ MouseListener GameObserver
 	\item Metódusok\newline
 	\begin{itemize}
 		\item void update(): Kiválasztott játékos panel frissítése. +
+		\item void addPlayerSelectListener(PlayerSelectListener): feliratkozás a PlayerSelect eventre.
+		\item void mouseClicked(): PlayerSelect.select event küldése.
 	\end{itemize}
 \end{itemize}
 
 \subsection{PlayerSelectListener}
 \begin{itemize}
 	\item Felelősség\newline
-	Interfész, kezeli a kiválasztást.
+	Az esemény hívója kifejezi a kiválasztott játékos megváltoztatására irányuló szándékát.
+	\item Metódusok\newline
+	\begin{itemize}
+		\item void select(Player): Ez a játékos legyen kiválasztva. +
+		\item void deselect(Player): A játékos ne legyen kiválasztva. Következzen valaki más. +
+	\end{itemize}
 \end{itemize}
 
 \subsection{Main}
@@ -255,7 +277,7 @@ MouseListener GameObserver
 	Belépési pont.
 	\item Metódusok\newline
 	\begin{itemize}
-		\item void main(): Fő szál. +
+		\item static void main(): MainMenu-t nyit. +
 	\end{itemize}
 \end{itemize}
 
@@ -279,21 +301,23 @@ MouseListener GameObserver
 		\item void gameOver(): Játék vége. +
 		\item Game createGame(): Játék létrehozása. -
 		\item Controller createController(Game g): Controller létrehozása. -
+		\item void windowClosing(): A Controller bezárásakor mutat egy "Biztos ki akarsz lépni?" üzenetet.
 	\end{itemize}
 \end{itemize}
 
 \subsection{MapLoader}
 \begin{itemize}
 \item Felelősség\newline
-Pálya betöltése
+Pálya betöltése. Ez az osztály megegyezik a Proto osztállyal előző doksiból. Az elfogadott parancsok formátuma és hatása nem változott.
 \item Metódusok\newline
 	\begin{itemize}
+		\item MapLoader(): Ez a konstruktor abban különbözik a Proto konstruktorától, hogy nem iratkozik fel a GameObserver eventekre. 
 		\item void run(filePath: string): Utasítások betöltése fájlból. +
 	\end{itemize}
 \end{itemize}
 
 \section{Kapcsolat az alkalmazói rendszerrel}
-\comment{Szekvencia-diagramokon ábrázolni kell a grafikus rendszer működését. Konzisztens kell legyen az előző alfejezetekkel. Minden metódus, ami ott szerepel, fel kell tűnjön valamelyik szekvenciában. Minden metódusnak, ami szekvenciában szerepel, szereplnie kell a valamelyik osztálydiagramon.}
+%\comment{Szekvencia-diagramokon ábrázolni kell a grafikus rendszer működését. Konzisztens kell legyen az előző alfejezetekkel. Minden metódus, ami ott szerepel, fel kell tűnjön valamelyik szekvenciában. Minden metódusnak, ami szekvenciában szerepel, szereplnie kell a valamelyik osztálydiagramon.}
 
 \begin{figure}[H]
 	\begin{center}
