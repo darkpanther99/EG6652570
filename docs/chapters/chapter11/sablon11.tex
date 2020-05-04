@@ -56,7 +56,6 @@ A jégmezőn néha feltámad a hóvihar, ez az alábbihoz hasonló animációval
 \comment{A felület működésének elve, a grafikus rendszer architektúrája (struktúra diagramok). A struktúra diagramokon a prototípus azon és csak azon osztályainak is szerepelnie kell, amelyekhez a grafikus felületet létrehozó osztályok kapcsolódnak.}
 
 \subsection{A felület működési elve}
-\comment{Le kell írni, hogy a grafikai megjelenésért felelős osztályok, objektumok hogyan kapcsolódnak a meglevő rendszerhez, a megjelenítés során mi volt az alapelv. Törekedni kell az MVC megvalósításra. Alapelvek lehetnek: \textbf{push} alapú: a modell értesíti a felületet, hogy változott; \textbf{pull} alapú: a felület kérdezi le a modellt, hogy változott-e; \textbf{kevert}: a kettő kombinációja.}
 
 A feladat megvalósítása során törekedtünk az MVC architechtúrára. A modellt a korábbi fázisokban elkészült program biztosítja. A modell önmagában csak adatokat szogláltat ezért minden adata hozzáférhető getterek segítségével. A View pullolja a modell adatait, míg a Controller pusholja azt. A modell önmagában nem observable, mert minden változást a Controller vált ki futása során.
 
@@ -66,10 +65,16 @@ A Controller felelős a UI elemek kezeléséért. Megkapja a Modell-t és a View
 
 A főprogram felelős a játék főmenüjének megjelenítéséért és az ehhez kapcsolódó inputok lekezeléséért. A főmenüben meg lehet adni a játékosok számát, neveit. Modellt épít a Proto-val. Implementálja a GameObserver-t, ezzel képes a játék végét kezelni. View-t és Controller-t nyit és zár.
 \subsection{A felület osztály-struktúrája}
-\comment{Osztálydiagram. Minden új osztály, és azon régiek, akik az újakhoz közvetlenül kapcsolódnak.}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=17cm]{chapters/chapter11/classdiagram.png}
+		\caption{Classdiagram az új osztályokról}
+		\label{fig:classdiagram}
+	\end{center}
+\end{figure}
 
 \section{A grafikus objektumok felsorolása}
-\comment{Az új osztályok felsorolása. Az régi osztályok közül azoknak a felsorolása, ahol változás volt. Ezek esetén csak a változásokat kell leírni.}
 
 \subsection{View}
 \begin{itemize}
@@ -289,4 +294,209 @@ Pálya betöltése
 
 \section{Kapcsolat az alkalmazói rendszerrel}
 \comment{Szekvencia-diagramokon ábrázolni kell a grafikus rendszer működését. Konzisztens kell legyen az előző alfejezetekkel. Minden metódus, ami ott szerepel, fel kell tűnjön valamelyik szekvenciában. Minden metódusnak, ami szekvenciában szerepel, szereplnie kell a valamelyik osztálydiagramon.}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/ActionMenu_doDig.jpg}
+		\caption{ActionMenu Dig}
+		\label{ActionMenu Dig}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/ActionMenu_doRescue.jpg}
+		\caption{ActionMenu Rescue}
+		\label{ActionMenu Rescue}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/ActionsMenu.nextTurn.jpg}
+		\caption{ActionMenu nextTurn}
+		\label{ActionMenu nextTurn}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/ActionsMenu_doAssemble.jpg}
+		\caption{ActionMenu Assemble}
+		\label{ActionMenu Assemble}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/ActionsMenu_DoBuild.jpg}
+		\caption{ActionMenu Build}
+		\label{ActionMenu Build}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/ActionsMenu_DoEat.jpg}
+		\caption{ActionMenu Eat}
+		\label{ActionMenu Eat}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/ActionsMenu.nextTurn.jpg}
+		\caption{ActionMenu nextTuirn}
+		\label{ActionMenu nextTurn}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/Controller_Controller.jpg}
+		\caption{Controller init}
+		\label{Controller init}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/Controller_NextTurn.jpg}
+		\caption{Controller nextTuirn}
+		\label{Controller nextTurn}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/Controller_TileClick.jpg}
+		\caption{Controller TileClick}
+		\label{Controller TileClick}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/Controller_Update.jpg}
+		\caption{Controller Update}
+		\label{Controller Update}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/InventoryMenu_Update.jpg}
+		\caption{InventoryMenu Update}
+		\label{InventoryMenu Update}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/ItemIcon_Equip.jpg}
+		\caption{ItemIcon Equip}
+		\label{ItemIcon Equip}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/ItemIcon_MouseClicked.jpg}
+		\caption{ItemIcon MouseClicked}
+		\label{ItemIcon MouseClicked}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/MainMenu_createGame.jpg}
+		\caption{MainMenu CreateGame}
+		\label{MainMenu CreateGame}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/MainMenu_explore.jpg}
+		\caption{MainMenu Explore}
+		\label{MainMenu Explore}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/MainMenu_gameOver.jpg}
+		\caption{MainMenu GameOver}
+		\label{MainMenu GameOver}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/MainMenu_victory.jpg}
+		\caption{MainMenu Victory}
+		\label{MainMenu Victory}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/PlayerIcon_mouseClicked.jpg}
+		\caption{PlayerIcon MouseClicked}
+		\label{PlayerIcon MouseClicked}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/PlayerIcon_update.jpg}
+		\caption{PlayerIcon Update}
+		\label{PlayerIcon Update}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/PlayerList_deselect.jpg}
+		\caption{PlayerList Deselect}
+		\label{PlayerList Deselect}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/PlayerList_select.jpg}
+		\caption{PlayerList Select}
+		\label{PlayerList Select}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/PlayerList_update.jpg}
+		\caption{PlayerList Update}
+		\label{PlayerList Update}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/TileView_MouseClicked.jpg}
+		\caption{TileView MouseClicked}
+		\label{TileView MouseClicked}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/TileView_Update.jpg}
+		\caption{TileView Update}
+		\label{TileView Update}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/View_Explore.jpg}
+		\caption{View Explore}
+		\label{View Explore}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/View_GameOver.jpg}
+		\caption{View GameOver}
+		\label{View GameOver}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/View_Update.jpg}
+		\caption{View Update}
+		\label{View Update}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{chapters/chapter11/seq/View_Victory.jpg}
+		\caption{View Victory}
+		\label{View Victory}
+	\end{center}
+\end{figure}
+
 
