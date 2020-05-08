@@ -1,0 +1,51 @@
+package grafikus.maploader;
+
+import java.util.List;
+
+/**
+ * Argumentum listából EntityCommand-ot generáló osztály.
+ */
+public class EntityCommandParser implements CommandParser {
+    /**
+     * Visszaadja a parancshoz tartozó kulcsszót
+     *
+     * @return A kulcsszó. Mindig "entity"
+     */
+    @Override
+    public String getKeyword() {
+        return "entity";
+    }
+
+    /**
+     * Letrehoz egy EntityCommand-ot a bejovo argumentumokbol
+     *
+     * @param tokens a parancs argumentumai. { "entity", "$type", ["playerBodyHeat", ["playerEnergy"]]}
+     * @return EntityCommand, a bejovo argumentumokkal
+     * @throws MapLoaderException helytelen bemenet esetén kivételt dob.
+     */
+    @Override
+    public Command parse(List<String> tokens) throws MapLoaderException {
+        if (tokens.size() < 2 || !tokens.get(0).contentEquals(getKeyword())) {
+            throw new MapLoaderException("Rossz bemenet");
+        }
+
+        String type = tokens.get(1);
+        if (!type.contentEquals("eskimo") && !type.contentEquals("polarexplorer") && !type.contentEquals("polarbear")) {
+            throw new MapLoaderException("Helytelen entity tipus");
+        }
+
+        if (tokens.size() > 2) {
+            try {
+                int playerBodyHeat = Integer.parseInt(tokens.get(2));
+                if (tokens.size() > 3) {
+                    int playerEnergy = Integer.parseInt(tokens.get(3));
+                    return new EntityCommand(type, playerBodyHeat, playerEnergy);
+                }
+                return new EntityCommand(type, playerBodyHeat);
+            } catch (NumberFormatException e) {
+                throw new MapLoaderException(e.getMessage(), e.getCause());
+            }
+        }
+        return new EntityCommand(type);
+    }
+}
