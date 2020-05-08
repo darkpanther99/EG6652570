@@ -2,7 +2,7 @@ package grafikus;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
 
 /**
  * Hang osztaly, amit tobbszor le lehet jatszani
@@ -18,13 +18,11 @@ public class Sound implements LineListener {
     }
 
     // Betolti a hangot fajlbol
-    public void load(String path) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void load(InputStream istream) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         if (isReady) {
             return;
         }
-
-        URL u = Thread.currentThread().getContextClassLoader().getResource(path);
-        AudioInputStream stream = AudioSystem.getAudioInputStream(u);
+        AudioInputStream stream = AudioSystem.getAudioInputStream(istream);
         AudioFormat format = stream.getFormat();
         DataLine.Info info = new DataLine.Info(Clip.class, format);
 

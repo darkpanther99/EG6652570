@@ -5,11 +5,10 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.MissingResourceException;
 
-/**
- * Resource manager
- * init fuggvenyben betolti az osszes fajlt, ami kellhet, es tarolja oket
- */
 public class ResourceManager {
 
     // Texturak
@@ -22,26 +21,31 @@ public class ResourceManager {
     // Hangok
     public static Sound soundBackground = new Sound();
 
-    // Betolt egy kepet
-    private static Image loadImage(String path) throws IOException {
-        return ImageIO.read(Thread.currentThread().getContextClassLoader().getResource(path));
+    public static URL getResource(String path) {
+        URL u = Thread.currentThread().getContextClassLoader().getResource(path);
+        if (u == null) throw new MissingResourceException("Missing resource: " + path,
+                Thread.currentThread().getContextClassLoader().getName(), path);
+        return u;
     }
 
     // Betolt mindent
-    public static void init() {
+    static {
         try {
-            imageIce = loadImage("res/ice.png");
-            imageLeaves = loadImage("res/oak_leaves.png");
-            imageSea = loadImage("res/water.png");
-            imageEntity = loadImage("res/entity.png");
+            imageIce = ImageIO.read(getResource("res/ice.png"));
+            imageIce = ImageIO.read(getResource("res/ice.png"));
+            imageLeaves = ImageIO.read(getResource("res/oak_leaves.png"));
+            imageSea = ImageIO.read(getResource("res/water.png"));
+            imageEntity = ImageIO.read(getResource("res/entity.png"));
 
-            Image snow = loadImage("res/snow.png");
+            Image snow = ImageIO.read(getResource("res/snow.png"));
             for (int i = 0; i < 5; i++) {
                 imageSnow[i] = snow;
             }
 
-            soundBackground.load("res/mus.wav");
-        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException | RuntimeException e) {
+            try (InputStream is = getResource("res/mus.wav").openStream()) {
+                soundBackground.load(is);
+            }
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }
     }
