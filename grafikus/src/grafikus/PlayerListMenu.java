@@ -51,5 +51,7 @@ public class PlayerListMenu extends JPanel implements PlayerSelectListener{
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        g.drawImage(ResourceManager.emptyPlayerSlot, 0,0, 100, Controller.SCREEN_HEIGHT, null);
+        paintChildren(g);
     }
 }

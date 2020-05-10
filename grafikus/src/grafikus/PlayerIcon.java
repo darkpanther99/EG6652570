@@ -1,6 +1,8 @@
 package grafikus;
 
+import grafikus.model.Eskimo;
 import grafikus.model.Player;
+import grafikus.model.PolarExplorer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +18,7 @@ public class PlayerIcon extends JPanel implements MouseListener {
     public PlayerIcon(Controller controller, Player player, boolean isSelected) {
         super();
 
-        Dimension d = new Dimension(PlayerListMenu.PLAYERICONSIZE, PlayerListMenu.PLAYERICONSIZE + 40);
+        Dimension d = new Dimension(PlayerListMenu.PLAYERICONSIZE, PlayerListMenu.PLAYERICONSIZE);
         setPreferredSize(d);
         setMinimumSize(d);
 
@@ -37,15 +39,46 @@ public class PlayerIcon extends JPanel implements MouseListener {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.drawImage(ResourceManager.player, 0,0, PlayerListMenu.PLAYERICONSIZE, PlayerListMenu.PLAYERICONSIZE, null);
-        g.drawImage(ResourceManager.imageHP[1], 0,PlayerListMenu.PLAYERICONSIZE + 5, PlayerListMenu.PLAYERICONSIZE, 10, null);
-        g.drawImage(ResourceManager.imageEnergy[1], 0,PlayerListMenu.PLAYERICONSIZE + 20, PlayerListMenu.PLAYERICONSIZE, 10, null);
+        g.drawImage(ResourceManager.playerSlot, 0,0, PlayerListMenu.PLAYERICONSIZE, PlayerListMenu.PLAYERICONSIZE, null);
+        if(player instanceof Eskimo){
+            g.drawImage(ResourceManager.eskimo,
+                    PlayerListMenu.PLAYERICONSIZE / 2 - 15,
+                    PlayerListMenu.PLAYERICONSIZE / 2 - 30,
+                    30,
+                    30,
+                    null);
+        }
+        if(player instanceof PolarExplorer){
+            g.drawImage(ResourceManager.explorer,
+                    PlayerListMenu.PLAYERICONSIZE / 2 - 15,
+                    PlayerListMenu.PLAYERICONSIZE / 2 - 30,
+                    30,
+                    30,
+                    null);
+        }
+
+        int hp = player.getBodyTemp();
+        int energy = player.getEnergy();
+        g.drawImage(ResourceManager.imageHP[hp],
+                0,
+                PlayerListMenu.PLAYERICONSIZE / 2 + 5,
+                PlayerListMenu.PLAYERICONSIZE,
+                10,
+                null);
+
+        g.drawImage(ResourceManager.imageEnergy[energy],
+                0,
+                PlayerListMenu.PLAYERICONSIZE / 2 + 20,
+                PlayerListMenu.PLAYERICONSIZE,
+                10,
+                null);
 
     }
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         psl.select(this.player);
+        System.out.print("debug click\n");
     }
 
     @Override
