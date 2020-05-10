@@ -107,6 +107,8 @@ public class ActionsMenu extends JPanel implements ActionListener {
         } else if(e.getActionCommand().contentEquals(AC_NEXT_TURN)) {
             nextTurn();
         }
+
+        controller.update();
     }
 
     //public void paint
