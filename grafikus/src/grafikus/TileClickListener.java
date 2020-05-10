@@ -1,6 +1,8 @@
 package grafikus;
 
+import grafikus.model.Tile;
+
 public interface TileClickListener {
-    void tileClick();
+    void tileClick(Tile t);
 
 }
