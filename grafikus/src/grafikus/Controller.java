@@ -2,6 +2,8 @@ package grafikus;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.*;
 import java.util.List;
 import java.util.Map;
@@ -68,6 +70,8 @@ public class Controller extends JFrame implements TileClickListener {
         }
 
         nextTurn();
+
+        this.repaint();
     }
 
     public void nextTurn() {
@@ -87,5 +91,7 @@ public class Controller extends JFrame implements TileClickListener {
                 break;
             }
         }
+
+        update();
     }
 }

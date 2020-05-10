@@ -30,5 +30,7 @@ public class InventoryMenu extends JPanel {
                 this.add(icon);
             }
         }
+
+        this.repaint();
     }
 }

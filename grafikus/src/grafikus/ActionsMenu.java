@@ -60,7 +60,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
     }
 
     public void update() {
-
+        this.repaint();
     }
 
     public void doDig() {
