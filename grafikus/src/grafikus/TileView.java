@@ -7,16 +7,20 @@ import grafikus.model.Tile;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TileView extends JPanel {
+public class TileView extends JPanel implements MouseListener {
     private Tile tile;
     private boolean isExplored;
     static private int s_TileSize = 64;
+    private TileClickListener tcl;
     private int x, y;
-    public TileView(Tile t) {
+    public TileView(Tile t, TileClickListener tcl) {
         tile = t;
+        this.tcl = tcl;
         isExplored = false;
     }
 
@@ -70,4 +74,28 @@ public class TileView extends JPanel {
         return tile;
     }
 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        tcl.tileClick(tile);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 }

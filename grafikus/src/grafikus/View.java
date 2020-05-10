@@ -11,18 +11,18 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class View extends JScrollPane implements GameObserver, MouseListener {
+public class View extends JScrollPane implements GameObserver {
     // cellak merete, ezt a gorgovel lehetne valtoztatni
     // meg ugyanigy lehetne itt egy xOffset, yOffset, amivel pedig lehet mozgatni a nezetet
     // >Ezek a parameterek amugy majd floatok kellenek, hogy legyenek, es csak a vegen konvertalodnak intte
     private ArrayList<TileView> tiles;
     private boolean isStorm;
     private TileClickListener tcl;
-    private Game game;
     private int width;
     private int height;
     View(int w, int h) {
         super();
+        // TODO(Mark): Itt kene krealni is a tileview-kat
         tiles = new ArrayList<>();
         isStorm = false;
         width = w;
@@ -41,7 +41,6 @@ public class View extends JScrollPane implements GameObserver, MouseListener {
 
     public void addTileClickedListener(TileClickListener tcl) {
         this.tcl = tcl;
-        // NOTE(Mark): Ez mi a fasz??
     }
 
     @Override
@@ -63,28 +62,4 @@ public class View extends JScrollPane implements GameObserver, MouseListener {
         }
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        tcl.tileClick();
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
 }
