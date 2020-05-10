@@ -28,7 +28,8 @@ public class ItemIcon extends JPanel implements MouseListener {
     public void equip(){
         if(isEquipped) return;
         Player p = controller.selectedPlayer;
-
+        int i = p.getInventory().indexOf(item);
+        p.equip(i);
     }
 
     @Override
