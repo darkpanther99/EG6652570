@@ -1,5 +1,16 @@
 package grafikus;
 
-public class InventoryMenu {
-    public static final int ITEMSIZE = 64;
+import javax.swing.*;
+
+public class InventoryMenu extends JPanel {
+
+    private Controller controller;
+
+    public InventoryMenu(Controller controller) {
+        this.controller = controller;
+    }
+
+    public void update() {
+
+    }
 }
