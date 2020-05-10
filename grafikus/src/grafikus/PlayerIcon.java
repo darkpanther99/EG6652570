@@ -13,10 +13,10 @@ public class PlayerIcon extends JPanel implements MouseListener {
     public PlayerSelectListener psl;
     public boolean isSelected = false;
 
-    public PlayerIcon(Controller controller, PlayerSelectListener psl, Player player, boolean isSelected) {
+    public PlayerIcon(Controller controller, Player player, boolean isSelected) {
         super();
 
-        Dimension d = new Dimension(PlayerListMenu.PLAYERICONSIZE, PlayerListMenu.PLAYERICONSIZE);
+        Dimension d = new Dimension(PlayerListMenu.PLAYERICONSIZE, PlayerListMenu.PLAYERICONSIZE + 40);
         setPreferredSize(d);
         setMinimumSize(d);
 
@@ -26,17 +26,21 @@ public class PlayerIcon extends JPanel implements MouseListener {
     }
 
     public void update(){
-
+        if(player.getEnergy() <= 0) psl.deselect(this.player);
+        repaint();
     }
 
     public void addPlayerSelectListener(PlayerSelectListener psl){
-
+        this.psl = psl;
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.drawImage(ResourceManager.imageEntity, 0,0, PlayerListMenu.PLAYERICONSIZE, PlayerListMenu.PLAYERICONSIZE, null);
+        g.drawImage(ResourceManager.player, 0,0, PlayerListMenu.PLAYERICONSIZE, PlayerListMenu.PLAYERICONSIZE, null);
+        g.drawImage(ResourceManager.imageHP[1], 0,PlayerListMenu.PLAYERICONSIZE + 5, PlayerListMenu.PLAYERICONSIZE, 10, null);
+        g.drawImage(ResourceManager.imageEnergy[1], 0,PlayerListMenu.PLAYERICONSIZE + 20, PlayerListMenu.PLAYERICONSIZE, 10, null);
+
     }
 
     @Override

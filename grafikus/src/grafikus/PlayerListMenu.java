@@ -5,7 +5,6 @@ import grafikus.model.Player;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class PlayerListMenu extends JPanel implements PlayerSelectListener{
     public static final int PLAYERICONSIZE = 64;
@@ -18,11 +17,13 @@ public class PlayerListMenu extends JPanel implements PlayerSelectListener{
         this.iconlist = new ArrayList<>();
 
         for (Player p : controller.game.getPlayers()) {
-            PlayerIcon pi = new PlayerIcon(controller, this, p, false);
+            PlayerIcon pi = new PlayerIcon(controller, p, false);
+            pi.addPlayerSelectListener(this);
             if(controller.selectedPlayer == p){
                 pi.isSelected = true;
             }
             iconlist.add(pi);
+            this.add(pi);
         }
 
         Dimension d = new Dimension(100, Controller.SCREEN_HEIGHT);
@@ -31,7 +32,10 @@ public class PlayerListMenu extends JPanel implements PlayerSelectListener{
     }
 
     public void update(){
-
+        for (PlayerIcon pi : iconlist) {
+            pi.isSelected = pi.player == controller.selectedPlayer;
+            pi.update();
+        }
     }
 
     public void select(Player p){
@@ -40,6 +44,12 @@ public class PlayerListMenu extends JPanel implements PlayerSelectListener{
     }
 
     public void deselect(Player p){
+        //TODO p = controller.getNextPlayer();
+        // select(p);
+    }
 
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
     }
 }
