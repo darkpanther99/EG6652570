@@ -23,6 +23,8 @@ public class Controller extends JFrame implements TileClickListener {
     public Player selectedPlayer = null;
 
     public Controller(Game game) {
+        this.game = game;
+
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Jegmezo");
 
