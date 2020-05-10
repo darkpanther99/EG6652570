@@ -5,6 +5,7 @@ import grafikus.model.GameObserver;
 import grafikus.model.Tile;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -25,15 +26,16 @@ public class View extends JPanel implements GameObserver {
         Dimension d = new Dimension(width, height);
         setPreferredSize(d);
         //setMinimumSize(d);
+        //setMaximumSize(d);
         tiles = new ArrayList<>();
         setLayout(new GridLayout(height/64,width/64, 0, 0));
-
+        setBorder(new EmptyBorder(0, 0, 0, 0));
 
         // NOTE(Mark): Teszt
         for (int i = 0; i < (width/64)*(height/64); i++) {
             Tile t = new Tile();
             t.setSnow(new Random().nextInt(5 + 1));
-            tiles.add(new TileView(t,tcl ));
+            tiles.add(new TileView(t,tcl));
             add(tiles.get(tiles.size()-1));
         }
 
