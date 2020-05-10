@@ -1,9 +1,6 @@
 package grafikus;
 
-import grafikus.model.Entity;
-import grafikus.model.Item;
-import grafikus.model.Shelter;
-import grafikus.model.Tile;
+import grafikus.model.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -21,6 +18,7 @@ public class TileView extends JPanel implements MouseListener {
     private TileClickListener tcl;
     public TileView(Tile t, TileClickListener tcl) {
         super();
+        addMouseListener(this);
         tile = t;
         this.tcl = tcl;
         isExplored = false;
@@ -49,6 +47,46 @@ public class TileView extends JPanel implements MouseListener {
         }
         g.drawImage(ResourceManager.imageIce, 0, 0, s_TileSize, s_TileSize, null);
         g.drawImage(tileImage, 0, 0, s_TileSize, s_TileSize, null);
+
+
+        // Shelter majd ide
+
+        Shelter shelter = tile.getShelter();
+        if (shelter != null) {
+            if (shelter instanceof Tent) {
+                g.drawImage(ResourceManager.tent, 0,0,s_TileSize, s_TileSize,null);
+            }
+            if (shelter instanceof Igloo) {
+                g.drawImage(ResourceManager.igloo, 0,0,s_TileSize, s_TileSize,null);
+            }
+        }
+
+
+        Item item = tile.getItem();
+        if (item != null && tile.getSnow() == 0) {
+            if (item instanceof Shovel) {
+                g.drawImage(ResourceManager.shovel, 0,0,s_TileSize, s_TileSize,null);
+            }
+            if (item instanceof BreakingShovel) {
+                g.drawImage(ResourceManager.breakingShovel, 0,0,s_TileSize, s_TileSize,null);
+            }
+            if (item instanceof TentKit) {
+                g.drawImage(ResourceManager.tentkit, 0,0,s_TileSize, s_TileSize,null);
+            }
+            if (item instanceof Part) {
+                g.drawImage(ResourceManager.flare, 0,0,s_TileSize, s_TileSize,null);
+            }
+            if (item instanceof Food) {
+                g.drawImage(ResourceManager.food, 0,0,s_TileSize, s_TileSize,null);
+            }
+            if (item instanceof ScubaGear) {
+                g.drawImage(ResourceManager.scubaGear, 0,0,s_TileSize, s_TileSize,null);
+            }
+            if (item instanceof Rope) {
+                g.drawImage(ResourceManager.rope, 0,0,s_TileSize, s_TileSize,null);
+            }
+        }
+
 
         int occupantCount = tile.getOccupants().size();
         if (occupantCount > 0) {
@@ -85,7 +123,7 @@ public class TileView extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        tcl.tileClick(tile);
+        if (tcl != null) tcl.tileClick(tile);
     }
 
     @Override
