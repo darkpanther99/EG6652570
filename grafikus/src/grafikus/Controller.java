@@ -44,13 +44,8 @@ public class Controller extends JFrame implements TileClickListener {
         inventoryMenu = new InventoryMenu(this);
         this.add(inventoryMenu, BorderLayout.WEST);
 
-        JPanel southPanel = new JPanel();
-        southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
-
         actionsMenu = new ActionsMenu(this);
-        southPanel.add(actionsMenu);
-
-        this.add(southPanel, BorderLayout.SOUTH);
+        this.add(actionsMenu, BorderLayout.SOUTH);
 
         pack();
         setVisible(true);

@@ -17,14 +17,15 @@ public class ActionsMenu extends JPanel implements ActionListener {
             super.paint(g);
 
             Graphics2D g2 = (Graphics2D)g;
-            g2.setColor(Color.WHITE);
+            g2.setColor(Color.DARK_GRAY);
             g2.fillRect(0, 0, getWidth(), getHeight());
 
-            g2.drawImage(ResourceManager.buttonSlot, 0, 0, getWidth(), getHeight(), null);
             FontMetrics metrics = getFontMetrics(getFont());
 
+            int x = (getWidth() - metrics.stringWidth(getText())) / 2;
+            int y = (getHeight() - metrics.getHeight()) / 2 + metrics.getAscent();
             g2.setColor(Color.BLACK);
-            g2.drawString(getText(), 0, getHeight() / 2 + metrics.getHeight() / 4);
+            g2.drawString(getText(), x, y);
         }
     }
 
@@ -50,7 +51,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
     public ActionsMenu(Controller controller) {
         this.controller = controller;
 
-        this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
+        this.setLayout(new FlowLayout(FlowLayout.CENTER, 8, 16));
 
         digButton = new MenuButton("Dig");
         digButton.setActionCommand(AC_DIG);
@@ -140,5 +141,13 @@ public class ActionsMenu extends JPanel implements ActionListener {
         }
 
         controller.update();
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        g.setColor(Color.black);
+        g.drawImage(ResourceManager.buttonSlot, 0, 0, getWidth(), getHeight(), null);
+
+        paintChildren(g);
     }
 }
