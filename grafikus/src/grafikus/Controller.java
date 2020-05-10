@@ -50,8 +50,7 @@ public class Controller extends JFrame implements TileClickListener {
     }
 
     public void update() {
-        view.update(view.getGraphics());
-
+        view.update();
         inventoryMenu.update();
         playerListMenu.update();
         actionsMenu.update();
