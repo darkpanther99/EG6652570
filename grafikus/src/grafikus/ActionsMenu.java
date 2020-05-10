@@ -10,7 +10,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
     private static final String AC_RESCUE = "rescue";
     private static final String AC_ASSEMBLE = "assemble";
     private static final String AC_EXIT = "exit";
-    private static final String AC_NEW_TURN = "new_turn";
+    private static final String AC_NEXT_TURN = "next_turn";
 
     private Controller controller;
 
@@ -25,7 +25,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
     public ActionsMenu(Controller controller) {
         this.controller = controller;
 
-        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 
         digButton = new JButton();
         digButton.setActionCommand(AC_DIG);
@@ -53,7 +53,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
         this.add(exitButton);
 
         newTurnButton = new JButton();
-        newTurnButton.setActionCommand(AC_NEW_TURN);
+        newTurnButton.setActionCommand(AC_NEXT_TURN);
         newTurnButton.addActionListener(this);
         this.add(newTurnButton);
     }
@@ -62,8 +62,49 @@ public class ActionsMenu extends JPanel implements ActionListener {
 
     }
 
+    public void doDig() {
+        controller.selectedPlayer.dig();
+    }
+
+    public void doBuild() {
+        controller.selectedPlayer.build();
+    }
+
+    public void doEat() {
+        controller.selectedPlayer.eatFood();;
+    }
+
+    public void doRescue() {
+        // TODO
+        controller.selectedPlayer.rescueTeammate(0);
+    }
+
+    public void doAssemble() {
+        controller.selectedPlayer.assembleFlare();
+    }
+
+    public void exit() {
+        // TODO
+    }
+
+    public void nextTurn() {
+        controller.nextTurn();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(e.getActionCommand().contentEquals(AC_DIG)) {
+            doDig();
+        } else if(e.getActionCommand().contentEquals(AC_BUILD)) {
+            doBuild();
+        } else if(e.getActionCommand().contentEquals(AC_RESCUE)) {
+            doRescue();
+        } else if(e.getActionCommand().contentEquals(AC_ASSEMBLE)) {
+            doAssemble();
+        } else if(e.getActionCommand().contentEquals(AC_EXIT)) {
+            exit();
+        } else if(e.getActionCommand().contentEquals(AC_NEXT_TURN)) {
+            nextTurn();
+        }
     }
 }

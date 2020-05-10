@@ -34,13 +34,13 @@ public class Controller extends JFrame implements TileClickListener {
         this.add(view, BorderLayout.CENTER);
 
         playerListMenu = new PlayerListMenu(this);
-        this.add(playerListMenu, BorderLayout.LINE_END);
+        this.add(playerListMenu, BorderLayout.EAST);
 
         actionsMenu = new ActionsMenu(this);
-        this.add(actionsMenu, BorderLayout.PAGE_END);
+        this.add(actionsMenu, BorderLayout.SOUTH);
 
         inventoryMenu = new InventoryMenu(this);
-        this.add(inventoryMenu, BorderLayout.LINE_START);
+        this.add(inventoryMenu, BorderLayout.WEST);
 
 
         pack();
@@ -71,7 +71,7 @@ public class Controller extends JFrame implements TileClickListener {
         game.turn();
     }
 
-    //@Override
+    @Override
     public void tileClick(Tile t) {
         if(selectedPlayer == null) {
             return;
