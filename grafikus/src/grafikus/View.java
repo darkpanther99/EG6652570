@@ -65,7 +65,7 @@ public class View extends JScrollPane implements GameObserver, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        tcl.tileClick();
+        tcl.tileClick(null);
     }
 
     @Override

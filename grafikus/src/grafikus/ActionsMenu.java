@@ -25,6 +25,8 @@ public class ActionsMenu extends JPanel implements ActionListener {
     public ActionsMenu(Controller controller) {
         this.controller = controller;
 
+        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+
         digButton = new JButton();
         digButton.setActionCommand(AC_DIG);
         digButton.addActionListener(this);

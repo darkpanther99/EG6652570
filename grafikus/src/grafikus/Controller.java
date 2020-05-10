@@ -1,7 +1,9 @@
 package grafikus;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.util.Map;
 
 import grafikus.model.*;
@@ -24,18 +26,21 @@ public class Controller extends JFrame implements TileClickListener {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Jegmezo");
 
+        setLayout(new BorderLayout());
+
         view = new View(SCREEN_WIDTH, SCREEN_HEIGHT);
+        this.add(view, BorderLayout.CENTER);
 
         playerListMenu = new PlayerListMenu(this);
-        this.add(playerListMenu);
+        this.add(playerListMenu, BorderLayout.LINE_END);
 
         actionsMenu = new ActionsMenu(this);
-        this.add(actionsMenu);
+        this.add(actionsMenu, BorderLayout.PAGE_END);
 
         inventoryMenu = new InventoryMenu(this);
-        this.add(inventoryMenu);
+        this.add(inventoryMenu, BorderLayout.LINE_START);
 
-        this.add(view);
+
         pack();
         setVisible(true);
 
@@ -46,7 +51,7 @@ public class Controller extends JFrame implements TileClickListener {
         view.update(view.getGraphics());
 
         inventoryMenu.update();
-        //playerListMenu.update();
+        playerListMenu.update();
         actionsMenu.update();
         List<Player> players = game.getPlayers();
 
