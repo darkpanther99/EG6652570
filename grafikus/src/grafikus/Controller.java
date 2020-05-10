@@ -32,7 +32,7 @@ public class Controller extends JFrame implements TileClickListener {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Jegmezo");
 
-        setLayout(new BorderLayout());
+        setLayout(new BorderLayout(0, 0));
 
         view = new View(this);
         this.add(view, BorderLayout.CENTER);
@@ -45,7 +45,7 @@ public class Controller extends JFrame implements TileClickListener {
         this.add(inventoryMenu, BorderLayout.WEST);
 
         JPanel southPanel = new JPanel();
-        southPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
         actionsMenu = new ActionsMenu(this);
         southPanel.add(actionsMenu);

@@ -22,6 +22,8 @@ public class View extends JPanel implements GameObserver {
     View(Controller c) {
         super();
         controller = c;
+        setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+
         tilePanel = new JPanel();
         int width = 640*2;
         int height = 448*2;
