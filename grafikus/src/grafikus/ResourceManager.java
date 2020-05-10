@@ -21,6 +21,8 @@ public class ResourceManager {
     public static Image[] imageHP = new Image[6];
     public static Image[] imageEnergy = new Image[6];
 
+    public static Image player = null;
+
     // Hangok
     public static Sound soundBackground = new Sound();
 
@@ -38,20 +40,19 @@ public class ResourceManager {
             imageLeaves = ImageIO.read(getResource("res/oak_leaves.png"));
             imageSea = ImageIO.read(getResource("res/water.png"));
             imageEntity = ImageIO.read(getResource("res/entity.png"));
+            player = ImageIO.read(getResource("png/explorer1_playericon.png"));
 
             Image snow = ImageIO.read(getResource("res/snow.png"));
             for (int i = 0; i < 5; i++) {
                 imageSnow[i] = snow;
             }
 
-            Image hp = ImageIO.read(getResource("png/HP_Energí_0.png"));
-            imageHP[0] = hp;
+            imageHP[0] = ImageIO.read(getResource("png/HP_Energí_0.png"));
             for (int i = 1; i < 6; i++) {
                 imageHP[i] = ImageIO.read(getResource("png/HP" + i));
             }
 
-            Image hp = ImageIO.read(getResource("png/HP_Energí_0.png"));
-            imageEnergy[0] = hp;
+            imageEnergy[0] = ImageIO.read(getResource("png/HP_Energí_0.png"));
             for (int i = 1; i < 6; i++) {
                 imageEnergy[i] = ImageIO.read(getResource("png/energy" + i));
             }
