@@ -32,7 +32,7 @@ public class Controller extends JFrame implements TileClickListener {
 
         setLayout(new BorderLayout());
 
-        view = new View(SCREEN_WIDTH, SCREEN_HEIGHT);
+        view = new View(this);
         this.add(view, BorderLayout.CENTER);
 
         playerListMenu = new PlayerListMenu(this);
