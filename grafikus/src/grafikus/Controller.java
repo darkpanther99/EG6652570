@@ -26,6 +26,9 @@ public class Controller extends JFrame implements TileClickListener {
 
         view = new View(SCREEN_WIDTH, SCREEN_HEIGHT);
 
+        playerListMenu = new PlayerListMenu(this);
+        this.add(playerListMenu);
+
         actionsMenu = new ActionsMenu(this);
         this.add(actionsMenu);
 
