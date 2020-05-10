@@ -53,10 +53,14 @@ public class TileView extends JPanel implements MouseListener {
             tileImage = ResourceManager.waterSide;
             switch (tile.getSnow()) {
                 case -1: // Fent
+                    g2d.translate(s_TileSize, 0);
+                    g2d.scale(-1, 1);
                     g2d.translate(0, s_TileSize);
                     g2d.rotate(Math.toRadians(-90));
                     break;
                 case -2: // Lent
+                    g2d.translate(s_TileSize, 0);
+                    g2d.scale(-1, 1);
                     g2d.translate(s_TileSize, 0);
                     g2d.rotate(Math.toRadians(90));
                     break;
