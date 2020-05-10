@@ -1,6 +1,7 @@
 package grafikus;
 
 import grafikus.model.Item;
+import grafikus.model.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,10 +22,13 @@ public class ItemIcon extends JPanel implements MouseListener {
         this.item = item;
         this.controller = controller;
         this.isEquipped = isEquipped;
+        addMouseListener(this);
     }
 
     public void equip(){
-        isEquipped = true;
+        if(isEquipped) return;
+        Player p = controller.selectedPlayer;
+
     }
 
     @Override

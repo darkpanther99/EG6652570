@@ -26,6 +26,7 @@ public class ResourceManager {
     public static Image eskimo = null;
     public static Image emptyPlayerSlot = null;
     public static Image playerSlot = null;
+    public static Image selectedPlayer = null;
 
     // Hangok
     public static Sound soundBackground = new Sound();
@@ -48,6 +49,7 @@ public class ResourceManager {
             explorer = ImageIO.read(getResource("png/explorer1_playericon.png"));
             emptyPlayerSlot = ImageIO.read(getResource("png/empty_player_slot.png"));
             playerSlot = ImageIO.read(getResource("png/player_slot.png"));
+            selectedPlayer = ImageIO.read(getResource("png/active player.png"));
 
             //Image snow = ImageIO.read(getResource("res/snow.png"));
             Image hole = ImageIO.read(getResource("png/bezskadtjeg.png"));

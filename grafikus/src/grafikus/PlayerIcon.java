@@ -25,6 +25,7 @@ public class PlayerIcon extends JPanel implements MouseListener {
         this.controller = controller;
         this.player = player;
         this.isSelected = isSelected;
+        addMouseListener(this);
     }
 
     public void update(){
@@ -42,18 +43,26 @@ public class PlayerIcon extends JPanel implements MouseListener {
         g.drawImage(ResourceManager.playerSlot, 0,0, PlayerListMenu.PLAYERICONSIZE, PlayerListMenu.PLAYERICONSIZE, null);
         if(player instanceof Eskimo){
             g.drawImage(ResourceManager.eskimo,
-                    PlayerListMenu.PLAYERICONSIZE / 2 - 15,
-                    PlayerListMenu.PLAYERICONSIZE / 2 - 30,
-                    30,
-                    30,
+                    PlayerListMenu.PLAYERICONSIZE / 2 - 10,
+                    PlayerListMenu.PLAYERICONSIZE / 2 - 25,
+                    20,
+                    20,
                     null);
         }
         if(player instanceof PolarExplorer){
             g.drawImage(ResourceManager.explorer,
-                    PlayerListMenu.PLAYERICONSIZE / 2 - 15,
-                    PlayerListMenu.PLAYERICONSIZE / 2 - 30,
-                    30,
-                    30,
+                    PlayerListMenu.PLAYERICONSIZE / 2 - 10,
+                    PlayerListMenu.PLAYERICONSIZE / 2 - 25,
+                    20,
+                    20,
+                    null);
+        }
+        if(isSelected){
+            g.drawImage(ResourceManager.selectedPlayer,
+                    0,
+                    0,
+                    PlayerListMenu.PLAYERICONSIZE,
+                    PlayerListMenu.PLAYERICONSIZE,
                     null);
         }
 
@@ -78,7 +87,6 @@ public class PlayerIcon extends JPanel implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         psl.select(this.player);
-        System.out.print("debug click\n");
     }
 
     @Override
