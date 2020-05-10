@@ -10,11 +10,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
-public class View extends JScrollPane implements GameObserver {
-    // cellak merete, ezt a gorgovel lehetne valtoztatni
-    // meg ugyanigy lehetne itt egy xOffset, yOffset, amivel pedig lehet mozgatni a nezetet
-    // >Ezek a parameterek amugy majd floatok kellenek, hogy legyenek, es csak a vegen konvertalodnak intte
+public class View extends JPanel implements GameObserver {
     private ArrayList<TileView> tiles;
     private boolean isStorm;
     private TileClickListener tcl;
@@ -22,22 +20,40 @@ public class View extends JScrollPane implements GameObserver {
     private int height;
     View(int w, int h) {
         super();
-        // TODO(Mark): Itt kene krealni is a tileview-kat
+        width = 640;
+        height = 448;
+        Dimension d = new Dimension(width, height);
+        setPreferredSize(d);
+        setMinimumSize(d);
         tiles = new ArrayList<>();
+        setLayout(new GridLayout(height/64,width/64));
+
+
+        // NOTE(Mark): Teszt
+        for (int i = 0; i < (width/64)*(height/64); i++) {
+            Tile t = new Tile();
+            t.setSnow(new Random().nextInt(5 + 1));
+            tiles.add(new TileView(t,tcl ));
+            add(tiles.get(tiles.size()-1));
+        }
+
+
         isStorm = false;
-        width = w;
-        height = h;
+
 
     }
 
     public void update() {
         for (TileView tv : tiles) {
             tv.update();
+
         }
         if (isStorm) {
             //TODO(Mark)
         }
+        repaint(getVisibleRect());
     }
+
 
     public void addTileClickedListener(TileClickListener tcl) {
         this.tcl = tcl;

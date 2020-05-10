@@ -17,11 +17,13 @@ public class TileView extends JPanel implements MouseListener {
     private boolean isExplored;
     static private int s_TileSize = 64;
     private TileClickListener tcl;
-    private int x, y;
     public TileView(Tile t, TileClickListener tcl) {
         tile = t;
         this.tcl = tcl;
         isExplored = false;
+        Dimension d = new Dimension(s_TileSize, s_TileSize);
+        setPreferredSize(d);
+        setMinimumSize(d);
     }
 
     public void update() {
@@ -38,8 +40,8 @@ public class TileView extends JPanel implements MouseListener {
         } else {
             tileImage = tile.getWeightLimit() > 0 ? ResourceManager.imageIce : ResourceManager.imageSea;
         }
-
-        g.drawImage(tileImage, x * s_TileSize, y * s_TileSize, s_TileSize, s_TileSize, null);
+        g.drawImage(ResourceManager.imageIce, 0, 0, s_TileSize, s_TileSize, null);
+        g.drawImage(tileImage, 0, 0, s_TileSize, s_TileSize, null);
 
         int occupantCount = tile.getOccupants().size();
         if (occupantCount > 0) {
@@ -56,8 +58,8 @@ public class TileView extends JPanel implements MouseListener {
             // itt az entity-ken loopolnank vegig
             // TODO(Mark): Meg nincs a resource managerben entity img tomb, jelenleg marad ez
             for (int i = 0; i < occupantCount; i++) {
-                int xOffset = x * s_TileSize + (i % horizontalCount) * entitySize;
-                int yOffset = y * s_TileSize + (i / horizontalCount) * entitySize;
+                int xOffset = (i % horizontalCount) * entitySize;
+                int yOffset = (i / horizontalCount) * entitySize;
 
                 Image entityImage = ResourceManager.imageEntity; // ez majd az entitybol jon
                 g.drawImage(entityImage, xOffset, yOffset, entitySize, entitySize, null);

@@ -42,8 +42,11 @@ public class ResourceManager {
             imageEntity = ImageIO.read(getResource("res/entity.png"));
             player = ImageIO.read(getResource("png/explorer1_playericon.png"));
 
-            Image snow = ImageIO.read(getResource("res/snow.png"));
-            for (int i = 0; i < 5; i++) {
+            //Image snow = ImageIO.read(getResource("res/snow.png"));
+            Image hole = ImageIO.read(getResource("png/bezskadtjeg.png"));
+            imageSnow[0] = hole;
+            for (int i = 1; i < 5; i++) {
+                Image snow = ImageIO.read(getResource("png/hó" + Integer.toString(i) + ".png"));
                 imageSnow[i] = snow;
             }
 
