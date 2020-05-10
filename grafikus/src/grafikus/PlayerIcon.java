@@ -10,9 +10,10 @@ import java.awt.event.MouseListener;
 public class PlayerIcon extends JPanel implements MouseListener {
     public Controller controller;
     public Player player;
+    public PlayerSelectListener psl;
     public boolean isSelected = false;
 
-    public PlayerIcon(Controller controller, Player player, boolean isSelected) {
+    public PlayerIcon(Controller controller, PlayerSelectListener psl, Player player, boolean isSelected) {
         super();
 
         Dimension d = new Dimension(PlayerListMenu.PLAYERICONSIZE, PlayerListMenu.PLAYERICONSIZE);
@@ -40,7 +41,7 @@ public class PlayerIcon extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-
+        psl.select(this.player);
     }
 
     @Override
