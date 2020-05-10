@@ -26,7 +26,8 @@ public class PlayerIcon extends JPanel implements MouseListener {
     }
 
     public void update(){
-
+        if(player.getEnergy() <= 0) psl.deselect(this.player);
+        repaint();
     }
 
     public void addPlayerSelectListener(PlayerSelectListener psl){

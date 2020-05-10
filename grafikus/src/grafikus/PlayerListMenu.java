@@ -5,7 +5,6 @@ import grafikus.model.Player;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class PlayerListMenu extends JPanel implements PlayerSelectListener{
     public static final int PLAYERICONSIZE = 64;
