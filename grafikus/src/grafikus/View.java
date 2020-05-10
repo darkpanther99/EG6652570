@@ -22,19 +22,19 @@ public class View extends JPanel implements GameObserver {
         super();
         controller = c;
         tilePanel = new JPanel();
-        int width = 640;
-        int height = 448;
+        int width = 640*2;
+        int height = 448*2;
         Dimension d = new Dimension(width, height);
         tilePanel.setPreferredSize(d);
         tilePanel.setMinimumSize(d);
         tilePanel.setMaximumSize(d);
         tiles = new ArrayList<>();
-        GridLayout gl = new GridLayout(height/64,width/64, 0, 0);
+        GridLayout gl = new GridLayout(height/TileView.s_TileSize,width/TileView.s_TileSize, 0, 0);
         tilePanel.setLayout(gl);
         tilePanel.setBorder(new EmptyBorder(0, 0, 0, 0));
 
         // NOTE(Mark): Teszt
-        for (int i = 0; i < (width/64)*(height/64); i++) {
+        for (int i = 0; i < (width/TileView.s_TileSize)*(height/TileView.s_TileSize); i++) {
             Tile t = new Tile();
             t.setSnow(new Random().nextInt(5+1));
             if (t.getSnow() == 0) {

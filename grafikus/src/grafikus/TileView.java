@@ -14,7 +14,7 @@ import java.util.List;
 public class TileView extends JPanel implements MouseListener {
     private Tile tile;
     private boolean isExplored;
-    static private int s_TileSize = 64;
+    static public int s_TileSize = 128;
     private TileClickListener tcl;
     public TileView(Tile t, TileClickListener tcl) {
         super();
