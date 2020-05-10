@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.Dimension;
 
 public class InventoryMenu extends JPanel {
-    public static final int ITEMSIZE = 64;
+    public static final int ITEMSIZE = 128;
 
     private Controller controller;
 

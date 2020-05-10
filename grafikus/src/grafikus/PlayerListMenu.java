@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class PlayerListMenu extends JPanel implements PlayerSelectListener{
-    public static final int PLAYERICONSIZE = 64;
+    public static final int PLAYERICONSIZE = 128;
     public Controller controller;
     public ArrayList<PlayerIcon> iconlist;
 
@@ -26,7 +26,7 @@ public class PlayerListMenu extends JPanel implements PlayerSelectListener{
             this.add(pi);
         }
 
-        Dimension d = new Dimension(100, Controller.SCREEN_HEIGHT);
+        Dimension d = new Dimension(PLAYERICONSIZE, 0);
         setPreferredSize(d);
         setMinimumSize(d);
     }
@@ -51,7 +51,7 @@ public class PlayerListMenu extends JPanel implements PlayerSelectListener{
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.drawImage(ResourceManager.emptyPlayerSlot, 0,0, 100, Controller.SCREEN_HEIGHT, null);
+        g.drawImage(ResourceManager.emptyPlayerSlot, 0,0, PLAYERICONSIZE, PLAYERICONSIZE * iconlist.size(), null);
         paintChildren(g);
     }
 }
