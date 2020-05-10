@@ -1,42 +1,79 @@
 package grafikus;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.util.*;
+import java.util.Map;
 
-public class Controller implements KeyListener {
+import grafikus.model.*;
 
-    Controller() {
-        JFrame mainFrame = new JFrame("GfxSkicc");
-        View view = new View(800, 600);
+public class Controller extends JFrame implements TileClickListener {
 
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.add(view);
-        mainFrame.pack();
-        mainFrame.setVisible(true);
+    public static final int SCREEN_WIDTH = 800;
+    public static final int SCREEN_HEIGHT = 600;
 
-        mainFrame.addKeyListener(this);
+    private PlayerListMenu playerListMenu = null;
+    private InventoryMenu inventoryMenu = null;
+    private ActionsMenu actionsMenu = null;
+
+    private View view = null;
+
+    public Game game = null;
+    public Player selectedPlayer = null;
+
+    public Controller(Game game) {
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setTitle("Jegmezo");
+
+        view = new View(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+        actionsMenu = new ActionsMenu(this);
+        this.add(actionsMenu);
+
+        inventoryMenu = new InventoryMenu(this);
+        this.add(inventoryMenu);
+
+        this.add(view);
+        pack();
+        setVisible(true);
+
+        //view.addTileClickListener(this);
     }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
+    public void update() {
+        view.update(view.getGraphics());
 
-    }
+        inventoryMenu.update();
+        //playerListMenu.update();
+        actionsMenu.update();
+        List<Player> players = game.getPlayers();
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-        // sound system hasznalata gyakorlatilag ennyi, max meg egy loop-ot lehetne belerakni
-        // ha akarunk hatterzenet
-        if (e.getKeyChar() == 'p') {
-            ResourceManager.soundBackground.play();
+        for(Player player : players) {
+            // NOTE(boti): ez van a szekvencian, de nem egeszen ertem,
+            //             hogy mit akar jelenteni
+            if(player.getEnergy() > 0) {
+                return;
+            }
         }
-        if (e.getKeyChar() == 's') {
-            ResourceManager.soundBackground.stop();
-        }
+
+        nextTurn();
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
+    public void nextTurn() {
+        game.turn();
+    }
 
+    //@Override
+    public void tileClick(Tile t) {
+        if(selectedPlayer == null) {
+            return;
+        }
+
+        Map<Integer, Tile> neighbors = selectedPlayer.getCurrentTile().getNeighbors();
+        for(Map.Entry<Integer, Tile> entry : neighbors.entrySet()) {
+            if(entry.getValue() == t) {
+                selectedPlayer.step(entry.getKey());
+                break;
+            }
+        }
     }
 }
