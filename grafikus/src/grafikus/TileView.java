@@ -43,9 +43,9 @@ public class TileView extends JPanel implements MouseListener {
     public void paint(Graphics g) {
         Image tileImage;
         if (tile.getSnow() > 0) {
-            tileImage = ResourceManager.imageSnow[tile.getSnow() - 1];
+            tileImage = ResourceManager.imageSnow[tile.getSnow()];
         } else {
-            tileImage = tile.getWeightLimit() > 0 ? ResourceManager.imageIce : ResourceManager.imageSea;
+            tileImage = tile.getWeightLimit() > 0 ? ResourceManager.imageIce : ResourceManager.imageSnow[0];
         }
         g.drawImage(ResourceManager.imageIce, 0, 0, s_TileSize, s_TileSize, null);
         g.drawImage(tileImage, 0, 0, s_TileSize, s_TileSize, null);

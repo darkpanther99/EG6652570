@@ -39,6 +39,10 @@ public class View extends JPanel implements GameObserver {
         for (int i = 0; i < (width/64)*(height/64); i++) {
             Tile t = new Tile();
             t.setSnow(new Random().nextInt(5+1));
+            if (t.getSnow() == 0) {
+                t.setWeightLimit(new Random().nextInt(2 + 1));
+            }
+            else t.setWeightLimit(3);
             tiles.add(new TileView(t,tcl));
             tilePanel.add(tiles.get(tiles.size()-1));
         }
