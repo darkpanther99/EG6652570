@@ -28,6 +28,17 @@ public class ResourceManager {
     public static Image playerSlot = null;
     public static Image selectedPlayer = null;
 
+    public static Image shovel = null;
+    public static Image breakingShovel = null;
+    public static Image tentkit = null;
+    public static Image flare = null;
+    public static Image flareLight = null;
+    public static Image food = null;
+    public static Image scubaGear = null;
+    public static Image rope = null;
+
+    public static Image igloo = null;
+    public static Image tent = null;
     // Hangok
     public static Sound soundBackground = new Sound();
 
@@ -41,6 +52,22 @@ public class ResourceManager {
     // Betolt mindent
     static {
         try {
+
+
+            // Shelter
+            igloo = ImageIO.read(getResource("png/iglu.png"));
+            tent = ImageIO.read(getResource("png/sator.png"));
+
+            // Items
+            breakingShovel = ImageIO.read(getResource("png/törékenyásó.png"));
+            shovel = ImageIO.read(getResource("png/törhetetlenásó.png"));
+            tentkit = ImageIO.read(getResource("png/tentkit.png"));
+            flare = ImageIO.read(getResource("png/patron.png"));
+            flareLight = ImageIO.read(getResource("png/jelzőfény.png"));
+            food = ImageIO.read(getResource("png/food.png"));
+            scubaGear = ImageIO.read(getResource("res/oak_leaves.png"));
+            rope = ImageIO.read(getResource("res/oak_leaves.png"));
+
             imageIce = ImageIO.read(getResource("png/jégtile.png"));
             imageLeaves = ImageIO.read(getResource("res/oak_leaves.png"));
             imageSea = ImageIO.read(getResource("res/water.png"));

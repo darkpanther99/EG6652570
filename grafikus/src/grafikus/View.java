@@ -1,8 +1,6 @@
 package grafikus;
 
-import grafikus.model.Game;
-import grafikus.model.GameObserver;
-import grafikus.model.Tile;
+import grafikus.model.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -43,6 +41,12 @@ public class View extends JPanel implements GameObserver {
                 t.setWeightLimit(new Random().nextInt(2 + 1));
             }
             else t.setWeightLimit(3);
+            if (i == 0) {
+                t.setItem(new Shovel());
+                t.setShelter(new Tent());
+                t.setSnow(0);
+                t.setWeightLimit(1);
+            }
             tiles.add(new TileView(t,tcl));
             tilePanel.add(tiles.get(tiles.size()-1));
         }
