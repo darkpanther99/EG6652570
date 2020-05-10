@@ -43,18 +43,18 @@ public class PlayerIcon extends JPanel implements MouseListener {
         g.drawImage(ResourceManager.playerSlot, 0,0, PlayerListMenu.PLAYERICONSIZE, PlayerListMenu.PLAYERICONSIZE, null);
         if(player instanceof Eskimo){
             g.drawImage(ResourceManager.eskimo,
-                    PlayerListMenu.PLAYERICONSIZE / 2 - 10,
-                    PlayerListMenu.PLAYERICONSIZE / 2 - 25,
-                    20,
-                    20,
+                    PlayerListMenu.PLAYERICONSIZE / 4 + PlayerListMenu.PLAYERICONSIZE / 9,
+                    PlayerListMenu.PLAYERICONSIZE / 4 - PlayerListMenu.PLAYERICONSIZE / 11,
+                    PlayerListMenu.PLAYERICONSIZE / 4,
+                    PlayerListMenu.PLAYERICONSIZE / 4,
                     null);
         }
         if(player instanceof PolarExplorer){
             g.drawImage(ResourceManager.explorer,
-                    PlayerListMenu.PLAYERICONSIZE / 2 - 10,
-                    PlayerListMenu.PLAYERICONSIZE / 2 - 25,
-                    20,
-                    20,
+                    PlayerListMenu.PLAYERICONSIZE / 4 + PlayerListMenu.PLAYERICONSIZE / 9,
+                    PlayerListMenu.PLAYERICONSIZE / 4 - PlayerListMenu.PLAYERICONSIZE / 11,
+                    PlayerListMenu.PLAYERICONSIZE / 4,
+                    PlayerListMenu.PLAYERICONSIZE / 4,
                     null);
         }
         if(isSelected){
@@ -69,17 +69,17 @@ public class PlayerIcon extends JPanel implements MouseListener {
         int hp = player.getBodyTemp();
         int energy = player.getEnergy();
         g.drawImage(ResourceManager.imageHP[hp],
-                0,
-                PlayerListMenu.PLAYERICONSIZE / 2 + 5,
-                PlayerListMenu.PLAYERICONSIZE,
-                10,
+                PlayerListMenu.PLAYERICONSIZE/4,
+                PlayerListMenu.PLAYERICONSIZE / 2 + 10,
+                PlayerListMenu.PLAYERICONSIZE/2,
+                12,
                 null);
 
         g.drawImage(ResourceManager.imageEnergy[energy],
-                0,
-                PlayerListMenu.PLAYERICONSIZE / 2 + 20,
-                PlayerListMenu.PLAYERICONSIZE,
-                10,
+                PlayerListMenu.PLAYERICONSIZE/4,
+                PlayerListMenu.PLAYERICONSIZE / 2 + 25,
+                PlayerListMenu.PLAYERICONSIZE/2,
+                12,
                 null);
 
     }
