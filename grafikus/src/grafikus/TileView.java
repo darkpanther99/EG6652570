@@ -6,6 +6,7 @@ import grafikus.model.Shelter;
 import grafikus.model.Tile;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -28,9 +29,8 @@ public class TileView extends JPanel implements MouseListener {
 
         Dimension d = new Dimension(s_TileSize, s_TileSize);
         setPreferredSize(d);
-        //setMinimumSize(d);
-        //setMaximumSize(d);
-        setLayout(new GridLayout(1,1, 0, 0));
+        setMinimumSize(d);
+        setMaximumSize(d);
         setBorder(new EmptyBorder(0, 0, 0, 0));
 
     }
@@ -38,8 +38,6 @@ public class TileView extends JPanel implements MouseListener {
     public void update() {
         repaint(getVisibleRect());
     }
-
-
 
     @Override
     public void paint(Graphics g) {
