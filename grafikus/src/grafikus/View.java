@@ -1,5 +1,6 @@
 package grafikus;
 
+import grafikus.mapgen.MapGen;
 import grafikus.model.*;
 
 import javax.swing.*;
@@ -33,6 +34,14 @@ public class View extends JPanel implements GameObserver {
         tilePanel.setLayout(gl);
         tilePanel.setBorder(new EmptyBorder(0, 0, 0, 0));
 
+        Game g = controller.game;
+        MapGen.generateMap(g);
+        for (Tile t : g.getTiles()) {
+            tiles.add(new TileView(t,tcl));
+            tilePanel.add(tiles.get(tiles.size()-1));
+        }
+        add(tilePanel);
+        /*
         // NOTE(Mark): Teszt
         for (int i = 0; i < (width/TileView.s_TileSize)*(height/TileView.s_TileSize); i++) {
             Tile t = new Tile();
@@ -51,6 +60,8 @@ public class View extends JPanel implements GameObserver {
             tilePanel.add(tiles.get(tiles.size()-1));
         }
         add(tilePanel);
+ */
+
 
         isStorm = false;
 
