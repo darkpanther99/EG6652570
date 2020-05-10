@@ -40,18 +40,31 @@ public class Controller extends JFrame implements TileClickListener {
         playerListMenu = new PlayerListMenu(this);
         this.add(playerListMenu, BorderLayout.EAST);
 
-        actionsMenu = new ActionsMenu(this);
-        this.add(actionsMenu, BorderLayout.SOUTH);
 
         inventoryMenu = new InventoryMenu(this);
         this.add(inventoryMenu, BorderLayout.WEST);
 
+        JPanel southPanel = new JPanel();
+        southPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        actionsMenu = new ActionsMenu(this);
+        southPanel.add(actionsMenu);
+
+        this.add(southPanel, BorderLayout.SOUTH);
+
         pack();
         setVisible(true);
 
-        //view.addTileClickListener(this);
-
         this.update();
+    }
+
+    public Player getNextPlayer() {
+        List<Player> players = game.getPlayers();
+        int index = players.indexOf(selectedPlayer);
+        if(++index >= players.size()) {
+            index = 0;
+        }
+        return players.get(index);
     }
 
     public void update() {
@@ -62,8 +75,6 @@ public class Controller extends JFrame implements TileClickListener {
         List<Player> players = game.getPlayers();
 
         for(Player player : players) {
-            // NOTE(boti): ez van a szekvencian, de nem egeszen ertem,
-            //             hogy mit akar jelenteni
             if(player.getEnergy() > 0) {
                 return;
             }

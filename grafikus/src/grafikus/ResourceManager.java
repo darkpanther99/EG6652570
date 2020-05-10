@@ -39,6 +39,8 @@ public class ResourceManager {
 
     public static Image igloo = null;
     public static Image tent = null;
+
+    public static Image buttonSlot = null;
     // Hangok
     public static Sound soundBackground = new Sound();
 
@@ -80,11 +82,14 @@ public class ResourceManager {
 
             //Image snow = ImageIO.read(getResource("res/snow.png"));
             Image hole = ImageIO.read(getResource("png/bezskadtjeg.png"));
+
             imageSnow[0] = hole;
             for (int i = 1; i <= 5; i++) {
                 Image snow = ImageIO.read(getResource("png/hó" + Integer.toString(i) + ".png"));
                 imageSnow[i] = snow;
             }
+            // UI
+            buttonSlot = ImageIO.read(getResource("png/buttonslot.png"));
 
             imageHP[0] = ImageIO.read(getResource("png/HP_Energí_0.png"));
             for (int i = 1; i < 6; i++) {
