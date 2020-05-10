@@ -3,6 +3,7 @@ package grafikus;
 import javax.swing.*;
 
 public class InventoryMenu extends JPanel {
+    public static final int ITEMSIZE = 64;
 
     private Controller controller;
 
