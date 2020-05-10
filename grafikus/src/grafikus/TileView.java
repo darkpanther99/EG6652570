@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,22 +35,62 @@ public class TileView extends JPanel implements MouseListener {
     }
 
     public void update() {
-        repaint(getVisibleRect());
+        repaint();
     }
 
     @Override
     public void paint(Graphics g) {
-        Image tileImage;
+        Graphics2D g2d = (Graphics2D)g;
+        AffineTransform old = g2d.getTransform();
+
+        Image tileImage = null;
         if (tile.getSnow() > 0) {
             tileImage = ResourceManager.imageSnow[tile.getSnow()];
-        } else {
+        } else if (tile.getSnow() == 0) {
             tileImage = tile.getWeightLimit() > 0 ? ResourceManager.imageIce : ResourceManager.imageSnow[0];
+
+        } else if (tile.getSnow() >= -4) {
+            tileImage = ResourceManager.waterSide;
+            switch (tile.getSnow()) {
+                case -1: // Fent
+                    g2d.translate(0, s_TileSize);
+                    g2d.rotate(Math.toRadians(-90));
+                    break;
+                case -2: // Lent
+                    g2d.translate(s_TileSize, 0);
+                    g2d.rotate(Math.toRadians(90));
+                    break;
+                case -3: // Balra
+                    g2d.translate(s_TileSize, s_TileSize);
+                    g2d.rotate(Math.toRadians(180));
+                    break;
+                case -4: // Jobbra
+                    break;
+            }
+        } else {
+            tileImage = ResourceManager.waterCorner;
+            switch (tile.getSnow()) {
+                case -5: // Fent bal
+                    g2d.translate(s_TileSize, 0);
+                    g2d.scale(-1, 1);
+                    break;
+                case -6: // Fent jobb
+                    break;
+                case -7: // Lent jobb
+                    g2d.translate(0, s_TileSize);
+                    g2d.scale(1, -1);
+                    break;
+                case -8: // Lent bal
+                    g2d.translate(s_TileSize, s_TileSize);
+                    g2d.scale(-1, -1);
+                    break;
+
+            }
         }
-        g.drawImage(ResourceManager.imageIce, 0, 0, s_TileSize, s_TileSize, null);
-        g.drawImage(tileImage, 0, 0, s_TileSize, s_TileSize, null);
+        g2d.drawImage(ResourceManager.imageIce, 0, 0, s_TileSize, s_TileSize, null);
+        g2d.drawImage(tileImage, 0, 0, s_TileSize, s_TileSize, null);
+        //g2d.setTransform(old);
 
-
-        // Shelter majd ide
 
         Shelter shelter = tile.getShelter();
         if (shelter != null) {

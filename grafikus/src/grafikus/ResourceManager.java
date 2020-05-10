@@ -17,6 +17,8 @@ public class ResourceManager {
     public static Image imageSea = null;
     public static Image imageEntity = null;
     public static Image[] imageSnow = new Image[6]; // minden horeteghez egy textura
+    public static Image waterSide = null;
+    public static Image waterCorner = null;
 
     public static Image[] imageHP = new Image[6];
     public static Image[] imageEnergy = new Image[6];
@@ -81,6 +83,10 @@ public class ResourceManager {
             selectedPlayer = ImageIO.read(getResource("png/active player.png"));
 
             //Image snow = ImageIO.read(getResource("res/snow.png"));
+
+            waterSide = ImageIO.read(getResource("png/Víz_side.png"));
+            waterCorner = ImageIO.read(getResource("png/víz_corner.png"));
+
             Image hole = ImageIO.read(getResource("png/bezskadtjeg.png"));
 
             imageSnow[0] = hole;

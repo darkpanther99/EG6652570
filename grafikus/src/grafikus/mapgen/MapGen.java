@@ -11,8 +11,7 @@ public class MapGen {
     private static Game game;
     private static int rows = 7;
     private static int cols = 10;
-    private static int index(int col, int row)
-    {
+    private static int index(int col, int row) {
         return cols * row + col;
     }
 
@@ -28,15 +27,23 @@ public class MapGen {
         for (int i = 0; i <= cols*rows-1; i++) tiles.add(new Tile());
 
         for (int x = 0; x < cols; x++) {
-            tiles.get(index(x,0)).setSnow(0);
+            tiles.get(index(x,0)).setSnow(-1);
             tiles.get(index(x,0)).setWeightLimit(0);
-            tiles.get(index(x,rows-1)).setSnow(0);
+            tiles.get(index(x,rows-1)).setSnow(-2);
             tiles.get(index(x,rows-1)).setWeightLimit(0);
+            if (x == 0) {
+                tiles.get(index(x,0)).setSnow(-5);
+                tiles.get(index(x,rows - 1)).setSnow(-8);
+            }
+            if (x == cols - 1) {
+                tiles.get(index(x,0)).setSnow(-6);
+                tiles.get(index(x,rows - 1)).setSnow(-7);
+            }
         }
-        for (int y = 0; y < rows; y++) {
-            tiles.get(index(0,y)).setSnow(0);
+        for (int y = 1; y < rows - 1; y++) {
+            tiles.get(index(0,y)).setSnow(-3);
             tiles.get(index(0,y)).setWeightLimit(0);
-            tiles.get(index(cols-1,y)).setSnow(0);
+            tiles.get(index(cols-1,y)).setSnow(-4);
             tiles.get(index(cols-1,y)).setWeightLimit(0);
         }
         //FIXME(Mark): Ez még itt nem működik, valami indexet elrontottam.

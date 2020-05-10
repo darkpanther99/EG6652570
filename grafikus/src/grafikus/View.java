@@ -76,7 +76,7 @@ public class View extends JPanel implements GameObserver {
         if (isStorm) {
             //TODO(Mark)
         }
-        repaint(getVisibleRect());
+        repaint();
     }
 
 
