@@ -24,9 +24,9 @@ public class View extends JPanel implements GameObserver {
         height = 448;
         Dimension d = new Dimension(width, height);
         setPreferredSize(d);
-        setMinimumSize(d);
+        //setMinimumSize(d);
         tiles = new ArrayList<>();
-        setLayout(new GridLayout(height/64,width/64));
+        setLayout(new GridLayout(height/64,width/64, 0, 0));
 
 
         // NOTE(Mark): Teszt

@@ -21,6 +21,9 @@ public class TileView extends JPanel implements MouseListener {
         tile = t;
         this.tcl = tcl;
         isExplored = false;
+
+        this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+
         Dimension d = new Dimension(s_TileSize, s_TileSize);
         setPreferredSize(d);
         setMinimumSize(d);

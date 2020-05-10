@@ -22,37 +22,38 @@ public class ActionsMenu extends JPanel implements ActionListener {
     private JButton newTurnButton;
 
 
+
     public ActionsMenu(Controller controller) {
         this.controller = controller;
 
         this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 
-        digButton = new JButton();
+        digButton = new JButton("Dig");
         digButton.setActionCommand(AC_DIG);
         digButton.addActionListener(this);
         this.add(digButton);
 
-        buildButton = new JButton();
+        buildButton = new JButton("Build");
         buildButton.setActionCommand(AC_BUILD);
         buildButton.addActionListener(this);
         this.add(buildButton);
 
-        rescueButton = new JButton();
+        rescueButton = new JButton("Rescue");
         rescueButton.setActionCommand(AC_RESCUE);
         rescueButton.addActionListener(this);
         this.add(rescueButton);
 
-        assembleButton = new JButton();
+        assembleButton = new JButton("Assemble");
         assembleButton.setActionCommand(AC_ASSEMBLE);
         assembleButton.addActionListener(this);
         this.add(assembleButton);
 
-        exitButton = new JButton();
+        exitButton = new JButton("Exit");
         exitButton.setActionCommand(AC_EXIT);
         exitButton.addActionListener(this);
         this.add(exitButton);
 
-        newTurnButton = new JButton();
+        newTurnButton = new JButton("Next turn");
         newTurnButton.setActionCommand(AC_NEXT_TURN);
         newTurnButton.addActionListener(this);
         this.add(newTurnButton);
@@ -107,4 +108,6 @@ public class ActionsMenu extends JPanel implements ActionListener {
             nextTurn();
         }
     }
+
+    //public void paint
 }

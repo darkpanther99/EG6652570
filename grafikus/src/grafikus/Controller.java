@@ -24,6 +24,8 @@ public class Controller extends JFrame implements TileClickListener {
 
     public Controller(Game game) {
         this.game = game;
+        selectedPlayer = game.getPlayer(0);
+        selectedPlayer.addToInventory(new BreakingShovel(1)); // TEMP
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Jegmezo");
@@ -42,11 +44,12 @@ public class Controller extends JFrame implements TileClickListener {
         inventoryMenu = new InventoryMenu(this);
         this.add(inventoryMenu, BorderLayout.WEST);
 
-
         pack();
         setVisible(true);
 
         //view.addTileClickListener(this);
+
+        this.update();
     }
 
     public void update() {
