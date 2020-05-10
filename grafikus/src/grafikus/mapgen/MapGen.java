@@ -1,9 +1,6 @@
 package grafikus.mapgen;
 
-import grafikus.model.Game;
-import grafikus.model.Player;
-import grafikus.model.Shovel;
-import grafikus.model.Tile;
+import grafikus.model.*;
 
 import javax.swing.*;
 import java.util.List;
@@ -54,6 +51,11 @@ public class MapGen {
         tiles.get(index(2,1)).setSnow(3);
         tiles.get(index(2,1)).setItem(new Shovel());
 
+        for (PolarBear b : game.getBears()) {
+            int x = new Random().nextInt(cols + 1);
+            int y = new Random().nextInt(rows + 1);
+            b.placeOn(tiles.get(index(x,y)));
+        }
 
         for (Player p : game.getPlayers()) {
             p.placeOn(tiles.get(index(1,1)));
