@@ -38,6 +38,39 @@ public class TileView extends JPanel implements MouseListener {
         repaint();
     }
 
+    private boolean isCorner(Tile t, int n1, int n2) {
+        return ( t.getSnow() == 0 &&  t.getWeightLimit() == 0 && tile.getNeighbor(n1) != null && tile.getNeighbor(n2) != null && tile.getNeighbor(n1).getSnow() == 0 && tile.getNeighbor(n1).getWeightLimit() == 0 && tile.getNeighbor(n2).getSnow() == 0 && tile.getNeighbor(n2).getWeightLimit() == 0 );
+    }
+
+    private boolean isSide(Tile t, String side) {
+        int n1, n2, n3;
+        switch (side) {
+            case "left":
+                n1 = 0;
+                n2 = 2;
+                n3 = 1;
+                break;
+            case "right":
+                n1 = 0;
+                n2 = 2;
+                n3 = 3;
+                break;
+            case "top":
+                n1 = 1;
+                n2 = 3;
+                n3 = 2;
+                break;
+            case "bottom":
+                n1 = 1;
+                n2 = 3;
+                n3 = 0;
+                break;
+            default:
+                return false;
+        }
+        return (t.getSnow() == 0 &&  t.getWeightLimit() == 0 && t.getNeighbor(n1) != null && t.getNeighbor(n3) != null && t.getNeighbor(n2) != null && t.getNeighbor(n1).getSnow() == 0 && t.getNeighbor(n1).getWeightLimit() == 0 && t.getNeighbor(n2).getSnow() == 0 && t.getNeighbor(n2).getWeightLimit() == 0 && (t.getNeighbor(n3).getSnow() > 0 || t.getNeighbor(n3).getWeightLimit() > 0));
+    }
+
     @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D)g;
@@ -50,9 +83,51 @@ public class TileView extends JPanel implements MouseListener {
             tileImage = tile.getWeightLimit() > 0 ? ResourceManager.imageIce : ResourceManager.imageSnow[0];
 
         }
+
+        if ( isCorner(tile, 1,2)) {
+            tileImage = ResourceManager.waterCorner;
+            g2d.translate(s_TileSize, 0);
+            g2d.scale(-1, 1);
+        }
+        if ( isCorner(tile, 0,3)) {
+            tileImage = ResourceManager.waterCorner;
+            g2d.translate(0, s_TileSize);
+            g2d.scale(1, -1);
+        }
+        if ( isCorner(tile, 0,1)) {
+            tileImage = ResourceManager.waterCorner;
+            g2d.translate(s_TileSize, s_TileSize);
+            g2d.scale(-1, -1);
+        }
+        if ( isCorner(tile, 2,3)) {
+            tileImage = ResourceManager.waterCorner;
+        }
+        if (isSide(tile, "left")) {
+            tileImage = ResourceManager.waterSide;
+            g2d.translate(s_TileSize, s_TileSize);
+            g2d.rotate(Math.toRadians(180));
+        }
+        if (isSide(tile, "right")) {
+            tileImage = ResourceManager.waterSide;
+        }
+        if (isSide(tile, "top")) {
+            tileImage = ResourceManager.waterSide;
+            g2d.translate(s_TileSize, 0);
+            g2d.scale(-1, 1);
+            g2d.translate(0, s_TileSize);
+            g2d.rotate(Math.toRadians(-90));
+        }
+        if (isSide(tile, "bottom")) {
+            tileImage = ResourceManager.waterSide;
+            g2d.translate(s_TileSize, 0);
+            g2d.scale(-1, 1);
+            g2d.translate(s_TileSize, 0);
+            g2d.rotate(Math.toRadians(90));
+        }
+
         g2d.drawImage(ResourceManager.imageIce, 0, 0, s_TileSize, s_TileSize, null);
         g2d.drawImage(tileImage, 0, 0, s_TileSize, s_TileSize, null);
-        //g2d.setTransform(old);
+        g2d.setTransform(old);
 
 
         Shelter shelter = tile.getShelter();
