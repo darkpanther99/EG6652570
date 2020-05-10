@@ -4,7 +4,7 @@ import grafikus.model.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.event.*;
-
+import java.awt.Dimension;
 
 public class MainMenu extends JFrame implements WindowListener, ChangeListener, ActionListener, GameObserver {
 
@@ -18,6 +18,8 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
     private JSpinner explorerSpinner;
 
     public MainMenu() {
+        setMinimumSize(new Dimension(400, 200));
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
