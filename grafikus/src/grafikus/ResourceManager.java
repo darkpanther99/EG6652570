@@ -16,7 +16,7 @@ public class ResourceManager {
     public static Image imageLeaves = null;
     public static Image imageSea = null;
     public static Image imageEntity = null;
-    public static Image[] imageSnow = new Image[5]; // minden horeteghez egy textura
+    public static Image[] imageSnow = new Image[6]; // minden horeteghez egy textura
 
     public static Image[] imageHP = new Image[6];
     public static Image[] imageEnergy = new Image[6];
@@ -36,7 +36,7 @@ public class ResourceManager {
     // Betolt mindent
     static {
         try {
-            imageIce = ImageIO.read(getResource("res/ice.png"));
+            imageIce = ImageIO.read(getResource("png/jégtile.png"));
             imageLeaves = ImageIO.read(getResource("res/oak_leaves.png"));
             imageSea = ImageIO.read(getResource("res/water.png"));
             imageEntity = ImageIO.read(getResource("res/entity.png"));
@@ -45,7 +45,7 @@ public class ResourceManager {
             //Image snow = ImageIO.read(getResource("res/snow.png"));
             Image hole = ImageIO.read(getResource("png/bezskadtjeg.png"));
             imageSnow[0] = hole;
-            for (int i = 1; i < 5; i++) {
+            for (int i = 1; i <= 5; i++) {
                 Image snow = ImageIO.read(getResource("png/hó" + Integer.toString(i) + ".png"));
                 imageSnow[i] = snow;
             }

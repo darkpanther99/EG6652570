@@ -18,14 +18,14 @@ public class View extends JPanel implements GameObserver {
     private ArrayList<TileView> tiles;
     private boolean isStorm;
     private TileClickListener tcl;
-    private int width;
-    private int height;
     private JPanel tilePanel;
-    View(int w, int h) {
+    Controller controller;
+    View(Controller c) {
         super();
-        width = 640;
-        height = 448;
+        controller = c;
         tilePanel = new JPanel();
+        int width = 640;
+        int height = 448;
         Dimension d = new Dimension(width, height);
         tilePanel.setPreferredSize(d);
         tilePanel.setMinimumSize(d);
@@ -38,7 +38,7 @@ public class View extends JPanel implements GameObserver {
         // NOTE(Mark): Teszt
         for (int i = 0; i < (width/64)*(height/64); i++) {
             Tile t = new Tile();
-            t.setSnow(new Random().nextInt(5 + 1));
+            t.setSnow(new Random().nextInt(5+1));
             tiles.add(new TileView(t,tcl));
             tilePanel.add(tiles.get(tiles.size()-1));
         }
