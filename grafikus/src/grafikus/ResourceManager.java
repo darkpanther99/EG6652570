@@ -49,12 +49,12 @@ public class ResourceManager {
 
             imageHP[0] = ImageIO.read(getResource("png/HP_Energí_0.png"));
             for (int i = 1; i < 6; i++) {
-                imageHP[i] = ImageIO.read(getResource("png/HP" + i));
+               imageHP[i] = ImageIO.read(getResource("png/HP" + i + ".png"));
             }
 
             imageEnergy[0] = ImageIO.read(getResource("png/HP_Energí_0.png"));
             for (int i = 1; i < 6; i++) {
-                imageEnergy[i] = ImageIO.read(getResource("png/energy" + i));
+                imageEnergy[i] = ImageIO.read(getResource("png/energy" + i + ".png"));
             }
 
             try (InputStream is = getResource("res/mus.wav").openStream()) {

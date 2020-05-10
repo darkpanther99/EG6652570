@@ -23,6 +23,7 @@ public class PlayerListMenu extends JPanel implements PlayerSelectListener{
                 pi.isSelected = true;
             }
             iconlist.add(pi);
+            this.add(pi);
         }
 
         Dimension d = new Dimension(100, Controller.SCREEN_HEIGHT);
@@ -45,5 +46,10 @@ public class PlayerListMenu extends JPanel implements PlayerSelectListener{
     public void deselect(Player p){
         //TODO p = controller.getNextPlayer();
         // select(p);
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
     }
 }
