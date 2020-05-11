@@ -50,6 +50,8 @@ public class MapGen {
         tiles.get(index(2,1)).setWeightLimit(999);
         tiles.get(index(2,1)).setSnow(3);
         tiles.get(index(2,1)).setItem(new Shovel());
+        tiles.get(index(1,2)).setWeightLimit(0);
+        tiles.get(index(1,2)).setSnow(0);
 
         for (PolarBear b : game.getBears()) {
             int x = new Random().nextInt(cols);

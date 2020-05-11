@@ -42,7 +42,8 @@ public class TileView extends JPanel implements MouseListener {
     }
 
     private boolean isCorner(Tile t, int n1, int n2) {
-        return ( t.getSnow() == 0 &&  t.getWeightLimit() == 0 && tile.getNeighbor(n1) != null && tile.getNeighbor(n2) != null && tile.getNeighbor(n1).getSnow() == 0 && tile.getNeighbor(n1).getWeightLimit() == 0 && tile.getNeighbor(n2).getSnow() == 0 && tile.getNeighbor(n2).getWeightLimit() == 0 );
+        return ( t.getSnow() == 0 &&  t.getWeightLimit() == 0 && tile.getNeighbor(n1) != null && tile.getNeighbor(n2) != null && tile.getNeighbor(n1).getSnow() == 0 && tile.getNeighbor(n1).getWeightLimit() == 0 && tile.getNeighbor(n2).getSnow() == 0 && tile.getNeighbor(n2).getWeightLimit() == 0 ) &&
+                (tile.getNeighbor((n1 + 2 >= 4) ? n1 - 2 : n1 + 2) == null && tile.getNeighbor((n2 + 2 >= 4) ? n2 - 2 : n2 + 2) == null);
     }
 
     private boolean isSide(Tile t, String side) {
@@ -71,7 +72,8 @@ public class TileView extends JPanel implements MouseListener {
             default:
                 return false;
         }
-        return (t.getSnow() == 0 &&  t.getWeightLimit() == 0 && t.getNeighbor(n1) != null && t.getNeighbor(n3) != null && t.getNeighbor(n2) != null && t.getNeighbor(n1).getSnow() == 0 && t.getNeighbor(n1).getWeightLimit() == 0 && t.getNeighbor(n2).getSnow() == 0 && t.getNeighbor(n2).getWeightLimit() == 0 && (t.getNeighbor(n3).getSnow() > 0 || t.getNeighbor(n3).getWeightLimit() > 0));
+        //return (t.getSnow() == 0 &&  t.getWeightLimit() == 0 && t.getNeighbor(n1) != null && t.getNeighbor(n3) != null && t.getNeighbor(n2) != null && t.getNeighbor(n1).getSnow() == 0 && t.getNeighbor(n1).getWeightLimit() == 0 && t.getNeighbor(n2).getSnow() == 0 && t.getNeighbor(n2).getWeightLimit() == 0 && (t.getNeighbor(n3).getSnow() > 0 || t.getNeighbor(n3).getWeightLimit() > 0));
+        return (t.getSnow() == 0 &&  t.getWeightLimit() == 0 && t.getNeighbor(n1) != null && t.getNeighbor(n3) != null && t.getNeighbor(n2) != null && t.getNeighbor(n1).getSnow() == 0 && t.getNeighbor(n1).getWeightLimit() == 0 && t.getNeighbor(n2).getSnow() == 0 && t.getNeighbor(n2).getWeightLimit() == 0 && (tile.getNeighbor((n3 + 2 >= 4) ? n3 - 2 : n3 + 2) == null));
     }
 
     @Override
