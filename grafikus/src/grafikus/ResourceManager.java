@@ -20,6 +20,9 @@ public class ResourceManager {
     public static Image waterSide = null;
     public static Image waterCorner = null;
 
+    public static Image flagSafe = null;
+    public static Image flagNotSafe = null;
+
     public static Image[] imageHP = new Image[6];
     public static Image[] imageEnergy = new Image[6];
 
@@ -67,6 +70,9 @@ public class ResourceManager {
     static {
         try {
 
+
+            flagSafe = ImageIO.read(getResource("png/zaszlobiztonsagos.png"));
+            flagNotSafe = ImageIO.read(getResource("png/zaszloveszely.png"));
 
             // Player
             eskimoPlayer = ImageIO.read(getResource("png/eskimo1.png"));

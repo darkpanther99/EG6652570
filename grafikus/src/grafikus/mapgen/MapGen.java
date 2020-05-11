@@ -71,21 +71,44 @@ public class MapGen {
             LinkedList<PartView> parts = new LinkedList<>(Arrays.asList(new PartView(ResourceManager.flareGun), new PartView(ResourceManager.flareLight), new PartView(ResourceManager.flare)));
             while (parts.size() > 0) {
                 //random.nextInt(max - min + 1) + min
-                int x = new Random().nextInt(cols-1) + 1;
-                int y = new Random().nextInt(rows-1) + 1;
+                int x = new Random().nextInt(cols-2) + 1;
+                int y = new Random().nextInt(rows-2) + 1;
                 if (!(tiles.get(index(x,y)).getItem() instanceof Empty) ||  tiles.get(index(x,y)).getWeightLimit() <= 0)  {
                     continue;
                 } else  {
                     tiles.get(index(x,y)).setItem(parts.pop());
                 }
             }
+            LinkedList<Item> items = new LinkedList<>();
+            int numShovels = 2;
+            int numBreakingShovels = 2;
+            int numRopes = 2;
+            int numFood = 5;
+            for (int i = 0; i < numShovels; i++) items.push(new Shovel());
+            for (int i = 0; i < numBreakingShovels; i++) items.push(new BreakingShovel(3));
+            for (int i = 0; i < numRopes; i++) items.push(new Rope());
+            for (int i = 0; i < numFood; i++) items.push(new Food());
+
+            while (items.size() > 0) {
+                //random.nextInt(max - min + 1) + min
+                int x = new Random().nextInt(cols-2) + 1;
+                int y = new Random().nextInt(rows-2) + 1;
+                if (!(tiles.get(index(x,y)).getItem() instanceof Empty)  ||  tiles.get(index(x,y)).getWeightLimit() <= 0)  {
+                    continue;
+                } else  {
+                    tiles.get(index(x,y)).setItem(items.pop());
+                }
+            }
         }
+
+
+
         for (PolarBear b : game.getBears()) {
             int done = 0;
             boolean badbadbear = false;
             while (done < game.getBears().size()) {
-                int x = new Random().nextInt(cols - 1) + 1;
-                int y = new Random().nextInt(rows - 1) + 1;
+                int x = new Random().nextInt(cols - 2) + 1;
+                int y = new Random().nextInt(rows - 2) + 1;
                 if (tiles.get(index(x,y)).getWeightLimit() <= 0) {
                     continue;
                 }

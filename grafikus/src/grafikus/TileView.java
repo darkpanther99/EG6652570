@@ -168,7 +168,20 @@ public class TileView extends JPanel implements MouseListener {
                 g.drawImage(((PartView) item).getImage(), 0,0,itemSize, itemSize,null);
             }
         }
+        if (isExplored) {
+            if (tile.getWeightLimit() >= controller.game.getPlayers().size()) {
+                g.drawImage(ResourceManager.flagSafe, s_TileSize/10,0,(int)(s_TileSize*0.5), (int)(s_TileSize*0.5),null);
+            }
+            else {
 
+                g.drawImage(ResourceManager.flagNotSafe, s_TileSize/10,0,(int)(s_TileSize*0.5), (int)(s_TileSize*0.5),null);
+                g.setColor(new Color(1f,0f,0f,0f ));
+                g.fillRect(0, 0, 900, 900);
+                g.setFont(new Font("TimesRoman", Font.PLAIN, s_TileSize/5));
+                g.setColor(Color.white);  // Here
+                g.drawString(Integer.toString(tile.getWeightLimit()), s_TileSize/5, s_TileSize/5);
+            }
+        }
 
         int occupantCount = tile.getOccupants().size();
         if (occupantCount > 0) {

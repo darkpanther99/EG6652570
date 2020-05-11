@@ -47,6 +47,7 @@ public class Controller extends JFrame implements TileClickListener {
 
         view = new View(this);
         this.add(view, BorderLayout.CENTER);
+        game.subscribe(view);
 
         playerListMenu = new PlayerListMenu(this);
         this.add(playerListMenu, BorderLayout.EAST);
