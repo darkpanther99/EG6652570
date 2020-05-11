@@ -189,12 +189,13 @@ public class TileView extends JPanel implements MouseListener {
                 boolean tallBoi = false;
                 if (tile.getOccupants().get(i) instanceof Eskimo) {
                     tallBoi = true;
-                    entityImage = eskimoPlayer;
+                    entityImage = ResourceManager.eskimoPlayer;
                 }
                 if (tile.getOccupants().get(i) instanceof PolarExplorer) {
                     tallBoi = true;
                     entityImage = ResourceManager.explorerPlayer;
                 }
+
                 if (tile.getOccupants().get(i) instanceof PolarBear) {
                     entityImage = ResourceManager.polarbear;
                 }
@@ -202,6 +203,10 @@ public class TileView extends JPanel implements MouseListener {
                 int xOffset = (i % horizontalCount) * entitySize;
                 int yOffset = (i / horizontalCount) * entitySize;
                 g.drawImage(entityImage, xOffset, yOffset, (tallBoi) ? (int)(entitySize/1.8) : entitySize, entitySize, null);
+                if (tile.getOccupants().get(i) == controller.selectedPlayer) {
+                    g2d.drawImage(ResourceManager.selectedPlayer, (xOffset-35/horizontalCount), yOffset-35/horizontalCount, (int)(entitySize/1.8)*2, (int)(entitySize*2.6), null); // NOTE(Mark): Akit zavar, hogy ez így néz ki, az csináljon egy új textúrát szélek nélkül
+                    g2d.setTransform(old);
+                }
             }
 
         }
