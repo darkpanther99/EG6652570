@@ -118,6 +118,10 @@ public class MapGen {
                     if (e instanceof Player) badbadbear = true;
                 }
                 if (badbadbear) continue;
+
+                if(b.getCurrentTile() != null) {
+                    b.getCurrentTile().getOccupants().remove(b);
+                }
                 b.placeOn(tiles.get(index(x, y)));
                 done++;
             }
