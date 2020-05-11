@@ -1,9 +1,14 @@
 package grafikus;
 
+import grafikus.model.Entity;
+import grafikus.model.Player;
+import grafikus.model.Tile;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.*;
+import java.util.Map;
 
 public class ActionsMenu extends JPanel implements ActionListener {
 
@@ -107,7 +112,21 @@ public class ActionsMenu extends JPanel implements ActionListener {
 
     public void doRescue() {
         // TODO
-        controller.selectedPlayer.rescueTeammate(0);
+        for (int i = 0; i < 4; i++) {
+            if (controller.selectedPlayer.getCurrentTile().getNeighbor(i) != null) {
+                Tile tmp = controller.selectedPlayer.getCurrentTile().getNeighbor(i);
+                if (tmp.getWeightLimit() == 0 && tmp.getSnow() == 0) {
+                    for (Entity e : tmp.getOccupants()) {
+                        if (e instanceof Player)  {
+                            controller.selectedPlayer.rescueTeammate(i);
+                            i = 4;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        //controller.selectedPlayer.rescueTeammate(0);
     }
 
     public void doAssemble() {

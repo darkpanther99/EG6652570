@@ -148,26 +148,27 @@ public class TileView extends JPanel implements MouseListener {
 
         Item item = tile.getItem();
         if (item != null && tile.getSnow() == 0) {
+            int itemSize = (int)(s_TileSize*0.8);
             if (item instanceof Shovel) {
-                g.drawImage(ResourceManager.shovel, 0,0,s_TileSize, s_TileSize,null);
+                g.drawImage(ResourceManager.shovel, 0,0,itemSize, itemSize,null);
             }
             if (item instanceof BreakingShovel) {
-                g.drawImage(ResourceManager.breakingShovel, 0,0,s_TileSize, s_TileSize,null);
+                g.drawImage(ResourceManager.breakingShovel, 0,0,itemSize, itemSize,null);
             }
             if (item instanceof TentKit) {
-                g.drawImage(ResourceManager.tentkit, 0,0,s_TileSize, s_TileSize,null);
+                g.drawImage(ResourceManager.tentkit, 0,0,itemSize, itemSize,null);
             }
             if (item instanceof Part) {
-                g.drawImage(ResourceManager.flare, 0,0,s_TileSize, s_TileSize,null);
+                g.drawImage(ResourceManager.flare, 0,0,itemSize, itemSize,null);
             }
             if (item instanceof Food) {
-                g.drawImage(ResourceManager.food, 0,0,s_TileSize, s_TileSize,null);
+                g.drawImage(ResourceManager.food, 0,0,itemSize, itemSize,null);
             }
             if (item instanceof ScubaGear) {
-                g.drawImage(ResourceManager.scubaGear, 0,0,s_TileSize, s_TileSize,null);
+                g.drawImage(ResourceManager.scubaGear, 0,0,itemSize, itemSize,null);
             }
             if (item instanceof Rope) {
-                g.drawImage(ResourceManager.rope, 0,0,s_TileSize, s_TileSize,null);
+                g.drawImage(ResourceManager.rope, 0,0,itemSize, itemSize,null);
             }
         }
 
@@ -197,6 +198,10 @@ public class TileView extends JPanel implements MouseListener {
                     tallBoi = true;
                     entityImage = ResourceManager.explorerPlayer;
                 }
+                if (tile.getOccupants().get(i) instanceof PolarBear) {
+                    entityImage = ResourceManager.polarbear;
+                }
+
                 int xOffset = (i % horizontalCount) * entitySize;
                 int yOffset = (i / horizontalCount) * entitySize;
                 g.drawImage(entityImage, xOffset, yOffset, (tallBoi) ? (int)(entitySize/1.8) : entitySize, entitySize, null);
