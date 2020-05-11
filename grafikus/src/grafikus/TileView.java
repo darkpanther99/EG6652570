@@ -164,6 +164,7 @@ public class TileView extends JPanel implements MouseListener {
                 g.drawImage(ResourceManager.rope, 0,0,itemSize, itemSize,null);
             }
             if (item instanceof PartView) {
+                itemSize*=0.7;
                 g.drawImage(((PartView) item).getImage(), 0,0,itemSize, itemSize,null);
             }
         }
