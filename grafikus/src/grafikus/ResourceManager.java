@@ -47,6 +47,11 @@ public class ResourceManager {
     public static Image tent = null;
 
     public static Image buttonSlot = null;
+    public static Image itemSlot = null;
+    public static Image foodSlot = null;
+    public static Image pewpewSlot = null;
+    public static Image tentkitSlot = null;
+
     // Hangok
     public static Sound soundBackground = new Sound();
 
@@ -72,6 +77,11 @@ public class ResourceManager {
             tent = ImageIO.read(getResource("png/sator.png"));
 
             // Items
+            itemSlot = ImageIO.read(getResource("png/itemslot.png"));
+            foodSlot = ImageIO.read(getResource("png/foodslot.png"));
+            pewpewSlot = ImageIO.read(getResource("png/pewpewslot.png"));
+            tentkitSlot = ImageIO.read(getResource("png/tentkitslot.png"));
+
             breakingShovel = ImageIO.read(getResource("png/törékenyásó.png"));
             shovel = ImageIO.read(getResource("png/törhetetlenásó.png"));
             tentkit = ImageIO.read(getResource("png/tentkit.png"));

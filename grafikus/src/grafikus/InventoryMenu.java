@@ -23,11 +23,19 @@ public class InventoryMenu extends JPanel {
     public void update() {
         this.removeAll();
 
-        if(controller.selectedPlayer != null) {
+        Player player = controller.selectedPlayer;
+        if(player != null) {
+
+            ItemIcon partIcon = new ItemIcon(controller, player.getPartStore());
+            this.add(partIcon);
+
+            ItemIcon foodIcon = new ItemIcon(controller, player.getFoodStore());
+            this.add(foodIcon);
+
             List<Item> inventory = controller.selectedPlayer.getInventory();
             for(Item item : inventory) {
                 // TODO(boti): isEquipped
-                ItemIcon icon = new ItemIcon(item, controller, false);
+                ItemIcon icon = new ItemIcon(controller, item, false);
                 this.add(icon);
             }
         }
@@ -43,7 +51,7 @@ public class InventoryMenu extends JPanel {
         int height = getHeight();
 
         for(int y = getComponentCount()*ITEMSIZE; y < height; y += ITEMSIZE) {
-            g.drawImage(ResourceManager.emptyPlayerSlot, 0, y, ITEMSIZE, ITEMSIZE, null);
+            g.drawImage(ResourceManager.itemSlot, 0, y, ITEMSIZE, ITEMSIZE, null);
         }
 
         paintChildren(g);
