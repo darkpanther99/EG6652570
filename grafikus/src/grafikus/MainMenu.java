@@ -4,8 +4,8 @@ import grafikus.mapgen.MapGen;
 import grafikus.model.*;
 import javax.swing.*;
 import javax.swing.event.*;
+import java.awt.*;
 import java.awt.event.*;
-import java.awt.Dimension;
 
 public class MainMenu extends JFrame implements WindowListener, ChangeListener, ActionListener, GameObserver {
 
@@ -28,55 +28,43 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
         setMinimumSize(new Dimension(400, 200));
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLayout(new BorderLayout(20, 20));
         JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
+        mainPanel.setLayout(new GridLayout(4, 2, 20, 10));
 
-        JPanel menuPanel = new JPanel();
-        menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.LINE_AXIS));
-
-        JPanel leftPanel = new JPanel();
-        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.PAGE_AXIS));
-
-        JPanel rightPanel = new JPanel();
-        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.PAGE_AXIS));
-
+        mainPanel.add(new JLabel("Eszkimók száma:"));
         eskimoSpinner = new JSpinner();
         eskimoSpinner.setValue(numEskimos);
         eskimoSpinner.addChangeListener(this);
+        mainPanel.add(eskimoSpinner);
+
+        mainPanel.add(new JLabel("Sarkkutatók száma:"));
         explorerSpinner = new JSpinner();
         explorerSpinner.setValue(numExplorers);
         explorerSpinner.addChangeListener(this);
+        mainPanel.add(explorerSpinner);
 
+        mainPanel.add(new JLabel("Sorok száma:"));
         rowSpinner = new JSpinner();
         rowSpinner.setValue(numRows);
         rowSpinner.addChangeListener(this);
+        mainPanel.add(rowSpinner);
+
+        mainPanel.add(new JLabel("Oszlopok száma:"));
         colSpinner = new JSpinner();
         colSpinner.setValue(numCols);
         colSpinner.addChangeListener(this);
-
-
-
-        leftPanel.add(new JLabel("Eszkimók száma"));
-        rightPanel.add(eskimoSpinner);
-        leftPanel.add(new JLabel("Sarkkutatók száma"));
-        rightPanel.add(explorerSpinner);
-        leftPanel.add(new JLabel("Sorok száma"));
-        rightPanel.add(rowSpinner);
-        leftPanel.add(new JLabel("Oszlopok száma"));
-        rightPanel.add(colSpinner);
-
-        menuPanel.add(leftPanel);
-        menuPanel.add(rightPanel);
-
-        mainPanel.add(menuPanel);
+        mainPanel.add(colSpinner);
 
         JButton buttonNewGame = new JButton("New Game");
         buttonNewGame.setActionCommand(AC_NEW_GAME);
         buttonNewGame.addActionListener(this);
-        mainPanel.add(buttonNewGame);
+        this.add(buttonNewGame, BorderLayout.SOUTH);
 
         this.add(mainPanel);
         this.pack();
+        Dimension screenDim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation((screenDim.width - getWidth()) / 2, (screenDim.height - getHeight()) / 2);
         this.setVisible(true);
     }
 

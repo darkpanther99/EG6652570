@@ -60,6 +60,10 @@ public class Controller extends JFrame implements TileClickListener {
         this.add(actionsMenu, BorderLayout.SOUTH);
 
         pack();
+
+        Dimension screenDim = Toolkit.getDefaultToolkit().getScreenSize();
+        setLocation((screenDim.width - getWidth()) / 2, (screenDim.height - getHeight()) / 2);
+
         setVisible(true);
         setResizable(false);
         this.update();
