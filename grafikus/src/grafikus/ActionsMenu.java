@@ -32,20 +32,24 @@ public class ActionsMenu extends JPanel implements ActionListener {
         }
     }
 
+    private static final String AC_STEP = "step";
+    private static final String AC_EXAMINE = "examine";
+    private static final String AC_RESCUE = "rescue";
     private static final String AC_DIG = "dig";
     private static final String AC_PICK_UP = "pick_up";
     private static final String AC_BUILD = "build";
-    private static final String AC_RESCUE = "rescue";
     private static final String AC_ASSEMBLE = "assemble";
     private static final String AC_NEXT_TURN = "next_turn";
     private static final String AC_EAT = "eat";
 
     private Controller controller;
 
+    private MenuButton stepButton;
+    private MenuButton examineButton;
+    private MenuButton rescueButton;
     private MenuButton digButton;
     private MenuButton pickupButton;
     private MenuButton buildButton;
-    private MenuButton rescueButton;
     private MenuButton assembleButton;
     private MenuButton newTurnButton;
     private MenuButton eatButton;
@@ -55,6 +59,21 @@ public class ActionsMenu extends JPanel implements ActionListener {
         this.controller = controller;
 
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 8, 16));
+
+        stepButton = new MenuButton("Step");
+        stepButton.setActionCommand(AC_STEP);
+        stepButton.addActionListener(this);
+        this.add(stepButton);
+
+        examineButton = new MenuButton("Examine");
+        examineButton.setActionCommand(AC_EXAMINE);
+        examineButton.addActionListener(this);
+        this.add(examineButton);
+
+        rescueButton = new MenuButton("Rescue");
+        rescueButton.setActionCommand(AC_RESCUE);
+        rescueButton.addActionListener(this);
+        this.add(rescueButton);
 
         digButton = new MenuButton("Dig");
         digButton.setActionCommand(AC_DIG);
@@ -70,11 +89,6 @@ public class ActionsMenu extends JPanel implements ActionListener {
         buildButton.setActionCommand(AC_BUILD);
         buildButton.addActionListener(this);
         this.add(buildButton);
-
-        rescueButton = new MenuButton("Rescue");
-        rescueButton.setActionCommand(AC_RESCUE);
-        rescueButton.addActionListener(this);
-        this.add(rescueButton);
 
         assembleButton = new MenuButton("Assemble");
         assembleButton.setActionCommand(AC_ASSEMBLE);
@@ -118,21 +132,19 @@ public class ActionsMenu extends JPanel implements ActionListener {
         controller.selectedPlayer.eatFood();;
     }
 
+    public void doStep() {
+        if(controller.mode == Controller.Mode.STEP) controller.mode = Controller.Mode.NONE;
+        else controller.mode = Controller.Mode.STEP;
+    }
+
+    public void doExamine() {
+        if(controller.mode == Controller.Mode.EXAMINE) controller.mode = Controller.Mode.NONE;
+        else controller.mode = Controller.Mode.EXAMINE;
+    }
+
     public void doRescue() {
-        for (int i = 0; i < 4; i++) {
-            if (controller.selectedPlayer.getCurrentTile().getNeighbor(i) != null) {
-                Tile tmp = controller.selectedPlayer.getCurrentTile().getNeighbor(i);
-                if (tmp.getWeightLimit() == 0 && tmp.getSnow() == 0) {
-                    for (Entity e : tmp.getOccupants()) {
-                        if (e instanceof Player)  {
-                            controller.selectedPlayer.rescueTeammate(i);
-                            i = 4;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
+        if(controller.mode == Controller.Mode.RESCUE) controller.mode = Controller.Mode.NONE;
+        else controller.mode = Controller.Mode.RESCUE;
     }
 
     public void doAssemble() {
@@ -145,7 +157,11 @@ public class ActionsMenu extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().contentEquals(AC_DIG)) {
+        if(e.getActionCommand().contentEquals(AC_STEP)) {
+            doStep();
+        } else if(e.getActionCommand().contentEquals(AC_EXAMINE)) {
+            doExamine();
+        } else if(e.getActionCommand().contentEquals(AC_DIG)) {
             doDig();
         } else if(e.getActionCommand().contentEquals(AC_PICK_UP)) {
             doPickUp();

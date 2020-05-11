@@ -12,8 +12,14 @@ import grafikus.model.*;
 
 public class Controller extends JFrame implements TileClickListener {
 
-    public static final int SCREEN_WIDTH = 800;
-    public static final int SCREEN_HEIGHT = 600;
+    enum Mode {
+        NONE,
+        STEP,
+        RESCUE,
+        EXAMINE,
+    }
+
+    public Mode mode = Mode.NONE;
 
     private PlayerListMenu playerListMenu = null;
     private InventoryMenu inventoryMenu = null;
@@ -91,17 +97,31 @@ public class Controller extends JFrame implements TileClickListener {
 
     @Override
     public void tileClick(Tile t) {
-        if(selectedPlayer == null) {
-            return;
-        }
+        if(mode == Mode.NONE) return;
 
+        int tileDirection = -1;
         Map<Integer, Tile> neighbors = selectedPlayer.getCurrentTile().getNeighbors();
         for(Map.Entry<Integer, Tile> entry : neighbors.entrySet()) {
             if(entry.getValue() == t) {
-                selectedPlayer.step(entry.getKey());
+                tileDirection = entry.getKey();
                 break;
             }
         }
+
+        if(tileDirection == -1) return;
+
+        if(mode == Mode.STEP) {
+            selectedPlayer.step(tileDirection);
+        } else if(mode == Mode.EXAMINE) {
+            if(selectedPlayer instanceof PolarExplorer) {
+                PolarExplorer explorer = (PolarExplorer)selectedPlayer;
+                explorer.examine(tileDirection);
+            }
+        } else if(mode == Mode.RESCUE) {
+            selectedPlayer.rescueTeammate(tileDirection);
+        }
+
+        mode = Mode.NONE;
 
         update();
     }
