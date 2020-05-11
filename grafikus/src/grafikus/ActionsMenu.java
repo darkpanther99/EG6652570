@@ -119,7 +119,6 @@ public class ActionsMenu extends JPanel implements ActionListener {
     }
 
     public void doRescue() {
-        // TODO
         for (int i = 0; i < 4; i++) {
             if (controller.selectedPlayer.getCurrentTile().getNeighbor(i) != null) {
                 Tile tmp = controller.selectedPlayer.getCurrentTile().getNeighbor(i);

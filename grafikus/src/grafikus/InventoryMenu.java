@@ -32,6 +32,9 @@ public class InventoryMenu extends JPanel {
             ItemIcon foodIcon = new ItemIcon(controller, player.getFoodStore());
             this.add(foodIcon);
 
+            ItemIcon tentkitIcon = new ItemIcon(controller, player.getBuildStrategy());
+            this.add(tentkitIcon);
+
             List<Item> inventory = controller.selectedPlayer.getInventory();
             for(Item item : inventory) {
                 // TODO(boti): isEquipped
