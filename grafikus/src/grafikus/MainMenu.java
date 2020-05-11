@@ -14,13 +14,13 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
     private Controller controller;
     private int numEskimos = 3;
     private int numExplorers = 3;
-
-    private JSpinner eskimoSpinner;
-    private JSpinner explorerSpinner;
-
+    private int numBears = 1;
     private int numRows = 7;
     private int numCols = 10;
 
+    private JSpinner eskimoSpinner;
+    private JSpinner explorerSpinner;
+    private JSpinner bearSpinner;
     private JSpinner rowSpinner;
     private JSpinner colSpinner;
 
@@ -30,7 +30,7 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout(20, 20));
         JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(4, 2, 20, 10));
+        mainPanel.setLayout(new GridLayout(5, 2, 20, 10));
 
         mainPanel.add(new JLabel("Eszkimók száma:"));
         eskimoSpinner = new JSpinner();
@@ -43,6 +43,12 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
         explorerSpinner.setValue(numExplorers);
         explorerSpinner.addChangeListener(this);
         mainPanel.add(explorerSpinner);
+
+        mainPanel.add(new JLabel("Medvék száma:"));
+        bearSpinner = new JSpinner();
+        bearSpinner.setValue(numBears);
+        bearSpinner.addChangeListener(this);
+        mainPanel.add(bearSpinner);
 
         mainPanel.add(new JLabel("Sorok száma:"));
         rowSpinner = new JSpinner();
@@ -108,7 +114,9 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
                 game.createPolarExplorer();
             }
 
-            game.createPolarBear();
+            for(int i = 0; i < numBears; i++) {
+                game.createPolarBear();
+            }
 
             MapGen.generateMap(game, numRows, numCols);
 
@@ -120,6 +128,7 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
     public void stateChanged(ChangeEvent e) {
         numEskimos = (Integer)eskimoSpinner.getValue();
         numExplorers = (Integer)explorerSpinner.getValue();
+        numBears = (Integer)bearSpinner.getValue();
         numRows = (Integer)rowSpinner.getValue();
         numCols = (Integer)colSpinner.getValue();
     }
