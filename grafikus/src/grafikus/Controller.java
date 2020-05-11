@@ -106,6 +106,13 @@ public class Controller extends JFrame implements TileClickListener {
             bear.step(moveDir);
         }
 
+        int stormChance = random.nextInt(100);
+        if(stormChance > 50) {
+            for(Tile t : game.getTiles()) {
+                t.chillStorm();
+            }
+        }
+
         game.turn();
     }
 
