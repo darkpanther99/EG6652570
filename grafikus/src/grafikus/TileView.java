@@ -3,28 +3,24 @@ package grafikus;
 import grafikus.model.*;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
-import java.util.ArrayList;
-import java.util.List;
 
-import static grafikus.ResourceManager.eskimo;
 import static grafikus.ResourceManager.eskimoPlayer;
 
 public class TileView extends JPanel implements MouseListener {
     private Tile tile;
     private boolean isExplored;
     static public int s_TileSize = 128;
-    private TileClickListener tcl;
-    public TileView(Tile t, TileClickListener tcl) {
+    private Controller controller;
+    public TileView(Tile t, Controller c) {
         super();
         addMouseListener(this);
         tile = t;
-        this.tcl = tcl;
+        controller = c;
         isExplored = false;
 
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
@@ -158,9 +154,6 @@ public class TileView extends JPanel implements MouseListener {
             if (item instanceof TentKit) {
                 g.drawImage(ResourceManager.tentkit, 0,0,itemSize, itemSize,null);
             }
-            if (item instanceof Part) {
-                g.drawImage(ResourceManager.flare, 0,0,itemSize, itemSize,null);
-            }
             if (item instanceof Food) {
                 g.drawImage(ResourceManager.food, 0,0,itemSize, itemSize,null);
             }
@@ -169,6 +162,9 @@ public class TileView extends JPanel implements MouseListener {
             }
             if (item instanceof Rope) {
                 g.drawImage(ResourceManager.rope, 0,0,itemSize, itemSize,null);
+            }
+            if (item instanceof Part) {
+
             }
         }
 
@@ -220,7 +216,7 @@ public class TileView extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (tcl != null) tcl.tileClick(tile);
+        if (controller != null) controller.tileClick(tile);
     }
 
     @Override

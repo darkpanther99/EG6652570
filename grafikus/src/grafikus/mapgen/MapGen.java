@@ -48,8 +48,12 @@ public class MapGen {
         tiles.get(index(1,1)).setWeightLimit(999);
         tiles.get(index(1,1)).setSnow(3);
         tiles.get(index(2,1)).setWeightLimit(999);
-        tiles.get(index(2,1)).setSnow(3);
-        tiles.get(index(2,1)).setItem(new Rope());
+        tiles.get(index(2,1)).setSnow(0);
+        tiles.get(index(2,1)).setItem(new Food());
+        tiles.get(index(2,2)).setSnow(0);
+        tiles.get(index(2,2)).setItem(new Part());
+        tiles.get(index(2,3)).setSnow(0);
+        tiles.get(index(2,3)).setItem(new Part());
         tiles.get(index(1,2)).setWeightLimit(0);
         tiles.get(index(1,2)).setSnow(0);
 

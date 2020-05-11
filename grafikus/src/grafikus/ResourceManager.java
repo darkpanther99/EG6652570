@@ -34,6 +34,7 @@ public class ResourceManager {
     public static Image breakingShovel = null;
     public static Image tentkit = null;
     public static Image flare = null;
+    public static Image flareGun = null;
     public static Image flareLight = null;
     public static Image food = null;
     public static Image scubaGear = null;
@@ -86,6 +87,7 @@ public class ResourceManager {
             shovel = ImageIO.read(getResource("png/törhetetlenásó.png"));
             tentkit = ImageIO.read(getResource("png/tentkit.png"));
             flare = ImageIO.read(getResource("png/patron.png"));
+            flareGun = ImageIO.read(getResource("png/flaregun.png"));
             flareLight = ImageIO.read(getResource("png/jelzőfény.png"));
             food = ImageIO.read(getResource("png/food.png"));
             scubaGear = ImageIO.read(getResource("res/oak_leaves.png"));
