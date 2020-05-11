@@ -24,7 +24,9 @@ public class MapGen {
         WEST = 3
     */
 
-    public static void generateMap(Game game) {
+    public static void generateMap(Game game, int r, int c) {
+        rows = r;
+        cols = c;
         List<Tile> tiles = game.getTiles();
         for (int i = 0; i <= cols*rows-1; i++) {
             game.createTile(new Random().nextInt(5+1),new Random().nextInt(game.getPlayers().size() + 1 + 1) - 1);

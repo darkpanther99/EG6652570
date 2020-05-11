@@ -18,6 +18,12 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
     private JSpinner eskimoSpinner;
     private JSpinner explorerSpinner;
 
+    private int numRows = 7;
+    private int numCols = 10;
+
+    private JSpinner rowSpinner;
+    private JSpinner colSpinner;
+
     public MainMenu() {
         setMinimumSize(new Dimension(400, 200));
 
@@ -41,12 +47,23 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
         explorerSpinner.setValue(numExplorers);
         explorerSpinner.addChangeListener(this);
 
+        rowSpinner = new JSpinner();
+        rowSpinner.setValue(numRows);
+        rowSpinner.addChangeListener(this);
+        colSpinner = new JSpinner();
+        colSpinner.setValue(numCols);
+        colSpinner.addChangeListener(this);
+
 
 
         leftPanel.add(new JLabel("Eszkimók száma"));
         rightPanel.add(eskimoSpinner);
         leftPanel.add(new JLabel("Sarkkutatók száma"));
         rightPanel.add(explorerSpinner);
+        leftPanel.add(new JLabel("Sorok száma"));
+        rightPanel.add(rowSpinner);
+        leftPanel.add(new JLabel("Oszlopok száma"));
+        rightPanel.add(colSpinner);
 
         menuPanel.add(leftPanel);
         menuPanel.add(rightPanel);
@@ -68,7 +85,7 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
     }
 
     Controller createController(Game game) {
-        this.controller = new Controller(game);
+        this.controller = new Controller(game, numRows, numCols);
         return controller;
     }
 
@@ -105,7 +122,7 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
 
             game.createPolarBear();
 
-            MapGen.generateMap(game);
+            MapGen.generateMap(game, numRows, numCols);
 
             createController(game);
         }
@@ -115,6 +132,8 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
     public void stateChanged(ChangeEvent e) {
         numEskimos = (Integer)eskimoSpinner.getValue();
         numExplorers = (Integer)explorerSpinner.getValue();
+        numRows = (Integer)rowSpinner.getValue();
+        numCols = (Integer)colSpinner.getValue();
     }
 
     @Override

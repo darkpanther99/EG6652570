@@ -13,26 +13,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class View extends JPanel implements GameObserver {
+public class View extends JScrollPane implements GameObserver {
     private ArrayList<TileView> tiles;
+    private int rows;
+    private int cols;
     private boolean isStorm;
     private TileClickListener tcl;
     private JPanel tilePanel;
     Controller controller;
-    View(Controller c) {
+    View(Controller c, int rows, int cols) {
         super();
+        this.rows = rows;
+        this.cols = cols;
         controller = c;
-        setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
-
         tilePanel = new JPanel();
-        int width = 640*2;
-        int height = 448*2;
+        int width = 10*TileView.s_TileSize;
+        int height = 7*TileView.s_TileSize;
         Dimension d = new Dimension(width, height);
-        tilePanel.setPreferredSize(d);
-        tilePanel.setMinimumSize(d);
-        tilePanel.setMaximumSize(d);
+
+        //setMaximumSize(new Dimension(rows*TileView.s_TileSize, rows*TileView.s_TileSize));
+        setMaximumSize(new Dimension(d));
+        setPreferredSize((rows*TileView.s_TileSize > 10*TileView.s_TileSize || cols*TileView.s_TileSize > 7*TileView.s_TileSize) ? new Dimension(d) : new Dimension(rows*TileView.s_TileSize,cols*TileView.s_TileSize));
+        //setMinimumSize(new Dimension(d));
         tiles = new ArrayList<>();
-        GridLayout gl = new GridLayout(height/TileView.s_TileSize,width/TileView.s_TileSize, 0, 0);
+        GridLayout gl = new GridLayout(rows,cols, 0, 0);
         tilePanel.setLayout(gl);
         tilePanel.setBorder(new EmptyBorder(0, 0, 0, 0));
 
@@ -42,27 +46,8 @@ public class View extends JPanel implements GameObserver {
             tilePanel.add(tiles.get(tiles.size()-1));
         }
         add(tilePanel);
-        /*
-        // NOTE(Mark): Teszt
-        for (int i = 0; i < (width/TileView.s_TileSize)*(height/TileView.s_TileSize); i++) {
-            Tile t = new Tile();
-            t.setSnow(new Random().nextInt(5+1));
-            if (t.getSnow() == 0) {
-                t.setWeightLimit(new Random().nextInt(2 + 1));
-            }
-            else t.setWeightLimit(3);
-            if (i == 0) {
-                t.setItem(new Shovel());
-                t.setShelter(new Tent());
-                t.setSnow(0);
-                t.setWeightLimit(1);
-            }
-            tiles.add(new TileView(t,tcl));
-            tilePanel.add(tiles.get(tiles.size()-1));
-        }
-        add(tilePanel);
- */
-
+        setViewportView(tilePanel);
+        setBorder(BorderFactory.createEmptyBorder());
 
         isStorm = false;
 
@@ -77,6 +62,7 @@ public class View extends JPanel implements GameObserver {
         if (isStorm) {
             //TODO(Mark)
         }
+
         repaint();
     }
 

@@ -33,7 +33,7 @@ public class Controller extends JFrame implements TileClickListener {
     // NOTE(boti): ez csak a rajzolashoz szukseges
     public int foundParts = 0;
 
-    public Controller(Game game) {
+    public Controller(Game game, int rows, int cols) {
         this.game = game;
 
         selectedPlayer = game.getPlayer(0);
@@ -45,7 +45,7 @@ public class Controller extends JFrame implements TileClickListener {
 
         setLayout(new BorderLayout(0, 0));
 
-        view = new View(this);
+        view = new View(this, rows, cols);
         this.add(view, BorderLayout.CENTER);
         game.subscribe(view);
 
@@ -61,7 +61,7 @@ public class Controller extends JFrame implements TileClickListener {
 
         pack();
         setVisible(true);
-
+        setResizable(false);
         this.update();
     }
 
