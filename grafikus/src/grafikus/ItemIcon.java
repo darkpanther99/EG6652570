@@ -1,7 +1,6 @@
 package grafikus;
 
-import grafikus.model.Item;
-import grafikus.model.Player;
+import grafikus.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,7 +35,14 @@ public class ItemIcon extends JPanel implements MouseListener {
     public void paint(Graphics g) {
         //super.paint(g);
         g.drawImage(ResourceManager.emptyPlayerSlot, 0, 0, InventoryMenu.ITEMSIZE, InventoryMenu.ITEMSIZE, null);
-        g.drawImage(ResourceManager.imageEntity, 0,0, InventoryMenu.ITEMSIZE, InventoryMenu.ITEMSIZE, null);
+        Image img = null;
+        if(item instanceof BreakingShovel) {
+            // TODO
+            img = ResourceManager.imageEntity;
+        } else {
+            img = ResourceManager.imageEntity;
+        }
+        g.drawImage(img, 0, 0, InventoryMenu.ITEMSIZE, InventoryMenu.ITEMSIZE, null);
     }
 
     @Override

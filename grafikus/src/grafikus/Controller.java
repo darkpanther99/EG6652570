@@ -24,6 +24,9 @@ public class Controller extends JFrame implements TileClickListener {
     public Game game = null;
     public Player selectedPlayer = null;
 
+    // NOTE(boti): ez csak a rajzolashoz szukseges
+    public int foundParts = 0;
+
     public Controller(Game game) {
         this.game = game;
 

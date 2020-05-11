@@ -1,8 +1,6 @@
 package grafikus;
 
-import grafikus.model.Entity;
-import grafikus.model.Player;
-import grafikus.model.Tile;
+import grafikus.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -103,6 +101,12 @@ public class ActionsMenu extends JPanel implements ActionListener {
     }
 
     public void doPickUp() {
+        // NOTE(boti): ez is a rajzolashoz kell, kicsit hacky.
+        Tile t = controller.selectedPlayer.getCurrentTile();
+        if(t.getItem() instanceof Part) {
+            controller.foundParts++;
+        }
+
         controller.selectedPlayer.pickUp();
     }
 
@@ -130,7 +134,6 @@ public class ActionsMenu extends JPanel implements ActionListener {
                 }
             }
         }
-        //controller.selectedPlayer.rescueTeammate(0);
     }
 
     public void doAssemble() {
