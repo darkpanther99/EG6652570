@@ -67,7 +67,7 @@ public class PlayerIcon extends JPanel implements MouseListener {
         }
 
         int hp = Math.max(0, player.getBodyTemp());
-        int energy = player.getEnergy();
+        int energy = Math.max(0, player.getEnergy());
         g.drawImage(ResourceManager.imageHP[hp],
                 PlayerListMenu.PLAYERICONSIZE/4,
                 PlayerListMenu.PLAYERICONSIZE / 2 + 10,
