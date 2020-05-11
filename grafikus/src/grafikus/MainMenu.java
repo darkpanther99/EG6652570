@@ -92,7 +92,7 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
     @Override
     public void gameOver() {
         controller.dispatchEvent(new WindowEvent(controller, WindowEvent.WINDOW_CLOSING));
-        JOptionPane.showMessageDialog(this, "A player die, game over!");
+        JOptionPane.showMessageDialog(this, "A player died, game over!");
     }
 
     @Override
