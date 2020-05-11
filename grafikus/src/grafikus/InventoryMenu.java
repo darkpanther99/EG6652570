@@ -37,6 +37,9 @@ public class InventoryMenu extends JPanel {
 
             List<Item> inventory = controller.selectedPlayer.getInventory();
             for(Item item : inventory) {
+                if(item instanceof Empty) {
+                    continue;
+                }
                 // TODO(boti): isEquipped
                 ItemIcon icon = new ItemIcon(controller, item, false);
                 this.add(icon);
