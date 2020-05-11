@@ -37,7 +37,6 @@ public class View extends JPanel implements GameObserver {
         tilePanel.setBorder(new EmptyBorder(0, 0, 0, 0));
 
         Game g = controller.game;
-        MapGen.generateMap(g);
         for (Tile t : g.getTiles()) {
             tiles.add(new TileView(t,c));
             tilePanel.add(tiles.get(tiles.size()-1));

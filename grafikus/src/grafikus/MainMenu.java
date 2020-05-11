@@ -1,5 +1,6 @@
 package grafikus;
 
+import grafikus.mapgen.MapGen;
 import grafikus.model.*;
 import javax.swing.*;
 import javax.swing.event.*;
@@ -91,7 +92,6 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
         if(e.getActionCommand().contentEquals(AC_NEW_GAME)) {
             Game game = createGame();
 
-            // Create map;
             for(int i = 0; i < numEskimos; i++) {
                 game.createEskimo();
             }
@@ -101,6 +101,8 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
             }
 
             game.createPolarBear();
+
+            MapGen.generateMap(game);
 
             createController(game);
         }
