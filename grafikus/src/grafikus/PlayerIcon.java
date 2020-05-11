@@ -41,16 +41,16 @@ public class PlayerIcon extends JPanel implements MouseListener {
     public void paint(Graphics g) {
         super.paint(g);
         g.drawImage(ResourceManager.playerSlot, 0,0, PlayerListMenu.PLAYERICONSIZE, PlayerListMenu.PLAYERICONSIZE, null);
-        if(player instanceof Eskimo){
-            g.drawImage(ResourceManager.eskimo,
+        if(player instanceof EskimoView) {
+            g.drawImage(((EskimoView) player).iconImage,
                     PlayerListMenu.PLAYERICONSIZE / 4 + PlayerListMenu.PLAYERICONSIZE / 9,
                     PlayerListMenu.PLAYERICONSIZE / 4 - PlayerListMenu.PLAYERICONSIZE / 11,
                     PlayerListMenu.PLAYERICONSIZE / 4,
                     PlayerListMenu.PLAYERICONSIZE / 4,
                     null);
         }
-        if(player instanceof PolarExplorer){
-            g.drawImage(ResourceManager.explorer,
+        if(player instanceof ExplorerView){
+            g.drawImage(((ExplorerView) player).iconImage,
                     PlayerListMenu.PLAYERICONSIZE / 4 + PlayerListMenu.PLAYERICONSIZE / 9,
                     PlayerListMenu.PLAYERICONSIZE / 4 - PlayerListMenu.PLAYERICONSIZE / 11,
                     PlayerListMenu.PLAYERICONSIZE / 4,

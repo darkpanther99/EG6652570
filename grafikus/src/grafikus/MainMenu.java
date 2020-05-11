@@ -106,12 +106,17 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
             Game game = createGame();
             game.subscribe(this);
 
+            // NOTE(boti):
+            //  Bypass-oljuk a game create*() fv-nyeit, mert
+            //  azok nem view-kat hoznak letre
             for(int i = 0; i < numEskimos; i++) {
-                game.createEskimo();
+                EskimoView eskimo = new EskimoView(game);
+                game.getPlayers().add(eskimo);
             }
 
             for(int i = 0; i < numExplorers; i++) {
-                game.createPolarExplorer();
+                ExplorerView explorer = new ExplorerView(game);
+                game.getPlayers().add(explorer);
             }
 
             for(int i = 0; i < numBears; i++) {

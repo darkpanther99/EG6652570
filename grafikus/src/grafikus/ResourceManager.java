@@ -27,8 +27,8 @@ public class ResourceManager {
     public static Image[] imageEnergy = new Image[6];
 
     public static Image player = null;
-    public static Image explorer = null;
-    public static Image eskimo = null;
+    public static Image[] explorer = new Image[3];
+    public static Image[] eskimo = new Image[3];
     public static Image emptyPlayerSlot = null;
     public static Image playerSlot = null;
     public static Image selectedPlayer = null;
@@ -43,8 +43,8 @@ public class ResourceManager {
     public static Image scubaGear = null;
     public static Image rope = null;
 
-    public static Image eskimoPlayer = null;
-    public static Image explorerPlayer = null;
+    public static Image[] eskimoPlayer = new Image[3];
+    public static Image[] explorerPlayer = new Image[3];
     public static Image polarbear = null;
 
     public static Image igloo = null;
@@ -75,8 +75,12 @@ public class ResourceManager {
             flagNotSafe = ImageIO.read(getResource("png/zaszloveszely.png"));
 
             // Player
-            eskimoPlayer = ImageIO.read(getResource("png/eskimo1.png"));
-            explorerPlayer = ImageIO.read(getResource("png/explorer1.png"));
+            for(int i = 1; i <= 3; i++) {
+                eskimoPlayer[i - 1] = ImageIO.read(getResource("png/eskimo" + i + ".png"));
+                explorerPlayer[i - 1] = ImageIO.read(getResource("png/explorer" + i + ".png"));
+                eskimo[i - 1] = ImageIO.read(getResource("png/eskimo" + i + "_playericon.png"));
+                explorer[i - 1] = ImageIO.read(getResource("png/explorer" + i + "_playericon.png"));
+            }
             polarbear = ImageIO.read(getResource("png/jegesmedve.png"));
 
             // Shelter
@@ -103,8 +107,7 @@ public class ResourceManager {
             imageLeaves = ImageIO.read(getResource("res/oak_leaves.png"));
             imageSea = ImageIO.read(getResource("res/water.png"));
             imageEntity = ImageIO.read(getResource("res/entity.png"));
-            eskimo = ImageIO.read(getResource("png/eskimo1_playericon.png"));
-            explorer = ImageIO.read(getResource("png/explorer1_playericon.png"));
+
             emptyPlayerSlot = ImageIO.read(getResource("png/empty_player_slot.png"));
             playerSlot = ImageIO.read(getResource("png/player_slot.png"));
             selectedPlayer = ImageIO.read(getResource("png/active player.png"));

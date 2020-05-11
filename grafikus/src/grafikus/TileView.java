@@ -200,13 +200,13 @@ public class TileView extends JPanel implements MouseListener {
             for (int i = 0; i < occupantCount; i++) {
                 Image entityImage = ResourceManager.imageEntity; // ez majd az entitybol jon
                 boolean tallBoi = false;
-                if (tile.getOccupants().get(i) instanceof Eskimo) {
+                if (tile.getOccupants().get(i) instanceof EskimoView) {
                     tallBoi = true;
-                    entityImage = ResourceManager.eskimoPlayer;
+                    entityImage = ((EskimoView)tile.getOccupants().get(i)).playerImage;
                 }
-                if (tile.getOccupants().get(i) instanceof PolarExplorer) {
+                if (tile.getOccupants().get(i) instanceof ExplorerView) {
                     tallBoi = true;
-                    entityImage = ResourceManager.explorerPlayer;
+                    entityImage = ((ExplorerView)tile.getOccupants().get(i)).playerImage;
                 }
 
                 if (tile.getOccupants().get(i) instanceof PolarBear) {
