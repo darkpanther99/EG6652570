@@ -89,7 +89,10 @@ public class ItemIcon extends JPanel implements MouseListener {
             else if (item instanceof TentKit) img = ResourceManager.tentkit;
             else img = ResourceManager.imageEntity;
 
-            g.drawImage(img, 0, 0, InventoryMenu.ITEMSIZE, InventoryMenu.ITEMSIZE, null);
+            int size = InventoryMenu.ITEMSIZE / 3;
+            int xOffs = (InventoryMenu.ITEMSIZE - size) / 2;
+            int yOffs = (InventoryMenu.ITEMSIZE - size) / 2 + 12;
+            g.drawImage(img, xOffs, yOffs, size, size, null);
         } else if(type == Type.FOOD_STORE) {
             g.drawImage(ResourceManager.foodSlot, 0, 0, InventoryMenu.ITEMSIZE, InventoryMenu.ITEMSIZE, null);
             int count = foodStore.getCount();
