@@ -99,11 +99,23 @@ public class Controller extends JFrame implements TileClickListener {
     public void nextTurn() {
         Random random = new Random();
         for(PolarBear bear : game.getBears()) {
-            int moveDir;
-            do {
-                moveDir = random.nextInt(4);
-            } while(bear.getCurrentTile().getNeighbor(moveDir).getWeightLimit() <= 0);
-            bear.step(moveDir);
+            int[] arr = {0, 1, 2, 3};
+
+            ArrayList<Integer> moveDirs = new ArrayList<Integer>();
+            moveDirs.add(0);
+            moveDirs.add(1);
+            moveDirs.add(2);
+            moveDirs.add(3);
+
+            while(!moveDirs.isEmpty()) {
+                int index = random.nextInt(moveDirs.size());
+                int dir = moveDirs.get(index);
+                moveDirs.remove(index);
+                if(bear.getCurrentTile().getNeighbor(dir).getWeightLimit() > 0) {
+                    bear.step(dir);
+                    break;
+                }
+            }
         }
 
         int stormChance = random.nextInt(100);
