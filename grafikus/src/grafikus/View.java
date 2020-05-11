@@ -35,6 +35,25 @@ public class View extends JScrollPane implements GameObserver {
         setMaximumSize(new Dimension(d));
         setPreferredSize((rows*TileView.s_TileSize > 10*TileView.s_TileSize || cols*TileView.s_TileSize > 7*TileView.s_TileSize) ? new Dimension(d) : new Dimension(rows*TileView.s_TileSize,cols*TileView.s_TileSize));
         //setMinimumSize(new Dimension(d));
+
+        final boolean hideScrollbar = true;
+        if(hideScrollbar) {
+            // https://stackoverflow.com/a/47896823
+            JScrollBar vScrollBar = new JScrollBar(JScrollBar.VERTICAL) {
+                public boolean isVisible() { return true; }
+            };
+            setVerticalScrollBar(vScrollBar);
+            setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+            JScrollBar hScrollBar = new JScrollBar(JScrollBar.HORIZONTAL) {
+                public boolean isVisible() { return true; }
+            };
+            setHorizontalScrollBar(hScrollBar);
+            setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        }
+
+        getVerticalScrollBar().setUnitIncrement(16);
+        getHorizontalScrollBar().setUnitIncrement(16);
+
         tiles = new ArrayList<>();
         GridLayout gl = new GridLayout(rows,cols, 0, 0);
         tilePanel.setLayout(gl);
