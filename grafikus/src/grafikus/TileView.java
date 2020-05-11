@@ -12,6 +12,9 @@ import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 
+import static grafikus.ResourceManager.eskimo;
+import static grafikus.ResourceManager.eskimoPlayer;
+
 public class TileView extends JPanel implements MouseListener {
     private Tile tile;
     private boolean isExplored;
@@ -182,11 +185,23 @@ public class TileView extends JPanel implements MouseListener {
             // itt az entity-ken loopolnank vegig
             // TODO(Mark): Meg nincs a resource managerben entity img tomb, jelenleg marad ez
             for (int i = 0; i < occupantCount; i++) {
+                Image entityImage = ResourceManager.imageEntity; // ez majd az entitybol jon
+                boolean tallBoi = false;
+                if (tile.getOccupants().get(i) instanceof Eskimo) {
+                    tallBoi = true;
+                    entityImage = eskimoPlayer;
+                }
+                if (tile.getOccupants().get(i) instanceof PolarExplorer) {
+                    tallBoi = true;
+                    entityImage = ResourceManager.explorerPlayer;
+                }
+                if (tallBoi) {
+                    System.out.println(eskimoPlayer.getHeight(null));
+                    System.out.println(eskimoPlayer.getWidth(null));
+                }
                 int xOffset = (i % horizontalCount) * entitySize;
                 int yOffset = (i / horizontalCount) * entitySize;
-
-                Image entityImage = ResourceManager.imageEntity; // ez majd az entitybol jon
-                g.drawImage(entityImage, xOffset, yOffset, entitySize, entitySize, null);
+                g.drawImage(entityImage, xOffset, yOffset, (tallBoi) ? (int)(entitySize/1.8) : entitySize, entitySize, null);
             }
 
         }

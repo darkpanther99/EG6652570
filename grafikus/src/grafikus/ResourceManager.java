@@ -39,6 +39,9 @@ public class ResourceManager {
     public static Image scubaGear = null;
     public static Image rope = null;
 
+    public static Image eskimoPlayer = null;
+    public static Image explorerPlayer = null;
+
     public static Image igloo = null;
     public static Image tent = null;
 
@@ -57,6 +60,10 @@ public class ResourceManager {
     static {
         try {
 
+
+            // Player
+            eskimoPlayer = ImageIO.read(getResource("png/eskimo1.png"));
+            explorerPlayer = ImageIO.read(getResource("png/explorer1.png"));
 
             // Shelter
             igloo = ImageIO.read(getResource("png/iglu.png"));
