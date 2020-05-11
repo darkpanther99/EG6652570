@@ -1,8 +1,6 @@
 package grafikus;
 
-import grafikus.model.Entity;
-import grafikus.model.Player;
-import grafikus.model.Tile;
+import grafikus.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,20 +33,20 @@ public class ActionsMenu extends JPanel implements ActionListener {
     }
 
     private static final String AC_DIG = "dig";
+    private static final String AC_PICK_UP = "pick_up";
     private static final String AC_BUILD = "build";
     private static final String AC_RESCUE = "rescue";
     private static final String AC_ASSEMBLE = "assemble";
-    private static final String AC_EXIT = "exit";
     private static final String AC_NEXT_TURN = "next_turn";
     private static final String AC_EAT = "eat";
 
     private Controller controller;
 
     private MenuButton digButton;
+    private MenuButton pickupButton;
     private MenuButton buildButton;
     private MenuButton rescueButton;
     private MenuButton assembleButton;
-    private MenuButton exitButton;
     private MenuButton newTurnButton;
     private MenuButton eatButton;
 
@@ -62,6 +60,11 @@ public class ActionsMenu extends JPanel implements ActionListener {
         digButton.setActionCommand(AC_DIG);
         digButton.addActionListener(this);
         this.add(digButton);
+
+        pickupButton = new MenuButton("Pick up");
+        pickupButton.setActionCommand(AC_PICK_UP);
+        pickupButton.addActionListener(this);
+        this.add(pickupButton);
 
         buildButton = new MenuButton("Build");
         buildButton.setActionCommand(AC_BUILD);
@@ -77,11 +80,6 @@ public class ActionsMenu extends JPanel implements ActionListener {
         assembleButton.setActionCommand(AC_ASSEMBLE);
         assembleButton.addActionListener(this);
         this.add(assembleButton);
-
-        exitButton = new MenuButton("Exit");
-        exitButton.setActionCommand(AC_EXIT);
-        exitButton.addActionListener(this);
-        this.add(exitButton);
 
         newTurnButton = new MenuButton("Next turn");
         newTurnButton.setActionCommand(AC_NEXT_TURN);
@@ -100,6 +98,16 @@ public class ActionsMenu extends JPanel implements ActionListener {
 
     public void doDig() {
         controller.selectedPlayer.dig();
+    }
+
+    public void doPickUp() {
+        // NOTE(boti): ez is a rajzolashoz kell, kicsit hacky.
+        Tile t = controller.selectedPlayer.getCurrentTile();
+        if(t.getItem() instanceof Part) {
+            controller.foundParts++;
+        }
+
+        controller.selectedPlayer.pickUp();
     }
 
     public void doBuild() {
@@ -126,18 +134,13 @@ public class ActionsMenu extends JPanel implements ActionListener {
                 }
             }
         }
-        //controller.selectedPlayer.rescueTeammate(0);
     }
 
     public void doAssemble() {
         controller.selectedPlayer.assembleFlare();
     }
 
-    public void exit() {
-        // TODO
-    }
-
-    public void nextTurn() {
+    public void doNextTurn() {
         controller.nextTurn();
     }
 
@@ -145,16 +148,16 @@ public class ActionsMenu extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().contentEquals(AC_DIG)) {
             doDig();
+        } else if(e.getActionCommand().contentEquals(AC_PICK_UP)) {
+            doPickUp();
         } else if(e.getActionCommand().contentEquals(AC_BUILD)) {
             doBuild();
         } else if(e.getActionCommand().contentEquals(AC_RESCUE)) {
             doRescue();
         } else if(e.getActionCommand().contentEquals(AC_ASSEMBLE)) {
             doAssemble();
-        } else if(e.getActionCommand().contentEquals(AC_EXIT)) {
-            exit();
         } else if(e.getActionCommand().contentEquals(AC_NEXT_TURN)) {
-            nextTurn();
+            doNextTurn();
         } else if(e.getActionCommand().contentEquals(AC_EAT)) {
             doEat();
         }
