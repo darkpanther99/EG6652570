@@ -104,7 +104,9 @@ public class MapGen {
         }
 
 
-
+        for (Player p : game.getPlayers()) {
+            p.placeOn(tiles.get(index(1,1)));
+        }
         for (PolarBear b : game.getBears()) {
             int done = 0;
             boolean badbadbear = false;
@@ -115,7 +117,10 @@ public class MapGen {
                     continue;
                 }
                 for (Entity e : tiles.get(index(x,y)).getOccupants()) {
-                    if (e instanceof Player) badbadbear = true;
+                    if (e instanceof Player) {
+                        badbadbear = true;
+                        break;
+                    }
                 }
                 if (badbadbear) continue;
 
@@ -127,9 +132,6 @@ public class MapGen {
             }
         }
 
-        for (Player p : game.getPlayers()) {
-            p.placeOn(tiles.get(index(1,1)));
-        }
     }
 
     private MapGen() {
