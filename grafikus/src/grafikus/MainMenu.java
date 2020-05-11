@@ -74,23 +74,26 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
 
     @Override
     public void victory() {
-
+        controller.dispatchEvent(new WindowEvent(controller, WindowEvent.WINDOW_CLOSING));
+        JOptionPane.showMessageDialog(this, "You're winner!");
     }
 
     @Override
     public void gameOver() {
-
+        controller.dispatchEvent(new WindowEvent(controller, WindowEvent.WINDOW_CLOSING));
+        JOptionPane.showMessageDialog(this, "Game over!");
     }
 
     @Override
     public void explore(Tile t) {
-
+        // Empty
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().contentEquals(AC_NEW_GAME)) {
             Game game = createGame();
+            game.subscribe(this);
 
             for(int i = 0; i < numEskimos; i++) {
                 game.createEskimo();
@@ -131,7 +134,7 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
 
     @Override
     public void windowClosing(WindowEvent e) {
-
+        // TODO
     }
 
     @Override
