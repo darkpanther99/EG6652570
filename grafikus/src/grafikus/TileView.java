@@ -195,10 +195,6 @@ public class TileView extends JPanel implements MouseListener {
                     tallBoi = true;
                     entityImage = ResourceManager.explorerPlayer;
                 }
-                if (tallBoi) {
-                    System.out.println(eskimoPlayer.getHeight(null));
-                    System.out.println(eskimoPlayer.getWidth(null));
-                }
                 int xOffset = (i % horizontalCount) * entitySize;
                 int yOffset = (i / horizontalCount) * entitySize;
                 g.drawImage(entityImage, xOffset, yOffset, (tallBoi) ? (int)(entitySize/1.8) : entitySize, entitySize, null);
