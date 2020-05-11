@@ -94,14 +94,69 @@ public class ItemIcon extends JPanel implements MouseListener {
             g.drawImage(ResourceManager.foodSlot, 0, 0, InventoryMenu.ITEMSIZE, InventoryMenu.ITEMSIZE, null);
             int count = foodStore.getCount();
             if(count > 0) {
-                g.drawImage(ResourceManager.food, 0, 0, InventoryMenu.ITEMSIZE, InventoryMenu.ITEMSIZE, null);
+
+                int size = 50;
+                int xOffs = (InventoryMenu.ITEMSIZE - size) / 2;
+                int yOffs = (InventoryMenu.ITEMSIZE - size) / 2 + 10;
+                g.drawImage(ResourceManager.food, xOffs, yOffs, size, size, null);
+
+                String str = count + "x";
+                FontMetrics metrics = getFontMetrics(this.getFont());
+                int w = metrics.stringWidth(str);
+
+                Graphics2D g2 = (Graphics2D)g;
+                g2.setColor(Color.WHITE);
+                g2.drawString(str, (InventoryMenu.ITEMSIZE - w) / 2, metrics.getHeight() + 92);
             }
         } else if(type == Type.PART_STORE) {
             g.drawImage(ResourceManager.pewpewSlot, 0, 0, InventoryMenu.ITEMSIZE, InventoryMenu.ITEMSIZE, null);
-            // TODO(boti): count
+
+            int xOffs = 0;
+            int yOffs = 0;
+            int w = 1;
+            int h = 1;
+
+            if(partStore.getCount() > 0) {
+                xOffs = 36;
+                yOffs = 33;
+                w = 55;
+                h = 37;
+                g.drawImage(ResourceManager.flareGun, xOffs, yOffs, w, h, null);
+
+                if(partStore.getCount() > 1) {
+                    xOffs = 32;
+                    yOffs = 98;
+                    w = 20;
+                    h = 20;
+                    g.drawImage(ResourceManager.flareLight, xOffs, yOffs, w, h, null);
+                }
+                if(partStore.getCount() > 2) {
+                    xOffs = 80;
+                    yOffs = 98;
+                    w = 12;
+                    h = 20;
+                    g.drawImage(ResourceManager.flare, xOffs, yOffs, w, h, null);
+                }
+            }
+
         } else if(type == Type.TENTKIT_STORE) {
             g.drawImage(ResourceManager.tentkitSlot, 0, 0, InventoryMenu.ITEMSIZE, InventoryMenu.ITEMSIZE, null);
-            // TODO(boti): count
+
+            if(tentkitStore.getCount() > 0) {
+                int size = 64;
+                int xOffs = (InventoryMenu.ITEMSIZE - size) / 2;
+                int yOffs = (InventoryMenu.ITEMSIZE - size) / 2 + 12;
+                g.drawImage(ResourceManager.tentkit, xOffs, yOffs, size, size, null);
+
+
+                String str = tentkitStore.getCount() + "x";
+                FontMetrics metrics = getFontMetrics(this.getFont());
+                int w = metrics.stringWidth(str);
+
+                Graphics2D g2 = (Graphics2D)g;
+                g2.setColor(Color.WHITE);
+                g2.drawString(str, (InventoryMenu.ITEMSIZE - w) / 2, metrics.getHeight() + 92);
+            }
         }
     }
 
