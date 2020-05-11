@@ -67,6 +67,8 @@ public class Controller extends JFrame implements TileClickListener {
         inventoryMenu.update();
         playerListMenu.update();
         actionsMenu.update();
+        this.repaint();
+
         List<Player> players = game.getPlayers();
 
         for(Player player : players) {
@@ -76,8 +78,6 @@ public class Controller extends JFrame implements TileClickListener {
         }
 
         nextTurn();
-
-        this.repaint();
     }
 
     public void nextTurn() {

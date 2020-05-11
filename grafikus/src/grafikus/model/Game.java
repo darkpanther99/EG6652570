@@ -49,6 +49,7 @@ public class Game {
             t.chillWater();
             t.ruinShelter();
         }
+
         for (PolarBear b : bears) {
             b.getCurrentTile().bearAttack();
         }

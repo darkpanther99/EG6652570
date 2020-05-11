@@ -13,6 +13,9 @@ public class PlayerListMenu extends JPanel implements PlayerSelectListener{
 
     public PlayerListMenu(Controller controller) {
         super();
+
+        this.setLayout(new FlowLayout(FlowLayout.TRAILING, 0, 0));
+
         this.controller = controller;
         this.iconlist = new ArrayList<>();
 
@@ -51,7 +54,12 @@ public class PlayerListMenu extends JPanel implements PlayerSelectListener{
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.drawImage(ResourceManager.emptyPlayerSlot, 0,0, PLAYERICONSIZE, PLAYERICONSIZE * iconlist.size(), null);
+
+        int height = getHeight();
+        for(int y = iconlist.size()*PLAYERICONSIZE; y < height; y += PLAYERICONSIZE) {
+            g.drawImage(ResourceManager.emptyPlayerSlot, 0, y, PLAYERICONSIZE, PLAYERICONSIZE, null);
+        }
+
         paintChildren(g);
     }
 }
