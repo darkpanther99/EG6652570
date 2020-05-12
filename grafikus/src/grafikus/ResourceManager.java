@@ -121,7 +121,7 @@ public class ResourceManager {
 
             imageSnow[0] = hole;
             for (int i = 1; i <= 5; i++) {
-                Image snow = ImageIO.read(getResource("png/hó" + Integer.toString(i) + ".png"));
+                Image snow = ImageIO.read(getResource("png/hó" + i + ".png"));
                 imageSnow[i] = snow;
             }
             // UI
