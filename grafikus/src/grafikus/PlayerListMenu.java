@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class PlayerListMenu extends JPanel implements PlayerSelectListener{
+public class PlayerListMenu extends JPanel{
     public static final int PLAYERICONSIZE = 128;
     public Controller controller;
     public ArrayList<PlayerIcon> iconlist;
@@ -21,7 +21,7 @@ public class PlayerListMenu extends JPanel implements PlayerSelectListener{
 
         for (Player p : controller.game.getPlayers()) {
             PlayerIcon pi = new PlayerIcon(controller, p, false);
-            pi.addPlayerSelectListener(this);
+            pi.addPlayerSelectListener(controller);
             if(controller.selectedPlayer == p){
                 pi.isSelected = true;
             }
@@ -41,15 +41,7 @@ public class PlayerListMenu extends JPanel implements PlayerSelectListener{
         }
     }
 
-    public void select(Player p){
-        controller.selectedPlayer = p;
-        controller.update();
-    }
 
-    public void deselect(Player p){
-        //TODO p = controller.getNextPlayer();
-        // select(p);
-    }
 
     @Override
     public void paint(Graphics g) {

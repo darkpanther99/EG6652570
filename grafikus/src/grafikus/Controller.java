@@ -10,8 +10,7 @@ import java.util.Map;
 
 import grafikus.model.*;
 
-public class Controller extends JFrame implements TileClickListener {
-
+public class Controller extends JFrame implements TileClickListener, PlayerSelectListener {
     enum Mode {
         NONE,
         STEP,
@@ -126,6 +125,12 @@ public class Controller extends JFrame implements TileClickListener {
         }
 
         game.turn();
+    }
+
+    @Override
+    public void select(Player p) {
+        selectedPlayer = p;
+        update();
     }
 
     @Override
