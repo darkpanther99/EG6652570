@@ -100,8 +100,8 @@ public class ResourceManager {
             flareGun = ImageIO.read(getResource("png/flaregun.png"));
             flareLight = ImageIO.read(getResource("png/jelzőfény.png"));
             food = ImageIO.read(getResource("png/food.png"));
-            scubaGear = ImageIO.read(getResource("res/oak_leaves.png"));
-            rope = ImageIO.read(getResource("res/oak_leaves.png"));
+            scubaGear = ImageIO.read(getResource("png/scuba.png"));
+            rope = ImageIO.read(getResource("png/rope.png"));
 
             imageIce = ImageIO.read(getResource("png/jégtile.png"));
             imageLeaves = ImageIO.read(getResource("res/oak_leaves.png"));
