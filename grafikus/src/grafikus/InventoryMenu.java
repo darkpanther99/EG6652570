@@ -8,18 +8,30 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * A játékos tárgyait mutató UI elem.
+ */
 public class InventoryMenu extends JPanel {
-    public static final int ITEMSIZE = 128;
+    /**
+     * Az ikon négyzet mérete.
+     */
+    public static final int ITEM_SIZE = 128;
 
     private final Controller controller;
 
+    /**
+     * @param controller Megkapja a vezérlőt, mint dependency injection.
+     */
     public InventoryMenu(Controller controller) {
         this.controller = controller;
-        setPreferredSize(new Dimension(ITEMSIZE, 0));
+        setPreferredSize(new Dimension(ITEM_SIZE, 0));
 
         this.setLayout(new FlowLayout(FlowLayout.TRAILING, 0, 0));
     }
 
+    /**
+     * Frissíti a megjelenő tárgyakat.
+     */
     public void update() {
         this.removeAll();
 
@@ -50,14 +62,17 @@ public class InventoryMenu extends JPanel {
         this.repaint();
     }
 
+    /**
+     * Kereteket rajzol az ItemIconok köré.
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
 
         int height = getHeight();
 
-        for (int y = getComponentCount() * ITEMSIZE; y < height; y += ITEMSIZE) {
-            g.drawImage(ResourceManager.itemSlot, 0, y, ITEMSIZE, ITEMSIZE, null);
+        for (int y = getComponentCount() * ITEM_SIZE; y < height; y += ITEM_SIZE) {
+            g.drawImage(ResourceManager.itemSlot, 0, y, ITEM_SIZE, ITEM_SIZE, null);
         }
 
         paintChildren(g);

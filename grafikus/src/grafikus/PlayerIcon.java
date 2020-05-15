@@ -7,12 +7,20 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * Egy játékost reprezentáló UI elem a PlayerListMenuben.
+ */
 public class PlayerIcon extends JPanel implements MouseListener {
-    public final Controller controller;
+    private final Controller controller;
+    private PlayerSelectListener psl;
     public final Player player;
-    public PlayerSelectListener psl;
     public boolean isSelected = false;
 
+    /**
+     * @param controller Megkapja a vezérlőt, mint dependency injection.
+     * @param player     A játékos.
+     * @param isSelected Éppen ki van-e választva?
+     */
     public PlayerIcon(Controller controller, Player player, boolean isSelected) {
         super();
 
@@ -26,14 +34,23 @@ public class PlayerIcon extends JPanel implements MouseListener {
         addMouseListener(this);
     }
 
+    /**
+     * Frissíti a kirajzolt számokat.
+     */
     public void update() {
         repaint();
     }
 
+    /**
+     * Feliratkozás a PlayerSelect eseményre.
+     */
     public void addPlayerSelectListener(PlayerSelectListener psl) {
         this.psl = psl;
     }
 
+    /**
+     * A megfelelő ikon kirajzolása.
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -81,26 +98,41 @@ public class PlayerIcon extends JPanel implements MouseListener {
 
     }
 
+    /**
+     * Klikkelés hatására ki lesz választva.
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         psl.select(this.player);
     }
 
+    /**
+     * Nem használjuk.
+     */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * Nem használjuk.
+     */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * Nem használjuk.
+     */
     @Override
     public void mouseEntered(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * Nem használjuk.
+     */
     @Override
     public void mouseExited(MouseEvent mouseEvent) {
 

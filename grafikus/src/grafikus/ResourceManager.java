@@ -9,61 +9,64 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.MissingResourceException;
 
+/**
+ * Betölti a játék grafikájához szükséges erőforrásokat.
+ */
 public class ResourceManager {
 
     // Texturak
-    public static final Image imageIce = null;
-    public static final Image imageLeaves = null;
-    public static final Image imageSea = null;
-    public static final Image imageEntity = null;
-    public static final Image[] imageSnow = new Image[6]; // minden horeteghez egy textura
-    public static final Image waterSide = null;
-    public static final Image waterCorner = null;
+    public static Image imageIce = null;
+    public static Image imageLeaves = null;
+    public static Image imageSea = null;
+    public static Image imageEntity = null;
+    public static Image[] imageSnow = new Image[6]; // minden horeteghez egy textura
+    public static Image waterSide = null;
+    public static Image waterCorner = null;
 
-    public static final Image flagSafe = null;
-    public static final Image flagNotSafe = null;
+    public static Image flagSafe = null;
+    public static Image flagNotSafe = null;
 
-    public static final Image[] imageHP = new Image[6];
-    public static final Image[] imageEnergy = new Image[6];
+    public static Image[] imageHP = new Image[6];
+    public static Image[] imageEnergy = new Image[6];
 
     public static Image player = null;
-    public static final Image[] explorer = new Image[3];
-    public static final Image[] eskimo = new Image[3];
-    public static final Image emptyPlayerSlot = null;
-    public static final Image playerSlot = null;
-    public static final Image selectedPlayer = null;
+    public static Image[] explorer = new Image[3];
+    public static Image[] eskimo = new Image[3];
+    public static Image emptyPlayerSlot = null;
+    public static Image playerSlot = null;
+    public static Image selectedPlayer = null;
 
-    public static final Image shovel = null;
-    public static final Image breakingShovel = null;
-    public static final Image tentkit = null;
-    public static final Image flare = null;
-    public static final Image flareGun = null;
-    public static final Image flareLight = null;
-    public static final Image food = null;
-    public static final Image scubaGear = null;
-    public static final Image rope = null;
+    public static Image shovel = null;
+    public static Image breakingShovel = null;
+    public static Image tentKit = null;
+    public static Image flare = null;
+    public static Image flareGun = null;
+    public static Image flareLight = null;
+    public static Image food = null;
+    public static Image scubaGear = null;
+    public static Image rope = null;
 
-    public static final Image[] eskimoPlayer = new Image[3];
-    public static final Image[] explorerPlayer = new Image[3];
-    public static final Image polarbear = null;
+    public static Image[] eskimoPlayer = new Image[3];
+    public static Image[] explorerPlayer = new Image[3];
+    public static Image polarBear = null;
 
-    public static final Image igloo = null;
-    public static final Image tent = null;
+    public static Image igloo = null;
+    public static Image tent = null;
 
-    public static final Image buttonSlot = null;
-    public static final Image itemSlot = null;
-    public static final Image foodSlot = null;
-    public static final Image pewpewSlot = null;
-    public static final Image tentkitSlot = null;
+    public static Image buttonSlot = null;
+    public static Image itemSlot = null;
+    public static Image foodSlot = null;
+    public static Image flareGunSlot = null;
+    public static Image tentKitSlot = null;
 
     // Hangok
-    public static final Sound soundBackground = new Sound();
+    public static Sound soundBackground = new Sound();
 
-    // Betolt mindent
+    /*
+     * Mindent betölt.
+     */
     static {
         try {
-
-
             flagSafe = ImageIO.read(getResource("png/zaszlobiztonsagos.png"));
             flagNotSafe = ImageIO.read(getResource("png/zaszloveszely.png"));
 
@@ -74,7 +77,7 @@ public class ResourceManager {
                 eskimo[i - 1] = ImageIO.read(getResource("png/eskimo" + i + "_playericon.png"));
                 explorer[i - 1] = ImageIO.read(getResource("png/explorer" + i + "_playericon.png"));
             }
-            polarbear = ImageIO.read(getResource("png/jegesmedve.png"));
+            polarBear = ImageIO.read(getResource("png/jegesmedve.png"));
 
             // Shelter
             igloo = ImageIO.read(getResource("png/iglu.png"));
@@ -83,12 +86,12 @@ public class ResourceManager {
             // Items
             itemSlot = ImageIO.read(getResource("png/itemslot.png"));
             foodSlot = ImageIO.read(getResource("png/foodslot.png"));
-            pewpewSlot = ImageIO.read(getResource("png/pewpewslot.png"));
-            tentkitSlot = ImageIO.read(getResource("png/tentkitslot.png"));
+            flareGunSlot = ImageIO.read(getResource("png/pewpewslot.png"));
+            tentKitSlot = ImageIO.read(getResource("png/tentkitslot.png"));
 
             breakingShovel = ImageIO.read(getResource("png/törékenyásó.png"));
             shovel = ImageIO.read(getResource("png/törhetetlenásó.png"));
-            tentkit = ImageIO.read(getResource("png/tentkit.png"));
+            tentKit = ImageIO.read(getResource("png/tentkit.png"));
             flare = ImageIO.read(getResource("png/patron.png"));
             flareGun = ImageIO.read(getResource("png/flaregun.png"));
             flareLight = ImageIO.read(getResource("png/jelzőfény.png"));
@@ -133,16 +136,18 @@ public class ResourceManager {
             try (InputStream is = getResource("res/mus.wav").openStream()) {
                 soundBackground.load(is);
             }
-        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
-            e.printStackTrace();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException debug) {
+            debug.printStackTrace();
         }
     }
 
-    public static URL getResource(String path) {
+    /**
+     * Segédfüggvény.
+     */
+    private static URL getResource(String path) throws MissingResourceException {
         URL u = Thread.currentThread().getContextClassLoader().getResource(path);
         if (u == null) throw new MissingResourceException("Missing resource: " + path,
                 Thread.currentThread().getContextClassLoader().getName(), path);
         return u;
     }
-
 }

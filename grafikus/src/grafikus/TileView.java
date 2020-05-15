@@ -9,12 +9,26 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 
+/**
+ * Egy cellát reprezentáló UI elem a View-ban.
+ */
 public class TileView extends JPanel implements MouseListener {
-    static public final int s_TileSize = 128;
-    private final Tile tile;
-    private boolean isExplored;
     private final Controller controller;
 
+    /**
+     * A reprezentált cella.
+     */
+    private final Tile tile;
+
+    /**
+     * Számon tartja, hogy fel van-e derítve sarkkutató által.
+     */
+    private boolean isExplored;
+
+    /**
+     * @param t A cella.
+     * @param c Megkapja a vezérlőt, mint dependency injection.
+     */
     public TileView(Tile t, Controller c) {
         super();
         addMouseListener(this);
@@ -24,14 +38,16 @@ public class TileView extends JPanel implements MouseListener {
 
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
-        Dimension d = new Dimension(s_TileSize, s_TileSize);
+        Dimension d = new Dimension(View.TILE_SIZE, View.TILE_SIZE);
         setPreferredSize(d);
         setMinimumSize(d);
         setMaximumSize(d);
         setBorder(new EmptyBorder(0, 0, 0, 0));
-
     }
 
+    /**
+     * Frissíti a grafikát.
+     */
     public void update() {
         repaint();
     }
@@ -78,6 +94,9 @@ public class TileView extends JPanel implements MouseListener {
                 && (tile.getNeighbor((n3 + 2 >= 4) ? n3 - 2 : n3 + 2) == null));
     }
 
+    /**
+     * A cella, és minden rajta lévő dolog rajzolása.
+     */
     @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -93,17 +112,17 @@ public class TileView extends JPanel implements MouseListener {
 
         if (isCorner(tile, 1, 2)) {
             tileImage = ResourceManager.waterCorner;
-            g2d.translate(s_TileSize, 0);
+            g2d.translate(View.TILE_SIZE, 0);
             g2d.scale(-1, 1);
         }
         if (isCorner(tile, 0, 3)) {
             tileImage = ResourceManager.waterCorner;
-            g2d.translate(0, s_TileSize);
+            g2d.translate(0, View.TILE_SIZE);
             g2d.scale(1, -1);
         }
         if (isCorner(tile, 0, 1)) {
             tileImage = ResourceManager.waterCorner;
-            g2d.translate(s_TileSize, s_TileSize);
+            g2d.translate(View.TILE_SIZE, View.TILE_SIZE);
             g2d.scale(-1, -1);
         }
         if (isCorner(tile, 2, 3)) {
@@ -111,7 +130,7 @@ public class TileView extends JPanel implements MouseListener {
         }
         if (isSide(tile, "left")) {
             tileImage = ResourceManager.waterSide;
-            g2d.translate(s_TileSize, s_TileSize);
+            g2d.translate(View.TILE_SIZE, View.TILE_SIZE);
             g2d.rotate(Math.toRadians(180));
         }
         if (isSide(tile, "right")) {
@@ -119,38 +138,38 @@ public class TileView extends JPanel implements MouseListener {
         }
         if (isSide(tile, "top")) {
             tileImage = ResourceManager.waterSide;
-            g2d.translate(s_TileSize, 0);
+            g2d.translate(View.TILE_SIZE, 0);
             g2d.scale(-1, 1);
-            g2d.translate(0, s_TileSize);
+            g2d.translate(0, View.TILE_SIZE);
             g2d.rotate(Math.toRadians(-90));
         }
         if (isSide(tile, "bottom")) {
             tileImage = ResourceManager.waterSide;
-            g2d.translate(s_TileSize, 0);
+            g2d.translate(View.TILE_SIZE, 0);
             g2d.scale(-1, 1);
-            g2d.translate(s_TileSize, 0);
+            g2d.translate(View.TILE_SIZE, 0);
             g2d.rotate(Math.toRadians(90));
         }
 
-        g2d.drawImage(ResourceManager.imageIce, 0, 0, s_TileSize, s_TileSize, null);
-        g2d.drawImage(tileImage, 0, 0, s_TileSize, s_TileSize, null);
+        g2d.drawImage(ResourceManager.imageIce, 0, 0, View.TILE_SIZE, View.TILE_SIZE, null);
+        g2d.drawImage(tileImage, 0, 0, View.TILE_SIZE, View.TILE_SIZE, null);
         g2d.setTransform(old);
 
 
         Shelter shelter = tile.getShelter();
         if (shelter != null) {
             if (shelter instanceof Tent) {
-                g.drawImage(ResourceManager.tent, 0, 0, s_TileSize, s_TileSize, null);
+                g.drawImage(ResourceManager.tent, 0, 0, View.TILE_SIZE, View.TILE_SIZE, null);
             }
             if (shelter instanceof Igloo) {
-                g.drawImage(ResourceManager.igloo, 0, 0, s_TileSize, s_TileSize, null);
+                g.drawImage(ResourceManager.igloo, 0, 0, View.TILE_SIZE, View.TILE_SIZE, null);
             }
         }
 
 
         Item item = tile.getItem();
         if (item != null && tile.getSnow() == 0) {
-            int itemSize = (int) (s_TileSize * 0.8);
+            int itemSize = (int) (View.TILE_SIZE * 0.8);
             if (item instanceof Shovel) {
                 g.drawImage(ResourceManager.shovel, 0, 0, itemSize, itemSize, null);
             }
@@ -158,7 +177,7 @@ public class TileView extends JPanel implements MouseListener {
                 g.drawImage(ResourceManager.breakingShovel, 0, 0, itemSize, itemSize, null);
             }
             if (item instanceof TentKit) {
-                g.drawImage(ResourceManager.tentkit, 0, 0, itemSize, itemSize, null);
+                g.drawImage(ResourceManager.tentKit, 0, 0, itemSize, itemSize, null);
             }
             if (item instanceof Food) {
                 g.drawImage(ResourceManager.food, 0, 0, itemSize, itemSize, null);
@@ -176,17 +195,17 @@ public class TileView extends JPanel implements MouseListener {
         }
         if (isExplored) {
             if (tile.getWeightLimit() >= controller.game.getPlayers().size()) {
-                g.drawImage(ResourceManager.flagSafe, s_TileSize / 10, 0,
-                        (int) (s_TileSize * 0.5), (int) (s_TileSize * 0.5), null);
+                g.drawImage(ResourceManager.flagSafe, View.TILE_SIZE / 10, 0,
+                        (int) (View.TILE_SIZE * 0.5), (int) (View.TILE_SIZE * 0.5), null);
             } else {
 
-                g.drawImage(ResourceManager.flagNotSafe, s_TileSize / 10, 0,
-                        (int) (s_TileSize * 0.5), (int) (s_TileSize * 0.5), null);
+                g.drawImage(ResourceManager.flagNotSafe, View.TILE_SIZE / 10, 0,
+                        (int) (View.TILE_SIZE * 0.5), (int) (View.TILE_SIZE * 0.5), null);
                 g.setColor(new Color(1f, 0f, 0f, 0f));
                 g.fillRect(0, 0, 900, 900);
-                g.setFont(new Font("TimesRoman", Font.PLAIN, s_TileSize / 5));
+                g.setFont(new Font("TimesRoman", Font.PLAIN, View.TILE_SIZE / 5));
                 g.setColor(Color.white);  // Here
-                g.drawString(Integer.toString(tile.getWeightLimit()), s_TileSize / 5, s_TileSize / 5);
+                g.drawString(Integer.toString(tile.getWeightLimit()), View.TILE_SIZE / 5, View.TILE_SIZE / 5);
             }
         }
 
@@ -200,7 +219,7 @@ public class TileView extends JPanel implements MouseListener {
             // NOTE(Mark): Koszi Boti <3
             int horizontalCount = (int) Math.ceil(Math.sqrt(occupantCount));
 
-            int entitySize = s_TileSize / horizontalCount;
+            int entitySize = View.TILE_SIZE / horizontalCount;
 
             // itt az entity-ken loopolnank vegig
             // TODO(Mark): Meg nincs a resource managerben entity img tomb, jelenleg marad ez
@@ -217,7 +236,7 @@ public class TileView extends JPanel implements MouseListener {
                 }
 
                 if (tile.getOccupants().get(i) instanceof PolarBear) {
-                    entityImage = ResourceManager.polarbear;
+                    entityImage = ResourceManager.polarBear;
                 }
 
                 int xOffset = (i % horizontalCount) * entitySize;
@@ -236,6 +255,9 @@ public class TileView extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     * A játékban fel lett derítve ez a cella.
+     */
     public void explore() {
         isExplored = true;
     }
@@ -244,26 +266,41 @@ public class TileView extends JPanel implements MouseListener {
         return tile;
     }
 
+    /**
+     * Továbbítás a TileClick eseménynek.
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (controller != null) controller.tileClick(tile);
+        controller.tileClick(tile);
     }
 
+    /**
+     * Nem használjuk.
+     */
     @Override
     public void mousePressed(MouseEvent e) {
 
     }
 
+    /**
+     * Nem használjuk.
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
 
     }
 
+    /**
+     * Nem használjuk.
+     */
     @Override
     public void mouseEntered(MouseEvent e) {
 
     }
 
+    /**
+     * Nem használjuk.
+     */
     @Override
     public void mouseExited(MouseEvent e) {
 

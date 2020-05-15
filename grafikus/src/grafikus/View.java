@@ -9,8 +9,20 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * View komponens.
+ * Megjeleníti a pálya négyzetrácsot.
+ */
 public class View extends JScrollPane implements GameObserver {
-    final Controller controller;
+    private final Controller controller;
+    /**
+     * A cellanégyzet mérete.
+     */
+    public static final int TILE_SIZE = 128;
+
+    /**
+     * A tartalmazott TileView-k.
+     */
     private final ArrayList<TileView> tiles;
     private final int rows;
     private final int cols;
@@ -18,19 +30,25 @@ public class View extends JScrollPane implements GameObserver {
     private TileClickListener tcl;
     private final JPanel tilePanel;
 
+    /**
+     * @param c    Megkapja a vezérlőt, mint dependency injection.
+     * @param rows A modell négyzetrács sorai.
+     * @param cols A modell négyzetrács oszlopai
+     */
     View(Controller c, int rows, int cols) {
         super();
         this.rows = rows;
         this.cols = cols;
         controller = c;
         tilePanel = new JPanel();
-        int width = 10 * TileView.s_TileSize;
-        int height = 7 * TileView.s_TileSize;
+        int width = 10 * TILE_SIZE;
+        int height = 7 * TILE_SIZE;
         Dimension d = new Dimension(width, height);
 
         //setMaximumSize(new Dimension(rows*TileView.s_TileSize, rows*TileView.s_TileSize));
         setMaximumSize(new Dimension(d));
-        setPreferredSize((rows * TileView.s_TileSize > 10 * TileView.s_TileSize || cols * TileView.s_TileSize > 7 * TileView.s_TileSize) ? new Dimension(d) : new Dimension(rows * TileView.s_TileSize, cols * TileView.s_TileSize));
+        setPreferredSize((rows * TILE_SIZE > 10 * TILE_SIZE || cols * TILE_SIZE > 7 * TILE_SIZE) ? new Dimension(d)
+                : new Dimension(rows * TILE_SIZE, cols * TILE_SIZE));
         //setMinimumSize(new Dimension(d));
 
         final boolean hideScrollbar = true;
@@ -70,37 +88,42 @@ public class View extends JScrollPane implements GameObserver {
         setBorder(BorderFactory.createEmptyBorder());
 
         isStorm = false;
-
-
     }
 
     public void update() {
         for (TileView tv : tiles) {
             tv.update();
-
         }
         if (isStorm) {
             //TODO(Mark)
         }
-
         repaint();
     }
-
 
     public void addTileClickedListener(TileClickListener tcl) {
         this.tcl = tcl;
     }
 
+    /**
+     * Nem használjuk.
+     */
     @Override
     public void gameOver() {
 
     }
 
+    /**
+     * Nem használjuk.
+     */
     @Override
     public void victory() {
 
     }
 
+    /**
+     * A játékban egy sarkkutató felderítette egy cellát
+     * Teszünk rá egy jelző zászlót.
+     */
     @Override
     public void explore(Tile tile) {
         for (TileView tv : tiles) {

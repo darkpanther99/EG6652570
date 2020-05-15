@@ -8,8 +8,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A játékos cselekvéseket kiválasztó UI elem.
+ */
 public class ActionsMenu extends JPanel implements ActionListener {
+    private final Controller controller;
 
+    // A különböző gombokhoz tartozó ActionCommandok kódjai:
     private static final String AC_STEP = "step";
     private static final String AC_EXAMINE = "examine";
     private static final String AC_RESCUE = "rescue";
@@ -19,7 +24,8 @@ public class ActionsMenu extends JPanel implements ActionListener {
     private static final String AC_ASSEMBLE = "assemble";
     private static final String AC_NEXT_TURN = "next_turn";
     private static final String AC_EAT = "eat";
-    private final Controller controller;
+
+    // A tartalmazott gombok:
     private final MenuButton stepButton;
     private final MenuButton examineButton;
     private final MenuButton rescueButton;
@@ -29,6 +35,10 @@ public class ActionsMenu extends JPanel implements ActionListener {
     private final MenuButton assembleButton;
     private final MenuButton newTurnButton;
     private final MenuButton eatButton;
+
+    /**
+     * @param controller Megkapja a vezérlőt, mint dependency injection.
+     */
     public ActionsMenu(Controller controller) {
         this.controller = controller;
 
@@ -80,15 +90,24 @@ public class ActionsMenu extends JPanel implements ActionListener {
         this.add(eatButton);
     }
 
+    /**
+     * Frissíti a megjelenített cselekvéseket.
+     */
     public void update() {
         this.repaint();
     }
 
-    public void doDig() {
+    /**
+     * Ásás cselekvés.
+     */
+    private void doDig() {
         controller.selectedPlayer.dig();
     }
 
-    public void doPickUp() {
+    /**
+     * Tárgy felvétele cselekvés.
+     */
+    private void doPickUp() {
         // NOTE(boti): ez is a rajzoláshoz kell, kicsit hacky.
         Tile t = controller.selectedPlayer.getCurrentTile();
         if (t.getItem() instanceof Part) {
@@ -98,37 +117,64 @@ public class ActionsMenu extends JPanel implements ActionListener {
         controller.selectedPlayer.pickUp();
     }
 
-    public void doBuild() {
+    /**
+     * Iglu/sátor építése cselekvés.
+     */
+    private void doBuild() {
         controller.selectedPlayer.build();
     }
 
-    public void doEat() {
+    /**
+     * Evés cselekvés.
+     */
+    private void doEat() {
         controller.selectedPlayer.eatFood();
     }
 
-    public void doStep() {
+    /**
+     * Lépés cselekvés.
+     * A Controller választja ki, hogy hova lépünk.
+     */
+    private void doStep() {
         if (controller.mode == Controller.Mode.STEP) controller.mode = Controller.Mode.NONE;
         else controller.mode = Controller.Mode.STEP;
     }
 
-    public void doExamine() {
+    /**
+     * Felderítés cselekvés.
+     * A Controller választja ki, hogy hol derítünk fel.
+     */
+    private void doExamine() {
         if (controller.mode == Controller.Mode.EXAMINE) controller.mode = Controller.Mode.NONE;
         else controller.mode = Controller.Mode.EXAMINE;
     }
 
-    public void doRescue() {
+    /**
+     * Kimentés cselekvés.
+     * A Controller választja ki, hogy honnan mentünk ki.
+     */
+    private void doRescue() {
         if (controller.mode == Controller.Mode.RESCUE) controller.mode = Controller.Mode.NONE;
         else controller.mode = Controller.Mode.RESCUE;
     }
 
-    public void doAssemble() {
+    /**
+     * Rakétapisztoly összeszerelése cselekvés.
+     */
+    private void doAssemble() {
         controller.selectedPlayer.assembleFlare();
     }
 
-    public void doNextTurn() {
+    /**
+     * Új kör kezdése.
+     */
+    private void doNextTurn() {
         controller.nextTurn();
     }
 
+    /**
+     * A gombnyomás események kezelése.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().contentEquals(AC_STEP)) {
@@ -154,6 +200,9 @@ public class ActionsMenu extends JPanel implements ActionListener {
         controller.update();
     }
 
+    /**
+     * Háttér rajzolása.
+     */
     @Override
     public void paint(Graphics g) {
         g.setColor(Color.black);
@@ -162,7 +211,10 @@ public class ActionsMenu extends JPanel implements ActionListener {
         paintChildren(g);
     }
 
-    static class MenuButton extends JButton {
+    /**
+     * Egyedi megjelenésű gomb.
+     */
+    private static class MenuButton extends JButton {
         public MenuButton(String text) {
             super(text);
         }

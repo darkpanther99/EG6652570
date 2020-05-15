@@ -4,22 +4,67 @@ import grafikus.model.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * Vezérlő komponens.
+ * A játék fő ablaka, tartalmazza a View-t és vezérlő UI elemeket.
+ */
 public class Controller extends JFrame implements TileClickListener, PlayerSelectListener {
-    public Mode mode = Mode.NONE;
-    public Game game;
-    public Player selectedPlayer;
-    // NOTE(boti): ez csak a rajzolashoz szukseges
-    public int foundParts = 0;
-    private PlayerListMenu playerListMenu;
-    private InventoryMenu inventoryMenu;
-    private ActionsMenu actionsMenu;
-    private View view;
+    /**
+     * A TileClick esemény jelentését meghatározó állapotgép állapota.
+     */
+    enum Mode {
+        /**
+         * Nem történik semmi.
+         */
+        NONE,
+        /**
+         * A kiválasztott játékos lép.
+         */
+        STEP,
+        /**
+         * A kiválasztott játékos kiment.
+         */
+        RESCUE,
+        /**
+         * A kiválasztott sarkkutató felderít.
+         */
+        EXAMINE,
+    }
 
+    public Mode mode = Mode.NONE;
+
+    /**
+     * A modell.
+     */
+    public final Game game;
+
+    /**
+     * A jelenleg kiválasztott játékos. Az összes Controller parancs rá vonatkozik.
+     */
+    public Player selectedPlayer;
+
+    /**
+     * Rajzoláshoz szükséges segédváltozó.
+     */
+    public int foundParts = 0;
+
+
+    // A tartalmazott UI elemek:
+    private final PlayerListMenu playerListMenu;
+    private final InventoryMenu inventoryMenu;
+    private final ActionsMenu actionsMenu;
+    private final View view;
+
+    /**
+     * @param game Négyzetrács szerkezetű modell
+     * @param rows A négyzetrács sorai.
+     * @param cols A négyzetrács oszlopai
+     */
     public Controller(Game game, int rows, int cols) {
         this.game = game;
 
@@ -56,6 +101,7 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
         this.update();
     }
 
+    // TODO: ezt használni
     public Player getNextPlayer() {
         List<Player> players = game.getPlayers();
         int index = players.indexOf(selectedPlayer);
@@ -65,6 +111,9 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
         return players.get(index);
     }
 
+    /**
+     * Mindent frissít.
+     */
     public void update() {
         view.update();
         inventoryMenu.update();
@@ -83,16 +132,14 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
         nextTurn();
     }
 
+    /**
+     * Kör vége.
+     * Lép a jegesmedve, vihar jön, az energia újratöltődik, a vízben lévők fáznak.
+     */
     public void nextTurn() {
         Random random = new Random();
         for (PolarBear bear : game.getBears()) {
-            int[] arr = {0, 1, 2, 3};
-
-            ArrayList<Integer> moveDirs = new ArrayList<>();
-            moveDirs.add(0);
-            moveDirs.add(1);
-            moveDirs.add(2);
-            moveDirs.add(3);
+            List<Integer> moveDirs = Arrays.asList(0, 1, 2, 3);
 
             while (!moveDirs.isEmpty()) {
                 int index = random.nextInt(moveDirs.size());
@@ -115,12 +162,18 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
         game.turn();
     }
 
+
     @Override
     public void select(Player p) {
         selectedPlayer = p;
         update();
     }
 
+    /**
+     * TileClick eseménykezelő.
+     *
+     * @param t erre a cellára klikkeltek.
+     */
     @Override
     public void tileClick(Tile t) {
         if (mode == Mode.NONE) return;
@@ -150,12 +203,5 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
         mode = Mode.NONE;
 
         update();
-    }
-
-    enum Mode {
-        NONE,
-        STEP,
-        RESCUE,
-        EXAMINE,
     }
 }

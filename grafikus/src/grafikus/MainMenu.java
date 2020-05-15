@@ -13,6 +13,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * Főmenü ablak.
+ * Új játékot lehet vele indítani.
+ */
 public class MainMenu extends JFrame implements WindowListener, ChangeListener, ActionListener, GameObserver {
 
     private static final String AC_NEW_GAME = "NewGame";
@@ -89,21 +93,29 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
         return controller;
     }
 
+    /**
+     * Győzelem esemény.
+     */
     @Override
     public void victory() {
         controller.dispatchEvent(new WindowEvent(controller, WindowEvent.WINDOW_CLOSING));
         JOptionPane.showMessageDialog(this, "You're winner!");
     }
 
+    /**
+     * Játék vége esemény.
+     */
     @Override
     public void gameOver() {
         controller.dispatchEvent(new WindowEvent(controller, WindowEvent.WINDOW_CLOSING));
         JOptionPane.showMessageDialog(this, "A player died, game over!");
     }
 
+    /**
+     * Nem használjuk
+     */
     @Override
     public void explore(Tile t) {
-        // Empty
     }
 
     @Override
@@ -135,6 +147,9 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
         }
     }
 
+    /**
+     * Értékek frissítése.
+     */
     @Override
     public void stateChanged(ChangeEvent e) {
         numEskimos = (Integer) eskimoSpinner.getValue();
@@ -144,36 +159,57 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
         numCols = (Integer) colSpinner.getValue();
     }
 
+    /**
+     * Nem használjuk.
+     */
     @Override
     public void windowOpened(WindowEvent e) {
 
     }
 
+    /**
+     * Nem használjuk.
+     */
     @Override
     public void windowActivated(WindowEvent e) {
 
     }
 
+    /**
+     * Nem használjuk.
+     */
     @Override
     public void windowClosed(WindowEvent e) {
 
     }
 
+    /**
+     * Mutat egy "biztos ki akarsz lépni" dialogot,
+     */
     @Override
     public void windowClosing(WindowEvent e) {
         // TODO
     }
 
+    /**
+     * Nem használjuk.
+     */
     @Override
     public void windowDeactivated(WindowEvent e) {
 
     }
 
+    /**
+     * Nem használjuk.
+     */
     @Override
     public void windowDeiconified(WindowEvent e) {
 
     }
 
+    /**
+     * Nem használjuk.
+     */
     @Override
     public void windowIconified(WindowEvent e) {
 

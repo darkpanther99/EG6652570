@@ -5,8 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Hang osztaly, amit tobbszor le lehet jatszani
- * es auto-rewindol
+ * Hang osztály, amit többször le lehet játszani és auto-rewindol.
  * TODO(boti): loop fuggveny?
  */
 public class Sound implements LineListener {
@@ -17,7 +16,7 @@ public class Sound implements LineListener {
 
     }
 
-    // Betolti a hangot fajlbol
+    // Betölti a hangot a streamból
     public void load(InputStream istream) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         if (isReady) {
             return;
@@ -33,20 +32,20 @@ public class Sound implements LineListener {
         isReady = true;
     }
 
-    // lejatsza a hangot, ha az be van toltve (es nem megy epp)
+    // Lejátssza a hangot, ha az be van töltve (és nem megy épp).
     public void play() {
         if (!isReady) return;
 
         audioClip.start();
     }
 
-    // megallitja es rewindolja a hangot
+    // Megállítja es rewindolja a hangot
     public void stop() {
         audioClip.stop();
         audioClip.setFramePosition(0);
     }
 
-    // Ha a hangfile vegere erunk, autorewind
+    // Ha a hangfile végére erünk, autorewind.
     @Override
     public void update(LineEvent e) {
         System.out.println(e.toString());

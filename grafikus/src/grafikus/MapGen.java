@@ -16,12 +16,23 @@ public class MapGen {
     private MapGen() {
 
     }
-    /*
-        NORTH = 0
-        EAST = 1
-        SOUTH = 2
-        WEST = 3
-    */
+
+    enum Direction {
+        NORTH(0),
+        EAST(1),
+        SOUTH(2),
+        WEST(3);
+
+        private final int value;
+
+        Direction(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
 
     private static int index(int col, int row) {
         return cols * row + col;
