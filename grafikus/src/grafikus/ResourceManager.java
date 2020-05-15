@@ -12,59 +12,52 @@ import java.util.MissingResourceException;
 public class ResourceManager {
 
     // Texturak
-    public static Image imageIce = null;
-    public static Image imageLeaves = null;
-    public static Image imageSea = null;
-    public static Image imageEntity = null;
-    public static Image[] imageSnow = new Image[6]; // minden horeteghez egy textura
-    public static Image waterSide = null;
-    public static Image waterCorner = null;
+    public static final Image imageIce = null;
+    public static final Image imageLeaves = null;
+    public static final Image imageSea = null;
+    public static final Image imageEntity = null;
+    public static final Image[] imageSnow = new Image[6]; // minden horeteghez egy textura
+    public static final Image waterSide = null;
+    public static final Image waterCorner = null;
 
-    public static Image flagSafe = null;
-    public static Image flagNotSafe = null;
+    public static final Image flagSafe = null;
+    public static final Image flagNotSafe = null;
 
-    public static Image[] imageHP = new Image[6];
-    public static Image[] imageEnergy = new Image[6];
+    public static final Image[] imageHP = new Image[6];
+    public static final Image[] imageEnergy = new Image[6];
 
     public static Image player = null;
-    public static Image[] explorer = new Image[3];
-    public static Image[] eskimo = new Image[3];
-    public static Image emptyPlayerSlot = null;
-    public static Image playerSlot = null;
-    public static Image selectedPlayer = null;
+    public static final Image[] explorer = new Image[3];
+    public static final Image[] eskimo = new Image[3];
+    public static final Image emptyPlayerSlot = null;
+    public static final Image playerSlot = null;
+    public static final Image selectedPlayer = null;
 
-    public static Image shovel = null;
-    public static Image breakingShovel = null;
-    public static Image tentkit = null;
-    public static Image flare = null;
-    public static Image flareGun = null;
-    public static Image flareLight = null;
-    public static Image food = null;
-    public static Image scubaGear = null;
-    public static Image rope = null;
+    public static final Image shovel = null;
+    public static final Image breakingShovel = null;
+    public static final Image tentkit = null;
+    public static final Image flare = null;
+    public static final Image flareGun = null;
+    public static final Image flareLight = null;
+    public static final Image food = null;
+    public static final Image scubaGear = null;
+    public static final Image rope = null;
 
-    public static Image[] eskimoPlayer = new Image[3];
-    public static Image[] explorerPlayer = new Image[3];
-    public static Image polarbear = null;
+    public static final Image[] eskimoPlayer = new Image[3];
+    public static final Image[] explorerPlayer = new Image[3];
+    public static final Image polarbear = null;
 
-    public static Image igloo = null;
-    public static Image tent = null;
+    public static final Image igloo = null;
+    public static final Image tent = null;
 
-    public static Image buttonSlot = null;
-    public static Image itemSlot = null;
-    public static Image foodSlot = null;
-    public static Image pewpewSlot = null;
-    public static Image tentkitSlot = null;
+    public static final Image buttonSlot = null;
+    public static final Image itemSlot = null;
+    public static final Image foodSlot = null;
+    public static final Image pewpewSlot = null;
+    public static final Image tentkitSlot = null;
 
     // Hangok
-    public static Sound soundBackground = new Sound();
-
-    public static URL getResource(String path) {
-        URL u = Thread.currentThread().getContextClassLoader().getResource(path);
-        if (u == null) throw new MissingResourceException("Missing resource: " + path,
-                Thread.currentThread().getContextClassLoader().getName(), path);
-        return u;
-    }
+    public static final Sound soundBackground = new Sound();
 
     // Betolt mindent
     static {
@@ -75,7 +68,7 @@ public class ResourceManager {
             flagNotSafe = ImageIO.read(getResource("png/zaszloveszely.png"));
 
             // Player
-            for(int i = 1; i <= 3; i++) {
+            for (int i = 1; i <= 3; i++) {
                 eskimoPlayer[i - 1] = ImageIO.read(getResource("png/eskimo" + i + ".png"));
                 explorerPlayer[i - 1] = ImageIO.read(getResource("png/explorer" + i + ".png"));
                 eskimo[i - 1] = ImageIO.read(getResource("png/eskimo" + i + "_playericon.png"));
@@ -129,7 +122,7 @@ public class ResourceManager {
 
             imageHP[0] = ImageIO.read(getResource("png/HP_Energí_0.png"));
             for (int i = 1; i < 6; i++) {
-               imageHP[i] = ImageIO.read(getResource("png/HP" + i + ".png"));
+                imageHP[i] = ImageIO.read(getResource("png/HP" + i + ".png"));
             }
 
             imageEnergy[0] = ImageIO.read(getResource("png/HP_Energí_0.png"));
@@ -143,6 +136,13 @@ public class ResourceManager {
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }
+    }
+
+    public static URL getResource(String path) {
+        URL u = Thread.currentThread().getContextClassLoader().getResource(path);
+        if (u == null) throw new MissingResourceException("Missing resource: " + path,
+                Thread.currentThread().getContextClassLoader().getName(), path);
+        return u;
     }
 
 }

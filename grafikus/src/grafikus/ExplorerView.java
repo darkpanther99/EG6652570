@@ -1,6 +1,7 @@
 package grafikus;
 
-import grafikus.model.*;
+import grafikus.model.Game;
+import grafikus.model.PolarExplorer;
 
 import java.awt.*;
 
@@ -8,8 +9,8 @@ public class ExplorerView extends PolarExplorer {
 
     private static int explorerCount = 0;
 
-    public Image playerImage;
-    public Image iconImage;
+    public final Image playerImage;
+    public final Image iconImage;
 
     public ExplorerView(Game g) {
         super(g);

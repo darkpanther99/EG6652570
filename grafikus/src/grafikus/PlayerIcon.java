@@ -1,8 +1,6 @@
 package grafikus;
 
-import grafikus.model.Eskimo;
 import grafikus.model.Player;
-import grafikus.model.PolarExplorer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,8 +8,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class PlayerIcon extends JPanel implements MouseListener {
-    public Controller controller;
-    public Player player;
+    public final Controller controller;
+    public final Player player;
     public PlayerSelectListener psl;
     public boolean isSelected = false;
 
@@ -28,19 +26,19 @@ public class PlayerIcon extends JPanel implements MouseListener {
         addMouseListener(this);
     }
 
-    public void update(){
+    public void update() {
         repaint();
     }
 
-    public void addPlayerSelectListener(PlayerSelectListener psl){
+    public void addPlayerSelectListener(PlayerSelectListener psl) {
         this.psl = psl;
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.drawImage(ResourceManager.playerSlot, 0,0, PlayerListMenu.PLAYERICONSIZE, PlayerListMenu.PLAYERICONSIZE, null);
-        if(player instanceof EskimoView) {
+        g.drawImage(ResourceManager.playerSlot, 0, 0, PlayerListMenu.PLAYERICONSIZE, PlayerListMenu.PLAYERICONSIZE, null);
+        if (player instanceof EskimoView) {
             g.drawImage(((EskimoView) player).iconImage,
                     PlayerListMenu.PLAYERICONSIZE / 4 + PlayerListMenu.PLAYERICONSIZE / 9,
                     PlayerListMenu.PLAYERICONSIZE / 4 - PlayerListMenu.PLAYERICONSIZE / 11,
@@ -48,7 +46,7 @@ public class PlayerIcon extends JPanel implements MouseListener {
                     PlayerListMenu.PLAYERICONSIZE / 4,
                     null);
         }
-        if(player instanceof ExplorerView){
+        if (player instanceof ExplorerView) {
             g.drawImage(((ExplorerView) player).iconImage,
                     PlayerListMenu.PLAYERICONSIZE / 4 + PlayerListMenu.PLAYERICONSIZE / 9,
                     PlayerListMenu.PLAYERICONSIZE / 4 - PlayerListMenu.PLAYERICONSIZE / 11,
@@ -56,7 +54,7 @@ public class PlayerIcon extends JPanel implements MouseListener {
                     PlayerListMenu.PLAYERICONSIZE / 4,
                     null);
         }
-        if(isSelected){
+        if (isSelected) {
             g.drawImage(ResourceManager.selectedPlayer,
                     0,
                     0,
@@ -65,19 +63,19 @@ public class PlayerIcon extends JPanel implements MouseListener {
                     null);
         }
 
-        int hp = Math.max(0, Math.min(5,player.getBodyTemp()));
+        int hp = Math.max(0, Math.min(5, player.getBodyTemp()));
         int energy = Math.max(0, Math.min(5, player.getEnergy()));
         g.drawImage(ResourceManager.imageHP[hp],
-                PlayerListMenu.PLAYERICONSIZE/4,
+                PlayerListMenu.PLAYERICONSIZE / 4,
                 PlayerListMenu.PLAYERICONSIZE / 2 + 10,
-                PlayerListMenu.PLAYERICONSIZE/2,
+                PlayerListMenu.PLAYERICONSIZE / 2,
                 12,
                 null);
 
         g.drawImage(ResourceManager.imageEnergy[energy],
-                PlayerListMenu.PLAYERICONSIZE/4,
+                PlayerListMenu.PLAYERICONSIZE / 4,
                 PlayerListMenu.PLAYERICONSIZE / 2 + 25,
-                PlayerListMenu.PLAYERICONSIZE/2,
+                PlayerListMenu.PLAYERICONSIZE / 2,
                 12,
                 null);
 

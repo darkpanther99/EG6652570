@@ -9,23 +9,14 @@ import java.awt.event.MouseListener;
 
 public class ItemIcon extends JPanel implements MouseListener {
 
-    enum Type {
-        ITEM,
-        FOOD_STORE,
-        PART_STORE,
-        TENTKIT_STORE,
-    }
-
     public Type type;
-
     public Item item = null;
     public boolean isEquipped = false;
     public FoodStore foodStore = null;
     public PartStore partStore = null;
     public BuildStrategy tentkitStore = null;
+    public final Controller controller;
 
-
-    public Controller controller;
 
     private ItemIcon(Controller controller) {
         super();
@@ -68,7 +59,7 @@ public class ItemIcon extends JPanel implements MouseListener {
     }
 
     public void equip() {
-        if(isEquipped || type != Type.ITEM) return;
+        if (isEquipped || type != Type.ITEM) return;
 
         Player p = controller.selectedPlayer;
         int i = p.getInventory().indexOf(item);
@@ -79,13 +70,13 @@ public class ItemIcon extends JPanel implements MouseListener {
     public void paint(Graphics g) {
         super.paint(g);
 
-        if(type == Type.ITEM) {
+        if (type == Type.ITEM) {
             g.drawImage(ResourceManager.itemSlot, 0, 0, InventoryMenu.ITEMSIZE, InventoryMenu.ITEMSIZE, null);
 
-            Image img = null;
-            if (item instanceof Shovel)  img = ResourceManager.shovel;
+            Image img;
+            if (item instanceof Shovel) img = ResourceManager.shovel;
             else if (item instanceof BreakingShovel) img = ResourceManager.breakingShovel;
-            else if (item instanceof Rope)  img = ResourceManager.rope;
+            else if (item instanceof Rope) img = ResourceManager.rope;
             else if (item instanceof TentKit) img = ResourceManager.tentkit;
             else img = ResourceManager.imageEntity;
 
@@ -93,10 +84,10 @@ public class ItemIcon extends JPanel implements MouseListener {
             int xOffs = (InventoryMenu.ITEMSIZE - size) / 2;
             int yOffs = (InventoryMenu.ITEMSIZE - size) / 2 + 12;
             g.drawImage(img, xOffs, yOffs, size, size, null);
-        } else if(type == Type.FOOD_STORE) {
+        } else if (type == Type.FOOD_STORE) {
             g.drawImage(ResourceManager.foodSlot, 0, 0, InventoryMenu.ITEMSIZE, InventoryMenu.ITEMSIZE, null);
             int count = foodStore.getCount();
-            if(count > 0) {
+            if (count > 0) {
 
                 int size = 50;
                 int xOffs = (InventoryMenu.ITEMSIZE - size) / 2;
@@ -107,33 +98,33 @@ public class ItemIcon extends JPanel implements MouseListener {
                 FontMetrics metrics = getFontMetrics(this.getFont());
                 int w = metrics.stringWidth(str);
 
-                Graphics2D g2 = (Graphics2D)g;
+                Graphics2D g2 = (Graphics2D) g;
                 g2.setColor(Color.WHITE);
                 g2.drawString(str, (InventoryMenu.ITEMSIZE - w) / 2, metrics.getHeight() + 92);
             }
-        } else if(type == Type.PART_STORE) {
+        } else if (type == Type.PART_STORE) {
             g.drawImage(ResourceManager.pewpewSlot, 0, 0, InventoryMenu.ITEMSIZE, InventoryMenu.ITEMSIZE, null);
 
-            int xOffs = 0;
-            int yOffs = 0;
-            int w = 1;
-            int h = 1;
+            int xOffs;
+            int yOffs;
+            int w;
+            int h;
 
-            if(partStore.getCount() > 0) {
+            if (partStore.getCount() > 0) {
                 xOffs = 36;
                 yOffs = 33;
                 w = 55;
                 h = 37;
                 g.drawImage(ResourceManager.flareGun, xOffs, yOffs, w, h, null);
 
-                if(partStore.getCount() > 1) {
+                if (partStore.getCount() > 1) {
                     xOffs = 32;
                     yOffs = 98;
                     w = 20;
                     h = 20;
                     g.drawImage(ResourceManager.flareLight, xOffs, yOffs, w, h, null);
                 }
-                if(partStore.getCount() > 2) {
+                if (partStore.getCount() > 2) {
                     xOffs = 80;
                     yOffs = 98;
                     w = 12;
@@ -142,10 +133,10 @@ public class ItemIcon extends JPanel implements MouseListener {
                 }
             }
 
-        } else if(type == Type.TENTKIT_STORE) {
+        } else if (type == Type.TENTKIT_STORE) {
             g.drawImage(ResourceManager.tentkitSlot, 0, 0, InventoryMenu.ITEMSIZE, InventoryMenu.ITEMSIZE, null);
 
-            if(tentkitStore.getCount() > 0) {
+            if (tentkitStore.getCount() > 0) {
                 int size = 64;
                 int xOffs = (InventoryMenu.ITEMSIZE - size) / 2;
                 int yOffs = (InventoryMenu.ITEMSIZE - size) / 2 + 12;
@@ -156,7 +147,7 @@ public class ItemIcon extends JPanel implements MouseListener {
                 FontMetrics metrics = getFontMetrics(this.getFont());
                 int w = metrics.stringWidth(str);
 
-                Graphics2D g2 = (Graphics2D)g;
+                Graphics2D g2 = (Graphics2D) g;
                 g2.setColor(Color.WHITE);
                 g2.drawString(str, (InventoryMenu.ITEMSIZE - w) / 2, metrics.getHeight() + 92);
             }
@@ -186,5 +177,12 @@ public class ItemIcon extends JPanel implements MouseListener {
     @Override
     public void mouseExited(MouseEvent mouseEvent) {
 
+    }
+
+    enum Type {
+        ITEM,
+        FOOD_STORE,
+        PART_STORE,
+        TENTKIT_STORE,
     }
 }

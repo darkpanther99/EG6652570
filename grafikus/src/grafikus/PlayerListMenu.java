@@ -6,10 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class PlayerListMenu extends JPanel{
+public class PlayerListMenu extends JPanel {
     public static final int PLAYERICONSIZE = 128;
-    public Controller controller;
-    public ArrayList<PlayerIcon> iconlist;
+    public final Controller controller;
+    public final ArrayList<PlayerIcon> iconlist;
 
     public PlayerListMenu(Controller controller) {
         super();
@@ -22,7 +22,7 @@ public class PlayerListMenu extends JPanel{
         for (Player p : controller.game.getPlayers()) {
             PlayerIcon pi = new PlayerIcon(controller, p, false);
             pi.addPlayerSelectListener(controller);
-            if(controller.selectedPlayer == p){
+            if (controller.selectedPlayer == p) {
                 pi.isSelected = true;
             }
             iconlist.add(pi);
@@ -34,7 +34,7 @@ public class PlayerListMenu extends JPanel{
         setMinimumSize(d);
     }
 
-    public void update(){
+    public void update() {
         for (PlayerIcon pi : iconlist) {
             pi.isSelected = pi.player == controller.selectedPlayer;
             pi.update();
@@ -42,13 +42,12 @@ public class PlayerListMenu extends JPanel{
     }
 
 
-
     @Override
     public void paint(Graphics g) {
         super.paint(g);
 
         int height = getHeight();
-        for(int y = iconlist.size()*PLAYERICONSIZE; y < height; y += PLAYERICONSIZE) {
+        for (int y = iconlist.size() * PLAYERICONSIZE; y < height; y += PLAYERICONSIZE) {
             g.drawImage(ResourceManager.emptyPlayerSlot, 0, y, PLAYERICONSIZE, PLAYERICONSIZE, null);
         }
 

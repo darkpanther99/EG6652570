@@ -9,13 +9,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 
-import static grafikus.ResourceManager.eskimoPlayer;
-
 public class TileView extends JPanel implements MouseListener {
-    private Tile tile;
+    static public final int s_TileSize = 128;
+    private final Tile tile;
     private boolean isExplored;
-    static public int s_TileSize = 128;
-    private Controller controller;
+    private final Controller controller;
+
     public TileView(Tile t, Controller c) {
         super();
         addMouseListener(this);
@@ -38,8 +37,12 @@ public class TileView extends JPanel implements MouseListener {
     }
 
     private boolean isCorner(Tile t, int n1, int n2) {
-        return ( t.getSnow() == 0 &&  t.getWeightLimit() == 0 && tile.getNeighbor(n1) != null && tile.getNeighbor(n2) != null && tile.getNeighbor(n1).getSnow() == 0 && tile.getNeighbor(n1).getWeightLimit() == 0 && tile.getNeighbor(n2).getSnow() == 0 && tile.getNeighbor(n2).getWeightLimit() == 0 ) &&
-                (tile.getNeighbor((n1 + 2 >= 4) ? n1 - 2 : n1 + 2) == null && tile.getNeighbor((n2 + 2 >= 4) ? n2 - 2 : n2 + 2) == null);
+        return (t.getSnow() == 0 && t.getWeightLimit() == 0
+                && tile.getNeighbor(n1) != null && tile.getNeighbor(n2) != null
+                && tile.getNeighbor(n1).getSnow() == 0 && tile.getNeighbor(n1).getWeightLimit() == 0
+                && tile.getNeighbor(n2).getSnow() == 0 && tile.getNeighbor(n2).getWeightLimit() == 0) &&
+                (tile.getNeighbor((n1 + 2 >= 4) ? n1 - 2 : n1 + 2) == null
+                        && tile.getNeighbor((n2 + 2 >= 4) ? n2 - 2 : n2 + 2) == null);
     }
 
     private boolean isSide(Tile t, String side) {
@@ -68,13 +71,16 @@ public class TileView extends JPanel implements MouseListener {
             default:
                 return false;
         }
-        //return (t.getSnow() == 0 &&  t.getWeightLimit() == 0 && t.getNeighbor(n1) != null && t.getNeighbor(n3) != null && t.getNeighbor(n2) != null && t.getNeighbor(n1).getSnow() == 0 && t.getNeighbor(n1).getWeightLimit() == 0 && t.getNeighbor(n2).getSnow() == 0 && t.getNeighbor(n2).getWeightLimit() == 0 && (t.getNeighbor(n3).getSnow() > 0 || t.getNeighbor(n3).getWeightLimit() > 0));
-        return (t.getSnow() == 0 &&  t.getWeightLimit() == 0 && t.getNeighbor(n1) != null && t.getNeighbor(n3) != null && t.getNeighbor(n2) != null && t.getNeighbor(n1).getSnow() == 0 && t.getNeighbor(n1).getWeightLimit() == 0 && t.getNeighbor(n2).getSnow() == 0 && t.getNeighbor(n2).getWeightLimit() == 0 && (tile.getNeighbor((n3 + 2 >= 4) ? n3 - 2 : n3 + 2) == null));
+        return (t.getSnow() == 0 && t.getWeightLimit() == 0 && t.getNeighbor(n1) != null
+                && t.getNeighbor(n3) != null && t.getNeighbor(n2) != null
+                && t.getNeighbor(n1).getSnow() == 0 && t.getNeighbor(n1).getWeightLimit() == 0
+                && t.getNeighbor(n2).getSnow() == 0 && t.getNeighbor(n2).getWeightLimit() == 0
+                && (tile.getNeighbor((n3 + 2 >= 4) ? n3 - 2 : n3 + 2) == null));
     }
 
     @Override
     public void paint(Graphics g) {
-        Graphics2D g2d = (Graphics2D)g;
+        Graphics2D g2d = (Graphics2D) g;
         AffineTransform old = g2d.getTransform();
 
         Image tileImage = null;
@@ -85,22 +91,22 @@ public class TileView extends JPanel implements MouseListener {
 
         }
 
-        if ( isCorner(tile, 1,2)) {
+        if (isCorner(tile, 1, 2)) {
             tileImage = ResourceManager.waterCorner;
             g2d.translate(s_TileSize, 0);
             g2d.scale(-1, 1);
         }
-        if ( isCorner(tile, 0,3)) {
+        if (isCorner(tile, 0, 3)) {
             tileImage = ResourceManager.waterCorner;
             g2d.translate(0, s_TileSize);
             g2d.scale(1, -1);
         }
-        if ( isCorner(tile, 0,1)) {
+        if (isCorner(tile, 0, 1)) {
             tileImage = ResourceManager.waterCorner;
             g2d.translate(s_TileSize, s_TileSize);
             g2d.scale(-1, -1);
         }
-        if ( isCorner(tile, 2,3)) {
+        if (isCorner(tile, 2, 3)) {
             tileImage = ResourceManager.waterCorner;
         }
         if (isSide(tile, "left")) {
@@ -134,52 +140,53 @@ public class TileView extends JPanel implements MouseListener {
         Shelter shelter = tile.getShelter();
         if (shelter != null) {
             if (shelter instanceof Tent) {
-                g.drawImage(ResourceManager.tent, 0,0,s_TileSize, s_TileSize,null);
+                g.drawImage(ResourceManager.tent, 0, 0, s_TileSize, s_TileSize, null);
             }
             if (shelter instanceof Igloo) {
-                g.drawImage(ResourceManager.igloo, 0,0,s_TileSize, s_TileSize,null);
+                g.drawImage(ResourceManager.igloo, 0, 0, s_TileSize, s_TileSize, null);
             }
         }
 
 
         Item item = tile.getItem();
         if (item != null && tile.getSnow() == 0) {
-            int itemSize = (int)(s_TileSize*0.8);
+            int itemSize = (int) (s_TileSize * 0.8);
             if (item instanceof Shovel) {
-                g.drawImage(ResourceManager.shovel, 0,0,itemSize, itemSize,null);
+                g.drawImage(ResourceManager.shovel, 0, 0, itemSize, itemSize, null);
             }
             if (item instanceof BreakingShovel) {
-                g.drawImage(ResourceManager.breakingShovel, 0,0,itemSize, itemSize,null);
+                g.drawImage(ResourceManager.breakingShovel, 0, 0, itemSize, itemSize, null);
             }
             if (item instanceof TentKit) {
-                g.drawImage(ResourceManager.tentkit, 0,0,itemSize, itemSize,null);
+                g.drawImage(ResourceManager.tentkit, 0, 0, itemSize, itemSize, null);
             }
             if (item instanceof Food) {
-                g.drawImage(ResourceManager.food, 0,0,itemSize, itemSize,null);
+                g.drawImage(ResourceManager.food, 0, 0, itemSize, itemSize, null);
             }
             if (item instanceof ScubaGear) {
-                g.drawImage(ResourceManager.scubaGear, 0,0,itemSize, itemSize,null);
+                g.drawImage(ResourceManager.scubaGear, 0, 0, itemSize, itemSize, null);
             }
             if (item instanceof Rope) {
-                g.drawImage(ResourceManager.rope, 0,0,itemSize, itemSize,null);
+                g.drawImage(ResourceManager.rope, 0, 0, itemSize, itemSize, null);
             }
             if (item instanceof PartView) {
-                itemSize*=0.7;
-                g.drawImage(((PartView) item).getImage(), 0,0,itemSize, itemSize,null);
+                itemSize *= 0.7;
+                g.drawImage(((PartView) item).getImage(), 0, 0, itemSize, itemSize, null);
             }
         }
         if (isExplored) {
             if (tile.getWeightLimit() >= controller.game.getPlayers().size()) {
-                g.drawImage(ResourceManager.flagSafe, s_TileSize/10,0,(int)(s_TileSize*0.5), (int)(s_TileSize*0.5),null);
-            }
-            else {
+                g.drawImage(ResourceManager.flagSafe, s_TileSize / 10, 0,
+                        (int) (s_TileSize * 0.5), (int) (s_TileSize * 0.5), null);
+            } else {
 
-                g.drawImage(ResourceManager.flagNotSafe, s_TileSize/10,0,(int)(s_TileSize*0.5), (int)(s_TileSize*0.5),null);
-                g.setColor(new Color(1f,0f,0f,0f ));
+                g.drawImage(ResourceManager.flagNotSafe, s_TileSize / 10, 0,
+                        (int) (s_TileSize * 0.5), (int) (s_TileSize * 0.5), null);
+                g.setColor(new Color(1f, 0f, 0f, 0f));
                 g.fillRect(0, 0, 900, 900);
-                g.setFont(new Font("TimesRoman", Font.PLAIN, s_TileSize/5));
+                g.setFont(new Font("TimesRoman", Font.PLAIN, s_TileSize / 5));
                 g.setColor(Color.white);  // Here
-                g.drawString(Integer.toString(tile.getWeightLimit()), s_TileSize/5, s_TileSize/5);
+                g.drawString(Integer.toString(tile.getWeightLimit()), s_TileSize / 5, s_TileSize / 5);
             }
         }
 
@@ -191,7 +198,7 @@ public class TileView extends JPanel implements MouseListener {
             // 5-9 -> 3*3
             // etc.
             // NOTE(Mark): Koszi Boti <3
-            int horizontalCount = (int) Math.ceil(Math.sqrt((double) occupantCount));
+            int horizontalCount = (int) Math.ceil(Math.sqrt(occupantCount));
 
             int entitySize = s_TileSize / horizontalCount;
 
@@ -202,11 +209,11 @@ public class TileView extends JPanel implements MouseListener {
                 boolean tallBoi = false;
                 if (tile.getOccupants().get(i) instanceof EskimoView) {
                     tallBoi = true;
-                    entityImage = ((EskimoView)tile.getOccupants().get(i)).playerImage;
+                    entityImage = ((EskimoView) tile.getOccupants().get(i)).playerImage;
                 }
                 if (tile.getOccupants().get(i) instanceof ExplorerView) {
                     tallBoi = true;
-                    entityImage = ((ExplorerView)tile.getOccupants().get(i)).playerImage;
+                    entityImage = ((ExplorerView) tile.getOccupants().get(i)).playerImage;
                 }
 
                 if (tile.getOccupants().get(i) instanceof PolarBear) {
@@ -215,9 +222,13 @@ public class TileView extends JPanel implements MouseListener {
 
                 int xOffset = (i % horizontalCount) * entitySize;
                 int yOffset = (i / horizontalCount) * entitySize;
-                g.drawImage(entityImage, xOffset, yOffset, (tallBoi) ? (int)(entitySize/1.8) : entitySize, entitySize, null);
+                g.drawImage(entityImage, xOffset, yOffset,
+                        (tallBoi) ? (int) (entitySize / 1.8) : entitySize, entitySize, null);
                 if (tile.getOccupants().get(i) == controller.selectedPlayer) {
-                    g2d.drawImage(ResourceManager.selectedPlayer, (xOffset-35/horizontalCount), yOffset-35/horizontalCount, (int)(entitySize/1.8)*2, (int)(entitySize*2.6), null); // NOTE(Mark): Akit zavar, hogy ez így néz ki, az csináljon egy új textúrát szélek nélkül
+                    g2d.drawImage(ResourceManager.selectedPlayer,
+                            (xOffset - 35 / horizontalCount), yOffset - 35 / horizontalCount,
+                            (int) (entitySize / 1.8) * 2, (int) (entitySize * 2.6), null);
+                    // NOTE(Mark): Akit zavar, hogy ez így néz ki, az csináljon egy új textúrát szélek nélkül
                     g2d.setTransform(old);
                 }
             }

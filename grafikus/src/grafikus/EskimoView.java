@@ -1,6 +1,7 @@
 package grafikus;
 
-import grafikus.model.*;
+import grafikus.model.Eskimo;
+import grafikus.model.Game;
 
 import java.awt.*;
 
@@ -8,8 +9,8 @@ public class EskimoView extends Eskimo {
 
     private static int eskimoCount = 0;
 
-    public Image playerImage;
-    public Image iconImage;
+    public final Image playerImage;
+    public final Image iconImage;
 
     public EskimoView(Game g) {
         super(g);

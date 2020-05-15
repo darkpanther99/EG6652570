@@ -1,11 +1,17 @@
 package grafikus;
 
-import grafikus.mapgen.MapGen;
-import grafikus.model.*;
+import grafikus.model.Game;
+import grafikus.model.GameObserver;
+import grafikus.model.Tile;
+
 import javax.swing.*;
-import javax.swing.event.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 public class MainMenu extends JFrame implements WindowListener, ChangeListener, ActionListener, GameObserver {
 
@@ -18,11 +24,11 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
     private int numRows = 7;
     private int numCols = 10;
 
-    private JSpinner eskimoSpinner;
-    private JSpinner explorerSpinner;
-    private JSpinner bearSpinner;
-    private JSpinner rowSpinner;
-    private JSpinner colSpinner;
+    private final JSpinner eskimoSpinner;
+    private final JSpinner explorerSpinner;
+    private final JSpinner bearSpinner;
+    private final JSpinner rowSpinner;
+    private final JSpinner colSpinner;
 
     public MainMenu() {
         setMinimumSize(new Dimension(400, 200));
@@ -102,24 +108,24 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().contentEquals(AC_NEW_GAME)) {
+        if (e.getActionCommand().contentEquals(AC_NEW_GAME)) {
             Game game = createGame();
             game.subscribe(this);
 
             // NOTE(boti):
             //  Bypass-oljuk a game create*() fv-nyeit, mert
             //  azok nem view-kat hoznak letre
-            for(int i = 0; i < numEskimos; i++) {
+            for (int i = 0; i < numEskimos; i++) {
                 EskimoView eskimo = new EskimoView(game);
                 game.getPlayers().add(eskimo);
             }
 
-            for(int i = 0; i < numExplorers; i++) {
+            for (int i = 0; i < numExplorers; i++) {
                 ExplorerView explorer = new ExplorerView(game);
                 game.getPlayers().add(explorer);
             }
 
-            for(int i = 0; i < numBears; i++) {
+            for (int i = 0; i < numBears; i++) {
                 game.createPolarBear();
             }
 
@@ -131,11 +137,11 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
 
     @Override
     public void stateChanged(ChangeEvent e) {
-        numEskimos = (Integer)eskimoSpinner.getValue();
-        numExplorers = (Integer)explorerSpinner.getValue();
-        numBears = (Integer)bearSpinner.getValue();
-        numRows = (Integer)rowSpinner.getValue();
-        numCols = (Integer)colSpinner.getValue();
+        numEskimos = (Integer) eskimoSpinner.getValue();
+        numExplorers = (Integer) explorerSpinner.getValue();
+        numBears = (Integer) bearSpinner.getValue();
+        numRows = (Integer) rowSpinner.getValue();
+        numCols = (Integer) colSpinner.getValue();
     }
 
     @Override

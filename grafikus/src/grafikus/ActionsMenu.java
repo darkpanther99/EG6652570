@@ -1,36 +1,14 @@
 package grafikus;
 
-import grafikus.model.*;
+import grafikus.model.Part;
+import grafikus.model.Tile;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.font.*;
-import java.util.Map;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ActionsMenu extends JPanel implements ActionListener {
-
-    class MenuButton extends JButton {
-        public MenuButton(String text) {
-            super(text);
-        }
-
-        @Override
-        public void paint(Graphics g) {
-            super.paint(g);
-
-            Graphics2D g2 = (Graphics2D)g;
-            g2.setColor(Color.DARK_GRAY);
-            g2.fillRect(0, 0, getWidth(), getHeight());
-
-            FontMetrics metrics = getFontMetrics(getFont());
-
-            int x = (getWidth() - metrics.stringWidth(getText())) / 2;
-            int y = (getHeight() - metrics.getHeight()) / 2 + metrics.getAscent();
-            g2.setColor(Color.BLACK);
-            g2.drawString(getText(), x, y);
-        }
-    }
 
     private static final String AC_STEP = "step";
     private static final String AC_EXAMINE = "examine";
@@ -41,20 +19,16 @@ public class ActionsMenu extends JPanel implements ActionListener {
     private static final String AC_ASSEMBLE = "assemble";
     private static final String AC_NEXT_TURN = "next_turn";
     private static final String AC_EAT = "eat";
-
-    private Controller controller;
-
-    private MenuButton stepButton;
-    private MenuButton examineButton;
-    private MenuButton rescueButton;
-    private MenuButton digButton;
-    private MenuButton pickupButton;
-    private MenuButton buildButton;
-    private MenuButton assembleButton;
-    private MenuButton newTurnButton;
-    private MenuButton eatButton;
-
-
+    private final Controller controller;
+    private final MenuButton stepButton;
+    private final MenuButton examineButton;
+    private final MenuButton rescueButton;
+    private final MenuButton digButton;
+    private final MenuButton pickupButton;
+    private final MenuButton buildButton;
+    private final MenuButton assembleButton;
+    private final MenuButton newTurnButton;
+    private final MenuButton eatButton;
     public ActionsMenu(Controller controller) {
         this.controller = controller;
 
@@ -115,9 +89,9 @@ public class ActionsMenu extends JPanel implements ActionListener {
     }
 
     public void doPickUp() {
-        // NOTE(boti): ez is a rajzolashoz kell, kicsit hacky.
+        // NOTE(boti): ez is a rajzoláshoz kell, kicsit hacky.
         Tile t = controller.selectedPlayer.getCurrentTile();
-        if(t.getItem() instanceof Part) {
+        if (t.getItem() instanceof Part) {
             controller.foundParts++;
         }
 
@@ -129,21 +103,21 @@ public class ActionsMenu extends JPanel implements ActionListener {
     }
 
     public void doEat() {
-        controller.selectedPlayer.eatFood();;
+        controller.selectedPlayer.eatFood();
     }
 
     public void doStep() {
-        if(controller.mode == Controller.Mode.STEP) controller.mode = Controller.Mode.NONE;
+        if (controller.mode == Controller.Mode.STEP) controller.mode = Controller.Mode.NONE;
         else controller.mode = Controller.Mode.STEP;
     }
 
     public void doExamine() {
-        if(controller.mode == Controller.Mode.EXAMINE) controller.mode = Controller.Mode.NONE;
+        if (controller.mode == Controller.Mode.EXAMINE) controller.mode = Controller.Mode.NONE;
         else controller.mode = Controller.Mode.EXAMINE;
     }
 
     public void doRescue() {
-        if(controller.mode == Controller.Mode.RESCUE) controller.mode = Controller.Mode.NONE;
+        if (controller.mode == Controller.Mode.RESCUE) controller.mode = Controller.Mode.NONE;
         else controller.mode = Controller.Mode.RESCUE;
     }
 
@@ -157,23 +131,23 @@ public class ActionsMenu extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().contentEquals(AC_STEP)) {
+        if (e.getActionCommand().contentEquals(AC_STEP)) {
             doStep();
-        } else if(e.getActionCommand().contentEquals(AC_EXAMINE)) {
+        } else if (e.getActionCommand().contentEquals(AC_EXAMINE)) {
             doExamine();
-        } else if(e.getActionCommand().contentEquals(AC_DIG)) {
+        } else if (e.getActionCommand().contentEquals(AC_DIG)) {
             doDig();
-        } else if(e.getActionCommand().contentEquals(AC_PICK_UP)) {
+        } else if (e.getActionCommand().contentEquals(AC_PICK_UP)) {
             doPickUp();
-        } else if(e.getActionCommand().contentEquals(AC_BUILD)) {
+        } else if (e.getActionCommand().contentEquals(AC_BUILD)) {
             doBuild();
-        } else if(e.getActionCommand().contentEquals(AC_RESCUE)) {
+        } else if (e.getActionCommand().contentEquals(AC_RESCUE)) {
             doRescue();
-        } else if(e.getActionCommand().contentEquals(AC_ASSEMBLE)) {
+        } else if (e.getActionCommand().contentEquals(AC_ASSEMBLE)) {
             doAssemble();
-        } else if(e.getActionCommand().contentEquals(AC_NEXT_TURN)) {
+        } else if (e.getActionCommand().contentEquals(AC_NEXT_TURN)) {
             doNextTurn();
-        } else if(e.getActionCommand().contentEquals(AC_EAT)) {
+        } else if (e.getActionCommand().contentEquals(AC_EAT)) {
             doEat();
         }
 
@@ -186,5 +160,27 @@ public class ActionsMenu extends JPanel implements ActionListener {
         g.drawImage(ResourceManager.buttonSlot, 0, 0, getWidth(), getHeight(), null);
 
         paintChildren(g);
+    }
+
+    static class MenuButton extends JButton {
+        public MenuButton(String text) {
+            super(text);
+        }
+
+        @Override
+        public void paint(Graphics g) {
+            super.paint(g);
+
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setColor(Color.DARK_GRAY);
+            g2.fillRect(0, 0, getWidth(), getHeight());
+
+            FontMetrics metrics = getFontMetrics(getFont());
+
+            int x = (getWidth() - metrics.stringWidth(getText())) / 2;
+            int y = (getHeight() - metrics.getHeight()) / 2 + metrics.getAscent();
+            g2.setColor(Color.BLACK);
+            g2.drawString(getText(), x, y);
+        }
     }
 }

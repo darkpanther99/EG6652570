@@ -1,36 +1,24 @@
 package grafikus;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.util.*;
-import java.util.List;
-import java.util.Map;
-
 import grafikus.model.*;
 
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
 public class Controller extends JFrame implements TileClickListener, PlayerSelectListener {
-    enum Mode {
-        NONE,
-        STEP,
-        RESCUE,
-        EXAMINE,
-    }
-
     public Mode mode = Mode.NONE;
-
-    private PlayerListMenu playerListMenu = null;
-    private InventoryMenu inventoryMenu = null;
-    private ActionsMenu actionsMenu = null;
-
-    private View view = null;
-
-    public Game game = null;
-    public Player selectedPlayer = null;
-
+    public Game game;
+    public Player selectedPlayer;
     // NOTE(boti): ez csak a rajzolashoz szukseges
     public int foundParts = 0;
+    private PlayerListMenu playerListMenu;
+    private InventoryMenu inventoryMenu;
+    private ActionsMenu actionsMenu;
+    private View view;
 
     public Controller(Game game, int rows, int cols) {
         this.game = game;
@@ -71,7 +59,7 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
     public Player getNextPlayer() {
         List<Player> players = game.getPlayers();
         int index = players.indexOf(selectedPlayer);
-        if(++index >= players.size()) {
+        if (++index >= players.size()) {
             index = 0;
         }
         return players.get(index);
@@ -86,8 +74,8 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
 
         List<Player> players = game.getPlayers();
 
-        for(Player player : players) {
-            if(player.getEnergy() > 0) {
+        for (Player player : players) {
+            if (player.getEnergy() > 0) {
                 return;
             }
         }
@@ -97,20 +85,20 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
 
     public void nextTurn() {
         Random random = new Random();
-        for(PolarBear bear : game.getBears()) {
+        for (PolarBear bear : game.getBears()) {
             int[] arr = {0, 1, 2, 3};
 
-            ArrayList<Integer> moveDirs = new ArrayList<Integer>();
+            ArrayList<Integer> moveDirs = new ArrayList<>();
             moveDirs.add(0);
             moveDirs.add(1);
             moveDirs.add(2);
             moveDirs.add(3);
 
-            while(!moveDirs.isEmpty()) {
+            while (!moveDirs.isEmpty()) {
                 int index = random.nextInt(moveDirs.size());
                 int dir = moveDirs.get(index);
                 moveDirs.remove(index);
-                if(bear.getCurrentTile().getNeighbor(dir).getWeightLimit() > 0) {
+                if (bear.getCurrentTile().getNeighbor(dir).getWeightLimit() > 0) {
                     bear.step(dir);
                     break;
                 }
@@ -118,8 +106,8 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
         }
 
         int stormChance = random.nextInt(100);
-        if(stormChance > 50) {
-            for(Tile t : game.getTiles()) {
+        if (stormChance > 50) {
+            for (Tile t : game.getTiles()) {
                 t.chillStorm();
             }
         }
@@ -135,32 +123,39 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
 
     @Override
     public void tileClick(Tile t) {
-        if(mode == Mode.NONE) return;
+        if (mode == Mode.NONE) return;
 
         int tileDirection = -1;
         Map<Integer, Tile> neighbors = selectedPlayer.getCurrentTile().getNeighbors();
-        for(Map.Entry<Integer, Tile> entry : neighbors.entrySet()) {
-            if(entry.getValue() == t) {
+        for (Map.Entry<Integer, Tile> entry : neighbors.entrySet()) {
+            if (entry.getValue() == t) {
                 tileDirection = entry.getKey();
                 break;
             }
         }
 
-        if(tileDirection == -1) return;
+        if (tileDirection == -1) return;
 
-        if(mode == Mode.STEP) {
+        if (mode == Mode.STEP) {
             selectedPlayer.step(tileDirection);
-        } else if(mode == Mode.EXAMINE) {
-            if(selectedPlayer instanceof PolarExplorer) {
-                PolarExplorer explorer = (PolarExplorer)selectedPlayer;
+        } else if (mode == Mode.EXAMINE) {
+            if (selectedPlayer instanceof PolarExplorer) {
+                PolarExplorer explorer = (PolarExplorer) selectedPlayer;
                 explorer.examine(tileDirection);
             }
-        } else if(mode == Mode.RESCUE) {
+        } else if (mode == Mode.RESCUE) {
             selectedPlayer.rescueTeammate(tileDirection);
         }
 
         mode = Mode.NONE;
 
         update();
+    }
+
+    enum Mode {
+        NONE,
+        STEP,
+        RESCUE,
+        EXAMINE,
     }
 }
