@@ -14,6 +14,7 @@ import java.awt.geom.AffineTransform;
  */
 public class TileView extends JPanel implements MouseListener {
     private final Controller controller;
+    public boolean isStorm = false;
 
     /**
      * A reprezentált cella.
@@ -252,6 +253,10 @@ public class TileView extends JPanel implements MouseListener {
                 }
             }
 
+        }
+        if (isStorm) {
+            g.drawImage(ResourceManager.storm, 0, 0, View.TILE_SIZE, View.TILE_SIZE, null);
+            isStorm = false;
         }
     }
 

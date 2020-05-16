@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * View komponens.
@@ -26,7 +27,6 @@ public class View extends JScrollPane implements GameObserver {
     private final ArrayList<TileView> tiles;
     private final int rows;
     private final int cols;
-    private final boolean isStorm;
     private TileClickListener tcl;
     private final JPanel tilePanel;
 
@@ -86,16 +86,11 @@ public class View extends JScrollPane implements GameObserver {
         add(tilePanel);
         setViewportView(tilePanel);
         setBorder(BorderFactory.createEmptyBorder());
-
-        isStorm = false;
     }
 
     public void update() {
         for (TileView tv : tiles) {
             tv.update();
-        }
-        if (isStorm) {
-            //TODO(Mark)
         }
         repaint();
     }
@@ -124,6 +119,10 @@ public class View extends JScrollPane implements GameObserver {
      * A játékban egy sarkkutató felderítette egy cellát
      * Teszünk rá egy jelző zászlót.
      */
+    public List<TileView> getTileViews() {
+        return tiles;
+    }
+
     @Override
     public void explore(Tile tile) {
         for (TileView tv : tiles) {

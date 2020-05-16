@@ -15,6 +15,7 @@ import java.util.MissingResourceException;
 public class ResourceManager {
 
     // Texturak
+    public static Image storm  = null;
     public static Image imageIce = null;
     public static Image imageLeaves = null;
     public static Image imageSea = null;
@@ -67,6 +68,7 @@ public class ResourceManager {
      */
     static {
         try {
+            storm = ImageIO.read(getResource("png/storm.png"));
             flagSafe = ImageIO.read(getResource("png/zaszlobiztonsagos.png"));
             flagNotSafe = ImageIO.read(getResource("png/zaszloveszely.png"));
 
