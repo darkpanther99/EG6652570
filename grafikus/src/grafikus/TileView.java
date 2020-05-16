@@ -257,9 +257,12 @@ public class TileView extends JPanel implements MouseListener {
             }
 
         }
+        if (controller.selectedPlayer.getCurrentTile().getNeighbors().containsValue(tile)) {
+            g.drawImage(ResourceManager.canStep, 0, 0, View.TILE_SIZE, View.TILE_SIZE, null);
+        }
+
         if (isStorm) {
             g.drawImage(ResourceManager.storm, 0, 0, View.TILE_SIZE, View.TILE_SIZE, null);
-            isStorm = false;
         }
     }
 
