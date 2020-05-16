@@ -153,7 +153,7 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
 
         int stormChance = random.nextInt(100);
         if (stormChance > 50) {
-            for (Tile t : game.getTiles()) {
+            for (Tile t : game.getTiles()) {  // TODO(Mark): Itt azt a tömböt kéne megadni, ahol vihar van, azt nem csinálom meg, mert ahhoz gondolkodni kéne. Boti?
                 if (t.getWeightLimit() > 0 || (t.getWeightLimit() == 0 && t.getSnow() > 0))
                     t.setSnow((t.getSnow() < 5) ? t.getSnow() + 1 : t.getSnow());
                 t.chillStorm();

@@ -60,6 +60,8 @@ public class ResourceManager {
     public static Image flareGunSlot = null;
     public static Image tentKitSlot = null;
 
+    public static Image scubaGearPlayer = null;
+
     // Hangok
     public static Sound soundBackground = new Sound();
 
@@ -99,6 +101,7 @@ public class ResourceManager {
             flareLight = ImageIO.read(getResource("png/jelzőfény.png"));
             food = ImageIO.read(getResource("png/food.png"));
             scubaGear = ImageIO.read(getResource("png/scuba.png"));
+            scubaGearPlayer = ImageIO.read(getResource("png/buvarruha.png"));
             rope = ImageIO.read(getResource("png/rope.png"));
 
             imageIce = ImageIO.read(getResource("png/jégtile.png"));

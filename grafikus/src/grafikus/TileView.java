@@ -244,6 +244,9 @@ public class TileView extends JPanel implements MouseListener {
                 int yOffset = (i / horizontalCount) * entitySize;
                 g.drawImage(entityImage, xOffset, yOffset,
                         (tallBoi) ? (int) (entitySize / 1.8) : entitySize, entitySize, null);
+                if (tile.getOccupants().get(i) instanceof Player && ((Player) tile.getOccupants().get(i)).getWaterResistanceStrategy() instanceof ScubaWearing)
+                    g.drawImage(ResourceManager.scubaGearPlayer, xOffset, yOffset,
+                            (tallBoi) ? (int) (entitySize / 1.8) : entitySize, entitySize, null);
                 if (tile.getOccupants().get(i) == controller.selectedPlayer) {
                     g2d.drawImage(ResourceManager.selectedPlayer,
                             (xOffset - 35 / horizontalCount), yOffset - 35 / horizontalCount,
