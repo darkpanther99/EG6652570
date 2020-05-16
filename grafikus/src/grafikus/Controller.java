@@ -4,10 +4,8 @@ import grafikus.model.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Vezérlő komponens.
@@ -139,7 +137,8 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
     public void nextTurn() {
         Random random = new Random();
         for (PolarBear bear : game.getBears()) {
-            List<Integer> moveDirs = Arrays.asList(0, 1, 2, 3);
+            List<Integer> moveDirs = new ArrayList<>();
+            Collections.addAll(moveDirs, 0, 1, 2, 3);
 
             while (!moveDirs.isEmpty()) {
                 int index = random.nextInt(moveDirs.size());
