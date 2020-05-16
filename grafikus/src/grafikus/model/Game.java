@@ -43,7 +43,7 @@ public class Game {
      */
     public void turn() {
         for (Player p : players) {
-            p.setEnergy(4);
+            p.setEnergy(5);
         }
         for (Tile t : iceField) {
             t.chillWater();

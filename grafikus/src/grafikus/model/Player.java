@@ -62,7 +62,7 @@ public abstract class Player extends Entity {
         buildStrategy = new BuildStrategy();
         rescueStrategy = new CantRescue();
         bodyTemp = 4;
-        energy = 4;
+        energy = 5;
     }
 
     /**

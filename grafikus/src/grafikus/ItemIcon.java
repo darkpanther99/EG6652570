@@ -54,6 +54,7 @@ public class ItemIcon extends JPanel implements MouseListener {
         Dimension d = new Dimension(InventoryMenu.ITEM_SIZE, InventoryMenu.ITEM_SIZE);
         setPreferredSize(d);
         setMinimumSize(d);
+        addMouseListener(this);
     }
 
     /**
@@ -116,6 +117,7 @@ public class ItemIcon extends JPanel implements MouseListener {
         Player p = controller.selectedPlayer;
         int i = p.getInventory().indexOf(item);
         p.equip(i);
+        repaint();
     }
 
     /**
