@@ -144,20 +144,19 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
                 }
             }
         }
-
-        int stormChance = random.nextInt(100);
-
+        boolean isStorm = random.nextInt(100) < 10;
         for (TileView tileView : view.getTileViews()) {
-            tileView.isStorm = stormChance > 50;
-            if (tileView.isStorm) {
+            tileView.isStorm = isStorm;
+            if (isStorm) {
                 Tile tile = tileView.getTile();
-                if (tile.getWeightLimit() > 0 || (tile.getWeightLimit() == 0 && tile.getSnow() > 0)) {
-                    tile.setSnow((tile.getSnow() < 5) ? tile.getSnow() + 1 : tile.getSnow());
+                if (random.nextInt(100) < 30) {
+                    if (tile.getWeightLimit() > 0 || (tile.getWeightLimit() == 0 && tile.getSnow() > 0)) {
+                        tile.setSnow(Math.min(tile.getSnow() + 1, 5));
+                    }
                 }
                 tile.chillStorm();
             }
         }
-
         game.turn();
         update();
     }
