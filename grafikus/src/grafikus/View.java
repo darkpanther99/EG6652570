@@ -51,24 +51,21 @@ public class View extends JScrollPane implements GameObserver {
                 : new Dimension(rows * TILE_SIZE, cols * TILE_SIZE));
         //setMinimumSize(new Dimension(d));
 
-        final boolean hideScrollbar = true;
-        if (hideScrollbar) {
-            // https://stackoverflow.com/a/47896823
-            JScrollBar vScrollBar = new JScrollBar(JScrollBar.VERTICAL) {
-                public boolean isVisible() {
-                    return true;
-                }
-            };
-            setVerticalScrollBar(vScrollBar);
-            setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-            JScrollBar hScrollBar = new JScrollBar(JScrollBar.HORIZONTAL) {
-                public boolean isVisible() {
-                    return true;
-                }
-            };
-            setHorizontalScrollBar(hScrollBar);
-            setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        }
+        // https://stackoverflow.com/a/47896823
+        JScrollBar vScrollBar = new JScrollBar(JScrollBar.VERTICAL) {
+            public boolean isVisible() {
+                return true;
+            }
+        };
+        setVerticalScrollBar(vScrollBar);
+        setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        JScrollBar hScrollBar = new JScrollBar(JScrollBar.HORIZONTAL) {
+            public boolean isVisible() {
+                return true;
+            }
+        };
+        setHorizontalScrollBar(hScrollBar);
+        setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         getVerticalScrollBar().setUnitIncrement(16);
         getHorizontalScrollBar().setUnitIncrement(16);
