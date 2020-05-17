@@ -118,9 +118,7 @@ public class MapGen {
         for (Player p : game.getPlayers()) {
             p.placeOn(tiles.get(index(1, 1)));
         }
-        // TESZT
-        game.getPlayers().get(0).getInventory().add(new ScubaGear());
-        //
+
         for (PolarBear b : game.getBears()) {
             int done = 0;
             boolean badbadbear = false;

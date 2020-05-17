@@ -213,7 +213,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
     /**
      * Egyedi megjelenésű gomb.
      */
-    private static class MenuButton extends JButton {
+    private class MenuButton extends JButton {
         public MenuButton(String text) {
             super(text);
         }
@@ -222,8 +222,11 @@ public class ActionsMenu extends JPanel implements ActionListener {
         public void paint(Graphics g) {
             super.paint(g);
 
+            boolean isEnabled = true; // TODO
+            //controller.selectedPlayer;
+
             Graphics2D g2 = (Graphics2D) g;
-            g2.setColor(Color.DARK_GRAY);
+            g2.setColor(Color.LIGHT_GRAY);
             g2.fillRect(0, 0, getWidth(), getHeight());
 
             FontMetrics metrics = getFontMetrics(getFont());

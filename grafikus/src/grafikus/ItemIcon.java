@@ -117,7 +117,7 @@ public class ItemIcon extends JPanel implements MouseListener {
         Player p = controller.selectedPlayer;
         int i = p.getInventory().indexOf(item);
         p.equip(i);
-        repaint();
+        controller.update();
     }
 
     /**
