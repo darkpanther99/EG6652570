@@ -102,7 +102,11 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
     public void victory() {
         if (!hasGameEnded) {
             hasGameEnded = true;
-            JOptionPane.showMessageDialog(this, "You're winner!");
+            final JDialog frame = new JDialog(controller, "You're winner!", true);
+            frame.setLocation(600, 200);
+            frame.getContentPane().add(new JLabel(new ImageIcon(ResourceManager.winner)));
+            frame.pack();
+            frame.setVisible(true);
             controller.dispatchEvent(new WindowEvent(controller, WindowEvent.WINDOW_CLOSING));
         }
     }
@@ -114,7 +118,8 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
     public void gameOver() {
         if (!hasGameEnded) {
             hasGameEnded = true;
-            JOptionPane.showMessageDialog(this, "Játék vége, egy csapattag meghalt.");
+            controller.update();
+            JOptionPane.showMessageDialog(controller, "Játék vége, egy csapattag meghalt.");
             controller.dispatchEvent(new WindowEvent(controller, WindowEvent.WINDOW_CLOSING));
         }
     }

@@ -65,6 +65,7 @@ public class ResourceManager {
     public static Image foodSlot = null;
     public static Image flareGunSlot = null;
     public static Image tentKitSlot = null;
+    public static Image winner = null;
 
     public static Image scubaGearPlayer = null;
 
@@ -99,6 +100,7 @@ public class ResourceManager {
             foodSlot = ImageIO.read(getResource("png/foodslot.png"));
             flareGunSlot = ImageIO.read(getResource("png/pewpewslot.png"));
             tentKitSlot = ImageIO.read(getResource("png/tentkitslot.png"));
+            winner = ImageIO.read(getResource("png/winner.png"));
 
             breakingShovel = ImageIO.read(getResource("png/törékenyásó.png"));
             shovel = ImageIO.read(getResource("png/törhetetlenásó.png"));
