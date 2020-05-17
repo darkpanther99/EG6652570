@@ -100,10 +100,10 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
      */
     @Override
     public void victory() {
-        if(!hasGameEnded) {
-            controller.dispatchEvent(new WindowEvent(controller, WindowEvent.WINDOW_CLOSING));
-            JOptionPane.showMessageDialog(this, "You're winner!");
+        if (!hasGameEnded) {
             hasGameEnded = true;
+            JOptionPane.showMessageDialog(this, "You're winner!");
+            controller.dispatchEvent(new WindowEvent(controller, WindowEvent.WINDOW_CLOSING));
         }
     }
 
@@ -112,10 +112,10 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
      */
     @Override
     public void gameOver() {
-        if(!hasGameEnded) {
-            controller.dispatchEvent(new WindowEvent(controller, WindowEvent.WINDOW_CLOSING));
-            JOptionPane.showMessageDialog(this, "A player died, game over!");
+        if (!hasGameEnded) {
             hasGameEnded = true;
+            JOptionPane.showMessageDialog(this, "Játék vége, egy csapattag meghalt.");
+            controller.dispatchEvent(new WindowEvent(controller, WindowEvent.WINDOW_CLOSING));
         }
     }
 
@@ -200,6 +200,13 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
      */
     @Override
     public void windowClosing(WindowEvent e) {
+        final boolean debug = false; // idegesítő, ha debuggolni akarsz
+        if (!debug && !hasGameEnded) {
+            int r = JOptionPane.showConfirmDialog(controller,
+                    "Biztos ki akarsz lépni?", "?", JOptionPane.OK_CANCEL_OPTION);
+            if (r != JOptionPane.OK_OPTION) return;
+        }
+        controller.dispose();
         setVisible(true);
     }
 

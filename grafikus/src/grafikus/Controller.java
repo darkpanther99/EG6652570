@@ -71,7 +71,7 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
         selectedPlayer.addToInventory(new Rope()); // TEMP
         //selectedPlayer.equip(1); // TEMP
 
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Jegmezo");
 
         setLayout(new BorderLayout(0, 0));

@@ -162,35 +162,15 @@ public class ItemIcon extends JPanel implements MouseListener {
             }
         } else if (type == Type.PART_STORE) {
             g.drawImage(ResourceManager.flareGunSlot, 0, 0, InventoryMenu.ITEM_SIZE, InventoryMenu.ITEM_SIZE, null);
-
-            int xOffs;
-            int yOffs;
-            int w;
-            int h;
-
             if (partStore.getCount() > 0) {
-                xOffs = 33;
-                yOffs = 22;
-                w = 62;
-                h = 62;
-                g.drawImage(ResourceManager.flareGun, xOffs, yOffs, w, h, null);
-
+                g.drawImage(ResourceManager.flareGun, 33, 22, 62, 62, null);
                 if (partStore.getCount() > 1) {
-                    xOffs = 20;
-                    yOffs = 86;
-                    w = 44;
-                    h = 44;
-                    g.drawImage(ResourceManager.flareLight, xOffs, yOffs, w, h, null);
-                }
-                if (partStore.getCount() > 2) {
-                    xOffs = 63;
-                    yOffs = 81;
-                    w = 45;
-                    h = 58;
-                    g.drawImage(ResourceManager.flare, xOffs, yOffs, w, h, null);
+                    g.drawImage(ResourceManager.flareLight, 20, 86, 44, 44, null);
+                    if (partStore.getCount() > 2) {
+                        g.drawImage(ResourceManager.flare, 63, 81, 45, 58, null);
+                    }
                 }
             }
-
         } else if (type == Type.TENTKIT_STORE) {
             g.drawImage(ResourceManager.tentKitSlot, 0, 0, InventoryMenu.ITEM_SIZE, InventoryMenu.ITEM_SIZE, null);
 

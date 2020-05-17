@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class MapGen {
-    private static final boolean TESTING = false;
+    private static final boolean TESTING = true;
     private static Game game;
     private static int rows = 7;
     private static int cols = 10;
@@ -78,11 +78,14 @@ public class MapGen {
             tiles.get(index(2, 2)).setSnow(0);
             tiles.get(index(2, 2)).setItem(new PartView(ResourceManager.flareLight));
             tiles.get(index(2, 3)).setSnow(0);
+            tiles.get(index(2, 3)).setWeightLimit(999);
             tiles.get(index(2, 3)).setItem(new PartView(ResourceManager.flare));
             tiles.get(index(2, 4)).setSnow(0);
+            tiles.get(index(2, 4)).setWeightLimit(999);
             tiles.get(index(2, 4)).setItem(new PartView(ResourceManager.flareGun));
-            tiles.get(index(1, 2)).setWeightLimit(0);
             tiles.get(index(1, 2)).setSnow(0);
+            tiles.get(index(1, 2)).setWeightLimit(999);
+
         } else {
             LinkedList<PartView> parts = new LinkedList<>(Arrays.asList(new PartView(ResourceManager.flareGun), new PartView(ResourceManager.flareLight), new PartView(ResourceManager.flare)));
             while (parts.size() > 0) {
