@@ -14,7 +14,7 @@ import java.util.List;
  * View komponens.
  * Megjeleníti a pálya négyzetrácsot.
  */
-public class View extends JScrollPane implements GameObserver {
+public class View extends JScrollPane implements GameObserver, TileClickListener {
     private final Controller controller;
     /**
      * A cellanégyzet mérete.
@@ -77,7 +77,9 @@ public class View extends JScrollPane implements GameObserver {
 
         Game g = controller.game;
         for (Tile t : g.getTiles()) {
-            tiles.add(new TileView(t, c));
+            TileView tv = new TileView(t, c);
+            tv.addTileClickListener(this);
+            tiles.add(tv);
             tilePanel.add(tiles.get(tiles.size() - 1));
         }
         add(tilePanel);
@@ -92,8 +94,19 @@ public class View extends JScrollPane implements GameObserver {
         repaint();
     }
 
+    /**
+     * Feliratkozás
+     */
     public void addTileClickedListener(TileClickListener tcl) {
         this.tcl = tcl;
+    }
+
+    /**
+     * Továbbítjuk a feliratkozónak
+     */
+    public void tileClick(Tile t) {
+        if (this.tcl != null)
+            this.tcl.tileClick(t);
     }
 
     /**

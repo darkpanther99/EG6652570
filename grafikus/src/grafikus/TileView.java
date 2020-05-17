@@ -28,6 +28,8 @@ public class TileView extends JPanel implements MouseListener {
      */
     private boolean mouseOn = false;
 
+    private TileClickListener tcl;
+
     /**
      * @param t A cella.
      * @param c Megkapja a vezérlőt, mint dependency injection.
@@ -46,6 +48,10 @@ public class TileView extends JPanel implements MouseListener {
         setMinimumSize(d);
         setMaximumSize(d);
         setBorder(new EmptyBorder(0, 0, 0, 0));
+    }
+
+    public void addTileClickListener(TileClickListener tcl) {
+        this.tcl = tcl;
     }
 
     /**
@@ -293,7 +299,7 @@ public class TileView extends JPanel implements MouseListener {
      */
     @Override
     public void mouseClicked(MouseEvent e) {
-        controller.tileClick(tile);
+        tcl.tileClick(tile);
     }
 
     /**

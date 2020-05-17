@@ -77,6 +77,8 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
         setLayout(new BorderLayout(0, 0));
 
         view = new View(this, rows, cols);
+        view.addTileClickedListener(this);
+
         this.add(view, BorderLayout.CENTER);
         game.subscribe(view);
 

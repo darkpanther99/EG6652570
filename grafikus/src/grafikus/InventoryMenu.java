@@ -73,7 +73,7 @@ public class InventoryMenu extends JScrollPane {
             ItemIcon tentkitIcon = new ItemIcon(controller, player.getBuildStrategy());
             content.add(tentkitIcon);
             List<Item> inventory = controller.selectedPlayer.getInventory();
-            
+
             int count = 3;
             for (Item item : inventory) {
                 if (item instanceof Empty) continue;
