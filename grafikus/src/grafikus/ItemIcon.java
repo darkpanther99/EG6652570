@@ -169,24 +169,24 @@ public class ItemIcon extends JPanel implements MouseListener {
             int h;
 
             if (partStore.getCount() > 0) {
-                xOffs = 36;
-                yOffs = 33;
-                w = 55;
-                h = 37;
+                xOffs = 33;
+                yOffs = 22;
+                w = 62;
+                h = 62;
                 g.drawImage(ResourceManager.flareGun, xOffs, yOffs, w, h, null);
 
                 if (partStore.getCount() > 1) {
-                    xOffs = 32;
-                    yOffs = 98;
-                    w = 20;
-                    h = 20;
+                    xOffs = 20;
+                    yOffs = 96;
+                    w = 44;
+                    h = 44;
                     g.drawImage(ResourceManager.flareLight, xOffs, yOffs, w, h, null);
                 }
                 if (partStore.getCount() > 2) {
-                    xOffs = 80;
-                    yOffs = 98;
-                    w = 12;
-                    h = 20;
+                    xOffs = 63;
+                    yOffs = 81;
+                    w = 45;
+                    h = 58;
                     g.drawImage(ResourceManager.flare, xOffs, yOffs, w, h, null);
                 }
             }
