@@ -104,7 +104,7 @@ public class TileView extends JPanel implements MouseListener {
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         AffineTransform old = g2d.getTransform();
-
+        g2d.drawImage(ResourceManager.imageIce, 0, 0, View.TILE_SIZE, View.TILE_SIZE, null);
         Image tileImage = null;
         if (tile.getSnow() > 0) {
             tileImage = ResourceManager.imageSnow[tile.getSnow()];
@@ -154,7 +154,7 @@ public class TileView extends JPanel implements MouseListener {
             g2d.rotate(Math.toRadians(90));
         }
 
-        g2d.drawImage(ResourceManager.imageIce, 0, 0, View.TILE_SIZE, View.TILE_SIZE, null);
+
         g2d.drawImage(tileImage, 0, 0, View.TILE_SIZE, View.TILE_SIZE, null);
         g2d.setTransform(old);
 
