@@ -34,6 +34,7 @@ public class ItemIcon extends JPanel implements MouseListener {
          */
         TENTKIT_STORE,
     }
+
     private Type type;
 
     // A tárgy modellbeli állapotához tartozó segédváltozók.
@@ -42,6 +43,7 @@ public class ItemIcon extends JPanel implements MouseListener {
     private FoodStore foodStore = null;
     private PartStore partStore = null;
     private BuildStrategy tentkitStore = null;
+
     /**
      * @param controller Megkapja a vezérlőt mint dependency injection.
      */
@@ -115,7 +117,7 @@ public class ItemIcon extends JPanel implements MouseListener {
         Player p = controller.selectedPlayer;
         int i = p.getInventory().indexOf(item);
         p.equip(i);
-        controller.update(false, true, false, true);
+        controller.update();
     }
 
     /**

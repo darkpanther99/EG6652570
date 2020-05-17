@@ -99,7 +99,6 @@ public class ActionsMenu extends JPanel implements ActionListener {
      */
     private void doDig() {
         controller.selectedPlayer.dig();
-        controller.update(false, true, true, false);
     }
 
     /**
@@ -113,7 +112,6 @@ public class ActionsMenu extends JPanel implements ActionListener {
         }
 
         controller.selectedPlayer.pickUp();
-        controller.update(false, true, true, false);
     }
 
     /**
@@ -121,7 +119,6 @@ public class ActionsMenu extends JPanel implements ActionListener {
      */
     private void doBuild() {
         controller.selectedPlayer.build();
-        controller.update(false, true, true, false);
     }
 
     /**
@@ -129,7 +126,6 @@ public class ActionsMenu extends JPanel implements ActionListener {
      */
     private void doEat() {
         controller.selectedPlayer.eatFood();
-        controller.update(false, true, true, false);
     }
 
     /**
@@ -138,7 +134,6 @@ public class ActionsMenu extends JPanel implements ActionListener {
      */
     private void doStep() {
         controller.mode = Controller.Mode.STEP;
-        controller.update(false, false, false, true);
     }
 
     /**
@@ -148,7 +143,6 @@ public class ActionsMenu extends JPanel implements ActionListener {
     private void doExamine() {
         if (controller.mode == Controller.Mode.EXAMINE) controller.mode = Controller.Mode.STEP;
         else controller.mode = Controller.Mode.EXAMINE;
-        controller.update(false, false, false, true);
     }
 
     /**
@@ -158,7 +152,6 @@ public class ActionsMenu extends JPanel implements ActionListener {
     private void doRescue() {
         if (controller.mode == Controller.Mode.RESCUE) controller.mode = Controller.Mode.STEP;
         else controller.mode = Controller.Mode.RESCUE;
-        controller.update(false, false, false, true);
     }
 
     /**
@@ -166,7 +159,6 @@ public class ActionsMenu extends JPanel implements ActionListener {
      */
     private void doAssemble() {
         controller.selectedPlayer.assembleFlare();
-        controller.update(false, true, true, false);
     }
 
     /**
@@ -200,6 +192,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
         } else if (e.getActionCommand().contentEquals(AC_EAT)) {
             doEat();
         }
+        controller.update();
     }
 
     /**

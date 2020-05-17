@@ -34,6 +34,7 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
          */
         EXAMINE,
     }
+
     public Mode mode = Mode.STEP;
 
     /**
@@ -55,6 +56,7 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
      * Rajzoláshoz szükséges segédváltozó.
      */
     public int foundParts = 0;
+
     /**
      * @param game Négyzetrács szerkezetű modell
      * @param rows A négyzetrács sorai.
@@ -95,7 +97,7 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
 
         setVisible(true);
         setResizable(false);
-        update(true, true, true, true);
+        update();
     }
 
     // TODO: ezt használni
@@ -110,24 +112,16 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
 
     /**
      * Frissíti a grafikát.
-     * Ki lehet választani, hogy miket szeretnénk frissíteni, a hatékonyság növeléséért.
+     * Ha nincs több energia, automatikusan új kört kezd.
      */
-    public void update(boolean updateView, boolean updateInventory, boolean updatePlayerList, boolean updateActionsMenu) {
-        if (updateView) view.update();
-        else getSelectedTileView().update();
-        if (updateInventory) inventoryMenu.update();
-        if (updatePlayerList) playerListMenu.update();
-        if (updateActionsMenu) actionsMenu.update();
+    public void update() {
+        view.update();
+        inventoryMenu.update();
+        playerListMenu.update();
+        actionsMenu.update();
         this.repaint();
         if (game.getPlayers().stream().allMatch(x -> x.getEnergy() == 0))
             nextTurn();
-    }
-
-    /**
-     * Frissíti a grafikát. Nem rajzolja újra a teljes pályát.
-     */
-    public void update() {
-        update(false, true, true, true);
     }
 
     /**
@@ -165,26 +159,13 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
         }
 
         game.turn();
-        update(true, false, true, false);
+        update();
     }
 
     @Override
     public void select(Player p) {
         selectedPlayer = p;
-        update(false, true, true, true);
-    }
-
-    /**
-     * Segédfüggvény, a grafika gyorsításához.
-     */
-    TileView getSelectedTileView() {
-        Tile c = selectedPlayer.getCurrentTile();
-        for (TileView tv : view.getTileViews()) {
-            if (tv.getTile().equals(c)) {
-                return tv;
-            }
-        }
-        return null;
+        update();
     }
 
     /**
@@ -207,18 +188,6 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
 
         if (tileDirection == -1) return;
 
-        // A szomszédos TileView-t is frissíteni kell.
-        TileView ntv = getSelectedTileView();
-        if (mode == Mode.EXAMINE || mode == Mode.RESCUE) {
-            Tile nt = ntv.getTile().getNeighbor(tileDirection);
-            for (TileView tv : view.getTileViews()) {
-                if (tv.getTile().equals(nt)) {
-                    ntv = tv;
-                    break;
-                }
-            }
-        }
-
         if (mode == Mode.STEP) {
             selectedPlayer.step(tileDirection);
         } else if (mode == Mode.EXAMINE) {
@@ -230,7 +199,6 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
             selectedPlayer.rescueTeammate(tileDirection);
         }
         mode = Mode.STEP;
-        update(false, false, true, true);
-        if (ntv != null) ntv.update();
+        update();
     }
 }
