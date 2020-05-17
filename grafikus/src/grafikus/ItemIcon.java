@@ -135,6 +135,7 @@ public class ItemIcon extends JPanel implements MouseListener {
             else if (item instanceof BreakingShovel) img = ResourceManager.breakingShovel;
             else if (item instanceof Rope) img = ResourceManager.rope;
             else if (item instanceof TentKit) img = ResourceManager.tentKit;
+            else if ( item instanceof ScubaGear) img = ResourceManager.scubaGear;
             else img = ResourceManager.imageEntity;
 
             int size = InventoryMenu.ITEM_SIZE / 3;
