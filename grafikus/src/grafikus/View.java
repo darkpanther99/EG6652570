@@ -115,14 +115,14 @@ public class View extends JScrollPane implements GameObserver {
 
     }
 
-    /**
-     * A játékban egy sarkkutató felderítette egy cellát
-     * Teszünk rá egy jelző zászlót.
-     */
     public List<TileView> getTileViews() {
         return tiles;
     }
 
+    /**
+     * A játékban egy sarkkutató felderítette egy cellát
+     * Teszünk rá egy jelző zászlót.
+     */
     @Override
     public void explore(Tile tile) {
         for (TileView tv : tiles) {

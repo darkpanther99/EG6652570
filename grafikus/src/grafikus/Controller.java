@@ -156,7 +156,7 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
 
         int stormChance = random.nextInt(100);
         for (TileView tv : view.getTileViews()) {
-                tv.isStorm = false;
+            tv.isStorm = false;
         }
         if (stormChance > 50) {
             for (Tile t : game.getTiles()) {  // TODO(Mark): Itt azt a tömböt kéne megadni, ahol vihar van, azt nem csinálom meg, mert ahhoz gondolkodni kéne. Boti?
@@ -201,6 +201,23 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
 
         if (tileDirection == -1) return;
 
+        // csak azokat a TileView-ket frissítjük, amik megváltoztak
+        TileView a = null, b = null;
+        List<TileView> tvs = view.getTileViews();
+        for (TileView tv : tvs) {
+            if (tv.getTile().getOccupants().contains(selectedPlayer)) {
+                a = tv;
+                Tile nt = a.getTile().getNeighbor(tileDirection);
+                for (TileView ntv : tvs) {
+                    if (ntv.getTile().equals(nt)) {
+                        b = ntv;
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+
         if (mode == Mode.STEP) {
             selectedPlayer.step(tileDirection);
         } else if (mode == Mode.EXAMINE) {
@@ -211,9 +228,10 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
         } else if (mode == Mode.RESCUE) {
             selectedPlayer.rescueTeammate(tileDirection);
         }
-
         mode = Mode.STEP;
 
-        update();
+        if (b != null) b.update();
+        if (a != null) a.update();
+        //update();
     }
 }

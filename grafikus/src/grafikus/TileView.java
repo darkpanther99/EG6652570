@@ -14,17 +14,19 @@ import java.awt.geom.AffineTransform;
  */
 public class TileView extends JPanel implements MouseListener {
     private final Controller controller;
-    public boolean isStorm = false;
-
     /**
      * A reprezentált cella.
      */
     private final Tile tile;
-
+    public boolean isStorm = false;
     /**
      * Számon tartja, hogy fel van-e derítve sarkkutató által.
      */
     private boolean isExplored;
+    /**
+     * Ha rajta van a kurzor, és a kiválasztott játékoshoz szomszédos, akkor jelölést rajzolunk
+     */
+    private boolean mouseOn = false;
 
     /**
      * @param t A cella.
@@ -257,8 +259,11 @@ public class TileView extends JPanel implements MouseListener {
             }
 
         }
-        if (controller.selectedPlayer.getCurrentTile().getNeighbors().containsValue(tile)) {
-            g.drawImage(ResourceManager.canStep, 0, 0, View.TILE_SIZE, View.TILE_SIZE, null);
+
+        if (mouseOn) {
+            if (controller.selectedPlayer.getCurrentTile().getNeighbors().containsValue(tile)) {
+                g.drawImage(ResourceManager.canStep, 0, 0, View.TILE_SIZE, View.TILE_SIZE, null);
+            }
         }
 
         if (isStorm) {
@@ -302,18 +307,20 @@ public class TileView extends JPanel implements MouseListener {
     }
 
     /**
-     * Nem használjuk.
+     * Ha rajta van a kurzor, és a kiválasztott játékoshoz szomszédos, akkor jelölést rajzolunk
      */
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        mouseOn = true;
+        repaint();
     }
 
     /**
-     * Nem használjuk.
+     * Ha rajta van a kurzor, és a kiválasztott játékoshoz szomszédos, akkor jelölést rajzolunk
      */
     @Override
     public void mouseExited(MouseEvent e) {
-
+        mouseOn = false;
+        repaint();
     }
 }
