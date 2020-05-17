@@ -120,7 +120,7 @@ public abstract class Player extends Entity {
      * Ezt a metódust a Controller hívja. A játékos felvesz egy tárgyat. 1 munkaegység
      */
     public void pickUp() {
-        if (energy > 0 || !(currentTile.getItem() instanceof Empty)) {
+        if (energy > 0 || !(currentTile.getItem() instanceof Empty) || (currentTile.getSnow() <= 0)) {
             decrementEnergy();
             Item item = currentTile.takeItem();
             addToInventory(item);
