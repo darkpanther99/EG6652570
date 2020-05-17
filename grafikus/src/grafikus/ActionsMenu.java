@@ -1,7 +1,6 @@
 package grafikus;
 
-import grafikus.model.Part;
-import grafikus.model.Tile;
+import grafikus.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -221,14 +220,45 @@ public class ActionsMenu extends JPanel implements ActionListener {
         @Override
         public void paint(Graphics g) {
             super.paint(g);
-
-            boolean isEnabled = true; // TODO
-            //controller.selectedPlayer;
-
             Graphics2D g2 = (Graphics2D) g;
-            g2.setColor(Color.LIGHT_GRAY);
+
+            boolean isEnabled = true;
+
+            if(!getActionCommand().contentEquals(AC_NEXT_TURN) && controller.selectedPlayer.getEnergy() <= 0) {
+                isEnabled = false;
+            }
+
+            if(getActionCommand().contentEquals(AC_EXAMINE) &&
+                    controller.selectedPlayer instanceof Eskimo) {
+                isEnabled = false;
+            } else if(getActionCommand().contentEquals(AC_RESCUE) &&
+                    controller.selectedPlayer.getRescueStrategy() instanceof CantRescue) {
+                isEnabled = false;
+            } else if(getActionCommand().contentEquals(AC_EAT) &&
+                    controller.selectedPlayer.getFoodStore().getCount() <= 0) {
+                isEnabled = false;
+            } else if(getActionCommand().contentEquals(AC_BUILD) &&
+                    controller.selectedPlayer instanceof PolarExplorer &&
+                    controller.selectedPlayer.getBuildStrategy().getCount() <= 0) {
+                isEnabled = false;
+            }
+
+            // Gomb hatter
+            if(isEnabled) {
+                g2.setColor(Color.LIGHT_GRAY);
+            } else {
+                g2.setColor(Color.DARK_GRAY);
+            }
             g2.fillRect(0, 0, getWidth(), getHeight());
 
+            if((getActionCommand().contentEquals(AC_STEP) && controller.mode == Controller.Mode.STEP) ||
+               (getActionCommand().contentEquals(AC_EXAMINE) && controller.mode == Controller.Mode.EXAMINE) ||
+               (getActionCommand().contentEquals(AC_RESCUE)) && controller.mode == Controller.Mode.RESCUE) {
+                g2.setColor(Color.RED);
+                g2.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
+            }
+
+            // Szoveg
             FontMetrics metrics = getFontMetrics(getFont());
 
             int x = (getWidth() - metrics.stringWidth(getText())) / 2;
