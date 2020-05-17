@@ -11,8 +11,6 @@ import java.awt.event.ActionListener;
  * A játékos cselekvéseket kiválasztó UI elem.
  */
 public class ActionsMenu extends JPanel implements ActionListener {
-    private final Controller controller;
-
     // A különböző gombokhoz tartozó ActionCommandok kódjai:
     private static final String AC_STEP = "step";
     private static final String AC_EXAMINE = "examine";
@@ -23,7 +21,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
     private static final String AC_ASSEMBLE = "assemble";
     private static final String AC_NEXT_TURN = "next_turn";
     private static final String AC_EAT = "eat";
-
+    private final Controller controller;
     // A tartalmazott gombok:
     private final MenuButton stepButton;
     private final MenuButton examineButton;
@@ -101,6 +99,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
      */
     private void doDig() {
         controller.selectedPlayer.dig();
+        controller.update(false, true, true, false);
     }
 
     /**
@@ -114,6 +113,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
         }
 
         controller.selectedPlayer.pickUp();
+        controller.update(false, true, true, false);
     }
 
     /**
@@ -121,6 +121,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
      */
     private void doBuild() {
         controller.selectedPlayer.build();
+        controller.update(false, true, true, false);
     }
 
     /**
@@ -128,6 +129,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
      */
     private void doEat() {
         controller.selectedPlayer.eatFood();
+        controller.update(false, true, true, false);
     }
 
     /**
@@ -136,6 +138,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
      */
     private void doStep() {
         controller.mode = Controller.Mode.STEP;
+        controller.update(false, false, false, true);
     }
 
     /**
@@ -145,6 +148,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
     private void doExamine() {
         if (controller.mode == Controller.Mode.EXAMINE) controller.mode = Controller.Mode.STEP;
         else controller.mode = Controller.Mode.EXAMINE;
+        controller.update(false, false, false, true);
     }
 
     /**
@@ -154,6 +158,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
     private void doRescue() {
         if (controller.mode == Controller.Mode.RESCUE) controller.mode = Controller.Mode.STEP;
         else controller.mode = Controller.Mode.RESCUE;
+        controller.update(false, false, false, true);
     }
 
     /**
@@ -161,6 +166,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
      */
     private void doAssemble() {
         controller.selectedPlayer.assembleFlare();
+        controller.update(false, true, true, false);
     }
 
     /**
@@ -194,8 +200,6 @@ public class ActionsMenu extends JPanel implements ActionListener {
         } else if (e.getActionCommand().contentEquals(AC_EAT)) {
             doEat();
         }
-
-        controller.update();
     }
 
     /**
@@ -224,36 +228,36 @@ public class ActionsMenu extends JPanel implements ActionListener {
 
             boolean isEnabled = true;
 
-            if(!getActionCommand().contentEquals(AC_NEXT_TURN) && controller.selectedPlayer.getEnergy() <= 0) {
+            if (!getActionCommand().contentEquals(AC_NEXT_TURN) && controller.selectedPlayer.getEnergy() <= 0) {
                 isEnabled = false;
             }
 
-            if(getActionCommand().contentEquals(AC_EXAMINE) &&
+            if (getActionCommand().contentEquals(AC_EXAMINE) &&
                     controller.selectedPlayer instanceof Eskimo) {
                 isEnabled = false;
-            } else if(getActionCommand().contentEquals(AC_RESCUE) &&
+            } else if (getActionCommand().contentEquals(AC_RESCUE) &&
                     controller.selectedPlayer.getRescueStrategy() instanceof CantRescue) {
                 isEnabled = false;
-            } else if(getActionCommand().contentEquals(AC_EAT) &&
+            } else if (getActionCommand().contentEquals(AC_EAT) &&
                     controller.selectedPlayer.getFoodStore().getCount() <= 0) {
                 isEnabled = false;
-            } else if(getActionCommand().contentEquals(AC_BUILD) &&
+            } else if (getActionCommand().contentEquals(AC_BUILD) &&
                     controller.selectedPlayer instanceof PolarExplorer &&
                     controller.selectedPlayer.getBuildStrategy().getCount() <= 0) {
                 isEnabled = false;
             }
 
             // Gomb hatter
-            if(isEnabled) {
+            if (isEnabled) {
                 g2.setColor(Color.LIGHT_GRAY);
             } else {
                 g2.setColor(Color.DARK_GRAY);
             }
             g2.fillRect(0, 0, getWidth(), getHeight());
 
-            if((getActionCommand().contentEquals(AC_STEP) && controller.mode == Controller.Mode.STEP) ||
-               (getActionCommand().contentEquals(AC_EXAMINE) && controller.mode == Controller.Mode.EXAMINE) ||
-               (getActionCommand().contentEquals(AC_RESCUE)) && controller.mode == Controller.Mode.RESCUE) {
+            if ((getActionCommand().contentEquals(AC_STEP) && controller.mode == Controller.Mode.STEP) ||
+                    (getActionCommand().contentEquals(AC_EXAMINE) && controller.mode == Controller.Mode.EXAMINE) ||
+                    (getActionCommand().contentEquals(AC_RESCUE)) && controller.mode == Controller.Mode.RESCUE) {
                 g2.setColor(Color.RED);
                 g2.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
             }
