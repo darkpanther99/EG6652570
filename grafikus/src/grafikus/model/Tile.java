@@ -39,7 +39,7 @@ public class Tile {
     private final List<Entity> occupants;
 
     public Tile() {
-        item = new Empty();
+        item = Empty.instance;
         occupants = new ArrayList<>();
         neighbors = new HashMap<>();
     }
@@ -63,7 +63,7 @@ public class Tile {
             setItem(null);
             return i;
         }
-        return new Empty();
+        return Empty.instance;
     }
 
     /**
@@ -94,7 +94,7 @@ public class Tile {
         if (occupants.size() > weightLimit) {
             setSnow(0);
             setWeightLimit(0);
-            setItem(new Empty());
+            setItem(Empty.instance);
             setShelter(new BareIce());
             setChillWaterStrategy(new Sea());
             chillWater();
@@ -162,7 +162,7 @@ public class Tile {
     }
 
     public Item getItem() {
-        if (item == null) return new Empty();
+        if (item == null) return Empty.instance;
         return item;
     }
 

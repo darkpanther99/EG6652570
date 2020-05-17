@@ -63,7 +63,7 @@ public class ItemCommand implements Command {
 
         for (int i = 0; i < count; i++) {
             Item item;
-            if (type.contentEquals("empty")) item = new Empty();
+            if (type.contentEquals("empty")) item = Empty.instance;
             else if (type.contentEquals("food")) item = new Food();
             else if (type.contentEquals("part")) item = new Part();
             else if (type.contentEquals("scubagear")) item = new ScubaGear();

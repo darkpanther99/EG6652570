@@ -110,6 +110,9 @@ public class ActionsMenu extends JPanel implements ActionListener {
         if (t.getItem() instanceof Part) {
             controller.foundParts++;
         }
+        if (t.getItem() instanceof Empty) {
+            return; // nem kell emptyket tartani az inventoryban.
+        }
 
         controller.selectedPlayer.pickUp();
     }
