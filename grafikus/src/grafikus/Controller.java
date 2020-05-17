@@ -155,19 +155,15 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
         }
 
         int stormChance = random.nextInt(100);
-        for (TileView tv : view.getTileViews()) {
-            tv.isStorm = false;
-        }
-        if (stormChance > 50) {
-            for (Tile t : game.getTiles()) {  // TODO(Mark): Itt azt a tömböt kéne megadni, ahol vihar van, azt nem csinálom meg, mert ahhoz gondolkodni kéne. Boti?
-                if (t.getWeightLimit() > 0 || (t.getWeightLimit() == 0 && t.getSnow() > 0))
-                    t.setSnow((t.getSnow() < 5) ? t.getSnow() + 1 : t.getSnow());
-                t.chillStorm();
-                for (TileView tv : view.getTileViews()) {
-                    if (tv.getTile() == t) {
-                        tv.isStorm = true;
-                    }
+
+        for (TileView tileView : view.getTileViews()) {
+            tileView.isStorm = stormChance > 50;
+            if (tileView.isStorm) {
+                Tile tile = tileView.getTile();
+                if (tile.getWeightLimit() > 0 || (tile.getWeightLimit() == 0 && tile.getSnow() > 0)) {
+                    tile.setSnow((tile.getSnow() < 5) ? tile.getSnow() + 1 : tile.getSnow());
                 }
+                tile.chillStorm();
             }
         }
 

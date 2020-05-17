@@ -251,6 +251,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
             }
             g2.fillRect(0, 0, getWidth(), getHeight());
 
+            // Mode
             if((getActionCommand().contentEquals(AC_STEP) && controller.mode == Controller.Mode.STEP) ||
                (getActionCommand().contentEquals(AC_EXAMINE) && controller.mode == Controller.Mode.EXAMINE) ||
                (getActionCommand().contentEquals(AC_RESCUE)) && controller.mode == Controller.Mode.RESCUE) {
