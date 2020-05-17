@@ -74,7 +74,7 @@ public class ResourceManager {
     static {
         try {
             canStep = ImageIO.read(getResource("png/canstep.png"));
-            storm = ImageIO.read(getResource("png/storm.png"));
+            storm = ImageIO.read(getResource("png/vihar.png"));
             flagSafe = ImageIO.read(getResource("png/zaszlobiztonsagos.png"));
             flagNotSafe = ImageIO.read(getResource("png/zaszloveszely.png"));
 

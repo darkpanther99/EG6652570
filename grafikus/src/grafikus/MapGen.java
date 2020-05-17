@@ -69,7 +69,8 @@ public class MapGen {
         }
 
         tiles.get(index(1, 1)).setWeightLimit(999);
-        tiles.get(index(1, 1)).setSnow(3);
+        tiles.get(index(1, 1)).setSnow(0);
+        tiles.get(index(1,1)).setChillWaterStrategy(new DryLand()); // NOTE(Mark): Volt egy bug, hogy elkezdtek meghalni a fiúk az első mezőn, ez azért volt, mert amikor legenerálódott, akkor még 0 volt a weight limit, ezért Sea ChillWaterStrategy volt.
         if (TESTING) {
             tiles.get(index(2, 1)).setWeightLimit(999);
             tiles.get(index(2, 1)).setSnow(0);
