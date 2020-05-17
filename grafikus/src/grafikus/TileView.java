@@ -225,7 +225,6 @@ public class TileView extends JPanel implements MouseListener {
             int entitySize = View.TILE_SIZE / horizontalCount;
 
             // itt az entity-ken loopolnank vegig
-            // TODO(Mark): Meg nincs a resource managerben entity img tomb, jelenleg marad ez
             for (int i = 0; i < occupantCount; i++) {
                 Image entityImage = ResourceManager.imageEntity; // ez majd az entitybol jon
                 boolean tallBoi = false;
