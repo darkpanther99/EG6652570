@@ -39,6 +39,9 @@ public class ResourceManager {
     public static Image emptyPlayerSlot = null;
     public static Image playerSlot = null;
     public static Image selectedPlayer = null;
+    public static Image selectedEskimo = null;
+    public static Image selectedExplorer = null;
+    public static Image selectedScuba = null;
 
     public static Image shovel = null;
     public static Image breakingShovel = null;
@@ -116,7 +119,9 @@ public class ResourceManager {
             emptyPlayerSlot = ImageIO.read(getResource("png/empty_player_slot.png"));
             playerSlot = ImageIO.read(getResource("png/player_slot.png"));
             selectedPlayer = ImageIO.read(getResource("png/active player.png"));
-
+            selectedEskimo = ImageIO.read(getResource("png/activeplayer_eskimo.png"));
+            selectedExplorer = ImageIO.read(getResource("png/activeplayer_Explorer.png"));
+            selectedScuba = ImageIO.read(getResource("png/activeplayer_scuba.png"));
             //Image snow = ImageIO.read(getResource("res/snow.png"));
 
             waterSide = ImageIO.read(getResource("png/Víz_side.png"));

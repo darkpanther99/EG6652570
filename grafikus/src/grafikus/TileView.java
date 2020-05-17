@@ -250,11 +250,18 @@ public class TileView extends JPanel implements MouseListener {
                     g.drawImage(ResourceManager.scubaGearPlayer, xOffset, yOffset,
                             (tallBoi) ? (int) (entitySize / 1.8) : entitySize, entitySize, null);
                 if (tile.getOccupants().get(i) == controller.selectedPlayer) {
-                    g2d.drawImage(ResourceManager.selectedPlayer,
-                            (xOffset - 35 / horizontalCount), yOffset - 35 / horizontalCount,
-                            (int) (entitySize / 1.8) * 2, (int) (entitySize * 2.6), null);
-                    // NOTE(Mark): Akit zavar, hogy ez így néz ki, az csináljon egy új textúrát szélek nélkül
-                    g2d.setTransform(old);
+                    if (controller.selectedPlayer.getWaterResistanceStrategy() instanceof ScubaWearing) {
+                        g.drawImage(ResourceManager.selectedScuba, xOffset, yOffset,
+                                (tallBoi) ? (int) (entitySize / 1.8) : entitySize, entitySize, null);
+                    } else {
+                        if (controller.selectedPlayer instanceof Eskimo) {
+                            g.drawImage(ResourceManager.selectedEskimo, xOffset, yOffset,
+                                    (tallBoi) ? (int) (entitySize / 1.8) : entitySize, entitySize, null);
+                        } else if (controller.selectedPlayer instanceof PolarExplorer) {
+                            g.drawImage(ResourceManager.selectedExplorer, xOffset, yOffset,
+                                    (tallBoi) ? (int) (entitySize / 1.8) : entitySize, entitySize, null);
+                        }
+                    }
                 }
             }
 

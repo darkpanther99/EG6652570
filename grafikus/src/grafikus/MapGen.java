@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class MapGen {
-    private static final boolean TESTING = true;
+    private static final boolean TESTING = false;
     private static Game game;
     private static int rows = 7;
     private static int cols = 10;
