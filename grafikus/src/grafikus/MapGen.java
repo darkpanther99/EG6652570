@@ -38,9 +38,7 @@ public class MapGen {
         return cols * row + col;
     }
 
-    public static void generateMap(Game game, int r, int c) {
-        rows = r;
-        cols = c;
+    private static void generateTiles() {
         List<Tile> tiles = game.getTiles();
         for (int i = 0; i <= cols * rows - 1; i++) {
             game.createTile(new Random().nextInt(5 + 1), new Random().nextInt(game.getPlayers().size() + 1 + 1) - 1);
@@ -69,60 +67,51 @@ public class MapGen {
         }
 
         tiles.get(index(1, 1)).setWeightLimit(999);
-        tiles.get(index(1, 1)).setSnow(0);
         tiles.get(index(1,1)).setChillWaterStrategy(new DryLand()); // NOTE(Mark): Volt egy bug, hogy elkezdtek meghalni a fiúk az első mezőn, ez azért volt, mert amikor legenerálódott, akkor még 0 volt a weight limit, ezért Sea ChillWaterStrategy volt.
-        if (TESTING) {
-            tiles.get(index(2, 1)).setWeightLimit(999);
-            tiles.get(index(2, 1)).setSnow(0);
-            tiles.get(index(2, 1)).setItem(new Food());
-            tiles.get(index(2, 2)).setSnow(0);
-            tiles.get(index(2, 2)).setItem(new PartView(ResourceManager.flareLight));
-            tiles.get(index(2, 3)).setSnow(0);
-            tiles.get(index(2, 3)).setWeightLimit(999);
-            tiles.get(index(2, 3)).setItem(new PartView(ResourceManager.flare));
-            tiles.get(index(2, 4)).setSnow(0);
-            tiles.get(index(2, 4)).setWeightLimit(999);
-            tiles.get(index(2, 4)).setItem(new PartView(ResourceManager.flareGun));
-            tiles.get(index(1, 2)).setSnow(0);
-            tiles.get(index(1, 2)).setWeightLimit(999);
 
-        } else {
-            LinkedList<PartView> parts = new LinkedList<>(Arrays.asList(new PartView(ResourceManager.flareGun), new PartView(ResourceManager.flareLight), new PartView(ResourceManager.flare)));
-            while (parts.size() > 0) {
-                //random.nextInt(max - min + 1) + min
-                int x = new Random().nextInt(cols - 2) + 1;
-                int y = new Random().nextInt(rows - 2) + 1;
-                if (!(tiles.get(index(x, y)).getItem() instanceof Empty) || tiles.get(index(x, y)).getWeightLimit() <= 0) {
-                } else {
-                    tiles.get(index(x, y)).setItem(parts.pop());
-                }
+    }
+
+    private static void generateItems() {
+        List<Tile> tiles = game.getTiles();
+        LinkedList<PartView> parts = new LinkedList<>(Arrays.asList(new PartView(ResourceManager.flareGun), new PartView(ResourceManager.flareLight), new PartView(ResourceManager.flare)));
+        while (parts.size() > 0) {
+            //random.nextInt(max - min + 1) + min
+            int x = new Random().nextInt(cols - 2) + 1;
+            int y = new Random().nextInt(rows - 2) + 1;
+            if (!(tiles.get(index(x, y)).getItem() instanceof Empty) || tiles.get(index(x, y)).getWeightLimit() <= 0) {
+            } else {
+                tiles.get(index(x, y)).setItem(parts.pop());
             }
-            LinkedList<Item> items = new LinkedList<>();
-            int numShovels = 2;
-            int numBreakingShovels = 2;
-            int numRopes = 2;
-            int numFood = 5;
-            for (int i = 0; i < numShovels; i++) items.push(new Shovel());
-            for (int i = 0; i < numBreakingShovels; i++) items.push(new BreakingShovel(3));
-            for (int i = 0; i < numRopes; i++) items.push(new Rope());
-            for (int i = 0; i < numFood; i++) items.push(new Food());
+        }
+        LinkedList<Item> items = new LinkedList<>();
+        int numShovels = 2;
+        int numBreakingShovels = 2;
+        int numRopes = 2;
+        int numFood = 5;
+        int numScuba = 2;
+        int numTentKit = 2;
+        for (int i = 0; i < numShovels; i++) items.push(new Shovel());
+        for (int i = 0; i < numBreakingShovels; i++) items.push(new BreakingShovel(3));
+        for (int i = 0; i < numRopes; i++) items.push(new Rope());
+        for (int i = 0; i < numFood; i++) items.push(new Food());
+        for (int i = 0; i < numScuba; i++) items.push(new ScubaGear());
+        for (int i = 0; i < numTentKit; i++) items.push(new TentKit());
 
-            while (items.size() > 0) {
-                //random.nextInt(max - min + 1) + min
-                int x = new Random().nextInt(cols - 2) + 1;
-                int y = new Random().nextInt(rows - 2) + 1;
-                if (!(tiles.get(index(x, y)).getItem() instanceof Empty) || tiles.get(index(x, y)).getWeightLimit() <= 0) {
-                } else {
-                    tiles.get(index(x, y)).setItem(items.pop());
-                }
+        while (items.size() > 0) {
+            //random.nextInt(max - min + 1) + min
+            int x = new Random().nextInt(cols - 2) + 1;
+            int y = new Random().nextInt(rows - 2) + 1;
+            if (!(tiles.get(index(x, y)).getItem() instanceof Empty) || tiles.get(index(x, y)).getWeightLimit() <= 0) {
+            } else {
+                tiles.get(index(x, y)).setItem(items.pop());
             }
         }
 
 
-        for (Player p : game.getPlayers()) {
-            p.placeOn(tiles.get(index(1, 1)));
-        }
+    }
 
+    private static void placeBears() {
+        List<Tile> tiles = game.getTiles();
         for (PolarBear b : game.getBears()) {
             int done = 0;
             boolean badbadbear = false;
@@ -147,6 +136,22 @@ public class MapGen {
                 done++;
             }
         }
+    }
+    private static void placePlayers() {
+        List<Tile> tiles = game.getTiles();
+        for (Player p : game.getPlayers()) {
+            p.placeOn(tiles.get(index(1, 1)));
+        }
+    }
 
+    public static void generateMap(Game g, int r, int c) {
+        rows = r;
+        cols = c;
+        game = g;
+
+        generateTiles();
+        generateItems();
+        placePlayers();
+        placeBears();
     }
 }
