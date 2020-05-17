@@ -16,7 +16,7 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
      * A TileClick esemény jelentését meghatározó állapotgép állapota.
      */
     enum Mode {
-        /**
+        /*
          * Nem történik semmi.
          */
         //NONE,
@@ -34,31 +34,27 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
          */
         EXAMINE,
     }
-
     public Mode mode = Mode.STEP;
 
     /**
      * A modell.
      */
     public final Game game;
-
-    /**
-     * A jelenleg kiválasztott játékos. Az összes Controller parancs rá vonatkozik.
-     */
-    public Player selectedPlayer;
-
-    /**
-     * Rajzoláshoz szükséges segédváltozó.
-     */
-    public int foundParts = 0;
-
-
     // A tartalmazott UI elemek:
     private final PlayerListMenu playerListMenu;
     private final InventoryMenu inventoryMenu;
     private final ActionsMenu actionsMenu;
     private final View view;
 
+
+    /**
+     * A jelenleg kiválasztott játékos. Az összes Controller parancs rá vonatkozik.
+     */
+    public Player selectedPlayer;
+    /**
+     * Rajzoláshoz szükséges segédváltozó.
+     */
+    public int foundParts = 0;
     /**
      * @param game Négyzetrács szerkezetű modell
      * @param rows A négyzetrács sorai.
@@ -99,7 +95,7 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
 
         setVisible(true);
         setResizable(false);
-        this.update();
+        update(true, true, true, true);
     }
 
     // TODO: ezt használni
@@ -113,24 +109,25 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
     }
 
     /**
-     * Mindent frissít.
+     * Frissíti a grafikát.
+     * Ki lehet választani, hogy miket szeretnénk frissíteni, a hatékonyság növeléséért.
+     */
+    public void update(boolean updateView, boolean updateInventory, boolean updatePlayerList, boolean updateActionsMenu) {
+        if (updateView) view.update();
+        else getSelectedTileView().update();
+        if (updateInventory) inventoryMenu.update();
+        if (updatePlayerList) playerListMenu.update();
+        if (updateActionsMenu) actionsMenu.update();
+        this.repaint();
+        if (game.getPlayers().stream().allMatch(x -> x.getEnergy() == 0))
+            nextTurn();
+    }
+
+    /**
+     * Frissíti a grafikát. Nem rajzolja újra a teljes pályát.
      */
     public void update() {
-        view.update();
-        inventoryMenu.update();
-        playerListMenu.update();
-        actionsMenu.update();
-        this.repaint();
-
-        List<Player> players = game.getPlayers();
-
-        for (Player player : players) {
-            if (player.getEnergy() > 0) {
-                return;
-            }
-        }
-
-        nextTurn();
+        update(false, true, true, true);
     }
 
     /**
@@ -168,13 +165,26 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
         }
 
         game.turn();
+        update(true, false, true, false);
     }
-
 
     @Override
     public void select(Player p) {
         selectedPlayer = p;
-        update();
+        update(false, true, true, true);
+    }
+
+    /**
+     * Segédfüggvény, a grafika gyorsításához.
+     */
+    TileView getSelectedTileView() {
+        Tile c = selectedPlayer.getCurrentTile();
+        for (TileView tv : view.getTileViews()) {
+            if (tv.getTile().equals(c)) {
+                return tv;
+            }
+        }
+        return null;
     }
 
     /**
@@ -197,20 +207,15 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
 
         if (tileDirection == -1) return;
 
-        // csak azokat a TileView-ket frissítjük, amik megváltoztak
-        TileView a = null, b = null;
-        List<TileView> tvs = view.getTileViews();
-        for (TileView tv : tvs) {
-            if (tv.getTile().getOccupants().contains(selectedPlayer)) {
-                a = tv;
-                Tile nt = a.getTile().getNeighbor(tileDirection);
-                for (TileView ntv : tvs) {
-                    if (ntv.getTile().equals(nt)) {
-                        b = ntv;
-                        break;
-                    }
+        // A szomszédos TileView-t is frissíteni kell.
+        TileView ntv = getSelectedTileView();
+        if (mode == Mode.EXAMINE || mode == Mode.RESCUE) {
+            Tile nt = ntv.getTile().getNeighbor(tileDirection);
+            for (TileView tv : view.getTileViews()) {
+                if (tv.getTile().equals(nt)) {
+                    ntv = tv;
+                    break;
                 }
-                break;
             }
         }
 
@@ -225,9 +230,7 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
             selectedPlayer.rescueTeammate(tileDirection);
         }
         mode = Mode.STEP;
-
-        if (b != null) b.update();
-        if (a != null) a.update();
-        //update();
+        update(false, false, true, true);
+        if (ntv != null) ntv.update();
     }
 }
