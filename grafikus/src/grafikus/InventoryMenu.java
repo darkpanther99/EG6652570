@@ -66,7 +66,6 @@ public class InventoryMenu extends JScrollPane {
         content.removeAll();
         Player player = controller.selectedPlayer;
         if (player != null) {
-
             ItemIcon partIcon = new ItemIcon(controller, player.getPartStore());
             content.add(partIcon);
             ItemIcon foodIcon = new ItemIcon(controller, player.getFoodStore());
@@ -74,26 +73,23 @@ public class InventoryMenu extends JScrollPane {
             ItemIcon tentkitIcon = new ItemIcon(controller, player.getBuildStrategy());
             content.add(tentkitIcon);
             List<Item> inventory = controller.selectedPlayer.getInventory();
-            int count = 0;
+            
+            int count = 3;
             for (Item item : inventory) {
                 if (item instanceof Empty) continue;
                 ItemIcon icon = new ItemIcon(controller, item, isEquipped(item));
                 content.add(icon);
                 count++;
             }
-
-            int extraSlots = 10 - (count + 3); // 10 slot van
+            int extraSlots = Math.max(0, 10 - count); // 10 vagy több slotot rajzolunk
             Box.Filler glue = (Box.Filler) Box.createVerticalGlue();
             glue.changeShape(glue.getMinimumSize(),
                     new Dimension(0, ITEM_SIZE * extraSlots),
                     glue.getMaximumSize());
             content.add(glue);
         }
-
         content.revalidate();
         content.repaint();
-        this.revalidate();
-        this.repaint();
     }
 
     private boolean isEquipped(Item i) {

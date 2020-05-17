@@ -24,7 +24,7 @@ public class PlayerIcon extends JPanel implements MouseListener {
     public PlayerIcon(Controller controller, Player player, boolean isSelected) {
         super();
 
-        Dimension d = new Dimension(PlayerListMenu.PLAYERICONSIZE, PlayerListMenu.PLAYERICONSIZE);
+        Dimension d = new Dimension(PlayerListMenu.PLAYER_ICON_SIZE, PlayerListMenu.PLAYER_ICON_SIZE);
         setPreferredSize(d);
         setMinimumSize(d);
 
@@ -54,45 +54,45 @@ public class PlayerIcon extends JPanel implements MouseListener {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.drawImage(ResourceManager.playerSlot, 0, 0, PlayerListMenu.PLAYERICONSIZE, PlayerListMenu.PLAYERICONSIZE, null);
+        g.drawImage(ResourceManager.playerSlot, 0, 0, PlayerListMenu.PLAYER_ICON_SIZE, PlayerListMenu.PLAYER_ICON_SIZE, null);
         if (player instanceof EskimoView) {
             g.drawImage(((EskimoView) player).iconImage,
-                    PlayerListMenu.PLAYERICONSIZE / 4 + PlayerListMenu.PLAYERICONSIZE / 9,
-                    PlayerListMenu.PLAYERICONSIZE / 4 - PlayerListMenu.PLAYERICONSIZE / 11,
-                    PlayerListMenu.PLAYERICONSIZE / 4,
-                    PlayerListMenu.PLAYERICONSIZE / 4,
+                    PlayerListMenu.PLAYER_ICON_SIZE / 4 + PlayerListMenu.PLAYER_ICON_SIZE / 9,
+                    PlayerListMenu.PLAYER_ICON_SIZE / 4 - PlayerListMenu.PLAYER_ICON_SIZE / 11,
+                    PlayerListMenu.PLAYER_ICON_SIZE / 4,
+                    PlayerListMenu.PLAYER_ICON_SIZE / 4,
                     null);
         }
         if (player instanceof ExplorerView) {
             g.drawImage(((ExplorerView) player).iconImage,
-                    PlayerListMenu.PLAYERICONSIZE / 4 + PlayerListMenu.PLAYERICONSIZE / 9,
-                    PlayerListMenu.PLAYERICONSIZE / 4 - PlayerListMenu.PLAYERICONSIZE / 11,
-                    PlayerListMenu.PLAYERICONSIZE / 4,
-                    PlayerListMenu.PLAYERICONSIZE / 4,
+                    PlayerListMenu.PLAYER_ICON_SIZE / 4 + PlayerListMenu.PLAYER_ICON_SIZE / 9,
+                    PlayerListMenu.PLAYER_ICON_SIZE / 4 - PlayerListMenu.PLAYER_ICON_SIZE / 11,
+                    PlayerListMenu.PLAYER_ICON_SIZE / 4,
+                    PlayerListMenu.PLAYER_ICON_SIZE / 4,
                     null);
         }
         if (isSelected) {
             g.drawImage(ResourceManager.selectedPlayer,
                     0,
                     0,
-                    PlayerListMenu.PLAYERICONSIZE,
-                    PlayerListMenu.PLAYERICONSIZE,
+                    PlayerListMenu.PLAYER_ICON_SIZE,
+                    PlayerListMenu.PLAYER_ICON_SIZE,
                     null);
         }
 
         int hp = Math.max(0, Math.min(5, player.getBodyTemp()));
         int energy = Math.max(0, Math.min(5, player.getEnergy()));
         g.drawImage(ResourceManager.imageHP[hp],
-                PlayerListMenu.PLAYERICONSIZE / 4,
-                PlayerListMenu.PLAYERICONSIZE / 2 + 10,
-                PlayerListMenu.PLAYERICONSIZE / 2,
+                PlayerListMenu.PLAYER_ICON_SIZE / 4,
+                PlayerListMenu.PLAYER_ICON_SIZE / 2 + 10,
+                PlayerListMenu.PLAYER_ICON_SIZE / 2,
                 12,
                 null);
 
         g.drawImage(ResourceManager.imageEnergy[energy],
-                PlayerListMenu.PLAYERICONSIZE / 4,
-                PlayerListMenu.PLAYERICONSIZE / 2 + 25,
-                PlayerListMenu.PLAYERICONSIZE / 2,
+                PlayerListMenu.PLAYER_ICON_SIZE / 4,
+                PlayerListMenu.PLAYER_ICON_SIZE / 2 + 25,
+                PlayerListMenu.PLAYER_ICON_SIZE / 2,
                 12,
                 null);
 
