@@ -136,8 +136,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
      * A Controller választja ki, hogy hova lépünk.
      */
     private void doStep() {
-        if (controller.mode == Controller.Mode.STEP) controller.mode = Controller.Mode.NONE;
-        else controller.mode = Controller.Mode.STEP;
+        controller.mode = Controller.Mode.STEP;
     }
 
     /**
@@ -145,7 +144,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
      * A Controller választja ki, hogy hol derítünk fel.
      */
     private void doExamine() {
-        if (controller.mode == Controller.Mode.EXAMINE) controller.mode = Controller.Mode.NONE;
+        if (controller.mode == Controller.Mode.EXAMINE) controller.mode = Controller.Mode.STEP;
         else controller.mode = Controller.Mode.EXAMINE;
     }
 
@@ -154,7 +153,7 @@ public class ActionsMenu extends JPanel implements ActionListener {
      * A Controller választja ki, hogy honnan mentünk ki.
      */
     private void doRescue() {
-        if (controller.mode == Controller.Mode.RESCUE) controller.mode = Controller.Mode.NONE;
+        if (controller.mode == Controller.Mode.RESCUE) controller.mode = Controller.Mode.STEP;
         else controller.mode = Controller.Mode.RESCUE;
     }
 

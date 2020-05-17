@@ -34,6 +34,8 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
     private final JSpinner rowSpinner;
     private final JSpinner colSpinner;
 
+    boolean hasGameEnded = true; // gameOver-ben kezdünk, ha létrehozzuk a controllert, átállítjuk true-ra
+
     public MainMenu() {
         setMinimumSize(new Dimension(400, 200));
 
@@ -98,8 +100,11 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
      */
     @Override
     public void victory() {
-        controller.dispatchEvent(new WindowEvent(controller, WindowEvent.WINDOW_CLOSING));
-        JOptionPane.showMessageDialog(this, "You're winner!");
+        if(!hasGameEnded) {
+            controller.dispatchEvent(new WindowEvent(controller, WindowEvent.WINDOW_CLOSING));
+            JOptionPane.showMessageDialog(this, "You're winner!");
+            hasGameEnded = true;
+        }
     }
 
     /**
@@ -107,8 +112,11 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
      */
     @Override
     public void gameOver() {
-        controller.dispatchEvent(new WindowEvent(controller, WindowEvent.WINDOW_CLOSING));
-        JOptionPane.showMessageDialog(this, "A player died, game over!");
+        if(!hasGameEnded) {
+            controller.dispatchEvent(new WindowEvent(controller, WindowEvent.WINDOW_CLOSING));
+            JOptionPane.showMessageDialog(this, "A player died, game over!");
+            hasGameEnded = true;
+        }
     }
 
     /**
@@ -144,6 +152,10 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
             MapGen.generateMap(game, numRows, numCols);
 
             createController(game);
+            controller.addWindowListener(this);
+
+            hasGameEnded = false;
+            setVisible(false);
         }
     }
 
@@ -188,7 +200,7 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
      */
     @Override
     public void windowClosing(WindowEvent e) {
-        // TODO
+        setVisible(true);
     }
 
     /**

@@ -19,7 +19,8 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
         /**
          * Nem történik semmi.
          */
-        NONE,
+        //NONE,
+
         /**
          * A kiválasztott játékos lép.
          */
@@ -34,7 +35,7 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
         EXAMINE,
     }
 
-    public Mode mode = Mode.NONE;
+    public Mode mode = Mode.STEP;
 
     /**
      * A modell.
@@ -185,7 +186,7 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
      */
     @Override
     public void tileClick(Tile t) {
-        if (mode == Mode.NONE) return;
+        //if (mode == Mode.NONE) return;
 
         int tileDirection = -1;
         Map<Integer, Tile> neighbors = selectedPlayer.getCurrentTile().getNeighbors();
@@ -209,7 +210,7 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
             selectedPlayer.rescueTeammate(tileDirection);
         }
 
-        mode = Mode.NONE;
+        mode = Mode.STEP;
 
         update();
     }
