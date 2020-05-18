@@ -66,11 +66,7 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
         this.game = game;
 
         selectedPlayer = game.getPlayer(0);
-        selectedPlayer.addToInventory(new ScubaGear()); // TEMP
-        //selectedPlayer.equip(0);
-        selectedPlayer.addToInventory(new Rope()); // TEMP
-        //selectedPlayer.equip(1); // TEMP
-
+        
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Jégmező");
 

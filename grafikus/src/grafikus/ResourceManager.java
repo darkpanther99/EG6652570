@@ -1,11 +1,8 @@
 package grafikus;
 
 import javax.imageio.ImageIO;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.MissingResourceException;
 
@@ -70,8 +67,6 @@ public class ResourceManager {
 
     public static Image scubaGearPlayer = null;
 
-    // Hangok
-    public static Sound soundBackground = new Sound();
 
     /*
      * Mindent betölt.
@@ -79,84 +74,80 @@ public class ResourceManager {
     static {
         try {
 
-            equippedItem = ImageIO.read(getResource("png/equipped_item.png"));
+            equippedItem = ImageIO.read(getResource("ui_equipped_itemslot.png"));
 
-            canStep = ImageIO.read(getResource("png/canstep.png"));
-            storm = ImageIO.read(getResource("png/vihar.png"));
-            flagSafe = ImageIO.read(getResource("png/zaszlobiztonsagos.png"));
-            flagNotSafe = ImageIO.read(getResource("png/zaszloveszely.png"));
+            canStep = ImageIO.read(getResource("tile_canstep.png"));
+            storm = ImageIO.read(getResource("tile_storm.png"));
+            flagSafe = ImageIO.read(getResource("tile_safe.png"));
+            flagNotSafe = ImageIO.read(getResource("tile_danger.png"));
 
             // Player
             for (int i = 1; i <= 3; i++) {
-                eskimoPlayer[i - 1] = ImageIO.read(getResource("png/eskimo" + i + ".png"));
-                explorerPlayer[i - 1] = ImageIO.read(getResource("png/explorer" + i + ".png"));
-                eskimo[i - 1] = ImageIO.read(getResource("png/eskimo" + i + "_playericon.png"));
-                explorer[i - 1] = ImageIO.read(getResource("png/explorer" + i + "_playericon.png"));
+                eskimoPlayer[i - 1] = ImageIO.read(getResource("entity_eskimo" + i + ".png"));
+                explorerPlayer[i - 1] = ImageIO.read(getResource("entity_explorer" + i + ".png"));
+                eskimo[i - 1] = ImageIO.read(getResource("ui_eskimo" + i + "_playericon.png"));
+                explorer[i - 1] = ImageIO.read(getResource("ui_explorer" + i + "_playericon.png"));
             }
-            polarBear = ImageIO.read(getResource("png/jegesmedve.png"));
+            polarBear = ImageIO.read(getResource("entity_polarbear.png"));
 
             // Shelter
-            igloo = ImageIO.read(getResource("png/iglu.png"));
-            tent = ImageIO.read(getResource("png/sator.png"));
+            igloo = ImageIO.read(getResource("tile_igloo.png"));
+            tent = ImageIO.read(getResource("tile_tent.png"));
 
             // Items
-            itemSlot = ImageIO.read(getResource("png/itemslot.png"));
-            foodSlot = ImageIO.read(getResource("png/foodslot.png"));
-            flareGunSlot = ImageIO.read(getResource("png/pewpewslot.png"));
-            tentKitSlot = ImageIO.read(getResource("png/tentkitslot.png"));
-            winner = ImageIO.read(getResource("png/winner.png"));
+            itemSlot = ImageIO.read(getResource("ui_itemslot.png"));
+            foodSlot = ImageIO.read(getResource("ui_foodslot.png"));
+            flareGunSlot = ImageIO.read(getResource("ui_flareslot.png"));
+            tentKitSlot = ImageIO.read(getResource("ui_tentkitslot.png"));
+            winner = ImageIO.read(getResource("ui_winner.png"));
 
-            breakingShovel = ImageIO.read(getResource("png/törékenyásó.png"));
-            shovel = ImageIO.read(getResource("png/törhetetlenásó.png"));
-            tentKit = ImageIO.read(getResource("png/tentkit.png"));
-            flare = ImageIO.read(getResource("png/patron.png"));
-            flareGun = ImageIO.read(getResource("png/flaregun.png"));
-            flareLight = ImageIO.read(getResource("png/jelzőfény.png"));
-            food = ImageIO.read(getResource("png/food.png"));
-            scubaGear = ImageIO.read(getResource("png/scuba.png"));
-            scubaGearPlayer = ImageIO.read(getResource("png/buvarruha.png"));
-            rope = ImageIO.read(getResource("png/rope.png"));
+            breakingShovel = ImageIO.read(getResource("item_shovel1.png"));
+            shovel = ImageIO.read(getResource("item_shovel2.png"));
+            tentKit = ImageIO.read(getResource("item_tentkit.png"));
+            flare = ImageIO.read(getResource("item_flare.png"));
+            flareGun = ImageIO.read(getResource("item_flaregun.png"));
+            flareLight = ImageIO.read(getResource("item_flarelight.png"));
+            food = ImageIO.read(getResource("item_food.png"));
+            scubaGear = ImageIO.read(getResource("item_scuba.png"));
+            scubaGearPlayer = ImageIO.read(getResource("entity_player_scuba.png"));
+            rope = ImageIO.read(getResource("item_rope.png"));
 
-            imageIce = ImageIO.read(getResource("png/jégtile.png"));
-            imageLeaves = ImageIO.read(getResource("res/oak_leaves.png"));
-            imageSea = ImageIO.read(getResource("res/water.png"));
-            imageEntity = ImageIO.read(getResource("res/entity.png"));
+            imageIce = ImageIO.read(getResource("tile_ice.png"));
+           // imageLeaves = ImageIO.read(getResource("res/oak_leaves.png"));
+           // imageSea = ImageIO.read(getResource("res/water.png"));
+           // imageEntity = ImageIO.read(getResource("res/entity.png"));
 
-            emptyPlayerSlot = ImageIO.read(getResource("png/empty_player_slot.png"));
-            playerSlot = ImageIO.read(getResource("png/player_slot.png"));
-            selectedPlayer = ImageIO.read(getResource("png/active player.png"));
-            selectedEskimo = ImageIO.read(getResource("png/activeplayer_eskimo.png"));
-            selectedExplorer = ImageIO.read(getResource("png/activeplayer_Explorer.png"));
-            selectedScuba = ImageIO.read(getResource("png/activeplayer_scuba.png"));
+            emptyPlayerSlot = ImageIO.read(getResource("ui_empty_playerslot.png"));
+            playerSlot = ImageIO.read(getResource("ui_playerslot.png"));
+            selectedPlayer = ImageIO.read(getResource("ui_active_playerslot.png"));
+            selectedEskimo = ImageIO.read(getResource("entity_activeplayer_eskimo.png"));
+            selectedExplorer = ImageIO.read(getResource("entity_activeplayer_explorer.png"));
+            selectedScuba = ImageIO.read(getResource("entity_activeplayer_scuba.png"));
             //Image snow = ImageIO.read(getResource("res/snow.png"));
 
-            waterSide = ImageIO.read(getResource("png/Víz_side.png"));
-            waterCorner = ImageIO.read(getResource("png/víz_corner.png"));
+            waterSide = ImageIO.read(getResource("tile_seaside.png"));
+            waterCorner = ImageIO.read(getResource("tile_seacorner.png"));
 
-            Image hole = ImageIO.read(getResource("png/bezskadtjeg.png"));
+            Image hole = ImageIO.read(getResource("tile_hole.png"));
 
             imageSnow[0] = hole;
             for (int i = 1; i <= 5; i++) {
-                Image snow = ImageIO.read(getResource("png/hó" + i + ".png"));
+                Image snow = ImageIO.read(getResource("tile_snow" + i + ".png"));
                 imageSnow[i] = snow;
             }
             // UI
-            buttonSlot = ImageIO.read(getResource("png/buttonslot.png"));
+            buttonSlot = ImageIO.read(getResource("ui_buttonslot.png"));
 
-            imageHP[0] = ImageIO.read(getResource("png/HP_Energí_0.png"));
-            for (int i = 1; i < 6; i++) {
-                imageHP[i] = ImageIO.read(getResource("png/HP" + i + ".png"));
+            imageHP[0] = ImageIO.read(getResource("ui_bar.png"));
+            for (int i = 1; i <= 5; i++) {
+                imageHP[i] = ImageIO.read(getResource("ui_bar_red" + i + ".png"));
             }
 
-            imageEnergy[0] = ImageIO.read(getResource("png/HP_Energí_0.png"));
-            for (int i = 1; i < 6; i++) {
-                imageEnergy[i] = ImageIO.read(getResource("png/energy" + i + ".png"));
+            imageEnergy[0] = ImageIO.read(getResource("ui_bar.png"));
+            for (int i = 1; i <= 5; i++) {
+                imageEnergy[i] = ImageIO.read(getResource("ui_bar_yellow" + i + ".png"));
             }
-
-            try (InputStream is = getResource("res/mus.wav").openStream()) {
-                soundBackground.load(is);
-            }
-        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException debug) {
+        } catch (IOException debug) {
             debug.printStackTrace();
         }
     }
