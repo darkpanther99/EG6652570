@@ -72,7 +72,7 @@ public class Controller extends JFrame implements TileClickListener, PlayerSelec
         //selectedPlayer.equip(1); // TEMP
 
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Jegmezo");
+        setTitle("Jégmező");
 
         setLayout(new BorderLayout(0, 0));
 

@@ -28,6 +28,10 @@ public class View extends JScrollPane implements GameObserver, TileClickListener
     private final int rows;
     private final int cols;
     private TileClickListener tcl;
+
+    /**
+     * Ezt a panelt scrolloljuk.
+     */
     private final JPanel tilePanel;
 
     /**

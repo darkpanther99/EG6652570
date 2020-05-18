@@ -38,6 +38,7 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
 
     public MainMenu() {
         setMinimumSize(new Dimension(400, 200));
+        setTitle("Jégmező");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout(20, 20));
@@ -74,7 +75,7 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
         colSpinner.addChangeListener(this);
         mainPanel.add(colSpinner);
 
-        JButton buttonNewGame = new JButton("New Game");
+        JButton buttonNewGame = new JButton("Új játék");
         buttonNewGame.setActionCommand(AC_NEW_GAME);
         buttonNewGame.addActionListener(this);
         this.add(buttonNewGame, BorderLayout.SOUTH);

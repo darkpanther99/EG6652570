@@ -41,50 +41,50 @@ public class ActionsMenu extends JPanel implements ActionListener {
 
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 8, 16));
 
-        stepButton = new MenuButton("Step");
+        stepButton = new MenuButton("Lépés");
         stepButton.setActionCommand(AC_STEP);
         stepButton.addActionListener(this);
         this.add(stepButton);
 
-        examineButton = new MenuButton("Examine");
+        examineButton = new MenuButton("Felderítés");
         examineButton.setActionCommand(AC_EXAMINE);
         examineButton.addActionListener(this);
         this.add(examineButton);
 
-        rescueButton = new MenuButton("Rescue");
+        rescueButton = new MenuButton("Kimentés");
         rescueButton.setActionCommand(AC_RESCUE);
         rescueButton.addActionListener(this);
         this.add(rescueButton);
 
-        digButton = new MenuButton("Dig");
+        digButton = new MenuButton("Ásás");
         digButton.setActionCommand(AC_DIG);
         digButton.addActionListener(this);
         this.add(digButton);
 
-        pickupButton = new MenuButton("Pick up");
+        pickupButton = new MenuButton("Tárgy felvétele");
         pickupButton.setActionCommand(AC_PICK_UP);
         pickupButton.addActionListener(this);
         this.add(pickupButton);
 
-        buildButton = new MenuButton("Build");
+        buildButton = new MenuButton("Építés");
         buildButton.setActionCommand(AC_BUILD);
         buildButton.addActionListener(this);
         this.add(buildButton);
 
-        assembleButton = new MenuButton("Assemble");
+        assembleButton = new MenuButton("Rakétapisztoly");
         assembleButton.setActionCommand(AC_ASSEMBLE);
         assembleButton.addActionListener(this);
         this.add(assembleButton);
 
-        newTurnButton = new MenuButton("Next turn");
-        newTurnButton.setActionCommand(AC_NEXT_TURN);
-        newTurnButton.addActionListener(this);
-        this.add(newTurnButton);
-
-        eatButton = new MenuButton("Eat");
+        eatButton = new MenuButton("Evés");
         eatButton.setActionCommand(AC_EAT);
         eatButton.addActionListener(this);
         this.add(eatButton);
+
+        newTurnButton = new MenuButton("Következő kör");
+        newTurnButton.setActionCommand(AC_NEXT_TURN);
+        newTurnButton.addActionListener(this);
+        this.add(newTurnButton);
     }
 
     /**

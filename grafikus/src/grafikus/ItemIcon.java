@@ -155,8 +155,7 @@ public class ItemIcon extends JPanel implements MouseListener {
                 img = ResourceManager.rope;
             }
             else if (item instanceof TentKit) {
-                //TODO(Mark): Mi az a sátorkészlet???
-                setToolTipText("Sátorkészlet");
+                setToolTipText("Sátor, ideiglenes menedékhely a vihar elől.");
                 img = ResourceManager.tentKit;
             }
             else if (item instanceof ScubaGear) {
@@ -201,7 +200,7 @@ public class ItemIcon extends JPanel implements MouseListener {
                 }
             }
         } else if (type == Type.TENTKIT_STORE) {
-            setToolTipText("Sátorkészlet, kezdetleges búvóhely építhető vele.");
+            setToolTipText("Sátor, ideiglenes menedékhely a vihar elől.");
             g.drawImage(ResourceManager.tentKitSlot, 0, 0, InventoryMenu.ITEM_SIZE, InventoryMenu.ITEM_SIZE, null);
 
             if (tentkitStore.getCount() > 0) {
