@@ -137,6 +137,14 @@ public class ItemIcon extends JPanel implements MouseListener {
             else if (item instanceof BreakingShovel) {
                 setToolTipText("Ásó, amivel kétszer lehet ásni energiavesztés nélkül, viszont három használat után eltörik");
                 img = ResourceManager.breakingShovel;
+                if (((BreakingShovel) item).getInstance() == controller.selectedPlayer.getDigStrategy()) {
+                    String str = ((BreakingShovelDig)(controller.selectedPlayer.getDigStrategy())).getDurability() + "x";
+                    FontMetrics metrics = getFontMetrics(this.getFont());
+                    int w = metrics.stringWidth(str);
+                    Graphics2D g2 = (Graphics2D) g;
+                    g2.setColor(Color.WHITE);
+                    g2.drawString(str, (InventoryMenu.ITEM_SIZE - w) / 2, metrics.getHeight() + 92);
+                }
             }
             else if (item instanceof Rope) {
                 setToolTipText("Kötél, amivel ki lehet menteni a vízbe esett játékostársakat.");
