@@ -52,6 +52,7 @@ public class ResourceManager {
     public static Image food = null;
     public static Image scubaGear = null;
     public static Image rope = null;
+    public static Image equippedItem = null;
 
     public static Image[] eskimoPlayer = new Image[3];
     public static Image[] explorerPlayer = new Image[3];
@@ -77,6 +78,9 @@ public class ResourceManager {
      */
     static {
         try {
+
+            equippedItem = ImageIO.read(getResource("png/equipped_item.png"));
+
             canStep = ImageIO.read(getResource("png/canstep.png"));
             storm = ImageIO.read(getResource("png/vihar.png"));
             flagSafe = ImageIO.read(getResource("png/zaszlobiztonsagos.png"));

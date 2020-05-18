@@ -17,4 +17,8 @@ public class Shovel implements Item {
             instance = new ShovelDig();
         p.setDigStrategy(instance);
     }
+
+    public ShovelDig getInstance() {
+        return instance;
+    }
 }
