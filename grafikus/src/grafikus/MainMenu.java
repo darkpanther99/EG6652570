@@ -22,19 +22,23 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
     private static final String AC_NEW_GAME = "NewGame";
 
     private Controller controller;
+
+    // A játék paraméterei:
     private int numEskimos = 3;
     private int numExplorers = 3;
     private int numBears = 1;
     private int numRows = 7;
     private int numCols = 10;
-
     private final JSpinner eskimoSpinner;
     private final JSpinner explorerSpinner;
     private final JSpinner bearSpinner;
     private final JSpinner rowSpinner;
     private final JSpinner colSpinner;
 
-    boolean hasGameEnded = true; // gameOver-ben kezdünk, ha létrehozzuk a controllert, átállítjuk true-ra
+    /**
+     * Figyeli a játék állapotát.
+     */
+    boolean hasGameEnded = true;
 
     public MainMenu() {
         setMinimumSize(new Dimension(400, 200));
@@ -87,10 +91,16 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
         this.setVisible(true);
     }
 
-    public Game createGame() {
+    /**
+     * Játék létrehozása.
+     */
+    Game createGame() {
         return new Game();
     }
 
+    /**
+     * Kontroller létrehozása.
+     */
     Controller createController(Game game) {
         this.controller = new Controller(game, numRows, numCols);
         return controller;
@@ -206,8 +216,7 @@ public class MainMenu extends JFrame implements WindowListener, ChangeListener, 
      */
     @Override
     public void windowClosing(WindowEvent e) {
-        final boolean debug = false; // idegesítő, ha debuggolni akarsz
-        if (!debug && !hasGameEnded) {
+        if (!hasGameEnded) {
             int r = JOptionPane.showConfirmDialog(controller,
                     "Biztos ki akarsz lépni?", "?", JOptionPane.OK_CANCEL_OPTION);
             if (r != JOptionPane.OK_OPTION) return;

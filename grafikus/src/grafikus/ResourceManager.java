@@ -18,7 +18,7 @@ public class ResourceManager {
 
     public static Image canStep = null;
 
-    public static Image storm  = null;
+    public static Image storm = null;
     public static Image imageIce = null;
     public static Image imageLeaves = null;
     public static Image imageSea = null;

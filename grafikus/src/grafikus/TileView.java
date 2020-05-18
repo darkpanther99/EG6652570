@@ -18,6 +18,9 @@ public class TileView extends JPanel implements MouseListener {
      * A reprezentált cella.
      */
     private final Tile tile;
+    /**
+     * A storm grafikus megjelenítését szabályozza.
+     */
     public boolean isStorm = false;
     /**
      * Számon tartja, hogy fel van-e derítve sarkkutató által.
@@ -27,7 +30,9 @@ public class TileView extends JPanel implements MouseListener {
      * Ha rajta van a kurzor, és a kiválasztott játékoshoz szomszédos, akkor jelölést rajzolunk
      */
     private boolean mouseOn = false;
-
+    /**
+     * Továbbítja a klikk eseményt.
+     */
     private TileClickListener tcl;
 
     /**
@@ -50,6 +55,9 @@ public class TileView extends JPanel implements MouseListener {
         setBorder(new EmptyBorder(0, 0, 0, 0));
     }
 
+    /**
+     * Klikk esemény feliratkozás.
+     */
     public void addTileClickListener(TileClickListener tcl) {
         this.tcl = tcl;
     }
@@ -61,6 +69,9 @@ public class TileView extends JPanel implements MouseListener {
         repaint();
     }
 
+    /**
+     * Segédfüggvény
+     */
     private boolean isCorner(Tile t, int n1, int n2) {
         return (t.getSnow() == 0 && t.getWeightLimit() == 0
                 && tile.getNeighbor(n1) != null && tile.getNeighbor(n2) != null
@@ -70,6 +81,9 @@ public class TileView extends JPanel implements MouseListener {
                         && tile.getNeighbor((n2 + 2 >= 4) ? n2 - 2 : n2 + 2) == null);
     }
 
+    /**
+     * Segédfüggvény
+     */
     private boolean isSide(Tile t, String side) {
         int n1, n2, n3;
         switch (side) {

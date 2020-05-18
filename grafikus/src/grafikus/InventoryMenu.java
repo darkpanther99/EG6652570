@@ -66,6 +66,7 @@ public class InventoryMenu extends JScrollPane {
         content.removeAll();
         Player player = controller.selectedPlayer;
         if (player != null) {
+            // külön slotok a consumable itemeknek
             ItemIcon partIcon = new ItemIcon(controller, player.getPartStore());
             content.add(partIcon);
             ItemIcon foodIcon = new ItemIcon(controller, player.getFoodStore());
@@ -77,7 +78,8 @@ public class InventoryMenu extends JScrollPane {
             int count = 3;
             for (Item item : inventory) {
                 if (item instanceof Empty) continue;
-                ItemIcon icon = new ItemIcon(controller, item, isEquipped(item));
+                // nem itt vizsgáljuk, hogy equippelt-e
+                ItemIcon icon = new ItemIcon(controller, item, false);
                 content.add(icon);
                 count++;
             }
@@ -90,9 +92,5 @@ public class InventoryMenu extends JScrollPane {
         }
         content.revalidate();
         content.repaint();
-    }
-
-    private boolean isEquipped(Item i) {
-        return false;
     }
 }

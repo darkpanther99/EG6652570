@@ -136,12 +136,11 @@ public class ItemIcon extends JPanel implements MouseListener {
                 if (((Shovel) item).getInstance() == controller.selectedPlayer.getDigStrategy()) {
                     g.drawImage(ResourceManager.equippedItem, 0, 0, InventoryMenu.ITEM_SIZE, InventoryMenu.ITEM_SIZE, null);
                 }
-            }
-            else if (item instanceof BreakingShovel) {
+            } else if (item instanceof BreakingShovel) {
                 setToolTipText("Ásó, amivel kétszer lehet ásni energiavesztés nélkül, viszont három használat után eltörik");
                 img = ResourceManager.breakingShovel;
                 if (((BreakingShovel) item).getInstance() == controller.selectedPlayer.getDigStrategy()) {
-                    String str = ((BreakingShovelDig)(controller.selectedPlayer.getDigStrategy())).getDurability() + "x";
+                    String str = ((BreakingShovelDig) (controller.selectedPlayer.getDigStrategy())).getDurability() + "x";
                     FontMetrics metrics = getFontMetrics(this.getFont());
                     int w = metrics.stringWidth(str);
                     Graphics2D g2 = (Graphics2D) g;
@@ -149,20 +148,16 @@ public class ItemIcon extends JPanel implements MouseListener {
                     g2.drawString(str, (InventoryMenu.ITEM_SIZE - w) / 2, metrics.getHeight() + 92);
                     g.drawImage(ResourceManager.equippedItem, 0, 0, InventoryMenu.ITEM_SIZE, InventoryMenu.ITEM_SIZE, null);
                 }
-            }
-            else if (item instanceof Rope) {
+            } else if (item instanceof Rope) {
                 setToolTipText("Kötél, amivel ki lehet menteni a vízbe esett játékostársakat.");
                 img = ResourceManager.rope;
-            }
-            else if (item instanceof TentKit) {
+            } else if (item instanceof TentKit) {
                 setToolTipText("Sátor, ideiglenes menedékhely a vihar elől.");
                 img = ResourceManager.tentKit;
-            }
-            else if (item instanceof ScubaGear) {
+            } else if (item instanceof ScubaGear) {
                 setToolTipText("Búvárruha, amivel hosszú ideig ki lehet bírni a fagyos vízben.");
                 img = ResourceManager.scubaGear;
-            }
-            else img = ResourceManager.imageEntity;
+            } else img = ResourceManager.imageEntity;
 
             int size = InventoryMenu.ITEM_SIZE / 3;
             int xOffs = (InventoryMenu.ITEM_SIZE - size) / 2;
