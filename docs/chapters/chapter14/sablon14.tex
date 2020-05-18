@@ -1,4 +1,4 @@
-﻿% Szglab4
+% Szglab4
 % ===========================================================================
 %
 \chapter{Összefoglalás}
@@ -6,33 +6,75 @@
 \thispagestyle{fancy}
 
 \section{Projekt összegzés}
-\comment{A projekt tapasztalatait összegző részben a csapatoknak a projektről kialakult véleményét várjuk. A megválaszolandók köre az alábbi. }
 
 \begin{munka}
-\munkaido{Horváth}{98}
-\munkaido{Németh}{95}
-\munkaido{Tóth}{102}
-\munkaido{Oláh}{87}
-\osszesmunkaido{382}
+\munkaido{Glávits}{109.25}
+\munkaido{Kiss}{64.5}
+\munkaido{Konrád}{57.75}
+\munkaido{Máté}{52}
+\munkaido{Lant}{44}
+\osszesmunkaido{327.5}
 \end{munka}
 
 \begin{forrassor}
-\munkaido{Szkeleton}{500}
-\munkaido{Prototípus}{600}
-\munkaido{Grafikus változat}{700}
-\munkaido{Összesen}{1800}
+\munkaido{Szkeleton}{1287}
+\munkaido{Prototípus}{563}
+\munkaido{Grafikus változat}{378}
+\munkaido{Összesen}{2228}
 \end{forrassor}
 
 
 
 \begin{itemize}
 \item Mit tanultak a projektből konkrétan és általában? \newline
+\begin{itemize}
+	\item Kiss: Itt jobban megértettem a helyes OO fejlesztést, mint Szofttechen, mivel itt élesben is kipróbálhattam a modellt.
+	\item Glávits: A csapatmunka nem működik vezető nélkül. A github+latex+googledocs nagyon jól bevált.
+	\item Lant: Részt vehettem egy nagyobb szoftver feljesztésében az elejétől az első deploymentig. Verziókezelést.
+\end{itemize}
 \item Mi volt a legnehezebb és a legkönnyebb? \newline
+\begin{itemize}
+	\item Kiss: Legkönnyebb a modell lekódolása volt, az mindig egy felüdülés volt, amikor végre rendes Java kódot írhattunk. Egy elfogadott, szinte tökéletesre csiszolt modellt lekódolni gyorsan és egyszerűen lehetett. A legnehezebb rész az első Analízis modell volt, főleg, hogy a lehető legjobbra törekedtünk, hogy pihenhessünk egy hetet. Megszenvedtünk a 18 pontért, minden nap kellett foglalkoznunk a projekttel, hétvégén pedig szinte végig. A másik nehézség a grafikus modell elkészítése volt, mivel ilyet még sose láttunk, sose terveztünk. Prog3-ból más szemlélettel közelítettük meg a kezelőfelület elkészítését, ott kódolás közben gondolkodtunk, trial and errorok és doksiolvasások segítségével keltettük életre az alkalmazást. Szofttechből grafikus modellezés nem volt. Mivel a modellt előbb kellett beadni, mint a kódot, itt egy modellezői szemlélettel kellett megalkotnunk a grafikát, ami sok idő volt, és nehezebben érthető.
+	\item Glávits: Nagyon nehéz összehozni az OOP éteri ideális világát Swingben összetákolt hacky megoldásokkal.
+	\item Konrád: A legkönnyebb a modell tervezés utáni kódolása volt, mivel mire addig eljutottunk már körülbelül minden ki volt találva. A legnehezebbnek a grafikus felület elkészítését mondanám, mivel a feladat nem engedi a modellben történő nagyobb változtatásokat ebben a stádiumban, ezért sok helyen túlbonyolított megoldásokhoz kellett folyamodni. 
+	\item Egy megjegyzés a grafikustól: ``Nem volt nehéz, mert easy és fun pixel gaemet rajzolni.''
+\end{itemize}
 \item Összhangban állt-e az idő és a pontszám az elvégzendő feladatokkal? \newline
+\begin{itemize}
+	\item Kiss: Szerintem igen, én körülbelül a 3 kreditnek megfelelő időbefektetéssel zárom a projektet. Van, aki többet dolgozott, van, aki kevesebbet, de összességében a fejenkénti 90 óra munkával hozható volt a jeles eredmény. Az analízis modell esetleg érhetne több pontot, míg a könnyű kódolások kevesebbet.
+	\item Glávits: Igen, feltéve hogy mindent jól csinálunk és hatékonyan haladunk. Nincs lehetőség ostoba hibákkal húzni az időt.
+	\item Konrád: Igen.
+\end{itemize}
 \item Ha nem, akkor hol okozott ez nehézséget? \newline
+\begin{itemize}
+	\item Glávits: A grafikával többet bíbelődtünk az elvártnál.
+\end{itemize}
 \item Milyen változtatási javaslatuk van? \newline
+\begin{itemize}
+	\item Kiss: A tárgy szerintem jó volt, rendesen dolgozó csapatban főleg. Nem ezen kéne változtatni, hanem az elődein:
+		\begin{itemize}
+			\item Szofttechből lehetne komolyabb visszajelzés az elfogadott házik hibáira rávilágítva.
+			\item Szofttechből is lehetne heti/kétheti konzultáció a házival kapcsolatban, ahol külön részeket megbeszélünk belőle, visszajelzést kapunk, folytonosabban fejlődünk, nem csak egyszerre szakad ránk egy nagy modellezési projekt. így az analízis modell létrehozása nem lenne annyira sok időt elvevő feladat, mivel magasabb szintű modellezői tudás birtokába jutnánk így, mire a projekt labort elkezdjük.
+			\item Prog3-ból biztosan kötelezővé tennék egy modellezőibb megközelítést a Swing grafikás feladatoknál, hogy ne itt szakadjon ránk a 11. héten ez a feladat. Esetleg egy Szofttech gyakorlaton/gyakorlatiasabb előadáson hoznám elő ezt.
+		\end{itemize}
+	\item Glávits: Gyakran nem magától értetődő, hogy pontosan mi az elvárás az egyes dokumentáció alfejezetekhez. Nagy szükség volt a konzulens magyarázatára. Előfordult, hogy segítséggel sem sikerült rájönni.
+	\item Konrád: Mivel az első öt héten egyáltalán nem kell kódolni csak tervezni a modellt, ezért támogatnám azt, hogy még a grafikus szegmensben is vissza lehessen térni az ott előjövő hibákra, hiányosságokra, mivel ott látszik a legjobban, hogy miért és hol rossz a modell. Ennek az egyetlen hátránya az lenne, hogy talán túl egyszerű lenne a tárgy.
+\end{itemize}
 \item Milyen feladatot ajánlanának a projektre? \newline
+\begin{itemize}
+	\item Kiss: Minecraft 2D vagy Terraria klón játék létrehozását, azokat úgyis ismeri és szereti kb mindenki.
+	\item Glávits: Társasjáték vagy kártyajáték, mert bonyolult modell és egyszerű grafika jellemző rájuk.
+	\item Lant: Retro Racing game (pl.: Gran Turismo, Mario Kart) vagy Arcade baseball game (NES VS. baseball)
+\end{itemize}
 \end{itemize}
 
 \comment{Szívesen fogadunk minden egyéb kritikát és javaslatot.}
+\begin{itemize}
+	\item Kiss: 
+		\begin{itemize}
+			\item Mivel a design patternek Szoftvertechnikákból csak év végén kerülnek elő, az analízis modell pedig a 3. hétre kell, valahogy előhoznám Szofttechből, vagy a Projlab nyitó előadáson ezt a témát, esetleg minden évben elspoilerezve 2-3 olyan patternt, amik hasznosak lennének a projlab modellhez. Nekünk nagyon hasznos, szinte életmentő volt, hogy a konzulensünk említette a Strategy patternt, amivel teleraktuk a modellt, így sok fejfájástól menekültünk meg.
+			\item A másik a konzulensek. Hallottam barátaimtól olyat, hogy teljesen másképp osztályoznak konzulensek. Ezt valahogy egységesíteni kéne, ne múljon senkinek a jegye azon, hogy milyen konzulenst kap. Ugyan a miénkre panasz nem volt, szerintem korrekten osztályozott, a levont pontokért mindig megkaptuk az indoklást, viszont másoknál hallottam olyat, hogy ``jaj ezt nálatok szabad, nálunk nem''.
+			\item A fizikai leadási időpont kiírásakor végig lehetne nézni, hogy mikor van a 4. féléves évfolyamnak kötelező előadása, és esetleg ahhoz igazítani ezt. Nekünk például előadás után két órát várnunk kellett volna a leadás időpontjára, szerencsére konzulensünkkel találtunk rá alternatív megoldást.
+		\end{itemize}
+\end{itemize}
 
