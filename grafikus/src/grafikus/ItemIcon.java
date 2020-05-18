@@ -64,7 +64,6 @@ public class ItemIcon extends JPanel implements MouseListener {
      */
     public ItemIcon(Controller controller, BuildStrategy tentkitStore) {
         this(controller);
-
         type = Type.TENTKIT_STORE;
         this.tentkitStore = tentkitStore;
     }
@@ -131,11 +130,27 @@ public class ItemIcon extends JPanel implements MouseListener {
             g.drawImage(ResourceManager.itemSlot, 0, 0, InventoryMenu.ITEM_SIZE, InventoryMenu.ITEM_SIZE, null);
 
             Image img;
-            if (item instanceof Shovel) img = ResourceManager.shovel;
-            else if (item instanceof BreakingShovel) img = ResourceManager.breakingShovel;
-            else if (item instanceof Rope) img = ResourceManager.rope;
-            else if (item instanceof TentKit) img = ResourceManager.tentKit;
-            else if (item instanceof ScubaGear) img = ResourceManager.scubaGear;
+            if (item instanceof Shovel) {
+                setToolTipText("Ásó, amivel kétszer lehet ásni energiavesztés nélkül.");
+                img = ResourceManager.shovel;
+            }
+            else if (item instanceof BreakingShovel) {
+                setToolTipText("Ásó, amivel kétszer lehet ásni energiavesztés nélkül, viszont három használat után eltörik");
+                img = ResourceManager.breakingShovel;
+            }
+            else if (item instanceof Rope) {
+                setToolTipText("Kötél, amivel ki lehet menteni a vízbe esett játékostársakat.");
+                img = ResourceManager.rope;
+            }
+            else if (item instanceof TentKit) {
+                //TODO(Mark): Mi az a sátorkészlet???
+                setToolTipText("Sátorkészlet");
+                img = ResourceManager.tentKit;
+            }
+            else if (item instanceof ScubaGear) {
+                setToolTipText("Búvárruha, amivel hosszú ideig ki lehet bírni a fagyos vízben.");
+                img = ResourceManager.scubaGear;
+            }
             else img = ResourceManager.imageEntity;
 
             int size = InventoryMenu.ITEM_SIZE / 3;
@@ -143,6 +158,7 @@ public class ItemIcon extends JPanel implements MouseListener {
             int yOffs = (InventoryMenu.ITEM_SIZE - size) / 2 + 12;
             g.drawImage(img, xOffs, yOffs, size, size, null);
         } else if (type == Type.FOOD_STORE) {
+            setToolTipText("Élelem, visszatölthető vele a testhő.");
             g.drawImage(ResourceManager.foodSlot, 0, 0, InventoryMenu.ITEM_SIZE, InventoryMenu.ITEM_SIZE, null);
             int count = foodStore.getCount();
             if (count > 0) {
@@ -161,6 +177,7 @@ public class ItemIcon extends JPanel implements MouseListener {
                 g2.drawString(str, (InventoryMenu.ITEM_SIZE - w) / 2, metrics.getHeight() + 92);
             }
         } else if (type == Type.PART_STORE) {
+            setToolTipText("A jelzőpisztoly alkatrészei, a játék megnyeréséhet össze kell gyűjteni mind a hármat.");
             g.drawImage(ResourceManager.flareGunSlot, 0, 0, InventoryMenu.ITEM_SIZE, InventoryMenu.ITEM_SIZE, null);
             if (partStore.getCount() > 0) {
                 g.drawImage(ResourceManager.flareGun, 33, 22, 62, 62, null);
@@ -172,6 +189,7 @@ public class ItemIcon extends JPanel implements MouseListener {
                 }
             }
         } else if (type == Type.TENTKIT_STORE) {
+            setToolTipText("Sátorkészlet, kezdetleges búvóhely építhető vele.");
             g.drawImage(ResourceManager.tentKitSlot, 0, 0, InventoryMenu.ITEM_SIZE, InventoryMenu.ITEM_SIZE, null);
 
             if (tentkitStore.getCount() > 0) {
